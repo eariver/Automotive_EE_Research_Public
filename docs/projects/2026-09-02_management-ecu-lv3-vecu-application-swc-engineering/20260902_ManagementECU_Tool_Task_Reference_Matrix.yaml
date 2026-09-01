@@ -1,0 +1,548 @@
+schema_version: "management-ecu-tool-task-reference-matrix/v1"
+artifact: "Management ECU Lv3 VECU Application SWC Engineering — Tool / Task / Reference Matrix"
+date: "2026-09-02"
+status: "DRAFT_EXECUTION_NAVIGATION"
+repository: "eariver/Automotive_EE_Engineering_Knowledge"
+branch: "work/management-ecu-swc-project-baselines-20260902"
+base_main_sha: "59250354d74100167b80ee40f44e73eb064dd515"
+project_root: "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering"
+
+purpose: >-
+  Provide task-oriented navigation from an engineering intent to the applicable lifecycle phase,
+  primary tool, supported operation, required inputs, exact Reviewed Knowledge locator families,
+  expected outputs, completion/exit conditions, and next handoff. This artifact is navigation and
+  process guidance; it is not an SWC design specification.
+
+source_basis:
+  methodology: "20260902_ManagementECU_SWC_Development_Methodology.md"
+  step_by_step: "20260902_ManagementECU_SWC_Development_Step_by_Step_Guide.md"
+  reference_index: "20260902_ManagementECU_SWC_Reference_Index.yaml"
+  locator_manifests:
+    downstream: "references/downstream/reference-locators.yaml"
+    vector: "references/vector/reference-locators.yaml"
+    mathworks: "references/mathworks/reference-locators.yaml"
+    autosar: "references/autosar/reference-locators.yaml"
+  project_inputs:
+    requirements: "references/project/requirement-baseline.yaml"
+    tool_versions: "references/project/tool-version-baseline.yaml"
+    calibration: "references/project/calibration-input-baseline.yaml"
+
+navigation_policy:
+  - "Start from engineering intent, not from a tool name."
+  - "Resolve each locator ID through the project Reference Index and per-authority locator manifest."
+  - "Use the exact repository/commit/path/section recorded in the locator manifest; do not substitute current upstream HEAD or vendor Web documentation."
+  - "Tool operation descriptions are limited to what the current Methodology and Reviewed Knowledge support."
+  - "GUI click sequences, exact menu paths, and complete API command sequences are not inferred when they are not compiled in the current Reviewed Knowledge."
+  - "Project-specific behavior and values are not filled from vendor or AUTOSAR authority."
+
+operation_detail_levels:
+  WORKFLOW_OBJECT_LEVEL_READY: >-
+    The current corpus supports the engineering objects and workflow actions that must be performed,
+    but not necessarily an exact version-specific GUI click sequence or command script.
+  PROCEDURE_PARTIAL: >-
+    A bounded product workflow is known, but exact version-specific operational procedure still needs
+    a dedicated procedure-compilation pass before being used as a click-by-click work instruction.
+  NAVIGATION_ONLY_NEXT_PHASE: >-
+    The tool/phase is downstream of current Application SWC Development scope. Existing authority can
+    identify the handoff and role, but this matrix does not claim a complete procedure.
+  BLOCKED_BY_PROJECT_INPUT: >-
+    The workflow position is known but execution cannot be baselined until a project-specific input is supplied.
+  UNRESOLVED_AUTHORITY: >-
+    Existing frozen Reviewed Knowledge is insufficient for the requested tool-specific route.
+
+tasks:
+  - task_id: "TTR-000"
+    intent: "実プロジェクトで使うツール／リリース条件を固定したい"
+    phase: "PRE-SWC / Step 0"
+    primary_tool: "Project configuration management"
+    supporting_tools: []
+    operation_detail_level: "BLOCKED_BY_PROJECT_INPUT"
+    required_inputs:
+      - "Actual DaVinci Developer release"
+      - "Actual DaVinci Configurator release"
+      - "MATLAB / Simulink / AUTOSAR Blockset / Embedded Coder release"
+      - "AUTOSAR schema version"
+      - "Code-generation configuration identity/checksum"
+    read_first:
+      project: ["REF-008", "DS-PROJ-002"]
+      vector: ["V-001", "V-002"]
+      mathworks: ["MW-001", "MW-004"]
+      autosar: []
+    tool_operations:
+      - "Record actual project releases separately from Reviewed Knowledge evidence baselines."
+      - "If project releases differ from reviewed baselines, open a compatibility decision before treating reviewed workflow details as directly applicable."
+    outputs:
+      - "references/project/tool-version-baseline.yaml"
+    exit_conditions:
+      - "Actual project tool/release/schema baseline is explicitly selected."
+      - "Compatibility gaps are explicit rather than silently assumed."
+    next_task_ids: ["TTR-001", "TTR-002"]
+
+  - task_id: "TTR-001"
+    intent: "ECU要求を、どのApplication SWCが何を担当するかに分解したい"
+    phase: "SWC-D0 / Step 1"
+    primary_tool: "Tool-neutral engineering review"
+    supporting_tools: []
+    operation_detail_level: "BLOCKED_BY_PROJECT_INPUT"
+    required_inputs:
+      - "Requirement-ID-bearing project requirement artifact"
+    read_first:
+      project: ["REF-006", "DS-PROJ-001"]
+      downstream: ["DS-001", "DS-003", "DS-006"]
+      vector: []
+      mathworks: ["MW-008"]
+      autosar: []
+    tool_operations:
+      - "Classify each requirement into Application SWC responsibility versus RTE/BSW/OS/network/diagnostic-stack responsibility."
+      - "Record owning SWC, required inputs/outputs, trigger, state, calibration, diagnostic and network dependencies."
+      - "Do not use AUTOSAR/vendor documentation to invent missing project requirements."
+    outputs:
+      - "SWC Requirement Allocation Table"
+    exit_conditions:
+      - "No requirement remains unintentionally unowned."
+      - "Project-input gaps are explicit."
+    next_task_ids: ["TTR-002"]
+
+  - task_id: "TTR-002"
+    intent: "Application SWCの構造、I/O、Runnable、RTEアクセス契約を定義したい"
+    phase: "SWC-D1 / Steps 2–4"
+    primary_tool: "DaVinci Developer Classic"
+    supporting_tools: []
+    operation_detail_level: "WORKFLOW_OBJECT_LEVEL_READY"
+    required_inputs:
+      - "Accepted SWC requirement allocation"
+      - "Actual project tool/schema baseline"
+      - "Shared datatype/interface decisions where applicable"
+    read_first:
+      downstream: ["DS-001", "DS-002", "DS-003"]
+      vector: ["V-001", "V-004"]
+      mathworks: ["MW-001", "MW-003"]
+      autosar: ["AS-001", "AS-003"]
+    tool_operations:
+      - "Create or confirm the Atomic SWC/component identity."
+      - "Define required/provided ports and the applicable PortInterfaces."
+      - "Define or reference shared Application/Implementation data types according to project governance."
+      - "Define RunnableEntity identities and their activation/event contracts."
+      - "Define RTE data/service access contracts."
+      - "Define PIM and calibration contract identities where required."
+      - "Keep production RTE/BSW/OS configuration outside this SWC design task."
+    do_not_do:
+      - "Do not independently author the same SWC architecture again in Simulink."
+      - "Do not infer runnable periods from examples; use project requirements."
+    outputs:
+      - "DaVinci Developer software-design model"
+      - "Versioned AUTOSAR SWC contract definition"
+    exit_conditions:
+      - "SWC identity, ports, interfaces, datatypes, runnables/events and RTE access contract are fixed."
+      - "Unresolved project inputs are visible."
+    next_task_ids: ["TTR-003"]
+
+  - task_id: "TTR-003"
+    intent: "DaVinci Developerで確定したSWC契約をMathWorksへ渡したい"
+    phase: "SWC-D1 → SWC-D2 handoff"
+    primary_tool: "DaVinci Developer Classic"
+    supporting_tools: []
+    operation_detail_level: "PROCEDURE_PARTIAL"
+    required_inputs:
+      - "Fixed DaVinci SWC contract"
+    read_first:
+      downstream: ["DS-004"]
+      vector: ["V-001", "V-004"]
+      mathworks: ["MW-002"]
+      autosar: ["AS-001"]
+    tool_operations:
+      - "Export the selected Software Component description as AUTOSAR XML using the controlled project/schema profile."
+      - "Record the exported ARXML revision and source DaVinci baseline."
+    do_not_do:
+      - "Do not treat export as proof of cross-tool semantic equivalence."
+    outputs:
+      - "AUTOSAR SWC Contract ARXML"
+      - "ARXML revision/provenance record"
+    exit_conditions:
+      - "The exported artifact can be traced to the fixed DaVinci contract baseline."
+    next_task_ids: ["TTR-004"]
+
+  - task_id: "TTR-004"
+    intent: "DaVinciのSWC ARXMLからSimulink/AUTOSARモデルの土台を作りたい"
+    phase: "SWC-D2 / Step 5"
+    primary_tool: "AUTOSAR Blockset"
+    supporting_tools: ["Simulink"]
+    operation_detail_level: "WORKFLOW_OBJECT_LEVEL_READY"
+    required_inputs:
+      - "AUTOSAR SWC Contract ARXML"
+    read_first:
+      downstream: ["DS-004"]
+      vector: ["V-004"]
+      mathworks: ["MW-001", "MW-002", "MW-003"]
+      autosar: ["AS-001", "AS-002", "AS-003"]
+    tool_operations:
+      - "Use the AUTOSAR ARXML importer workflow to parse the contract and create/update the initial Simulink AUTOSAR representation."
+      - "Record input ARXML revision and whether this is initial creation or changed-ARXML update."
+      - "Inspect imported component, ports, interfaces, runnables and AUTOSAR mapping state before behavior implementation."
+    do_not_do:
+      - "Do not treat ARXML and the Simulink model as the same artifact identity."
+      - "Do not recreate the DaVinci-owned architecture independently in Simulink."
+    outputs:
+      - "Simulink AUTOSAR component model scaffold"
+      - "Import/update record"
+    exit_conditions:
+      - "The model scaffold is traceable to the input contract ARXML."
+      - "Unexpected import/update differences are recorded."
+    next_task_ids: ["TTR-005", "TTR-006"]
+
+  - task_id: "TTR-005"
+    intent: "SWCのアルゴリズムや状態遷移を実装したい"
+    phase: "SWC-D3 / Steps 6–7"
+    primary_tool: "Simulink"
+    supporting_tools: ["Stateflow"]
+    operation_detail_level: "WORKFLOW_OBJECT_LEVEL_READY"
+    required_inputs:
+      - "Imported AUTOSAR component model scaffold"
+      - "Accepted project behavior requirements"
+      - "Applicable project calibration values"
+    read_first:
+      project: ["DS-PROJ-004", "DS-PROJ-005", "DS-PROJ-003"]
+      downstream: ["DS-006", "DS-007"]
+      vector: []
+      mathworks: ["MW-005", "MW-012", "MW-015"]
+      autosar: ["AS-004", "AS-005", "AS-006", "AS-007"]
+    tool_operations:
+      - "Implement continuous/discrete algorithmic logic in Simulink."
+      - "Use Stateflow for explicit state/event/transition logic where needed."
+      - "Keep application state domains separated where the project Methodology requires separation."
+      - "For DiagMgr, consume abstract integration inputs rather than reimplementing CAN controller, CanSM, DCM or DEM behavior."
+    do_not_do:
+      - "Do not convert project counter/checksum semantics into AUTOSAR E2E without an explicit project decision."
+      - "Do not collapse native BUS_OFF into project BUS_FAILED_LATCHED."
+      - "Do not turn DCM/DEM responsibilities into DiagMgr behavior."
+    outputs:
+      - "Simulink / Stateflow SWC behavior model"
+    exit_conditions:
+      - "Required behavior is implemented without altering the DaVinci-owned contract by accident."
+      - "Project-specific rules and external stack boundaries remain explicit."
+    next_task_ids: ["TTR-006", "TTR-007"]
+
+  - task_id: "TTR-006"
+    intent: "Simulink要素とAUTOSAR要素の対応付けを確認・設定したい"
+    phase: "SWC-D4 / Step 8"
+    primary_tool: "AUTOSAR Blockset"
+    supporting_tools: ["Simulink"]
+    operation_detail_level: "WORKFLOW_OBJECT_LEVEL_READY"
+    required_inputs:
+      - "AUTOSAR component model"
+      - "DaVinci-originated SWC contract"
+    read_first:
+      downstream: ["DS-004"]
+      vector: ["V-004"]
+      mathworks: ["MW-003", "MW-002"]
+      autosar: ["AS-001", "AS-003"]
+    tool_operations:
+      - "Review/configure Simulink Inport ↔ AUTOSAR R-Port and Outport ↔ P-Port mappings as applicable."
+      - "Review/configure Function/Subsystem ↔ Runnable mappings."
+      - "Review/configure parameter ↔ calibration and Data Store ↔ PIM mappings where applicable."
+      - "Record unresolved or intentional deviations rather than silently changing the contract."
+    outputs:
+      - "AUTOSAR mapping configuration"
+      - "Mapping review record"
+    exit_conditions:
+      - "No unexplained mapping remains."
+    next_task_ids: ["TTR-007", "TTR-008"]
+
+  - task_id: "TTR-007"
+    intent: "モデルレベルで要求どおり動くことを確認したい"
+    phase: "SWC-D5 / Step 9"
+    primary_tool: "Simulink simulation / MathWorks test environment"
+    supporting_tools: ["Simulink Test where used", "Stateflow"]
+    operation_detail_level: "PROCEDURE_PARTIAL"
+    required_inputs:
+      - "Behavior model"
+      - "Requirement-linked test cases"
+      - "Project calibration values required by the tested behavior"
+    read_first:
+      downstream: ["DS-009", "DS-010"]
+      vector: []
+      mathworks: ["MW-006", "MW-007", "MW-008", "MW-009", "MW-015"]
+      autosar: []
+    tool_operations:
+      - "Define test cases/harness/configuration separately from execution results."
+      - "Execute normal model simulation as MIL workflow evidence."
+      - "Exercise nominal, boundary, transition, invalid-input and project-specific fault cases relevant to the SWC."
+      - "Maintain requirement ↔ test traceability and keep coverage separate from verdict."
+    do_not_do:
+      - "Do not treat MIL PASS as SIL, VECU, HIL or physical-SUT PASS."
+      - "Do not treat coverage as a verdict."
+    outputs:
+      - "MIL test definitions"
+      - "MIL result/evidence"
+      - "Requirement ↔ MIL traceability"
+      - "Coverage evidence where collected"
+    exit_conditions:
+      - "Required model behavior has an explicit MIL result."
+      - "Major state/fault transitions relevant to the SWC have been exercised."
+    next_task_ids: ["TTR-008"]
+
+  - task_id: "TTR-008"
+    intent: "AUTOSAR SWCのproduction-intent C/ARXMLを生成したい"
+    phase: "SWC-D6 / Step 10"
+    primary_tool: "Embedded Coder"
+    supporting_tools: ["AUTOSAR Blockset", "Simulink"]
+    operation_detail_level: "WORKFLOW_OBJECT_LEVEL_READY"
+    required_inputs:
+      - "Mapped AUTOSAR component model"
+      - "Fixed code-generation configuration"
+    read_first:
+      downstream: ["DS-003", "DS-004"]
+      vector: ["V-002"]
+      mathworks: ["MW-004", "MW-013"]
+      autosar: ["AS-002"]
+    tool_operations:
+      - "Generate C source and headers from the mapped model."
+      - "Generate implementation AUTOSAR XML and code-generation metadata/report."
+      - "Record generated artifact revisions/hashes separately from source-model identity."
+    do_not_do:
+      - "Do not equate code generation with compile or link."
+      - "Do not equate a MathWorks local RTE stub with production MICROSAR RTE."
+    outputs:
+      - "Generated C/H"
+      - "Implementation ARXML"
+      - "Code-generation metadata/report"
+      - "A2L only where explicitly configured/applicable; it remains a separate artifact identity"
+    exit_conditions:
+      - "Generation completes with version-fixed configuration and traceable outputs."
+    next_task_ids: ["TTR-009", "TTR-010"]
+
+  - task_id: "TTR-009"
+    intent: "生成コード実装がモデルと対応して動くことをSILで確認したい"
+    phase: "SIL / Step 11"
+    primary_tool: "MathWorks SIL execution workflow"
+    supporting_tools: ["Simulink Test where used"]
+    operation_detail_level: "PROCEDURE_PARTIAL"
+    required_inputs:
+      - "Generated implementation"
+      - "MIL test intent / corresponding SIL test definitions"
+    read_first:
+      downstream: ["DS-009", "DS-010"]
+      vector: []
+      mathworks: ["MW-006", "MW-007", "MW-008", "MW-009"]
+      autosar: []
+    tool_operations:
+      - "Execute the generated implementation in SIL identity rather than normal model simulation."
+      - "Compare major behavior and state/fault transitions with the corresponding MIL intent."
+      - "Record SIL result independently from MIL result."
+    do_not_do:
+      - "Do not reuse MIL PASS as SIL PASS."
+      - "Do not interpret SIL as VECU/HIL/physical-SUT evidence."
+    outputs:
+      - "SIL test/result evidence"
+      - "MIL/SIL correspondence record"
+    exit_conditions:
+      - "Required generated-code behavior has an explicit SIL result."
+    next_task_ids: ["TTR-010"]
+
+  - task_id: "TTR-010"
+    intent: "MathWorks生成ARXMLが元のDaVinci契約を意図せず変えていないか確認したい"
+    phase: "SWC-D7 / Step 12"
+    primary_tool: "DaVinci Developer + AUTOSAR/MathWorks comparison review"
+    supporting_tools: ["AUTOSAR Blockset"]
+    operation_detail_level: "PROCEDURE_PARTIAL"
+    required_inputs:
+      - "Original DaVinci SWC contract ARXML"
+      - "Generated MathWorks implementation ARXML"
+    read_first:
+      downstream: ["DS-004"]
+      vector: ["V-003", "V-004"]
+      mathworks: ["MW-002", "MW-004"]
+      autosar: ["AS-001", "AS-002", "AS-003"]
+    tool_operations:
+      - "Compare SWC, port, interface, datatype, runnable, event, calibration, PIM, schema/package and unexpected-object identities."
+      - "Classify each difference as intended, derived/representation-specific, or unresolved."
+      - "Use controlled update/reimport only after an explicit disposition."
+    do_not_do:
+      - "Do not assume byte-for-byte round-trip identity."
+      - "Do not unconditionally overwrite the DaVinci source contract with generated ARXML."
+    outputs:
+      - "AUTOSAR Contract Reconciliation Record"
+    exit_conditions:
+      - "No unintended architecture change or unresolved mapping remains for delivery."
+    next_task_ids: ["TTR-011"]
+
+  - task_id: "TTR-011"
+    intent: "SWCをECU Integration工程へ引き渡せる形にまとめたい"
+    phase: "SWC Delivery / Step 13"
+    primary_tool: "Project configuration/release management"
+    supporting_tools: ["DaVinci Developer", "MathWorks toolchain"]
+    operation_detail_level: "WORKFLOW_OBJECT_LEVEL_READY"
+    required_inputs:
+      - "Contract ARXML"
+      - "Model and mapping"
+      - "Generated C/H and implementation ARXML"
+      - "MIL/SIL evidence"
+      - "Contract reconciliation result"
+    read_first:
+      downstream: ["DS-003", "DS-011"]
+      vector: ["V-002", "V-005"]
+      mathworks: ["MW-004", "MW-008"]
+      autosar: ["AS-002"]
+    tool_operations:
+      - "Version-fix the SWC delivery package and manifest."
+      - "Record requirement, tool, ARXML, model, generated-code, MIL/SIL and limitation provenance."
+      - "Mark production RTE/BSW/OS integration as the next phase rather than part of SWC completion."
+    outputs:
+      - "SWC Delivery Package"
+      - "SWC Delivery Manifest"
+    exit_conditions:
+      - "Package is traceable and ready for DaVinci Configurator / MICROSAR integration."
+    next_task_ids: ["TTR-N01"]
+
+  - task_id: "TTR-012"
+    intent: "アルゴリズム／状態遷移だけを変更したい"
+    phase: "Change routing"
+    primary_tool: "Simulink / Stateflow"
+    supporting_tools: ["AUTOSAR Blockset", "Embedded Coder"]
+    operation_detail_level: "WORKFLOW_OBJECT_LEVEL_READY"
+    required_inputs:
+      - "Existing contract-preserving behavior change request"
+    read_first:
+      downstream: ["DS-004"]
+      vector: []
+      mathworks: ["MW-005", "MW-006", "MW-008"]
+      autosar: []
+    tool_operations:
+      - "Modify behavior without changing the DaVinci-owned contract."
+      - "Repeat applicable MIL → generation → SIL → reconciliation steps."
+    outputs:
+      - "Updated behavior model and verification/generation artifacts"
+    exit_conditions:
+      - "Contract remains unchanged or any discovered contract impact is rerouted to TTR-013."
+    next_task_ids: ["TTR-007", "TTR-008", "TTR-009", "TTR-010"]
+
+  - task_id: "TTR-013"
+    intent: "Port／Interface／Datatype／RunnableなどSWC契約を変更したい"
+    phase: "Change routing"
+    primary_tool: "DaVinci Developer Classic"
+    supporting_tools: ["AUTOSAR Blockset", "Simulink"]
+    operation_detail_level: "WORKFLOW_OBJECT_LEVEL_READY"
+    required_inputs:
+      - "Approved interface/contract change request"
+    read_first:
+      downstream: ["DS-001", "DS-004"]
+      vector: ["V-001", "V-003", "V-004"]
+      mathworks: ["MW-002", "MW-003"]
+      autosar: ["AS-001", "AS-003"]
+    tool_operations:
+      - "Change the contract first in DaVinci Developer."
+      - "Export a new controlled ARXML revision."
+      - "Use AUTOSAR Blockset changed-ARXML update/import workflow."
+      - "Adapt Simulink behavior/mapping to the revised contract."
+    do_not_do:
+      - "Do not push an independently changed Simulink architecture back as the source contract."
+    outputs:
+      - "New contract ARXML revision"
+      - "Updated Simulink AUTOSAR representation/mapping"
+    exit_conditions:
+      - "The revised contract and model representation are reconciled."
+    next_task_ids: ["TTR-004", "TTR-006", "TTR-007"]
+
+  - task_id: "TTR-014"
+    intent: "Calibration contractまたはcalibration valueを変更したい"
+    phase: "Calibration change routing"
+    primary_tool: "Architecture/project calibration control"
+    supporting_tools: ["DaVinci Developer", "AUTOSAR Blockset", "Embedded Coder"]
+    operation_detail_level: "BLOCKED_BY_PROJECT_INPUT"
+    required_inputs:
+      - "Decision whether the change affects calibration identity/contract or only the project value"
+    read_first:
+      project: ["REF-007", "DS-PROJ-003"]
+      downstream: ["DS-012"]
+      vector: ["V-011"]
+      mathworks: ["MW-011", "MW-013", "MW-014"]
+      autosar: []
+    tool_operations:
+      - "For contract/identity change, route first through architecture/DaVinci contract governance."
+      - "For value-only change, update the project calibration baseline without redefining the contract."
+      - "Keep A2L description, address-resolved A2L and live XCP runtime as distinct later-stage identities."
+    outputs:
+      - "Updated calibration contract and/or project calibration value record"
+    exit_conditions:
+      - "Contract change and value change are not conflated."
+    next_task_ids: ["TTR-013", "TTR-N04"]
+
+next_phase_navigation:
+  - task_id: "TTR-N01"
+    intent: "SWC Delivery Packageをproduction RTE/BSW/OSへ統合したい"
+    phase: "ECU Integration — outside current SWC Methodology"
+    primary_tool: "DaVinci Configurator Classic / MICROSAR"
+    operation_detail_level: "NAVIGATION_ONLY_NEXT_PHASE"
+    read_first:
+      downstream: ["DS-003"]
+      vector: ["V-002", "V-005"]
+      autosar: ["AS-002", "AS-003"]
+    known_role:
+      - "Consume the SWC delivery/ECU configuration inputs and realize production RTE/BSW/OS integration."
+    not_yet_compiled:
+      - "Version-specific Configurator GUI/API work instruction"
+      - "Complete MICROSAR configuration/build sequence for this Management ECU"
+    next_task_ids: ["TTR-N02"]
+
+  - task_id: "TTR-N02"
+    intent: "統合済みECUソフトウェアからLv3 VECUを構築・実行したい"
+    phase: "VECU Construction — outside current SWC Methodology"
+    primary_tool: "vVIRTUALtarget"
+    operation_detail_level: "NAVIGATION_ONLY_NEXT_PHASE"
+    read_first:
+      downstream: ["DS-011"]
+      vector: ["V-005", "V-006"]
+    known_role:
+      - "Build/package/execute the virtual ECU artifact and hand it to the named virtual-SUT consumer route."
+    not_yet_compiled:
+      - "Management ECU-specific VTT build/package procedure"
+      - "Exact input artifact contract from Configurator/MICROSAR for this project"
+    next_task_ids: ["TTR-N03"]
+
+  - task_id: "TTR-N03"
+    intent: "Lv3 VECUをCANoeで接続・シミュレーション・テストしたい"
+    phase: "Virtual Integration / Verification — outside current SWC Methodology"
+    primary_tool: "CANoe"
+    supporting_tools: ["vTESTstudio where applicable"]
+    operation_detail_level: "NAVIGATION_ONLY_NEXT_PHASE"
+    read_first:
+      downstream: ["DS-011", "DS-010"]
+      vector: ["V-006", "V-007", "V-010"]
+    known_role:
+      - "Bind descriptions/data, integrate the virtual SUT, simulate surrounding system behavior and execute product-local tests."
+    not_yet_compiled:
+      - "Management ECU CANoe configuration construction procedure"
+      - "Exact vTESTstudio → CANoe project/test-unit procedure for this project"
+    next_task_ids: ["TTR-N04"]
+
+  - task_id: "TTR-N04"
+    intent: "XCP/A2Lを使って実行時measurement/calibrationを行いたい"
+    phase: "Runtime Measurement / Calibration — outside current SWC Methodology"
+    primary_tool: "CANape / XCP client"
+    supporting_tools: ["CANoe XCP where applicable"]
+    operation_detail_level: "UNRESOLVED_AUTHORITY"
+    read_first:
+      downstream: ["DS-012", "DS-016"]
+      vector: ["V-011"]
+      mathworks: ["MW-011", "MW-013", "MW-014"]
+    known_role:
+      - "A2L description and XCP runtime identities must remain separate."
+      - "The frozen corpus supports bounded XCP/A2L routes."
+    unresolved:
+      - "CANape-specific runtime calibration consumer procedure/authority is DS-016 UNRESOLVED_AUTHORITY."
+    do_not_do:
+      - "Do not infer CANape behavior from CANoe/VNT/XCP similarity."
+    next_task_ids: []
+
+coverage_summary:
+  current_application_swc_navigation:
+    status: "READY_AT_WORKFLOW_OBJECT_LEVEL_WITH_EXPLICIT_PROCEDURE_GAPS"
+    covered_task_ids: ["TTR-000", "TTR-001", "TTR-002", "TTR-003", "TTR-004", "TTR-005", "TTR-006", "TTR-007", "TTR-008", "TTR-009", "TTR-010", "TTR-011", "TTR-012", "TTR-013", "TTR-014"]
+  downstream_vecu_navigation:
+    status: "ROLE_AND_HANDOFF_NAVIGATION_ONLY"
+    covered_task_ids: ["TTR-N01", "TTR-N02", "TTR-N03", "TTR-N04"]
+  principal_remaining_gap: >-
+    A dedicated procedure-compilation work unit is still required if the intended deliverable is a
+    version-specific click-by-click or API-by-API work instruction for DaVinci Developer,
+    AUTOSAR Blockset/Simulink/Embedded Coder, DaVinci Configurator, vVIRTUALtarget, CANoe,
+    vTESTstudio or CANape.
