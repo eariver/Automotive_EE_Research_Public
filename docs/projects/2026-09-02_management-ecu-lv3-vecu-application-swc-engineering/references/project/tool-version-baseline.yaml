@@ -1,0 +1,78 @@
+schema_version: "management-ecu-swc-tool-baseline/v1"
+artifact: "Management ECU Lv3 VECU Application SWC Engineering — Tool / Version Baseline"
+date: "2026-09-02"
+status: "DRAFT_PROJECT_BASELINE"
+repository: "eariver/Automotive_EE_Engineering_Knowledge"
+branch: "work/management-ecu-swc-project-baselines-20260902"
+base_main_sha: "59250354d74100167b80ee40f44e73eb064dd515"
+
+source_methodology:
+  path: "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/20260902_ManagementECU_SWC_Development_Methodology.md"
+  sections: ["§29"]
+source_reference_index:
+  path: "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/20260902_ManagementECU_SWC_Reference_Index.yaml"
+
+policy:
+  - "Reviewed Knowledge versions are evidence baselines, not automatic proof of the actual project tool combination."
+  - "Actual project versions must be explicitly selected and compatibility-fixed before implementation."
+  - "Do not silently substitute a newer tool release or a current upstream head."
+
+reviewed_knowledge_baselines:
+  vector:
+    davinci_developer_classic:
+      reviewed_release: "4.18 SP3 family"
+      exact_authority_commit: "7a6821cd3f2ad677ca7069c9b114355e98f16842"
+      reviewed_path: "docs/knowledge/davinci-developer-classic.md"
+      locator_id: "V-001"
+    davinci_configurator_classic:
+      reviewed_release: "6.3.10"
+      exact_authority_commit: "7a6821cd3f2ad677ca7069c9b114355e98f16842"
+      reviewed_path: "docs/knowledge/davinci-configurator-classic.md"
+      locator_id: "V-002"
+  mathworks:
+    matlab_simulink_autosar_blockset_embedded_coder:
+      reviewed_release: "R2025b"
+      primary_exact_authority_commit: "ad51f604e0e6f9820f0f258795c12d603558c20d"
+      supplemental_exact_authority_commits:
+        - "5618cca212cd5d2a4ad5d8ac44a4a0d1edf311d7"
+        - "6edc12aebb719f77ccd69ff19978c3918f98c66e"
+      locator_family: "MW-001..MW-015"
+  autosar:
+    classic_platform:
+      reviewed_release: "4.4.0"
+      exact_authority_commit: "938ac4af696d263019ebdc61106a444447e15c4d"
+      exact_ref: "authority/autosar-cp-4.4.0-current-depth-20260830"
+      locator_family: "AS-001..AS-020"
+
+actual_project_baseline:
+  davinci_developer_version:
+    value: null
+    status: "TBD_PROJECT_DECISION"
+  davinci_configurator_version:
+    value: null
+    status: "TBD_PROJECT_DECISION"
+  matlab_release:
+    value: null
+    status: "TBD_PROJECT_DECISION"
+  simulink_release:
+    value: null
+    status: "TBD_PROJECT_DECISION"
+  autosar_blockset_release:
+    value: null
+    status: "TBD_PROJECT_DECISION"
+  embedded_coder_release:
+    value: null
+    status: "TBD_PROJECT_DECISION"
+  autosar_schema_version:
+    value: null
+    status: "TBD_PROJECT_DECISION"
+  code_generation_configuration_checksum:
+    value: null
+    status: "TBD_PROJECT_DECISION"
+
+compatibility_record:
+  status: "NOT_YET_ESTABLISHED"
+  required_before: "SWC-D1 / SWC-D2 production project setup"
+  rule: "If actual project versions differ from the reviewed baselines, establish compatibility for the actual release combination before treating reviewed workflows as directly applicable."
+
+next_action: "Select the actual project tool/release combination and record it here before implementation work is baselined."
