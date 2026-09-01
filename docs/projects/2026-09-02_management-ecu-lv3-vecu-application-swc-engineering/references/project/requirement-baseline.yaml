@@ -1,0 +1,163 @@
+schema_version: "management-ecu-swc-project-requirements/v1"
+artifact: "Management ECU Lv3 VECU Application SWC Engineering — Project Requirement Baseline"
+date: "2026-09-02"
+status: "DRAFT_PROJECT_BASELINE"
+repository: "eariver/Automotive_EE_Engineering_Knowledge"
+branch: "work/management-ecu-swc-project-baselines-20260902"
+base_main_sha: "59250354d74100167b80ee40f44e73eb064dd515"
+project_root: "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering"
+source_methodology:
+  path: "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/20260902_ManagementECU_SWC_Development_Methodology.md"
+  authority_role: "project methodology / project-specific design source; not vendor or AUTOSAR technical authority"
+source_reference_index:
+  path: "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/20260902_ManagementECU_SWC_Reference_Index.yaml"
+  authority_role: "navigation/provenance only"
+
+baseline_policy:
+  - "Only requirements and project-specific design statements explicitly present in the source Methodology are recorded here."
+  - "Missing timing, calibration, signal, network and diagnostic values remain TBD_PROJECT_DECISION."
+  - "Project requirements are not replaced by AUTOSAR or vendor documentation."
+  - "DiagMgr != DCM != DEM."
+  - "Project counter/checksum != AUTOSAR E2E."
+  - "Native CAN BUS_OFF != project BUS_FAILED_LATCHED."
+
+application_swcs:
+  - ModeMgr
+  - FuelMgr
+  - AirMgr
+  - ThermalMgr
+  - ElectricalMgr
+  - DiagMgr
+
+requirements:
+  - requirement_id: "MECU-SWC-REQ-001"
+    class: "ARCHITECTURE_BOUNDARY"
+    owning_element: "ManagementECU_Application"
+    statement: "The Application Software Component set consists of ModeMgr, FuelMgr, AirMgr, ThermalMgr, ElectricalMgr and DiagMgr for the current methodology scope."
+    source_sections: ["§1", "§6"]
+    status: "SOURCE_DERIVED"
+
+  - requirement_id: "MECU-SWC-REQ-002"
+    class: "FUNCTIONAL_PROJECT_REQUIREMENT"
+    owning_element: "ModeMgr"
+    statement: "Maintenance Mode accepts an Upper ECU request and a UDS RoutineControl-originated request, with Upper ECU priority over UDS."
+    source_sections: ["§5", "§10.1"]
+    inputs: ["Upper ECU Maintenance Request", "UDS RoutineControl Maintenance Request"]
+    outputs: ["Maintenance ownership/state", "application result for rejected UDS request"]
+    status: "SOURCE_DERIVED"
+
+  - requirement_id: "MECU-SWC-REQ-003"
+    class: "FUNCTIONAL_PROJECT_REQUIREMENT"
+    owning_element: "ModeMgr"
+    statement: "When Upper ECU-originated Maintenance is active, a UDS-originated Maintenance request produces an application result equivalent to ConditionsNotCorrect; actual UDS NRC generation remains DCM responsibility."
+    source_sections: ["§10.1"]
+    dependency: "DCM service/NRC handling"
+    status: "SOURCE_DERIVED"
+
+  - requirement_id: "MECU-SWC-REQ-004"
+    class: "PROJECT_SPECIFIC_DESIGN"
+    owning_element: "DiagMgr or explicit application/integration component"
+    statement: "For the project counter mechanism, Current == Previous is invalid and Current != Previous is valid; therefore 0 -> 2 is valid."
+    source_sections: ["§13"]
+    standards_boundary: "Do not map automatically to AUTOSAR E2E."
+    status: "SOURCE_DERIVED"
+
+  - requirement_id: "MECU-SWC-REQ-005"
+    class: "PROJECT_SPECIFIC_DESIGN"
+    owning_element: "DiagMgr or explicit application/integration component"
+    statement: "The project checksum algorithm is Checksum = (0x10 - W) mod 0x10."
+    source_sections: ["§13"]
+    standards_boundary: "Do not map automatically to AUTOSAR E2E or an E2E Transformer."
+    status: "SOURCE_DERIVED"
+
+  - requirement_id: "MECU-SWC-REQ-006"
+    class: "FUNCTIONAL_PROJECT_REQUIREMENT"
+    owning_element: "DiagMgr"
+    statement: "Node communication fault state progresses HEALTHY -> FAILURE_CONFIRMING -> FAILED_LATCHED."
+    source_sections: ["§14"]
+    status: "SOURCE_DERIVED"
+
+  - requirement_id: "MECU-SWC-REQ-007"
+    class: "FUNCTIONAL_PROJECT_REQUIREMENT"
+    owning_element: "DiagMgr"
+    statement: "A latched node failure is released at the next startup or by clearing the corresponding DTC."
+    source_sections: ["§14"]
+    status: "SOURCE_DERIVED"
+
+  - requirement_id: "MECU-SWC-REQ-008"
+    class: "FUNCTIONAL_PROJECT_REQUIREMENT"
+    owning_element: "DiagMgr"
+    statement: "Bus failure state progresses BUS_HEALTHY -> BUS_OFF_CONFIRMING after native CAN BUS_OFF indication -> BUS_FAILED_LATCHED after the project confirmation time."
+    source_sections: ["§14"]
+    input_boundary: "Native CAN controller BUS_OFF indication is an input; it is not identical to BUS_FAILED_LATCHED."
+    status: "SOURCE_DERIVED"
+
+  - requirement_id: "MECU-SWC-REQ-009"
+    class: "FUNCTIONAL_PROJECT_REQUIREMENT"
+    owning_element: "DiagMgr"
+    statement: "A project BUS_FAILED_LATCHED state is released at the next startup or by clearing the corresponding DTC."
+    source_sections: ["§14"]
+    status: "SOURCE_DERIVED"
+
+  - requirement_id: "MECU-SWC-REQ-010"
+    class: "FUNCTIONAL_PROJECT_REQUIREMENT"
+    owning_element: "DiagMgr"
+    statement: "While native BUS_OFF is active, node supervision timers are frozen and resume from the retained timer value after bus recovery; they are not reset by BUS_OFF."
+    source_sections: ["§15"]
+    status: "SOURCE_DERIVED"
+
+  - requirement_id: "MECU-SWC-REQ-011"
+    class: "FUNCTIONAL_PROJECT_REQUIREMENT"
+    owning_element: "DiagMgr"
+    statement: "Fault sources maintain individual latches. Clearing one corresponding DTC clears only that source latch, after which remaining fault sources are re-evaluated and FSA / Indicator outputs are recalculated."
+    source_sections: ["§16"]
+    constraint: "Do not use a single global fault bit."
+    status: "SOURCE_DERIVED"
+
+  - requirement_id: "MECU-SWC-REQ-012"
+    class: "ARCHITECTURE_BOUNDARY"
+    owning_element: "DiagMgr"
+    statement: "DiagMgr owns project/application fault confirmation, fault latching, FSA arbitration inputs, indicator request and application diagnostic policy; it does not own DCM UDS service/session/security behavior or DEM event/DTC memory semantics."
+    source_sections: ["§7", "§12"]
+    status: "SOURCE_DERIVED"
+
+  - requirement_id: "MECU-SWC-REQ-013"
+    class: "ARCHITECTURE_BOUNDARY"
+    owning_element: "Application SWCs"
+    statement: "Physical CAN error state, CAN controller BUS_OFF, CanSM communication state, DEM event memory and DCM diagnostic service behavior are not reimplemented as DiagMgr internal behavior; required abstract state/input is received through the integration/RTE boundary."
+    source_sections: ["§12"]
+    status: "SOURCE_DERIVED"
+
+  - requirement_id: "MECU-SWC-REQ-014"
+    class: "PROCESS_REQUIREMENT"
+    owning_element: "SWC Development"
+    statement: "MIL and SIL are separate verification stages and evidence identities."
+    source_sections: ["§18", "§19", "§31"]
+    status: "SOURCE_DERIVED"
+
+  - requirement_id: "MECU-SWC-REQ-015"
+    class: "PROCESS_REQUIREMENT"
+    owning_element: "SWC Development"
+    statement: "Generated MathWorks ARXML is compared with the original DaVinci contract before integration; it is not unconditionally used to overwrite the DaVinci project."
+    source_sections: ["§22"]
+    status: "SOURCE_DERIVED"
+
+unresolved_project_inputs:
+  - input_id: "MECU-IN-001"
+    topic: "Runnable periods / timing"
+    status: "TBD_PROJECT_DECISION"
+    source_note: "Methodology explicitly states that runnable periods are determined from project requirements and are not fixed by the methodology."
+  - input_id: "MECU-IN-002"
+    topic: "Concrete CAN frame/signal definitions and timeouts"
+    status: "TBD_PROJECT_DECISION"
+  - input_id: "MECU-IN-003"
+    topic: "Fault confirmation times and supervision timeout values"
+    status: "TBD_PROJECT_DECISION"
+  - input_id: "MECU-IN-004"
+    topic: "Fuel/Air/Thermal/Electrical detailed control requirements"
+    status: "TBD_PROJECT_DECISION"
+  - input_id: "MECU-IN-005"
+    topic: "Complete FSA / Indicator arbitration matrix"
+    status: "TBD_PROJECT_DECISION"
+
+next_action: "Human/Sol review this draft project baseline, then allocate the accepted requirements to the first SWC Requirement Allocation Table."
