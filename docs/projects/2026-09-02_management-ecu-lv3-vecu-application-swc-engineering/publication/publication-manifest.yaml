@@ -1,0 +1,78 @@
+schema_version: "management-ecu-publication-manifest/v1"
+artifact: "Management ECU Lv3 VECU Application SWC Engineering — Public Package Manifest"
+date: "2026-09-02"
+status: "PREPARED_AWAITING_LUNA_PROCEDURES"
+
+public_repository: "eariver/Automotive_EE_Research_Public"
+public_branch: "publish/management-ecu-lv3-vecu-toolchain-reference-20260902"
+public_branch_base_main_sha: "183d9dc0ab120484e4018e530a33e5b291bd7baa"
+
+source_repository: "eariver/Automotive_EE_Engineering_Knowledge"
+pre_luna_source_branch: "work/management-ecu-swc-project-baselines-20260902"
+pre_luna_source_sha: "690b23a6d5f08713fc88f3ef251a041e4c9ec4d8"
+luna_branch: "work/luna-management-ecu-swc-tool-procedure-compilation-20260902"
+luna_exact_starting_sha: "f58ac9e387dfb98c52117c53672b3c1b2c7d4ccf"
+luna_ending_sha: null
+sol_accepted_source_sha: null
+
+package_root: "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering"
+
+publication_policy:
+  - "Bundle project-local methodology, guides, matrices, locator manifests and accepted procedure compilations."
+  - "Do not copy canonical downstream docs/knowledge or upstream Vector/MathWorks/AUTOSAR Reviewed Knowledge bodies."
+  - "Preserve exact repository/commit/ref/path/section locators for non-bundled authority."
+  - "Do not imply that a provenance locator is publicly accessible."
+  - "Procedure files are added only after Luna completion and fixed-head Sol acceptance."
+
+bundled_pre_luna:
+  primary:
+    - "20260902_ManagementECU_SWC_Development_Methodology.md"
+    - "20260902_ManagementECU_SWC_Development_Step_by_Step_Guide.md"
+    - "20260902_ManagementECU_SWC_Reference_Index.yaml"
+    - "20260902_ManagementECU_Tool_Task_Reference_Matrix.yaml"
+    - "20260902_ManagementECU_Toolchain_Execution_Reference_Guide.md"
+  references:
+    - "references/README.md"
+    - "references/downstream/reference-locators.yaml"
+    - "references/vector/reference-locators.yaml"
+    - "references/mathworks/reference-locators.yaml"
+    - "references/autosar/reference-locators.yaml"
+    - "references/reference-coverage-matrix.yaml"
+    - "references/reference-coverage-report.md"
+    - "references/project/requirement-baseline.yaml"
+    - "references/project/tool-version-baseline.yaml"
+    - "references/project/calibration-input-baseline.yaml"
+
+pending_luna_outputs:
+  status: "PENDING_LUNA"
+  expected:
+    - "procedures/davinci-developer-classic.yaml"
+    - "procedures/autosar-blockset.yaml"
+    - "procedures/simulink-stateflow.yaml"
+    - "procedures/embedded-coder.yaml"
+    - "procedures/mil-sil.yaml"
+    - "procedures/procedure-coverage-matrix.yaml"
+  updated_existing_after_luna:
+    - "20260902_ManagementECU_Tool_Task_Reference_Matrix.yaml"
+    - "20260902_ManagementECU_Toolchain_Execution_Reference_Guide.md"
+
+excluded:
+  - "luna/**"
+  - "docs/prompts/**"
+  - "docs/worklogs/**"
+  - "docs/checkpoints/**"
+  - "docs/knowledge/**"
+  - "upstream Reviewed Knowledge bodies"
+  - "raw HELP / raw standards PDFs"
+  - "generated production artifacts"
+  - "confidential raw project specifications"
+
+validation:
+  pre_luna_files_staged: false
+  source_blob_identity_checked: false
+  luna_outputs_accepted: false
+  post_luna_matrix_guide_refreshed: false
+  final_reference_closure_checked: false
+  public_main_unchanged: true
+
+next_action: "Stage all existing bundled_pre_luna files byte-identically, then wait for Luna completion and Sol fixed-head acceptance before adding procedures and refreshing Matrix/Guide."
