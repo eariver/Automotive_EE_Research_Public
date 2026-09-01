@@ -177,6 +177,7 @@ Upper ECU Maintenance Request
 UDS RoutineControl Maintenance Request
 Upper ECU request has higher priority
 ```
+
 を、
 
 ```text
@@ -716,6 +717,7 @@ Model Parameter
 Data Store
     ↔ PIM where appropriate
 ```
+
 このmapping工程で、
 
 ```text
@@ -895,6 +897,7 @@ Integration decision
 - AUTOSAR schema version
 - package path
 - unexpected newly generated AUTOSAR object
+
 MathWorksのround-tripはstructure/element/UUID等のpreservationをサポートするが、byte-for-byte identityやuniversal automatic mergeではない。
 
 ---
