@@ -1,0 +1,73 @@
+schema_version: "management-ecu-swc-calibration-inputs/v1"
+artifact: "Management ECU Lv3 VECU Application SWC Engineering — Calibration Input Baseline"
+date: "2026-09-02"
+status: "DRAFT_PROJECT_BASELINE"
+repository: "eariver/Automotive_EE_Engineering_Knowledge"
+branch: "work/management-ecu-swc-project-baselines-20260902"
+base_main_sha: "59250354d74100167b80ee40f44e73eb064dd515"
+
+source_methodology:
+  path: "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/20260902_ManagementECU_SWC_Development_Methodology.md"
+  sections: ["§14", "§15", "§18", "§25"]
+
+policy:
+  - "Calibration contract identity and project calibration values are separate artifacts."
+  - "This file records project values required before a reproducible SWC baseline can be fixed."
+  - "No numeric value is inferred from examples in the Methodology."
+  - "Runtime calibration through XCP/CANape belongs to a later phase and is not established by this file."
+
+calibration_inputs:
+  - calibration_id: "CAL-IN-001"
+    name: "node_failure_confirmation_time"
+    owning_behavior: "DiagMgr node-failure confirmation"
+    value: null
+    unit: null
+    status: "TBD_PROJECT_DECISION"
+    source_sections: ["§14"]
+
+  - calibration_id: "CAL-IN-002"
+    name: "bus_failure_confirmation_time"
+    owning_behavior: "DiagMgr project BUS_FAILED_LATCHED confirmation"
+    value: null
+    unit: null
+    status: "TBD_PROJECT_DECISION"
+    source_sections: ["§14"]
+
+  - calibration_id: "CAL-IN-003"
+    name: "node_supervision_timeout"
+    owning_behavior: "DiagMgr message/node supervision"
+    value: null
+    unit: null
+    status: "TBD_PROJECT_DECISION"
+    source_sections: ["§15", "§18"]
+    behavior_constraint: "Timer is frozen while native BUS_OFF is active and resumes from the retained value after recovery; BUS_OFF does not reset the timer."
+
+  - calibration_id: "CAL-IN-004"
+    name: "application_fault_threshold_set"
+    owning_behavior: "Application-specific fault detection where thresholds are required"
+    value: null
+    unit: null
+    status: "TBD_PROJECT_DECISION"
+    source_sections: ["§25"]
+
+  - calibration_id: "CAL-IN-005"
+    name: "project_security_or_service_parameter_set"
+    owning_behavior: "Project-specific diagnostic/security parameters where applicable"
+    value: null
+    unit: null
+    status: "TBD_PROJECT_DECISION"
+    source_sections: ["§25"]
+    note: "The Methodology uses X/Y/Z only as examples of project calibration values; no concrete values are baselined here."
+
+non_calibration_project_rules:
+  - rule: "Current == Previous is invalid; Current != Previous is valid."
+    source_section: "§13"
+    note: "Algorithm semantics, not a calibration value."
+  - rule: "Checksum = (0x10 - W) mod 0x10."
+    source_section: "§13"
+    note: "Project-specific algorithm, not a calibration value."
+  - rule: "Fault-source latches are cleared individually by the corresponding DTC clear and arbitration is recomputed."
+    source_section: "§16"
+    note: "State/policy semantics, not a calibration value."
+
+next_action: "Project control must supply the concrete values, units, ranges and ownership approval for each applicable calibration input before the affected MIL/SIL baseline is frozen."
