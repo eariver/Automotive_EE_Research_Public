@@ -1,0 +1,39 @@
+schema_version: "management-ecu-uds-can-procedure-family/v1"
+artifact: "MIL / SIL verification procedure family"
+status: "SOL_INTEGRATED_FROM_ACCEPTED_COMPILATION"
+accepted_luna_ending_sha: "3b5f2cdfc418e46cd2ad4a8509fc77ac50eacc12"
+source_compilation: "20260902_ManagementECU_UDS_CAN_Tool_Procedure_Compilation_Matrix.yaml"
+tools: ["Simulink Test", "Simulink", "Embedded Coder SIL"]
+reviewed_release: "MathWorks R2025b"
+covered_tasks:
+  - task_id: "DTR-008"
+    procedure_classification: "PARTIAL_PROCEDURE_AVAILABLE"
+    intent: "Verify Application diagnostic behavior using model execution/MIL workflow."
+    locator_ids: ["MW-DIAG-006", "MW-DIAG-007", "MW-DIAG-008", "MW-DIAG-009", "MW-DIAG-010"]
+    operations:
+      - "Define TestFile/TestSuite/TestCase and optional harness separately from result artifacts."
+      - "Execute the model-side test using Normal/model execution identity."
+      - "Collect semantic result/verdict and optional coverage as separate evidence."
+    named_surfaces: ["Test Manager", "TestFile/TestSuite/TestCase", "test harness", "Normal simulation mode"]
+    api_surfaces: ["sltest.testmanager.TestFile", "sltest.testmanager.TestCase"]
+    exit_evidence: ["Requirement-relevant application behavior has an explicit model-execution result."]
+    project_blockers: ["Test vectors", "expected behavior", "acceptance criteria"]
+    missing_detail: "Project-specific test construction/execution sequence remains incomplete."
+  - task_id: "DTR-010"
+    procedure_classification: "PARTIAL_PROCEDURE_AVAILABLE"
+    intent: "Verify generated Application implementation using SIL."
+    locator_ids: ["MW-DIAG-006", "MW-DIAG-007", "MW-DIAG-008"]
+    operations:
+      - "Select SIL execution for the intended model/component scope."
+      - "Compile generated production source for the host and execute it as SIL."
+      - "Record SIL result independently; optionally compare model and SIL results with configured tolerances."
+    named_surfaces: ["Software-in-the-loop (SIL) simulation mode", "equivalence test"]
+    exit_evidence: ["Generated-code behavior has an explicit SIL result tied to source/test configuration."]
+    project_blockers: ["SIL verification scope/interface", "test inputs", "equivalence criteria"]
+    missing_detail: "Project-specific SIL configuration and launch sequence are not fully compiled."
+retained_boundaries:
+  - "MIL is workflow terminology; reviewed model-side execution is Normal mode."
+  - "Test definition != execution result != report."
+  - "Verdict != coverage."
+  - "MIL result != SIL result != VECU/HIL result."
+  - "SIL validates host-compiled generated code, not target-compiled object code."
