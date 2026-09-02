@@ -1,0 +1,26 @@
+schema_version: "management-ecu-uds-can-procedure-family/v1"
+artifact: "vVIRTUALtarget procedure family"
+status: "SOL_INTEGRATED_FROM_ACCEPTED_COMPILATION"
+accepted_luna_ending_sha: "3b5f2cdfc418e46cd2ad4a8509fc77ac50eacc12"
+source_compilation: "20260902_ManagementECU_UDS_CAN_Tool_Procedure_Compilation_Matrix.yaml"
+tool: "vVIRTUALtarget"
+reviewed_release: "10 family; page-local 10 SP2 not promoted root-wide"
+covered_tasks:
+  - task_id: "DTR-015"
+    procedure_classification: "PARTIAL_PROCEDURE_AVAILABLE"
+    locator_ids: ["V-DIAG-014", "V-DIAG-015"]
+    intent: "Build/package a traceable Lv3 virtual ECU using the Integration route."
+    operations:
+      - "Select the Integration use case for configured DaVinci/MICROSAR ECU artifacts; do not substitute BSW Emulation."
+      - "Use the applicable DPA/DVJSON update/migration route and VttMake flow for the selected artifact set."
+      - "Generate/build/package per-ECU virtual software/SUT artifacts while retaining input provenance."
+    named_surfaces: ["Integration use case", "VttMake build/package workflow"]
+    cli_surfaces: ["VttMake", "VttMake update"]
+    outputs: ["Virtual ECU/SUT artifacts", "runtime/SUT descriptions", "*.vttsut where produced by the selected route"]
+    exit_evidence: ["Virtual artifact is traceable to one integrated ECU baseline and selected Integration use case."]
+    project_blockers: ["Actual vVIRTUALtarget release", "exact Integration artifact set", "toolchain/package dependencies"]
+    missing_detail: "Complete artifact/version-specific Management ECU Integration recipe is not closed by frozen authority."
+retained_boundaries:
+  - "vVIRTUALtarget Integration != BSW Emulation."
+  - "vecu-derive restrictions do not define the whole Configurator 6 Integration route."
+  - "VECU execution evidence != MIL/SIL evidence."

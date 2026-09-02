@@ -1,0 +1,30 @@
+schema_version: "management-ecu-uds-can-network-baseline/v1"
+artifact: "Management ECU UDS on CAN project network/transport baseline"
+date: "2026-09-02"
+status: "DRAFT_PROJECT_BASELINE"
+
+scope:
+  diagnostic_protocol: "UDS"
+  network: "CAN"
+  transport: "ISO 15765-based CanTp branch as configured through AUTOSAR PduR/CanTp/CanIf/Can"
+
+retained_boundaries:
+  - "DCM diagnostic service semantics != PduR routing != CanTp transport != CanIf abstraction != CanDrv hardware access."
+  - "This file does not define one universal runtime API sequence."
+  - "AUTOSAR authority defines module responsibilities but does not supply Management ECU network values."
+
+project_network_inputs:
+  - {id: "NET-IN-001", topic: "CAN or CAN FD project choice", value: null, status: "TBD_PROJECT_DECISION"}
+  - {id: "NET-IN-002", topic: "diagnostic CAN network/channel/controller identity", value: null, status: "TBD_PROJECT_DECISION"}
+  - {id: "NET-IN-003", topic: "physical request addressing/identifier", value: null, status: "TBD_PROJECT_DECISION"}
+  - {id: "NET-IN-004", topic: "physical response addressing/identifier", value: null, status: "TBD_PROJECT_DECISION"}
+  - {id: "NET-IN-005", topic: "functional addressing/identifier policy", value: null, status: "TBD_PROJECT_DECISION"}
+  - {id: "NET-IN-006", topic: "CanTp addressing format and connection identities", value: null, status: "TBD_PROJECT_DECISION"}
+  - {id: "NET-IN-007", topic: "CanTp N-SDU/N-PDU and routing identities", value: null, status: "TBD_PROJECT_DECISION"}
+  - {id: "NET-IN-008", topic: "CanTp timing/flow-control parameters", value: null, status: "TBD_PROJECT_DECISION"}
+  - {id: "NET-IN-009", topic: "PduR diagnostic routing configuration identities", value: null, status: "TBD_PROJECT_DECISION"}
+  - {id: "NET-IN-010", topic: "CanIf/CAN lower-layer configuration identities", value: null, status: "TBD_PROJECT_DECISION"}
+  - {id: "NET-IN-011", topic: "UDS P2/P2* and related project timing", value: null, status: "TBD_PROJECT_DECISION"}
+  - {id: "NET-IN-012", topic: "CANoe/DiVa diagnostic network binding", value: null, status: "TBD_PROJECT_DECISION"}
+
+completion_condition: "All network/transport values needed by production BSW, CANoe runtime and DiVa test environment are accepted and traceable to project authority."

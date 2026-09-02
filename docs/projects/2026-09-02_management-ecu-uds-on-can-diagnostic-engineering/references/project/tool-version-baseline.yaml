@@ -1,0 +1,59 @@
+schema_version: "management-ecu-uds-can-diagnostic-tool-baseline/v1"
+artifact: "Management ECU UDS on CAN diagnostic tool/version baseline"
+date: "2026-09-02"
+status: "DRAFT_PROJECT_BASELINE"
+
+reviewed_evidence_baselines:
+  candela_studio:
+    reviewed_release: "25 SP1"
+    repository: "eariver/Research_Vector_Documents"
+    commit: "7a6821cd3f2ad677ca7069c9b114355e98f16842"
+  canoe_diva:
+    reviewed_release: "20"
+    repository: "eariver/Research_Vector_Documents"
+    commit: "7a6821cd3f2ad677ca7069c9b114355e98f16842"
+  canoe:
+    reviewed_release: "20.2.1"
+    repository: "eariver/Research_Vector_Documents"
+    commit: "7a6821cd3f2ad677ca7069c9b114355e98f16842"
+  davinci_developer_classic:
+    reviewed_release: "4.18 SP3 family"
+    repository: "eariver/Research_Vector_Documents"
+    commit: "7a6821cd3f2ad677ca7069c9b114355e98f16842"
+  davinci_configurator_classic:
+    reviewed_release: "6.3.10"
+    repository: "eariver/Research_Vector_Documents"
+    commit: "7a6821cd3f2ad677ca7069c9b114355e98f16842"
+  vvirtualtarget:
+    reviewed_release: "10 family"
+    repository: "eariver/Research_Vector_Documents"
+    commit: "7a6821cd3f2ad677ca7069c9b114355e98f16842"
+  mathworks:
+    reviewed_release: "R2025b"
+    primary_commit: "ad51f604e0e6f9820f0f258795c12d603558c20d"
+    supplements: ["5618cca212cd5d2a4ad5d8ac44a4a0d1edf311d7", "6edc12aebb719f77ccd69ff19978c3918f98c66e"]
+  autosar_classic:
+    reviewed_release: "4.4.0"
+    repository: "eariver/Research_AUTOSAR_CP_Documents"
+    commit: "938ac4af696d263019ebdc61106a444447e15c4d"
+    freeze_ref: "authority/autosar-cp-4.4.0-current-depth-20260830"
+
+actual_project_baseline:
+  candela_studio: {value: null, status: "TBD_PROJECT_DECISION"}
+  canoe_diva: {value: null, status: "TBD_PROJECT_DECISION"}
+  canoe: {value: null, status: "TBD_PROJECT_DECISION"}
+  davinci_developer_classic: {value: null, status: "TBD_PROJECT_DECISION"}
+  davinci_configurator_classic: {value: null, status: "TBD_PROJECT_DECISION"}
+  microsar_package: {value: null, status: "TBD_PROJECT_DECISION"}
+  vvirtualtarget: {value: null, status: "TBD_PROJECT_DECISION"}
+  matlab: {value: null, status: "TBD_PROJECT_DECISION"}
+  simulink: {value: null, status: "TBD_PROJECT_DECISION"}
+  autosar_blockset: {value: null, status: "TBD_PROJECT_DECISION"}
+  embedded_coder: {value: null, status: "TBD_PROJECT_DECISION"}
+  autosar_schema: {value: null, status: "TBD_PROJECT_DECISION"}
+  diagnostic_description_profile: {value: null, status: "TBD_PROJECT_DECISION"}
+  code_generation_configuration_checksum: {value: null, status: "TBD_PROJECT_DECISION"}
+
+compatibility_record:
+  status: "NOT_YET_ESTABLISHED"
+  rule: "Reviewed evidence release != actual project compatibility proof. Fix actual project versions before executing version-specific procedure."

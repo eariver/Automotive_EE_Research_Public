@@ -1,0 +1,92 @@
+schema_version: "management-ecu-uds-can-diagnostic-reference-coverage/v1"
+artifact: "Management ECU UDS on CAN diagnostic reference coverage matrix"
+date: "2026-09-02"
+status: "INITIAL_COMPILED_COVERAGE"
+
+locator_inventory:
+  downstream_reviewed: 7
+  project_input_records: 3
+  vector: 15
+  mathworks: 10
+  autosar: 9
+  technical_locator_total: 41
+  project_locator_total: 3
+
+coverage:
+  - area: "CANdela diagnostic authoring/model"
+    status: "REVIEWED_ROUTE_AVAILABLE"
+    locators: ["V-DIAG-001", "V-DIAG-002"]
+  - area: "CANdela ODX exchange"
+    status: "REVIEWED_ROUTE_AVAILABLE"
+    locators: ["V-DIAG-003"]
+  - area: "CANdela -> DiVa format interoperability"
+    status: "REVIEWED_ROUTE_AVAILABLE"
+    locators: ["V-DIAG-004", "V-DIAG-005"]
+  - area: "CANdela -> CANoe diagnostic-description consumer"
+    status: "REVIEWED_ROUTE_AVAILABLE"
+    locators: ["V-DIAG-001", "V-DIAG-008"]
+  - area: "Application SWC contract"
+    status: "REVIEWED_ROUTE_AVAILABLE"
+    locators: ["V-DIAG-010", "V-DIAG-011", "AS-DIAG-007", "AS-DIAG-008"]
+  - area: "AUTOSAR Blockset import/mapping"
+    status: "REVIEWED_ROUTE_AVAILABLE"
+    locators: ["MW-DIAG-001", "MW-DIAG-002"]
+  - area: "Application diagnostic behavior"
+    status: "REVIEWED_ROUTE_AVAILABLE"
+    locators: ["MW-DIAG-003", "MW-DIAG-004"]
+  - area: "MIL/SIL/code generation"
+    status: "REVIEWED_ROUTE_AVAILABLE"
+    locators: ["MW-DIAG-005", "MW-DIAG-006", "MW-DIAG-007", "MW-DIAG-008", "MW-DIAG-009"]
+  - area: "DCM service/session/security ownership"
+    status: "REVIEWED_ROUTE_AVAILABLE"
+    locators: ["AS-DIAG-001"]
+  - area: "DEM event/DTC/fault-memory ownership"
+    status: "REVIEWED_ROUTE_AVAILABLE"
+    locators: ["AS-DIAG-002", "AS-DIAG-003"]
+  - area: "UDS-on-CAN transport branch"
+    status: "REVIEWED_ROUTE_AVAILABLE"
+    locators: ["AS-DIAG-004", "AS-DIAG-005", "AS-DIAG-006", "DS-DIAG-003"]
+  - area: "Configurator/MICROSAR production BSW/RTE generation"
+    status: "REVIEWED_ROUTE_AVAILABLE"
+    locators: ["V-DIAG-012", "DS-DIAG-002", "AS-DIAG-009"]
+  - area: "Diagnostic BSW project configuration procedure"
+    status: "PROCEDURE_COMPILATION_REQUIRED"
+    locators: ["V-DIAG-012", "AS-DIAG-001", "AS-DIAG-002", "AS-DIAG-004", "AS-DIAG-005"]
+  - area: "Configurator -> vVIRTUALtarget"
+    status: "BOUNDED_ROUTE_AVAILABLE"
+    locators: ["V-DIAG-014"]
+  - area: "vVIRTUALtarget -> CANoe"
+    status: "REVIEWED_ROUTE_AVAILABLE"
+    locators: ["V-DIAG-015"]
+  - area: "CANoe diagnostic runtime"
+    status: "REVIEWED_ROUTE_AVAILABLE"
+    locators: ["V-DIAG-008"]
+  - area: "DiVa diagnostic test generation"
+    status: "REVIEWED_ROUTE_AVAILABLE"
+    locators: ["V-DIAG-005", "V-DIAG-007"]
+  - area: "DiVa -> CANoe named execution route"
+    status: "REVIEWED_ROUTE_AVAILABLE"
+    locators: ["V-DIAG-006", "V-DIAG-009"]
+
+retained_gaps:
+  - gap_id: "DGAP-001"
+    status: "NO_EXPLICIT_MAPPING"
+    topic: "One mandatory CANdela Studio 25 SP1 export mode/subset as the formal producer contract required by DiVa 20."
+    impact: "Does not block supported CDD/ODX project handoff; project must baseline the actual route."
+  - gap_id: "DGAP-002"
+    status: "NO_EXPLICIT_MAPPING"
+    topic: "One universal direct CANdela -> DaVinci Configurator Classic 6.3.10 diagnostic synchronization/import contract."
+    impact: "Specification-to-BSW implementation must be reconciled explicitly; do not infer automatic synchronization."
+  - gap_id: "DGAP-003"
+    status: "NO_EXPLICIT_MAPPING"
+    topic: "Complete cross-product release/profile compatibility matrix across CANdela/DaVinci/vVIRTUALtarget/CANoe/DiVa."
+    impact: "Actual project versions must be compatibility-fixed."
+
+project_blockers:
+  - "DS-PROJ-DIAG-001"
+  - "DS-PROJ-DIAG-002"
+  - "DS-PROJ-DIAG-003"
+
+next_compilation_goal: >-
+  Compile evidence-bounded, version-specific tool procedures for DTR-002 through DTR-019 without
+  inventing GUI paths, API calls, project diagnostic values or unsupported cross-product synchronization.

@@ -23,7 +23,8 @@ covered_tasks:
     operations:
       - "Bind configured diagnostic service/event paths to project Application SWC/RTE interfaces where required."
       - "Preserve DCM/DEM/Application ownership while preparing ECU-specific production RTE generation."
-    exit_evidence: ["Diagnostic operation/data/event paths are traceable across Application SWC, DCM/DEM and RTE integration."]
+    exit_evidence: ["Diagnostic operation/data/event paths are traceable across Application SWC, DCM/DEM and RTE integration."
+    ]
     project_blockers: ["Actual callback/service/data/event mapping"]
     missing_detail: "Exact diagnostic callback/RTE mapping sequence and generated symbols are not compiled."
   - task_id: "DTR-014"
@@ -36,7 +37,8 @@ covered_tasks:
       - "Compile/link under project build control while preserving generated-source versus integrated-binary identity."
     cli_surfaces: ["dvcfg-b project generate"]
     named_surfaces: ["Configurator validation/generation", "Gradle/Bazel CI/build routes"]
-    exit_evidence: ["Generation/build provenance is fixed and intended specification-to-implementation differences are explained."]
+    exit_evidence: ["Generation/build provenance is fixed and intended specification-to-implementation differences are explained."
+    ]
     project_blockers: ["Actual Configurator/MICROSAR versions", "compiler/build configuration", "accepted diagnostic/network configuration"]
     missing_detail: "Full reconciliation, validation, compile/link and selected artifact procedure remains project-specific."
 retained_boundaries:

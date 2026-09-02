@@ -1,0 +1,467 @@
+schema_version: "management-ecu-uds-can-tool-procedure-compilation/v1"
+artifact: "Management ECU UDS on CAN Tool Procedure Compilation Matrix"
+date: "2026-09-02"
+status: "LUNA_COMPILED_FIXED_AUTHORITY"
+repository: "eariver/Automotive_EE_Engineering_Knowledge"
+branch: "work/luna-management-ecu-uds-can-tool-procedure-compilation-20260902"
+starting_sha: "b911b70f36dd2d8808488b03232af8e2bc6b8cfa"
+source_policy:
+  technical_authority: "Only exact-pinned Reviewed Knowledge reachable through the frozen locator manifests."
+  disallowed: ["current upstream HEAD", "vendor Web", "raw HELP", "raw AUTOSAR PDF", "observations", "worklogs", "prompts as authority", "generic UDS/AUTOSAR knowledge"]
+  project_values: "Project diagnostic/network/tool values remain project inputs and are never inferred from vendor or AUTOSAR authority."
+
+task_rows:
+  - task_id: "DTR-002"
+    intent: "Author the Management ECU UDS diagnostic specification."
+    primary_tool: "CANdela Studio"
+    reviewed_release_or_scope: "CANdela Studio 25 SP1"
+    procedure_classification: "WORKFLOW_ONLY"
+    locator_ids: ["V-DIAG-001", "V-DIAG-002"]
+    authority_tuples:
+      - {repository: "eariver/Research_Vector_Documents", commit: "7a6821cd3f2ad677ca7069c9b114355e98f16842", path: "docs/knowledge/candela-studio.md", section: "Diagnostic authoring model; Native CDD/CDDT lifecycle; Diagnostic specialization"}
+    explicit_preconditions: ["Accepted project diagnostic requirements", "Project template/document governance", "Actual CANdela release compatibility decision"]
+    explicit_gui_or_named_surfaces: []
+    explicit_cli_or_api_surfaces: []
+    supported_operation_sequence:
+      - "Use a CDDT Template as template/grammar authority and a CDD Document containing one or more Variants."
+      - "Author diagnostic classes/instances/services, data types/data objects, DID and DTC/fault-memory structures within the reviewed CANdela object model."
+      - "Save/version the native CDD/CDDT artifacts under project configuration control."
+    expected_artifacts_or_tool_state: ["Versioned CDD diagnostic document", "Retained CDDT/Variant/object identities"]
+    exit_evidence: ["Externally visible diagnostic semantics are represented in a controlled CANdela document revision."]
+    project_inputs_required: ["Service/subfunction inventory", "DID/RID/DTC definitions", "session/security/NRC policy"]
+    missing_procedure_detail: "Frozen Reviewed Knowledge establishes the authoring object model and native lifecycle but not a reproducible menu/dialog sequence for creating each object."
+    retained_boundaries: ["Template != Document != Variant != service/data/DID/DTC object", "CANdela specification != DCM/DEM ECU configuration"]
+    source_notes: "Object/workflow semantics are closed at reviewed scope; GUI procedure is not compiled."
+
+  - task_id: "DTR-003"
+    intent: "Fix a diagnostic-description handoff from CANdela to downstream consumers."
+    primary_tool: "CANdela Studio"
+    reviewed_release_or_scope: "CANdela Studio 25 SP1; bounded CDD/ODX interoperability"
+    procedure_classification: "PARTIAL_PROCEDURE_AVAILABLE"
+    locator_ids: ["V-DIAG-002", "V-DIAG-003", "V-DIAG-004"]
+    authority_tuples:
+      - {repository: "eariver/Research_Vector_Documents", commit: "7a6821cd3f2ad677ca7069c9b114355e98f16842", path: "docs/knowledge/candela-studio.md", section: "Native CDD/CDDT lifecycle; ODX import/export; CANdela -> DiVa boundary"}
+    explicit_preconditions: ["Controlled CDD revision", "Selected project consumer and interchange profile"]
+    explicit_gui_or_named_surfaces: ["ODX export with complete, DTC-only, or selected-element mode"]
+    explicit_cli_or_api_surfaces: []
+    supported_operation_sequence:
+      - "Choose native CDD consumption or a reviewed ODX exchange route according to the project consumer."
+      - "For ODX, select a supported 2.0.1/2.1.0/2.2.0 export version and an explicit complete/DTC-only/selected-element scope."
+      - "Record warnings, omitted content and profile/version as handoff provenance."
+    expected_artifacts_or_tool_state: ["CDD or ODX/PDX-related handoff artifact", "Export scope/profile/warning record"]
+    exit_evidence: ["Source revision, format/version, export scope and intended consumer are traceable."]
+    project_inputs_required: ["Actual consumer route/profile"]
+    missing_procedure_detail: "No exact menu path and no single mandatory CANdela 25 SP1 export subset for DiVa 20 are established."
+    retained_boundaries: ["ODX exchange != lossless CANdela round trip", "format overlap != universal producer contract"]
+    source_notes: "Version-specific export modes are explicit, but a complete UI procedure is not."
+
+  - task_id: "DTR-004"
+    intent: "Define the diagnostic-facing Application SWC contract and hand it to MathWorks."
+    primary_tool: "DaVinci Developer Classic"
+    reviewed_release_or_scope: "DaVinci Developer Classic 4.18 SP3 family"
+    procedure_classification: "PARTIAL_PROCEDURE_AVAILABLE"
+    locator_ids: ["V-DIAG-010", "V-DIAG-011", "AS-DIAG-007", "AS-DIAG-008"]
+    authority_tuples:
+      - {repository: "eariver/Research_Vector_Documents", commit: "7a6821cd3f2ad677ca7069c9b114355e98f16842", path: "docs/knowledge/davinci-developer-classic.md", section: "Software-design model; Workspace and persistence"}
+      - {repository: "eariver/Research_AUTOSAR_CP_Documents", commit: "938ac4af696d263019ebdc61106a444447e15c4d", path: "docs/knowledge/concepts/swc-port-interface-connector-model-boundary.json", section: "SW-C design-time interaction contract"}
+      - {repository: "eariver/Research_AUTOSAR_CP_Documents", commit: "938ac4af696d263019ebdc61106a444447e15c4d", path: "docs/knowledge/concepts/runnable-rteevent-os-activation-boundary.json", section: "RunnableEntity/RTEEvent activation boundary"}
+    explicit_preconditions: ["Diagnostic responsibility allocation", "Application interface decisions", "Actual AUTOSAR schema/tool baseline"]
+    explicit_gui_or_named_surfaces: ["AUTOSAR XML import/export", "Selected component-type software-component-description export"]
+    explicit_cli_or_api_surfaces: []
+    supported_operation_sequence:
+      - "Define/confirm component, ports/interfaces, data types, runnables/events and RTE access contract objects."
+      - "Map application data types to implementation data types where required before production RTE generation."
+      - "Export the selected component type as an AUTOSAR software-component description for downstream implementation."
+    expected_artifacts_or_tool_state: ["Developer software-design model", "Application SWC contract ARXML"]
+    exit_evidence: ["SWC contract objects and exported description are traceable to one Developer workspace baseline."]
+    project_inputs_required: ["Actual diagnostic-facing operations/data and runnable activation requirements"]
+    missing_procedure_detail: "Object semantics and export behavior are explicit, but exact creation/edit/export clicks are not."
+    retained_boundaries: ["Port/interface model entity != generated RTE API", "RunnableEntity != OS Task", "Application SWC != DCM != DEM"]
+    source_notes: "Partial because export is explicit but full authoring sequence is not version-specific click-by-click."
+
+  - task_id: "DTR-005"
+    intent: "Import/update the SWC ARXML into the AUTOSAR Blockset/Simulink representation."
+    primary_tool: "AUTOSAR Blockset"
+    reviewed_release_or_scope: "MathWorks R2025b"
+    procedure_classification: "PARTIAL_PROCEDURE_AVAILABLE"
+    locator_ids: ["MW-DIAG-001", "MW-DIAG-002"]
+    authority_tuples:
+      - {repository: "eariver/Research_MathWorks_Documents", commit: "ad51f604e0e6f9820f0f258795c12d603558c20d", path: "docs/knowledge/r2025b/model-architecture-ownership.md", section: "AUTOSAR component model identity; ARXML import boundary"}
+      - {repository: "eariver/Research_MathWorks_Documents", commit: "ad51f604e0e6f9820f0f258795c12d603558c20d", path: "docs/knowledge/r2025b/autosar-arxml-lifecycle.md", section: "Import/model creation; changed-ARXML update lifecycle"}
+    explicit_preconditions: ["Controlled SWC contract ARXML", "R2025b-supported AUTOSAR schema", "Decision whether initial creation or changed-ARXML update"]
+    explicit_gui_or_named_surfaces: ["AUTOSAR component model representation", "AUTOSAR mapping/configuration"]
+    explicit_cli_or_api_surfaces: ["arxml.importer", "createComponentAsModel", "updateModel", "updateAUTOSARProperties"]
+    supported_operation_sequence:
+      - "Parse the controlled ARXML with arxml.importer."
+      - "For initial atomic-component creation, use createComponentAsModel to create the initial Simulink representation."
+      - "For changed Classic ARXML, use updateModel where applicable; inspect the generated update report and perform any required manual repair."
+      - "Use updateAUTOSARProperties for shared-package definitions when that distinct lifecycle is applicable."
+    expected_artifacts_or_tool_state: ["Simulink AUTOSAR component model", "Initial/default mapping", "Update report/backup for changed-ARXML update where applicable"]
+    exit_evidence: ["Model representation is traceable to the exact ARXML input and any automatic/manual update differences are recorded."]
+    project_inputs_required: ["Actual schema/profile and import/update intent"]
+    missing_procedure_detail: "Reviewed Knowledge names the APIs and lifecycle but does not provide argument-level commands for the project artifact or a complete post-import inspection script."
+    retained_boundaries: ["ARXML != Simulink model", "updateModel != updateAUTOSARProperties", "round trip != byte identity"]
+    source_notes: "Explicit R2025b APIs make this stronger than workflow-only, but the complete project procedure remains partial."
+
+  - task_id: "DTR-006"
+    intent: "Implement DID/Routine/application diagnostic behavior in the Application SWC model."
+    primary_tool: "Simulink / Stateflow"
+    reviewed_release_or_scope: "MathWorks R2025b"
+    procedure_classification: "WORKFLOW_ONLY"
+    locator_ids: ["MW-DIAG-003", "MW-DIAG-004", "AS-DIAG-001", "AS-DIAG-002"]
+    authority_tuples:
+      - {repository: "eariver/Research_MathWorks_Documents", commit: "ad51f604e0e6f9820f0f258795c12d603558c20d", path: "docs/knowledge/r2025b/diagnostics-coverage.md", section: "AUTOSAR diagnostic BSW modeling; diagnostic behavior testing"}
+      - {repository: "eariver/Research_MathWorks_Documents", commit: "6edc12aebb719f77ccd69ff19978c3918f98c66e", path: "docs/knowledge/r2025b/stateflow-decision-logic-semantics.md", section: "Chart/state/transition/event behavior semantics"}
+    explicit_preconditions: ["Imported AUTOSAR component model", "Accepted Application SWC diagnostic behavior requirements"]
+    explicit_gui_or_named_surfaces: ["Simulink model", "Stateflow chart/state/transition/event model", "Diagnostic Service Component/Dem caller simulation surfaces where applicable"]
+    explicit_cli_or_api_surfaces: []
+    supported_operation_sequence:
+      - "Implement application data preparation, routine function, application state/precondition and monitor behavior allocated to the SWC."
+      - "Use Stateflow when state/transition/event semantics are required."
+      - "Model/simulate Dem/FiM service interactions only within their documented simulation role when applicable."
+    expected_artifacts_or_tool_state: ["Simulink/Stateflow behavior model"]
+    exit_evidence: ["Application behavior is implemented without absorbing DCM/DEM or network-transport ownership."]
+    project_inputs_required: ["DID/Routine behavior", "application preconditions/results", "monitor/fault policy"]
+    missing_procedure_detail: "Behavior is inherently project-specific; frozen authority does not define a Management ECU implementation sequence."
+    retained_boundaries: ["Application result != DCM UDS response encoding", "Application monitor result != DEM event memory", "Stateflow source != generated code"]
+    source_notes: "Workflow/object semantics only."
+
+  - task_id: "DTR-007"
+    intent: "Review/configure the model-to-AUTOSAR mappings for the diagnostic Application SWC."
+    primary_tool: "AUTOSAR Blockset"
+    reviewed_release_or_scope: "MathWorks R2025b"
+    procedure_classification: "WORKFLOW_ONLY"
+    locator_ids: ["MW-DIAG-001", "MW-DIAG-002"]
+    authority_tuples:
+      - {repository: "eariver/Research_MathWorks_Documents", commit: "ad51f604e0e6f9820f0f258795c12d603558c20d", path: "docs/knowledge/r2025b/model-architecture-ownership.md", section: "AUTOSAR component model identity"}
+      - {repository: "eariver/Research_MathWorks_Documents", commit: "ad51f604e0e6f9820f0f258795c12d603558c20d", path: "docs/knowledge/r2025b/autosar-arxml-lifecycle.md", section: "Imported representation and round-trip lifecycle"}
+    explicit_preconditions: ["AUTOSAR component model", "Fixed SWC contract"]
+    explicit_gui_or_named_surfaces: ["Code Mappings", "AUTOSAR Dictionary", "AUTOSAR Component Designer"]
+    explicit_cli_or_api_surfaces: []
+    supported_operation_sequence:
+      - "Inspect and configure the Simulink-to-AUTOSAR mapping needed by the fixed contract."
+      - "Record deviations rather than silently redefining the external contract."
+    expected_artifacts_or_tool_state: ["AUTOSAR mapping configuration/review state"]
+    exit_evidence: ["No unexplained port/operation/runnable/data mapping remains."]
+    project_inputs_required: ["Contract-specific mapping decisions"]
+    missing_procedure_detail: "Named mapping surfaces are explicit, but exact version-specific click/API steps for this project mapping are not compiled."
+    retained_boundaries: ["Model representation != ARXML authority", "Mapping change != automatic external-AAT merge"]
+    source_notes: "Workflow-only at current frozen authority."
+
+  - task_id: "DTR-008"
+    intent: "Verify Application diagnostic behavior at model level (MIL workflow)."
+    primary_tool: "Simulink Test / Simulink model execution"
+    reviewed_release_or_scope: "MathWorks R2025b"
+    procedure_classification: "PARTIAL_PROCEDURE_AVAILABLE"
+    locator_ids: ["MW-DIAG-006", "MW-DIAG-007", "MW-DIAG-008", "MW-DIAG-009", "MW-DIAG-010"]
+    authority_tuples:
+      - {repository: "eariver/Research_MathWorks_Documents", commit: "ad51f604e0e6f9820f0f258795c12d603558c20d", path: "docs/knowledge/r2025b/mil-sil-pil-execution.md", section: "MIL workflow terminology; Normal model execution"}
+      - {repository: "eariver/Research_MathWorks_Documents", commit: "ad51f604e0e6f9820f0f258795c12d603558c20d", path: "docs/knowledge/r2025b/test-design-execution-results.md", section: "TestFile/TestSuite/TestCase; harness; execution lifecycle"}
+      - {repository: "eariver/Research_MathWorks_Documents", commit: "5618cca212cd5d2a4ad5d8ac44a4a0d1edf311d7", path: "docs/knowledge/r2025b/coverage-evidence-lifecycle.md", section: "Verdict and coverage are parallel results"}
+    explicit_preconditions: ["Behavior model", "Requirement-linked test definitions/inputs", "Required project calibration/diagnostic values"]
+    explicit_gui_or_named_surfaces: ["Test Manager", "TestFile/TestSuite/TestCase", "test harness", "Normal simulation mode"]
+    explicit_cli_or_api_surfaces: ["sltest.testmanager.TestFile", "sltest.testmanager.TestCase"]
+    supported_operation_sequence:
+      - "Define a test hierarchy and optional harness separately from result artifacts."
+      - "Execute the model-side test in Normal/model execution identity."
+      - "Collect semantic result/verdict and optional coverage as separate evidence."
+      - "Maintain requirement verification links independently from result objects."
+    expected_artifacts_or_tool_state: ["Test definition", "MIL/model-execution result", "Optional coverage data/report", "Requirement traceability"]
+    exit_evidence: ["Required application behavior has an explicit model-execution result; verdict and coverage remain separate."]
+    project_inputs_required: ["Test vectors", "Expected behavior", "Acceptance criteria"]
+    missing_procedure_detail: "The R2025b test lifecycle and objects are explicit, but no project-specific test construction/execution sequence is complete."
+    retained_boundaries: ["MIL is workflow terminology, not a distinct Simulink simulation-mode value", "verdict != coverage", "MIL != SIL/VECU"]
+    source_notes: "Partial because Test Manager objects and Normal execution are explicit."
+
+  - task_id: "DTR-009"
+    intent: "Generate production-intent AUTOSAR Application SWC C/H and ARXML."
+    primary_tool: "Embedded Coder"
+    reviewed_release_or_scope: "MathWorks R2025b"
+    procedure_classification: "PARTIAL_PROCEDURE_AVAILABLE"
+    locator_ids: ["MW-DIAG-005", "AS-DIAG-009"]
+    authority_tuples:
+      - {repository: "eariver/Research_MathWorks_Documents", commit: "ad51f604e0e6f9820f0f258795c12d603558c20d", path: "docs/knowledge/r2025b/code-generation-build-artifacts.md", section: "Generated code versus compiled binary; AUTOSAR Classic generation and production-RTE boundary"}
+      - {repository: "eariver/Research_AUTOSAR_CP_Documents", commit: "938ac4af696d263019ebdc61106a444447e15c4d", path: "docs/knowledge/concepts/rte-generation-contract-runtime-boundary.json", section: "RTE design input/generation/runtime boundary"}
+    explicit_preconditions: ["Mapped AUTOSAR component model", "Fixed code-generation configuration"]
+    explicit_gui_or_named_surfaces: ["Generate code only", "code-generation report"]
+    explicit_cli_or_api_surfaces: ["codebuild", "coder.report.generate"]
+    supported_operation_sequence:
+      - "Generate AUTOSAR-compliant source/header and ARXML outputs from the mapped component model."
+      - "Use Generate code only when compile/link must remain a separate downstream lifecycle."
+      - "Retain build metadata and code-generation report separately from source and binary artifacts."
+    expected_artifacts_or_tool_state: ["Generated C/H", "Implementation/generated ARXML", "Build metadata", "Code-generation report", "Local RTE stub where applicable"]
+    exit_evidence: ["Generated artifacts are traceable to model/mapping/configuration; production RTE remains external."]
+    project_inputs_required: ["Actual code-generation configuration/toolchain decision"]
+    missing_procedure_detail: "Generation/build surfaces are explicit but complete project configuration and button/API sequence are not fixed by authority."
+    retained_boundaries: ["code generation != compile != link", "MathWorks RTE stub != production MICROSAR RTE"]
+    source_notes: "Partial procedure with explicit generation/build controls."
+
+  - task_id: "DTR-010"
+    intent: "Verify the generated Application SWC implementation using SIL."
+    primary_tool: "Embedded Coder / Simulink SIL"
+    reviewed_release_or_scope: "MathWorks R2025b"
+    procedure_classification: "PARTIAL_PROCEDURE_AVAILABLE"
+    locator_ids: ["MW-DIAG-006", "MW-DIAG-007", "MW-DIAG-008"]
+    authority_tuples:
+      - {repository: "eariver/Research_MathWorks_Documents", commit: "ad51f604e0e6f9820f0f258795c12d603558c20d", path: "docs/knowledge/r2025b/mil-sil-pil-execution.md", section: "SIL execution identity; back-to-back/equivalence testing"}
+      - {repository: "eariver/Research_MathWorks_Documents", commit: "ad51f604e0e6f9820f0f258795c12d603558c20d", path: "docs/knowledge/r2025b/test-design-execution-results.md", section: "Execution backend and result hierarchy"}
+    explicit_preconditions: ["Generated production source", "SIL-capable configuration", "Corresponding test definition"]
+    explicit_gui_or_named_surfaces: ["Software-in-the-loop (SIL) simulation mode", "Equivalence test"]
+    explicit_cli_or_api_surfaces: []
+    supported_operation_sequence:
+      - "Select SIL execution for the intended top-model/component scope."
+      - "Compile generated production source for the host and execute the generated-code process through Simulink."
+      - "Record SIL result independently; optionally compare against model execution using configured equivalence tolerances."
+    expected_artifacts_or_tool_state: ["Host SIL executable/process", "SIL result", "Optional MIL/SIL equivalence result"]
+    exit_evidence: ["Required generated-code behavior has an explicit SIL result tied to source and test configuration."]
+    project_inputs_required: ["SIL scope/interface", "Test inputs and equivalence criteria"]
+    missing_procedure_detail: "Execution identity is explicit, but project-specific SIL configuration and launch clicks are not a complete procedure."
+    retained_boundaries: ["SIL verifies host-compiled generated code, not target object code", "MIL result != SIL result != VECU result"]
+    source_notes: "Partial procedure with an explicit SIL mode."
+
+  - task_id: "DTR-011"
+    intent: "Configure DCM/DEM for the diagnostic specification."
+    primary_tool: "DaVinci Configurator Classic / MICROSAR"
+    reviewed_release_or_scope: "DaVinci Configurator Classic 6.3.10; AUTOSAR CP 4.4.0 ownership"
+    procedure_classification: "WORKFLOW_ONLY"
+    locator_ids: ["V-DIAG-012", "V-DIAG-013", "AS-DIAG-001", "AS-DIAG-002", "AS-DIAG-003"]
+    authority_tuples:
+      - {repository: "eariver/Research_Vector_Documents", commit: "7a6821cd3f2ad677ca7069c9b114355e98f16842", path: "docs/knowledge/davinci-configurator-classic.md", section: "Reviewed role; BSW, OS, task mapping and generation"}
+      - {repository: "eariver/Research_AUTOSAR_CP_Documents", commit: "938ac4af696d263019ebdc61106a444447e15c4d", path: "docs/knowledge/concepts/dcm-diagnostic-service-ownership.json", section: "DCM service/session/security ownership"}
+      - {repository: "eariver/Research_AUTOSAR_CP_Documents", commit: "938ac4af696d263019ebdc61106a444447e15c4d", path: "docs/knowledge/concepts/dem-event-fault-memory-ownership.json", section: "DEM event/DTC/fault-memory ownership"}
+      - {repository: "eariver/Research_AUTOSAR_CP_Documents", commit: "938ac4af696d263019ebdc61106a444447e15c4d", path: "docs/knowledge/workflows/dcm-dem-dtc-service-interaction.json", section: "Tester-facing DTC service interaction"}
+    explicit_preconditions: ["Controlled diagnostic specification", "Accepted responsibility allocation", "Actual Configurator/MICROSAR release/profile"]
+    explicit_gui_or_named_surfaces: ["Configurator BSW management/configuration surfaces"]
+    explicit_cli_or_api_surfaces: []
+    supported_operation_sequence:
+      - "Configure DCM-owned service/session/security/request-response responsibilities and DEM-owned event/DTC/status/fault-memory responsibilities according to project inputs."
+      - "Trace DCM DTC services to DEM selection/query/clear services without moving DEM storage ownership into DCM."
+    expected_artifacts_or_tool_state: ["Versioned DCM/DEM ECU configuration"]
+    exit_evidence: ["Every implemented diagnostic element has an explicit DCM/DEM/application ownership path."]
+    project_inputs_required: ["Service/session/security/NRC policy", "DTC/event/debounce/persistence policy"]
+    missing_procedure_detail: "Frozen Vector Reviewed Knowledge confirms Configurator BSW configuration/generation role but does not contain a DCM/DEM object-by-object 6.3.10 configuration procedure."
+    retained_boundaries: ["DCM != DEM", "DCM is tester-facing service processor; DEM owns event/DTC memory", "legacy diagnostic import != direct CANdela bridge"]
+    source_notes: "Strong ownership authority, but tool-specific procedure remains workflow-only."
+
+  - task_id: "DTR-012"
+    intent: "Integrate diagnostic BSW with Application SWC behavior through the production RTE."
+    primary_tool: "DaVinci Configurator Classic / MICROSAR"
+    reviewed_release_or_scope: "Configurator Classic 6.3.10 + AUTOSAR CP 4.4.0 RTE boundary"
+    procedure_classification: "WORKFLOW_ONLY"
+    locator_ids: ["V-DIAG-010", "V-DIAG-012", "AS-DIAG-001", "AS-DIAG-002", "AS-DIAG-009"]
+    authority_tuples:
+      - {repository: "eariver/Research_Vector_Documents", commit: "7a6821cd3f2ad677ca7069c9b114355e98f16842", path: "docs/knowledge/davinci-configurator-classic.md", section: "BSW/RTE configuration and generation"}
+      - {repository: "eariver/Research_AUTOSAR_CP_Documents", commit: "938ac4af696d263019ebdc61106a444447e15c4d", path: "docs/knowledge/concepts/rte-generation-contract-runtime-boundary.json", section: "RTE generation/runtime boundary"}
+    explicit_preconditions: ["Fixed SWC contract/implementation", "DCM/DEM configuration", "Accepted application callback/data/event mapping"]
+    explicit_gui_or_named_surfaces: ["Configurator RTE/BSW configuration/generation"]
+    explicit_cli_or_api_surfaces: []
+    supported_operation_sequence:
+      - "Bind configured diagnostic service/event dependencies to the project Application SWC/RTE interfaces where required."
+      - "Generate the ECU-specific production RTE from the configured design inputs after integration validation."
+    expected_artifacts_or_tool_state: ["Diagnostic application/RTE integration configuration", "Production RTE generation inputs"]
+    exit_evidence: ["Diagnostic operation/data/event paths are traceable across Application SWC, DCM/DEM and production RTE ownership."]
+    project_inputs_required: ["Actual callback/service/data/event mapping"]
+    missing_procedure_detail: "No exact 6.3.10 diagnostic callback/RTE mapping sequence is present in the frozen Reviewed Knowledge."
+    retained_boundaries: ["Application SWC != DCM != DEM", "design-time contract != generated RTE runtime"]
+    source_notes: "Workflow-only; generated API names are intentionally not invented."
+
+  - task_id: "DTR-013"
+    intent: "Configure the UDS-on-CAN PduR/CanTp/CanIf/Can path."
+    primary_tool: "DaVinci Configurator Classic / MICROSAR"
+    reviewed_release_or_scope: "AUTOSAR CP 4.4.0 ownership + Configurator 6.3.10 role"
+    procedure_classification: "PROJECT_INPUT_REQUIRED"
+    locator_ids: ["AS-DIAG-001", "AS-DIAG-004", "AS-DIAG-005", "AS-DIAG-006", "DS-DIAG-003", "DS-PROJ-DIAG-003"]
+    authority_tuples:
+      - {repository: "eariver/Research_AUTOSAR_CP_Documents", commit: "938ac4af696d263019ebdc61106a444447e15c4d", path: "docs/knowledge/workflows/diagnostic-transport-branches.json", section: "PduR network-independent boundary and configured CanTp branch"}
+      - {repository: "eariver/Research_AUTOSAR_CP_Documents", commit: "938ac4af696d263019ebdc61106a444447e15c4d", path: "docs/knowledge/workflows/can-transport-protocol-path.json", section: "PduR <-> CanTp <-> CanIf path"}
+      - {repository: "eariver/Research_AUTOSAR_CP_Documents", commit: "938ac4af696d263019ebdc61106a444447e15c4d", path: "docs/knowledge/concepts/can-hardware-abstraction-ownership.json", section: "CanIf/CanDrv/CanTrcv ownership"}
+    explicit_preconditions: ["Accepted CAN/CanTp/PduR network baseline", "Actual MICROSAR configuration package"]
+    explicit_gui_or_named_surfaces: []
+    explicit_cli_or_api_surfaces: []
+    supported_operation_sequence:
+      - "Establish the configured ownership path DCM <-> PduR <-> CanTp <-> CanIf <-> CanDrv/controller."
+      - "Configure project routing/addressing/timing/lower-layer identities only after those values are accepted."
+    expected_artifacts_or_tool_state: ["UDS-on-CAN routing/transport configuration"]
+    exit_evidence: ["Diagnostic payload routing is traceable across the configured module boundaries."]
+    project_inputs_required: ["CAN/CAN-FD choice", "CAN IDs/addressing", "CanTp N-SDU/N-PDU connections", "CanTp timing/flow control", "PduR routes", "CanIf/Can controller/channel identities", "P2/P2* timing"]
+    missing_procedure_detail: "Execution is intentionally blocked: all project network/transport identities in the baseline remain TBD, and no tool-specific object procedure may be instantiated without them."
+    retained_boundaries: ["DCM service semantics != CanTp transport", "PduR != CanTp != CanIf != CanDrv", "ownership path != universal runtime call sequence"]
+    source_notes: "Authority closes module roles, not Management ECU values."
+
+  - task_id: "DTR-014"
+    intent: "Reconcile diagnostic specification/Application/BSW and generate/build integrated ECU software."
+    primary_tool: "DaVinci Configurator Classic / MICROSAR + project build"
+    reviewed_release_or_scope: "Configurator Classic 6.3.10"
+    procedure_classification: "PARTIAL_PROCEDURE_AVAILABLE"
+    locator_ids: ["V-DIAG-012", "AS-DIAG-009", "DS-DIAG-002", "DS-DIAG-006"]
+    authority_tuples:
+      - {repository: "eariver/Research_Vector_Documents", commit: "7a6821cd3f2ad677ca7069c9b114355e98f16842", path: "docs/knowledge/davinci-configurator-classic.md", section: "BSW/RTE generation; Automation and CI"}
+      - {repository: "eariver/Research_AUTOSAR_CP_Documents", commit: "938ac4af696d263019ebdc61106a444447e15c4d", path: "docs/knowledge/concepts/rte-generation-contract-runtime-boundary.json", section: "Deterministic ECU-specific RTE generation boundary"}
+    explicit_preconditions: ["Reconciled CANdela/SWC/DCM/DEM/transport configuration", "Validated Configurator project", "Project compiler/build environment"]
+    explicit_gui_or_named_surfaces: ["Configurator validation/generation", "Gradle/Bazel CI build routes"]
+    explicit_cli_or_api_surfaces: ["dvcfg-b project generate"]
+    supported_operation_sequence:
+      - "Validate/reconcile specification, Application SWC, DCM/DEM and transport configuration identities."
+      - "Generate configured production BSW/RTE with dvcfg-b project generate or the corresponding supported generation surface."
+      - "Compile/link under the project build/toolchain lifecycle, preserving generated-source versus integrated-binary identity."
+    expected_artifacts_or_tool_state: ["Diagnostic reconciliation record", "Generated production RTE/BSW source", "Integrated ECU build artifacts"]
+    exit_evidence: ["Generation/build provenance is fixed and no unexplained specification-to-implementation difference remains for the intended VECU baseline."]
+    project_inputs_required: ["Actual project compiler/build configuration", "Accepted diagnostic/network configuration"]
+    missing_procedure_detail: "The source-generation command is explicit, but full reconciliation, validation, compile/link and artifact-selection sequence is project-specific."
+    retained_boundaries: ["generated Application code != generated RTE/BSW != integrated ECU binary", "CANdela specification != ECU-C configuration"]
+    source_notes: "Partial with an explicit Configurator CLI generation operation."
+
+  - task_id: "DTR-015"
+    intent: "Build/package an Lv3 virtual ECU from integrated ECU artifacts."
+    primary_tool: "vVIRTUALtarget"
+    reviewed_release_or_scope: "vVIRTUALtarget 10 family; page-local 10 SP2 not promoted root-wide"
+    procedure_classification: "PARTIAL_PROCEDURE_AVAILABLE"
+    locator_ids: ["V-DIAG-014", "V-DIAG-015"]
+    authority_tuples:
+      - {repository: "eariver/Research_Vector_Documents", commit: "7a6821cd3f2ad677ca7069c9b114355e98f16842", path: "docs/knowledge/vvirtualtarget.md", section: "Core use cases/Integration; VttMake/build/packaging; DaVinci artifact bridge"}
+    explicit_preconditions: ["Integrated configured/generated ECU artifacts", "Selected vVIRTUALtarget Integration use case", "Actual supported DPA/DVJSON/BSW package inputs"]
+    explicit_gui_or_named_surfaces: ["Integration use case", "VttMake build/package workflow"]
+    explicit_cli_or_api_surfaces: ["VttMake", "VttMake update"]
+    supported_operation_sequence:
+      - "Use the Integration route rather than BSW Emulation for configured DaVinci/MICROSAR ECU artifacts."
+      - "Where applicable, update/migrate DPA/DVJSON inputs and derive VTTJSON through the reviewed VttMake route."
+      - "Generate/build/package the per-ECU virtual software/SUT artifacts while retaining use-case and input provenance."
+    expected_artifacts_or_tool_state: ["Virtual ECU/SUT artifacts such as DLL/SO and related runtime/SUT descriptions", "Potential *.vttsut package on the reviewed consumer route"]
+    exit_evidence: ["Virtual artifact is traceable to one integrated ECU/configuration baseline and selected Integration use case."]
+    project_inputs_required: ["Actual vVIRTUALtarget release", "Exact Integration artifact set/toolchain/package dependencies"]
+    missing_procedure_detail: "VttMake and Integration routes are explicit, but the complete artifact/version-specific project recipe is not closed."
+    retained_boundaries: ["Integration != BSW Emulation", "vecu-derive restriction does not define all Configurator 6 Integration behavior"]
+    source_notes: "Partial procedure due explicit VttMake/build surfaces and retained compatibility gaps."
+
+  - task_id: "DTR-016"
+    intent: "Integrate the Lv3 VECU and diagnostic description in CANoe for UDS-on-CAN runtime access."
+    primary_tool: "CANoe"
+    reviewed_release_or_scope: "CANoe 20.2.1"
+    procedure_classification: "PARTIAL_PROCEDURE_AVAILABLE"
+    locator_ids: ["V-DIAG-008", "V-DIAG-015"]
+    authority_tuples:
+      - {repository: "eariver/Research_Vector_Documents", commit: "7a6821cd3f2ad677ca7069c9b114355e98f16842", path: "docs/knowledge/canoe.md", section: "Diagnostics consumer model; SIL/virtual SUT; vVIRTUALtarget boundary"}
+      - {repository: "eariver/Research_Vector_Documents", commit: "7a6821cd3f2ad677ca7069c9b114355e98f16842", path: "docs/knowledge/vvirtualtarget.md", section: "Named VTT model import and virtual-SUT consumer route"}
+    explicit_preconditions: ["Versioned VECU/*.vttsut artifact", "Supported diagnostic description", "Accepted UDS-on-CAN network binding"]
+    explicit_gui_or_named_surfaces: ["Communication Setup: Add VTT model", "Diagnostics/ISO TP Configuration", "ECU qualifier/variant/network assignment"]
+    explicit_cli_or_api_surfaces: []
+    supported_operation_sequence:
+      - "Add the vVIRTUALtarget-generated VTT model/virtual SUT in CANoe Communication Setup."
+      - "Configure/load the diagnostic description through Diagnostics/ISO TP Configuration."
+      - "Align ECU qualifier/variant, network assignment and transport context with the project baseline."
+    expected_artifacts_or_tool_state: ["CANoe configuration containing the virtual SUT and diagnostic-description/runtime binding"]
+    exit_evidence: ["Management ECU virtual SUT is addressable through the intended diagnostic description and UDS-on-CAN context."]
+    project_inputs_required: ["CANoe/DiVa network binding", "Actual qualifier/variant/channel/addressing"]
+    missing_procedure_detail: "Named GUI surfaces are explicit, but the full configuration sequence and compatibility/reload rules are partial."
+    retained_boundaries: ["CANoe runtime consumer != CANdela authoring source", "*.vttsut internal schema/version compatibility remains partial"]
+    source_notes: "Partial procedure with explicit Add VTT model and Diagnostics/ISO TP surfaces."
+
+  - task_id: "DTR-017"
+    intent: "Create/configure a CANoe.DiVa project from the controlled diagnostic specification."
+    primary_tool: "CANoe.DiVa"
+    reviewed_release_or_scope: "CANoe.DiVa 20"
+    procedure_classification: "PARTIAL_PROCEDURE_AVAILABLE"
+    locator_ids: ["V-DIAG-004", "V-DIAG-005"]
+    authority_tuples:
+      - {repository: "eariver/Research_Vector_Documents", commit: "7a6821cd3f2ad677ca7069c9b114355e98f16842", path: "docs/knowledge/canoe-diva.md", section: "Diagnostic specification and project setup; CANdela boundary"}
+    explicit_preconditions: ["Supported PDX/ODX/CDD/CANdela specification input", "ECU/Variant context", "CANoe environment", "Project resources/test scope"]
+    explicit_gui_or_named_surfaces: ["Project Configuration", "ECU Information", "CANoe Environment", "Additional Resources"]
+    explicit_cli_or_api_surfaces: []
+    supported_operation_sequence:
+      - "Create/configure a DiVa project from the supported diagnostic specification and ECU/Variant."
+      - "Configure ECU Information, CANoe Environment and Additional Resources."
+      - "Fix the intended project test scope and input diagnostic revision."
+    expected_artifacts_or_tool_state: ["Versioned DiVa project/configuration"]
+    exit_evidence: ["Input diagnostic revision, ECU/Variant, CANoe environment and additional resources are traceable."]
+    project_inputs_required: ["Selected handoff format/profile", "Actual ECU/Variant/environment", "Test objectives"]
+    missing_procedure_detail: "Named project-configuration areas are explicit, but exact GUI creation/import clicks and full project serialization are not."
+    retained_boundaries: ["One PDX container support where applicable", "CANdela/DiVa format overlap != one mandatory CANdela export subset"]
+    source_notes: "Partial procedure at DiVa 20 project-setup level."
+
+  - task_id: "DTR-018"
+    intent: "Generate specification-driven diagnostic tests in DiVa."
+    primary_tool: "CANoe.DiVa"
+    reviewed_release_or_scope: "CANoe.DiVa 20"
+    procedure_classification: "PARTIAL_PROCEDURE_AVAILABLE"
+    locator_ids: ["V-DIAG-005", "V-DIAG-007"]
+    authority_tuples:
+      - {repository: "eariver/Research_Vector_Documents", commit: "7a6821cd3f2ad677ca7069c9b114355e98f16842", path: "docs/knowledge/canoe-diva.md", section: "Test generation; Test Module and Test Unit; Command line/CI-CT"}
+    explicit_preconditions: ["Configured DiVa project", "Accepted diagnostic test scope", "Required resources such as Seed/Key or environment data where applicable"]
+    explicit_gui_or_named_surfaces: ["DiVa test generation", "Generated test specification", "Test Module/Test Unit output"]
+    explicit_cli_or_api_surfaces: ["diva-make.exe diva.yaml [options]"]
+    supported_operation_sequence:
+      - "Generate test cases from the diagnostic specification and DiVa project configuration."
+      - "Review generated coverage for applicable service, timing, format/content/plausibility, session/security, valid/invalid request, parameter, DTC and system-condition categories."
+      - "Use diva-make.exe diva.yaml [options] where the documented CLI generation route is selected."
+    expected_artifacts_or_tool_state: ["Generated diagnostic test specification", "Test Module and/or Test Unit artifacts", "CLI log/output where applicable"]
+    exit_evidence: ["Generated test scope is reviewable against the accepted project diagnostic test objectives."]
+    project_inputs_required: ["Test objectives/acceptance criteria", "Environment/stimulation expectations"]
+    missing_procedure_detail: "The CLI entry point and generation categories are explicit, but option set, GUI sequence and project-specific generated-case selection are not fully compiled."
+    retained_boundaries: ["Generated test specification != execution result", "Incomplete/repeated diagnostic descriptions can alter generated case set"]
+    source_notes: "Partial with explicit DiVa CLI generation command."
+
+  - task_id: "DTR-019"
+    intent: "Import/bind DiVa-generated tests in CANoe, execute them against the VECU, and collect results/reports."
+    primary_tool: "CANoe + CANoe.DiVa"
+    reviewed_release_or_scope: "CANoe.DiVa 20 + CANoe 20.2.1 named integration route"
+    procedure_classification: "EXACT_PROCEDURE_AVAILABLE"
+    locator_ids: ["V-DIAG-006", "V-DIAG-007", "V-DIAG-009"]
+    authority_tuples:
+      - {repository: "eariver/Research_Vector_Documents", commit: "7a6821cd3f2ad677ca7069c9b114355e98f16842", path: "docs/knowledge/canoe-diva.md", section: "CANoe boundary; Named integration/execution route; Test Module and Test Unit"}
+      - {repository: "eariver/Research_Vector_Documents", commit: "7a6821cd3f2ad677ca7069c9b114355e98f16842", path: "docs/knowledge/canoe.md", section: "CANoe.DiVa boundary; Automated testing core"}
+    explicit_preconditions: ["Configured CANoe VECU diagnostic environment", "DiVa project/generated test artifacts", "Matching ECU qualifier/diagnostic/ISO-TP context"]
+    explicit_gui_or_named_surfaces: ["Diagnostics & XCP | Test | Import DiVa Project", "Assigned Bus", "Diagnostics/ISO TP configuration", "ECU Qualifier matching", "Test Module/Test Unit selection", "measurement execution", "report access"]
+    explicit_cli_or_api_surfaces: []
+    supported_operation_sequence:
+      - "In CANoe, use Diagnostics & XCP | Test | Import DiVa Project."
+      - "Set/verify Assigned Bus and Diagnostics/ISO TP context."
+      - "Ensure the ECU Qualifier matches the intended diagnostic configuration."
+      - "Select the generated Test Module/Test Unit."
+      - "For changed DiVa Test Units, re-import so the executable is recompiled in CANoe as documented."
+      - "Start the measurement/test execution and access the resulting report."
+    expected_artifacts_or_tool_state: ["CANoe test configuration bound to DiVa artifacts", "Execution result", "Diagnostic test report"]
+    exit_evidence: ["Required generated tests execute against the intended Management ECU virtual SUT and produce traceable result/report evidence."]
+    project_inputs_required: ["Actual bus/qualifier/variant/addressing and selected test set"]
+    missing_procedure_detail: "The bounded named integration/execution sequence is closed, but full DiVa project serialization and complete producer/consumer version matrix remain partial."
+    retained_boundaries: ["DiVa project != generated test != Test Module/Test Unit != CANoe execution result/report", "Test Unit re-import/recompile rule is product-specific"]
+    source_notes: "Strongest procedure-ready route in this compilation; exact named CANoe import and execution sequence is two-sided reviewed."
+
+classification_counts:
+  EXACT_PROCEDURE_AVAILABLE: 1
+  PARTIAL_PROCEDURE_AVAILABLE: 11
+  WORKFLOW_ONLY: 5
+  NO_EXPLICIT_PROCEDURE: 0
+  PROJECT_INPUT_REQUIRED: 1
+  UNRESOLVED_AUTHORITY: 0
+
+cross_task_retained_boundaries:
+  - "CANdela diagnostic specification != Application SWC contract/behavior != DCM != DEM != transport configuration."
+  - "CDD/ODX support != lossless CANdela round trip."
+  - "CANdela/DiVa format overlap != one mandatory CANdela 25 SP1 producer subset."
+  - "No universal direct CANdela -> DaVinci Configurator 6.3.10 synchronization/import contract is established."
+  - "DCM service/session/security != DEM event/DTC/fault-memory ownership."
+  - "DCM <-> PduR <-> CanTp <-> CanIf <-> CanDrv is an ownership/navigation path, not one universal runtime call sequence."
+  - "Generated Application SWC != production RTE/BSW != integrated ECU binary."
+  - "MIL != SIL != VECU execution."
+  - "vVIRTUALtarget Integration != BSW Emulation."
+  - "DiVa project != generated test != Test Module/Test Unit != CANoe execution result/report."
+  - "Project diagnostic/network/tool values remain project inputs."
+
+unresolved_or_missing_procedure_details:
+  - "Exact CANdela 25 SP1 object-authoring menu/dialog sequence."
+  - "One mandatory CANdela export subset/profile for DiVa 20: documentation-scope negative."
+  - "Direct CANdela -> Configurator diagnostic synchronization/import procedure: not established."
+  - "Exact Developer 4.18 SP3 diagnostic-facing SWC authoring/export click sequence."
+  - "Exact Configurator 6.3.10 DCM/DEM object configuration and application-callback mapping sequence."
+  - "Exact Configurator 6.3.10 PduR/CanTp/CanIf/Can configuration sequence for the Management ECU values."
+  - "Complete Configurator->vVIRTUALtarget artifact/version compatibility recipe."
+  - "Complete CANoe/vVIRTUALtarget load/rebuild/version matrix."
+  - "Complete DiVa project serialization and cross-product version matrix."
+
+validation:
+  task_row_count: 18
+  expected_task_ids: ["DTR-002", "DTR-003", "DTR-004", "DTR-005", "DTR-006", "DTR-007", "DTR-008", "DTR-009", "DTR-010", "DTR-011", "DTR-012", "DTR-013", "DTR-014", "DTR-015", "DTR-016", "DTR-017", "DTR-018", "DTR-019"]
+  classification_count_sum: 18
+  invented_project_values: false
+  disallowed_external_sources_used: false
+  canonical_or_reference_inputs_modified: false

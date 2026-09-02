@@ -1,0 +1,68 @@
+schema_version: "management-ecu-uds-can-procedure-coverage/v1"
+artifact: "Management ECU UDS on CAN procedure coverage matrix"
+status: "SOL_INTEGRATED_FROM_ACCEPTED_COMPILATION"
+date: "2026-09-02"
+accepted_luna_ending_sha: "3b5f2cdfc418e46cd2ad4a8509fc77ac50eacc12"
+source_compilation:
+  matrix: "20260902_ManagementECU_UDS_CAN_Tool_Procedure_Compilation_Matrix.yaml"
+  report: "20260902_ManagementECU_UDS_CAN_Tool_Procedure_Compilation_Report.md"
+classification_counts:
+  EXACT_PROCEDURE_AVAILABLE: 1
+  PARTIAL_PROCEDURE_AVAILABLE: 11
+  WORKFLOW_ONLY: 5
+  NO_EXPLICIT_PROCEDURE: 0
+  PROJECT_INPUT_REQUIRED: 1
+  UNRESOLVED_AUTHORITY: 0
+  total: 18
+tasks:
+  DTR-002: {tool_family: "candela-studio.yaml", classification: "WORKFLOW_ONLY"}
+  DTR-003: {tool_family: "candela-studio.yaml", classification: "PARTIAL_PROCEDURE_AVAILABLE"}
+  DTR-004: {tool_family: "davinci-developer-classic.yaml", classification: "PARTIAL_PROCEDURE_AVAILABLE"}
+  DTR-005: {tool_family: "autosar-blockset.yaml", classification: "PARTIAL_PROCEDURE_AVAILABLE"}
+  DTR-006: {tool_family: "simulink-stateflow.yaml", classification: "WORKFLOW_ONLY"}
+  DTR-007: {tool_family: "autosar-blockset.yaml", classification: "WORKFLOW_ONLY"}
+  DTR-008: {tool_family: "mil-sil.yaml", classification: "PARTIAL_PROCEDURE_AVAILABLE"}
+  DTR-009: {tool_family: "embedded-coder.yaml", classification: "PARTIAL_PROCEDURE_AVAILABLE"}
+  DTR-010: {tool_family: "mil-sil.yaml", classification: "PARTIAL_PROCEDURE_AVAILABLE"}
+  DTR-011: {tool_family: "davinci-configurator-microsar.yaml", secondary_family: "diagnostic-bsw-uds-on-can.yaml", classification: "WORKFLOW_ONLY"}
+  DTR-012: {tool_family: "davinci-configurator-microsar.yaml", secondary_family: "diagnostic-bsw-uds-on-can.yaml", classification: "WORKFLOW_ONLY"}
+  DTR-013: {tool_family: "diagnostic-bsw-uds-on-can.yaml", secondary_family: "davinci-configurator-microsar.yaml", classification: "PROJECT_INPUT_REQUIRED"}
+  DTR-014: {tool_family: "davinci-configurator-microsar.yaml", classification: "PARTIAL_PROCEDURE_AVAILABLE"}
+  DTR-015: {tool_family: "vvirtualtarget.yaml", classification: "PARTIAL_PROCEDURE_AVAILABLE"}
+  DTR-016: {tool_family: "canoe-diva.yaml", classification: "PARTIAL_PROCEDURE_AVAILABLE"}
+  DTR-017: {tool_family: "canoe-diva.yaml", classification: "PARTIAL_PROCEDURE_AVAILABLE"}
+  DTR-018: {tool_family: "canoe-diva.yaml", classification: "PARTIAL_PROCEDURE_AVAILABLE"}
+  DTR-019: {tool_family: "canoe-diva.yaml", classification: "EXACT_PROCEDURE_AVAILABLE"}
+strongest_routes:
+  - task_id: "DTR-019"
+    classification: "EXACT_PROCEDURE_AVAILABLE"
+    surface: "Diagnostics & XCP | Test | Import DiVa Project -> Assigned Bus -> Diagnostics/ISO TP -> ECU Qualifier -> Test Module/Test Unit -> execution -> report"
+  - task_id: "DTR-005"
+    classification: "PARTIAL_PROCEDURE_AVAILABLE"
+    surface: "arxml.importer / createComponentAsModel / updateModel / updateAUTOSARProperties"
+  - task_id: "DTR-014"
+    classification: "PARTIAL_PROCEDURE_AVAILABLE"
+    surface: "dvcfg-b project generate"
+  - task_id: "DTR-018"
+    classification: "PARTIAL_PROCEDURE_AVAILABLE"
+    surface: "diva-make.exe diva.yaml [options]"
+  - task_id: "DTR-016"
+    classification: "PARTIAL_PROCEDURE_AVAILABLE"
+    surface: "Communication Setup: Add VTT model + Diagnostics/ISO TP Configuration"
+primary_procedure_gaps:
+  - "Configurator 6.3.10 DCM/DEM object configuration procedure."
+  - "Configurator diagnostic Application/RTE callback mapping procedure."
+  - "Configurator PduR/CanTp/CanIf/Can procedure after Management ECU network values are fixed."
+  - "CANdela 25 SP1 object-authoring GUI procedure."
+  - "Developer 4.18 SP3 diagnostic-facing SWC authoring GUI procedure."
+  - "Complete vVIRTUALtarget Integration artifact/version recipe."
+  - "Complete DiVa project serialization/version matrix."
+project_blocked_tasks:
+  - task_id: "DTR-013"
+    blockers: ["NET-IN-001", "NET-IN-002", "NET-IN-003", "NET-IN-004", "NET-IN-005", "NET-IN-006", "NET-IN-007", "NET-IN-008", "NET-IN-009", "NET-IN-010", "NET-IN-011"]
+validation:
+  task_count: 18
+  classification_count_sum: 18
+  exact_procedure_task_count: 1
+  project_input_required_task_count: 1
+  source_of_truth: "Accepted Luna fixed-head compilation; family files are Sol reorganization only."

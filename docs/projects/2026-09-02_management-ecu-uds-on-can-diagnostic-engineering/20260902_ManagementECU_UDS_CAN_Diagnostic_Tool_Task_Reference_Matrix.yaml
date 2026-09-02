@@ -1,0 +1,329 @@
+schema_version: "management-ecu-uds-can-diagnostic-tool-task-reference-matrix/v1"
+artifact: "Management ECU UDS on CAN Diagnostic Engineering — Tool / Task / Reference Matrix"
+date: "2026-09-02"
+status: "INITIAL_EXECUTION_NAVIGATION"
+
+operation_detail_levels:
+  WORKFLOW_OBJECT_LEVEL_READY: "Reviewed corpus supports the engineering objects/workflow actions, not necessarily a click-by-click sequence."
+  PROCEDURE_PARTIAL: "Bounded workflow is supported but exact version-specific procedure is incomplete."
+  BLOCKED_BY_PROJECT_INPUT: "Workflow is known but execution requires project-specific input."
+  UNRESOLVED_AUTHORITY: "Frozen Reviewed Knowledge does not support the requested route."
+
+tasks:
+  - task_id: "DTR-000"
+    intent: "実プロジェクトの診断tool/version/schemaを固定したい"
+    phase: "DIA-D0"
+    primary_tool: "Project configuration management"
+    operation_detail_level: "BLOCKED_BY_PROJECT_INPUT"
+    required_inputs: ["Actual tool releases", "AUTOSAR schema", "diagnostic description profile"]
+    read_first:
+      project: ["DS-PROJ-DIAG-002"]
+    operations: ["Record actual releases separately from Reviewed Knowledge baselines.", "Open compatibility decision for mismatches."]
+    outputs: ["references/project/tool-version-baseline.yaml"]
+    exit_conditions: ["Actual project versions/schema are explicit or intentionally blocked."]
+    next_task_ids: ["DTR-001"]
+
+  - task_id: "DTR-001"
+    intent: "診断要求をCANdela/App SWC/DCM/DEM/transport/testへ割り当てたい"
+    phase: "DIA-D1"
+    primary_tool: "Tool-neutral engineering review"
+    operation_detail_level: "BLOCKED_BY_PROJECT_INPUT"
+    required_inputs: ["Requirement-ID-bearing diagnostic requirement set"]
+    read_first:
+      downstream: ["DS-DIAG-001", "DS-DIAG-002", "DS-DIAG-003", "DS-DIAG-004"]
+      autosar: ["AS-DIAG-001", "AS-DIAG-002", "AS-DIAG-004"]
+      project: ["DS-PROJ-DIAG-001"]
+    operations: ["Classify each requirement by ownership domain.", "Record cross-layer dependencies and whether Application SWC behavior is required."]
+    outputs: ["Diagnostic Requirement / Responsibility Allocation"]
+    exit_conditions: ["No requirement is unintentionally unowned."]
+    next_task_ids: ["DTR-002"]
+
+  - task_id: "DTR-002"
+    intent: "Management ECUのUDS診断仕様をCANdelaで定義したい"
+    phase: "DIA-D2"
+    primary_tool: "CANdela Studio"
+    operation_detail_level: "WORKFLOW_OBJECT_LEVEL_READY"
+    required_inputs: ["Accepted diagnostic requirements", "Project template/document governance"]
+    read_first:
+      vector: ["V-DIAG-001", "V-DIAG-002"]
+      project: ["DS-PROJ-DIAG-001"]
+    operations: ["Author/update the controlled CDD diagnostic model.", "Define applicable service/data/DID/Routine/DTC/session/security specification objects.", "Preserve template/document/variant/object identities."]
+    do_not_do: ["Do not encode DCM/DEM runtime implementation as CANdela ownership."]
+    outputs: ["Controlled CANdela diagnostic specification revision"]
+    exit_conditions: ["Externally visible diagnostic semantics are reviewable and versioned."]
+    next_task_ids: ["DTR-003", "DTR-004", "DTR-011", "DTR-017"]
+
+  - task_id: "DTR-003"
+    intent: "CANdela診断仕様を下流toolへ渡すdiagnostic descriptionを固定したい"
+    phase: "DIA-D2 handoff"
+    primary_tool: "CANdela Studio"
+    operation_detail_level: "PROCEDURE_PARTIAL"
+    required_inputs: ["Controlled CANdela revision", "Selected project interchange route/profile"]
+    read_first:
+      vector: ["V-DIAG-002", "V-DIAG-003", "V-DIAG-004", "V-DIAG-008"]
+    operations: ["Select the supported CDD/ODX/PDX-related project route.", "Record format/profile/export scope and warnings."]
+    do_not_do: ["Do not claim lossless round trip.", "Do not claim one mandatory CANdela export subset for DiVa unless project evidence establishes it."]
+    outputs: ["Controlled diagnostic-description handoff artifact"]
+    exit_conditions: ["Source revision, format/profile and intended consumer are traceable."]
+    next_task_ids: ["DTR-016", "DTR-017"]
+
+  - task_id: "DTR-004"
+    intent: "診断機能に必要なApplication SWC contractを定義したい"
+    phase: "DIA-D4"
+    primary_tool: "DaVinci Developer Classic"
+    operation_detail_level: "WORKFLOW_OBJECT_LEVEL_READY"
+    required_inputs: ["Responsibility allocation", "Accepted application diagnostic interface decisions"]
+    read_first:
+      downstream: ["DS-DIAG-004", "DS-DIAG-006"]
+      vector: ["V-DIAG-010", "V-DIAG-011"]
+      autosar: ["AS-DIAG-007", "AS-DIAG-008"]
+    operations: ["Define/confirm SWC ports/interfaces/data/operations/runnables/events/RTE-access identities required by diagnostic application behavior.", "Export controlled SWC contract ARXML."]
+    do_not_do: ["Do not make the Application SWC own DCM or DEM semantics."]
+    outputs: ["Application SWC contract ARXML"]
+    exit_conditions: ["Diagnostic-facing Application SWC contract is fixed and versioned."]
+    next_task_ids: ["DTR-005"]
+
+  - task_id: "DTR-005"
+    intent: "SWC ARXMLをAUTOSAR Blockset/Simulinkへ取り込みたい"
+    phase: "DIA-D5"
+    primary_tool: "AUTOSAR Blockset"
+    supporting_tools: ["Simulink"]
+    operation_detail_level: "WORKFLOW_OBJECT_LEVEL_READY"
+    required_inputs: ["Application SWC contract ARXML"]
+    read_first:
+      mathworks: ["MW-DIAG-001", "MW-DIAG-002"]
+      autosar: ["AS-DIAG-007", "AS-DIAG-008"]
+    operations: ["Import/create/update the AUTOSAR component representation.", "Inspect ports/interfaces/runnables/mapping and input revision."]
+    outputs: ["Simulink AUTOSAR component model scaffold", "Import/update record"]
+    exit_conditions: ["Model representation is traceable to the contract ARXML."]
+    next_task_ids: ["DTR-006", "DTR-007"]
+
+  - task_id: "DTR-006"
+    intent: "DID/Routine/診断条件などApplication側の振る舞いを実装したい"
+    phase: "DIA-D5"
+    primary_tool: "Simulink / Stateflow"
+    operation_detail_level: "WORKFLOW_OBJECT_LEVEL_READY"
+    required_inputs: ["Imported component model", "Accepted Application SWC diagnostic requirements"]
+    read_first:
+      mathworks: ["MW-DIAG-003", "MW-DIAG-004"]
+      autosar: ["AS-DIAG-001", "AS-DIAG-002"]
+      project: ["DS-PROJ-DIAG-001"]
+    operations: ["Implement application data preparation, routine function, application state/precondition and monitor behavior allocated to the SWC."]
+    do_not_do: ["Do not implement DCM service/session/security dispatch inside the SWC.", "Do not implement DEM event-memory semantics inside the SWC."]
+    outputs: ["Simulink/Stateflow diagnostic application behavior model"]
+    exit_conditions: ["Accepted Application SWC diagnostic behavior is implemented against the fixed contract."]
+    next_task_ids: ["DTR-007", "DTR-008"]
+
+  - task_id: "DTR-007"
+    intent: "Application modelとAUTOSAR contractのmappingを確認したい"
+    phase: "DIA-D5"
+    primary_tool: "AUTOSAR Blockset"
+    operation_detail_level: "WORKFLOW_OBJECT_LEVEL_READY"
+    required_inputs: ["AUTOSAR component model", "SWC contract"]
+    read_first:
+      mathworks: ["MW-DIAG-001", "MW-DIAG-002"]
+    operations: ["Review/configure applicable data/port/operation/runnable/PIM/calibration mappings.", "Record deviations instead of silently changing contract ownership."]
+    outputs: ["AUTOSAR mapping review record"]
+    exit_conditions: ["No unexplained mapping remains."]
+    next_task_ids: ["DTR-008", "DTR-009"]
+
+  - task_id: "DTR-008"
+    intent: "Application診断behaviorをMILで確認したい"
+    phase: "DIA-D6"
+    primary_tool: "Simulink / MathWorks test environment"
+    operation_detail_level: "PROCEDURE_PARTIAL"
+    required_inputs: ["Behavior model", "Requirement-linked test intent/data"]
+    read_first:
+      downstream: ["DS-DIAG-005"]
+      mathworks: ["MW-DIAG-006", "MW-DIAG-007", "MW-DIAG-008", "MW-DIAG-009", "MW-DIAG-010"]
+    operations: ["Execute model-level diagnostic application tests.", "Keep test definition/result/verdict/coverage separate."]
+    do_not_do: ["Do not treat MIL as proof of DCM/DEM/CanTp integration."]
+    outputs: ["MIL test/result/trace evidence"]
+    exit_conditions: ["Required application behavior has explicit MIL evidence."]
+    next_task_ids: ["DTR-009"]
+
+  - task_id: "DTR-009"
+    intent: "診断Application SWCのproduction-intent C/ARXMLを生成したい"
+    phase: "DIA-D6"
+    primary_tool: "Embedded Coder"
+    operation_detail_level: "WORKFLOW_OBJECT_LEVEL_READY"
+    required_inputs: ["Mapped AUTOSAR component model", "Fixed code-generation configuration"]
+    read_first:
+      downstream: ["DS-DIAG-006"]
+      mathworks: ["MW-DIAG-005"]
+      autosar: ["AS-DIAG-009"]
+    operations: ["Generate C/H, implementation ARXML and code-generation metadata/report.", "Version generated artifacts separately from source model."]
+    do_not_do: ["Do not equate generation with compile/link or production MICROSAR RTE."]
+    outputs: ["Generated C/H", "Implementation ARXML", "Code-generation report"]
+    exit_conditions: ["Generation artifacts are traceable to source/mapping/configuration."]
+    next_task_ids: ["DTR-010", "DTR-011"]
+
+  - task_id: "DTR-010"
+    intent: "生成Application実装をSILで確認したい"
+    phase: "DIA-D6"
+    primary_tool: "MathWorks SIL workflow"
+    operation_detail_level: "PROCEDURE_PARTIAL"
+    required_inputs: ["Generated implementation", "Corresponding test intent"]
+    read_first:
+      downstream: ["DS-DIAG-005"]
+      mathworks: ["MW-DIAG-006", "MW-DIAG-007", "MW-DIAG-008"]
+    operations: ["Execute generated implementation in SIL identity.", "Record SIL independently from MIL and compare applicable behavior."]
+    outputs: ["SIL evidence", "MIL/SIL correspondence"]
+    exit_conditions: ["Required generated-code behavior has explicit SIL evidence."]
+    next_task_ids: ["DTR-011", "DTR-014"]
+
+  - task_id: "DTR-011"
+    intent: "CANdela仕様に対応するDCM/DEM設定を作りたい"
+    phase: "DIA-D7"
+    primary_tool: "DaVinci Configurator Classic / MICROSAR"
+    operation_detail_level: "PROCEDURE_PARTIAL"
+    required_inputs: ["Controlled diagnostic specification", "Diagnostic requirement allocation", "Actual MICROSAR/project baseline"]
+    read_first:
+      downstream: ["DS-DIAG-001", "DS-DIAG-002"]
+      vector: ["V-DIAG-012", "V-DIAG-013"]
+      autosar: ["AS-DIAG-001", "AS-DIAG-002", "AS-DIAG-003"]
+    operations: ["Configure applicable DCM service/session/security/application-integration objects.", "Configure applicable DEM event/DTC/status/event-memory objects and DCM relations."]
+    do_not_do: ["Do not assume a universal direct CANdela->Configurator synchronization/import contract."]
+    outputs: ["Diagnostic BSW configuration"]
+    exit_conditions: ["Every implemented diagnostic element has explicit DCM/DEM/application ownership and trace identity."]
+    next_task_ids: ["DTR-012", "DTR-013"]
+
+  - task_id: "DTR-012"
+    intent: "DCM/DEMとApplication SWCをproduction RTE経由で統合したい"
+    phase: "DIA-D7"
+    primary_tool: "DaVinci Configurator Classic / MICROSAR"
+    operation_detail_level: "WORKFLOW_OBJECT_LEVEL_READY"
+    required_inputs: ["SWC contract/implementation", "DCM/DEM configuration", "Accepted callback/data/event mapping"]
+    read_first:
+      downstream: ["DS-DIAG-002", "DS-DIAG-004"]
+      vector: ["V-DIAG-010", "V-DIAG-012"]
+      autosar: ["AS-DIAG-001", "AS-DIAG-002", "AS-DIAG-009"]
+    operations: ["Bind configured diagnostic service/event paths to application/RTE interfaces where required.", "Preserve application/DCM/DEM ownership separation."]
+    outputs: ["Production diagnostic application integration configuration"]
+    exit_conditions: ["Diagnostic operation/data/event paths are traceable across RTE/application and BSW."
+    ]
+    next_task_ids: ["DTR-013", "DTR-014"]
+
+  - task_id: "DTR-013"
+    intent: "UDS on CANのPduR/CanTp/CanIf/Can経路を設定したい"
+    phase: "DIA-D7"
+    primary_tool: "DaVinci Configurator Classic / MICROSAR"
+    operation_detail_level: "BLOCKED_BY_PROJECT_INPUT"
+    required_inputs: ["Accepted UDS-on-CAN network/addressing/timing baseline"]
+    read_first:
+      downstream: ["DS-DIAG-003"]
+      autosar: ["AS-DIAG-001", "AS-DIAG-004", "AS-DIAG-005", "AS-DIAG-006"]
+      project: ["DS-PROJ-DIAG-003"]
+    operations: ["Configure DCM-to-PduR diagnostic routing and the configured CanTp CAN transport branch.", "Configure lower CanIf/CAN identities required by the project network."]
+    do_not_do: ["Do not treat DCM service semantics and CanTp transport behavior as one module.", "Do not invent CAN IDs/addressing/timing."]
+    outputs: ["Production UDS-on-CAN transport/routing configuration"]
+    exit_conditions: ["Configured diagnostic payload route is traceable from DCM/PduR to the CAN lower layer."]
+    next_task_ids: ["DTR-014"]
+
+  - task_id: "DTR-014"
+    intent: "診断仕様・SWC・DCM/DEM/transport設定を照合して統合ECUを生成したい"
+    phase: "DIA-D8"
+    primary_tool: "DaVinci Configurator Classic / MICROSAR + project build"
+    operation_detail_level: "PROCEDURE_PARTIAL"
+    required_inputs: ["CANdela revision", "SWC generated artifacts", "Diagnostic BSW configuration", "Network configuration"]
+    read_first:
+      downstream: ["DS-DIAG-002", "DS-DIAG-006"]
+      vector: ["V-DIAG-012"]
+      autosar: ["AS-DIAG-009"]
+    operations: ["Reconcile specification/application/BSW identities.", "Validate/generate production RTE/BSW and build integrated ECU software under project build control."]
+    outputs: ["Diagnostic implementation reconciliation record", "Integrated ECU software/configuration artifact set"]
+    exit_conditions: ["No unexplained specification-to-implementation difference remains for the intended VECU baseline."]
+    next_task_ids: ["DTR-015"]
+
+  - task_id: "DTR-015"
+    intent: "統合済みManagement ECU softwareからLv3 VECUを作りたい"
+    phase: "DIA-D9"
+    primary_tool: "vVIRTUALtarget"
+    operation_detail_level: "PROCEDURE_PARTIAL"
+    required_inputs: ["Integrated DaVinci/MICROSAR ECU artifacts", "Selected vVIRTUALtarget use case"]
+    read_first:
+      vector: ["V-DIAG-014", "V-DIAG-015"]
+    operations: ["Build/package a traceable virtual ECU using the applicable reviewed Integration route.", "Preserve virtual artifact provenance and use-case boundary."]
+    outputs: ["Lv3 VECU / virtual SUT artifact"]
+    exit_conditions: ["Virtual artifact can be executed and traced to integrated ECU input baseline."]
+    next_task_ids: ["DTR-016"]
+
+  - task_id: "DTR-016"
+    intent: "Lv3 VECUをCANoeに統合してUDS on CANでアクセスしたい"
+    phase: "DIA-D10"
+    primary_tool: "CANoe"
+    operation_detail_level: "WORKFLOW_OBJECT_LEVEL_READY"
+    required_inputs: ["VECU artifact", "Diagnostic description", "UDS-on-CAN network baseline"]
+    read_first:
+      vector: ["V-DIAG-008", "V-DIAG-015"]
+      project: ["DS-PROJ-DIAG-003"]
+    operations: ["Load/integrate the virtual SUT through the applicable VTT consumer route.", "Configure diagnostic description/ISO-TP/network/ECU qualifier context."]
+    outputs: ["Executable CANoe Management ECU diagnostic environment"]
+    exit_conditions: ["VECU is addressable through intended UDS-on-CAN runtime path."]
+    next_task_ids: ["DTR-017", "DTR-019"]
+
+  - task_id: "DTR-017"
+    intent: "CANdela診断仕様からDiVa test projectを作りたい"
+    phase: "DIA-D11"
+    primary_tool: "CANoe.DiVa"
+    operation_detail_level: "WORKFLOW_OBJECT_LEVEL_READY"
+    required_inputs: ["Controlled diagnostic description", "ECU/Variant context", "CANoe environment"]
+    read_first:
+      vector: ["V-DIAG-004", "V-DIAG-005"]
+    operations: ["Create/configure DiVa project from supported diagnostic specification data.", "Fix ECU/Variant, CANoe environment and additional resources/test scope."]
+    outputs: ["DiVa project/configuration"]
+    exit_conditions: ["DiVa input diagnostic revision/environment/test scope are traceable."]
+    next_task_ids: ["DTR-018"]
+
+  - task_id: "DTR-018"
+    intent: "DiVaでUDS diagnostic testsを生成したい"
+    phase: "DIA-D11"
+    primary_tool: "CANoe.DiVa"
+    operation_detail_level: "PROCEDURE_PARTIAL"
+    required_inputs: ["Configured DiVa project", "Project diagnostic test objectives"]
+    read_first:
+      vector: ["V-DIAG-005", "V-DIAG-007"]
+      project: ["DS-PROJ-DIAG-001"]
+    operations: ["Generate specification-driven diagnostic tests for accepted scope.", "Review service/timing/content/session/security/invalid request/DTC/system-condition coverage as applicable."]
+    outputs: ["Generated test specification", "Test Module/Test Unit artifacts"]
+    exit_conditions: ["Generated coverage is reviewed against project diagnostic requirements."]
+    next_task_ids: ["DTR-019"]
+
+  - task_id: "DTR-019"
+    intent: "DiVa生成testをCANoeでVECUに対して実行したい"
+    phase: "DIA-D12"
+    primary_tool: "CANoe"
+    supporting_tools: ["CANoe.DiVa"]
+    operation_detail_level: "WORKFLOW_OBJECT_LEVEL_READY"
+    required_inputs: ["CANoe VECU diagnostic environment", "Generated DiVa test artifacts"]
+    read_first:
+      vector: ["V-DIAG-006", "V-DIAG-007", "V-DIAG-009"]
+    operations: ["Import/bind DiVa project/test artifacts through the named CANoe route.", "Align bus, ISO-TP configuration, ECU qualifier and Test Module/Test Unit.", "Execute and collect result/report evidence."]
+    outputs: ["Diagnostic execution result", "Diagnostic test report"]
+    exit_conditions: ["Required diagnostic test objectives have explicit results tied to VECU/spec/test revisions."]
+    next_task_ids: ["DTR-020"]
+
+  - task_id: "DTR-020"
+    intent: "要求からCANdela・実装・VECU・DiVa結果までend-to-endで照合したい"
+    phase: "DIA-D12 closure"
+    primary_tool: "Engineering review / configuration management"
+    operation_detail_level: "WORKFLOW_OBJECT_LEVEL_READY"
+    required_inputs: ["Requirement allocation", "CANdela revision", "Implementation reconciliation", "VECU provenance", "DiVa/CANoe result"]
+    read_first:
+      downstream: ["DS-DIAG-001", "DS-DIAG-002", "DS-DIAG-003", "DS-DIAG-004"]
+      vector: ["V-DIAG-005", "V-DIAG-006"]
+      autosar: ["AS-DIAG-001", "AS-DIAG-002", "AS-DIAG-004"]
+    operations: ["Verify traceability without inventing links.", "Classify gaps as project input, procedure gap, bounded route or unresolved authority."]
+    outputs: ["End-to-end Diagnostic Engineering Closure Record"]
+    exit_conditions: ["Required diagnostic objectives are traceable across specification, implementation and execution evidence or explicitly unresolved."]
+    next_task_ids: []
+
+coverage_summary:
+  scope: "UDS on CAN only"
+  known_no_explicit_mapping:
+    - "One mandatory CANdela 25 SP1 export subset as the universal DiVa 20 producer contract."
+    - "One universal direct CANdela -> DaVinci Configurator 6.3.10 synchronization/import contract."
+    - "Complete cross-product release/version compatibility matrix."
+  current_procedure_gap: >-
+    Version-specific GUI/API procedures still require a dedicated procedure-compilation work unit.
+    This matrix intentionally stops at the strongest evidence level currently supported.

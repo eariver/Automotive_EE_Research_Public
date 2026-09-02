@@ -1,0 +1,39 @@
+schema_version: "management-ecu-uds-can-procedure-family/v1"
+artifact: "Diagnostic BSW / UDS on CAN procedure family"
+status: "SOL_INTEGRATED_FROM_ACCEPTED_COMPILATION"
+accepted_luna_ending_sha: "3b5f2cdfc418e46cd2ad4a8509fc77ac50eacc12"
+source_compilation: "20260902_ManagementECU_UDS_CAN_Tool_Procedure_Compilation_Matrix.yaml"
+engineering_view: "DCM / DEM / PduR / CanTp / CanIf / Can ownership and configuration handoff"
+covered_tasks:
+  - task_id: "DTR-011"
+    procedure_classification: "WORKFLOW_ONLY"
+    locator_ids: ["AS-DIAG-001", "AS-DIAG-002", "AS-DIAG-003", "V-DIAG-012"]
+    operations:
+      - "Keep DCM tester-facing service/session/security processing separate from DEM event/DTC/fault-memory management."
+      - "For tester-facing DTC services, trace DCM service processing to DEM selection/query/clear services."
+  - task_id: "DTR-012"
+    procedure_classification: "WORKFLOW_ONLY"
+    locator_ids: ["AS-DIAG-001", "AS-DIAG-002", "AS-DIAG-009", "V-DIAG-012"]
+    operations:
+      - "Connect project-specific DCM/DEM service/event dependencies to Application SWC interfaces through production RTE integration where required."
+  - task_id: "DTR-013"
+    procedure_classification: "PROJECT_INPUT_REQUIRED"
+    locator_ids: ["AS-DIAG-001", "AS-DIAG-004", "AS-DIAG-005", "AS-DIAG-006", "DS-PROJ-DIAG-003"]
+    ownership_path: "DCM <-> PduR <-> configured CanTp branch <-> CanIf <-> CanDrv/controller"
+    operations:
+      - "Instantiate project routing/transport/lower-layer configuration only after the network baseline is accepted."
+    project_blockers:
+      - "CAN/CAN-FD project choice"
+      - "network/channel/controller identity"
+      - "physical/functional request/response addressing"
+      - "CanTp addressing/connections/N-SDU/N-PDU/timing/flow-control"
+      - "PduR routes"
+      - "CanIf/CAN lower-layer identities"
+      - "UDS P2/P2* project timing"
+    exit_evidence: ["Configured diagnostic payload path is traceable across all distinct ownership boundaries."]
+    missing_detail: "No Management ECU configuration may be instantiated while all corresponding project network inputs remain TBD."
+retained_boundaries:
+  - "DCM service semantics != PduR routing != CanTp transport."
+  - "PduR != CanTp != CanIf != CanDrv."
+  - "The ownership path is not a universal runtime call sequence."
+  - "AUTOSAR authority supplies module semantics, not project CAN IDs/timing/configuration identifiers."

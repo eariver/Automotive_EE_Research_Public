@@ -1,0 +1,113 @@
+schema_version: "management-ecu-uds-can-diagnostic-reference-index/v1"
+artifact: "Management ECU UDS on CAN Diagnostic Engineering — Reference Index"
+date: "2026-09-02"
+status: "PROCEDURE_COMPILED_REFERENCE_INDEX"
+repository: "eariver/Automotive_EE_Engineering_Knowledge"
+branch: "work/management-ecu-uds-can-diagnostic-toolchain-20260902"
+base_main_sha: "59250354d74100167b80ee40f44e73eb064dd515"
+accepted_luna_procedure_ending_sha: "3b5f2cdfc418e46cd2ad4a8509fc77ac50eacc12"
+
+reference_planes:
+  downstream:
+    manifest: "references/downstream/reference-locators.yaml"
+    role: "Canonical EE Knowledge navigation and cross-domain boundary routes."
+  vector:
+    manifest: "references/vector/reference-locators.yaml"
+    role: "Exact-pinned CANdela/DaVinci/vVIRTUALtarget/CANoe/DiVa product Reviewed Knowledge."
+  mathworks:
+    manifest: "references/mathworks/reference-locators.yaml"
+    role: "Exact-pinned R2025b model/AUTOSAR/diagnostics/codegen/MIL/SIL/test Reviewed Knowledge."
+  autosar:
+    manifest: "references/autosar/reference-locators.yaml"
+    role: "Direct AUTOSAR Classic 4.4.0 DCM/DEM/CanTp/CAN/SWC/RTE authority."
+  project:
+    role: "Project-specific requirements/tool/network values; not technical authority."
+    artifacts:
+      - id: "REF-PROJ-DIAG-001"
+        path: "references/project/diagnostic-requirement-baseline.yaml"
+      - id: "REF-PROJ-DIAG-002"
+        path: "references/project/tool-version-baseline.yaml"
+      - id: "REF-PROJ-DIAG-003"
+        path: "references/project/uds-can-network-baseline.yaml"
+
+primary_artifacts:
+  - id: "REF-DIAG-001"
+    path: "20260902_ManagementECU_UDS_CAN_Diagnostic_Development_Methodology.md"
+    role: "Ownership/lifecycle methodology."
+  - id: "REF-DIAG-002"
+    path: "20260902_ManagementECU_UDS_CAN_Diagnostic_Step_by_Step_Guide.md"
+    role: "Engineering sequence."
+  - id: "REF-DIAG-003"
+    path: "20260902_ManagementECU_UDS_CAN_Diagnostic_Tool_Task_Reference_Matrix.yaml"
+    role: "Machine-readable intent/tool/input/output/reference relation."
+  - id: "REF-DIAG-004"
+    path: "20260902_ManagementECU_UDS_CAN_Diagnostic_Toolchain_Execution_Reference_Guide.md"
+    role: "Human-oriented reverse navigation from engineering intent."
+  - id: "REF-DIAG-005"
+    path: "procedures/20260902_ManagementECU_UDS_CAN_Tool_Procedure_Compilation_Matrix.yaml"
+    role: "Accepted fixed-authority 18-task procedure-evidence compilation."
+  - id: "REF-DIAG-006"
+    path: "procedures/20260902_ManagementECU_UDS_CAN_Tool_Procedure_Compilation_Report.md"
+    role: "Human-readable Sol-accepted procedure compilation findings."
+  - id: "REF-DIAG-007"
+    path: "procedures/procedure-coverage-matrix.yaml"
+    role: "Task-to-procedure-family and accepted maturity overlay."
+
+procedure_family_artifacts:
+  - "procedures/candela-studio.yaml"
+  - "procedures/davinci-developer-classic.yaml"
+  - "procedures/autosar-blockset.yaml"
+  - "procedures/simulink-stateflow.yaml"
+  - "procedures/embedded-coder.yaml"
+  - "procedures/mil-sil.yaml"
+  - "procedures/davinci-configurator-microsar.yaml"
+  - "procedures/diagnostic-bsw-uds-on-can.yaml"
+  - "procedures/vvirtualtarget.yaml"
+  - "procedures/canoe-diva.yaml"
+
+procedure_maturity:
+  task_scope: "DTR-002..DTR-019"
+  EXACT_PROCEDURE_AVAILABLE: 1
+  PARTIAL_PROCEDURE_AVAILABLE: 11
+  WORKFLOW_ONLY: 5
+  NO_EXPLICIT_PROCEDURE: 0
+  PROJECT_INPUT_REQUIRED: 1
+  UNRESOLVED_AUTHORITY: 0
+  strongest_exact_task: "DTR-019"
+  project_input_blocked_task: "DTR-013"
+
+coverage_posture:
+  diagnostic_authoring_candela: "REVIEWED_ROUTE_AVAILABLE"
+  candela_native_cdd_consumer_route: "REVIEWED_ROUTE_AVAILABLE"
+  candela_odx_exchange: "REVIEWED_ROUTE_AVAILABLE"
+  candela_to_diva_format_interoperability: "REVIEWED_ROUTE_AVAILABLE"
+  one_mandatory_candela_export_subset_for_diva: "NO_EXPLICIT_MAPPING"
+  candela_direct_to_configurator_sync_contract: "NO_EXPLICIT_MAPPING"
+  application_swc_contract: "REVIEWED_ROUTE_AVAILABLE"
+  application_model_autosar_codegen: "REVIEWED_ROUTE_AVAILABLE"
+  dcm_ownership: "REVIEWED_ROUTE_AVAILABLE"
+  dem_ownership: "REVIEWED_ROUTE_AVAILABLE"
+  dcm_dem_dtc_interaction: "REVIEWED_ROUTE_AVAILABLE"
+  uds_on_can_transport_branch: "REVIEWED_ROUTE_AVAILABLE"
+  configurator_microsar_bsw_generation: "REVIEWED_ROUTE_AVAILABLE"
+  configurator_to_vvirtualtarget: "BOUNDED_ROUTE_AVAILABLE"
+  vvirtualtarget_to_canoe: "REVIEWED_ROUTE_AVAILABLE"
+  diva_test_generation: "REVIEWED_ROUTE_AVAILABLE"
+  diva_to_canoe_named_execution_route: "REVIEWED_ROUTE_AVAILABLE"
+  complete_cross_product_version_matrix: "NO_EXPLICIT_MAPPING"
+
+non_collapse_rules:
+  - "CANdela diagnostic specification != Application SWC contract/behavior."
+  - "Application SWC != DCM != DEM."
+  - "DCM service semantics != PduR/CanTp transport."
+  - "PduR != CanTp != CanIf != CanDrv."
+  - "generated Application SWC != production RTE/BSW/OS."
+  - "VECU artifact != MIL/SIL evidence."
+  - "DiVa generated test definition != CANoe execution result/report."
+  - "format overlap/import-export support != lossless semantic equivalence."
+
+usage_rule: >-
+  Start from the Tool/Task Matrix for engineering intent and lifecycle context, then resolve the accepted
+  procedure maturity through procedures/procedure-coverage-matrix.yaml and the relevant tool-family file.
+  Resolve technical locator IDs through the authority manifests and use the recorded exact repository/commit/path/section.
+  Do not replace an exact pin with current upstream main, current vendor Web, generic domain knowledge or project assumptions.
