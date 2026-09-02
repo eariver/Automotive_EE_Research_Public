@@ -617,7 +617,7 @@ locators:
       exact_ref: "authority/autosar-cp-4.4.0-current-depth-20260830"
       path: "docs/knowledge/concepts/can-communication-modeling-boundary.json"
       section_or_locator: "System Template: 3.3.1 CAN, p.56; System Template: 6 Communication, p.181"
-      authority_id: "AUTOSAR-CP-4.4.0-CONCEPT-CAN-COMMUNICATION-MODEL-BOUNDARY"
+      authority_id: "AUTOSAR-CP-4.4.0-CONCEPT-CAN-COMMUNICATION-MODELING-BOUNDARY"
       standard_body: "AUTOSAR"
       platform_release: "Classic Platform 4.4.0"
     boundary: "Communication model identity != runtime BSW path and does not define project counter/checksum or BUS_FAILED_LATCHED policy."
