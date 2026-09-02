@@ -1,0 +1,25 @@
+schema_version: "management-ecu-uds-can-procedure-family/v1"
+artifact: "DaVinci Developer Classic procedure family"
+status: "SOL_INTEGRATED_FROM_ACCEPTED_COMPILATION"
+accepted_luna_ending_sha: "3b5f2cdfc418e46cd2ad4a8509fc77ac50eacc12"
+source_compilation: "20260902_ManagementECU_UDS_CAN_Tool_Procedure_Compilation_Matrix.yaml"
+tool: "DaVinci Developer Classic"
+reviewed_release: "4.18 SP3 family"
+covered_tasks:
+  - task_id: "DTR-004"
+    procedure_classification: "PARTIAL_PROCEDURE_AVAILABLE"
+    intent: "Define the diagnostic-facing Application SWC contract and export it for implementation."
+    locator_ids: ["V-DIAG-010", "V-DIAG-011", "AS-DIAG-007", "AS-DIAG-008"]
+    operations:
+      - "Define/confirm SWC type, ports/interfaces, data types, runnables/events and RTE access contract objects required by the accepted diagnostic responsibility allocation."
+      - "Map application data types to implementation data types where required by downstream RTE generation."
+      - "Export the selected component type as an AUTOSAR software-component description."
+    named_surfaces: ["AUTOSAR XML import/export", "selected component type software-component-description export"]
+    exit_evidence: ["SWC contract and exported ARXML are traceable to one Developer workspace baseline."]
+    project_blockers: ["Accepted diagnostic-facing operations/data", "runnable activation requirements", "actual AUTOSAR schema/tool baseline"]
+    missing_detail: "Exact object creation/edit/export click sequence is not compiled."
+retained_boundaries:
+  - "Application SWC != DCM != DEM."
+  - "Port/interface model entity != generated RTE API."
+  - "RunnableEntity != OS Task; RTEEvent != OS Event."
+  - "Developer-owned SWC contract must not be independently re-authored in Simulink."
