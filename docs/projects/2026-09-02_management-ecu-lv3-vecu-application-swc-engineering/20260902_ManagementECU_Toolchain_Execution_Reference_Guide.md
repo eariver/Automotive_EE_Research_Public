@@ -532,3 +532,30 @@ exact command line
 このGuideを使用している段階では、project requirementが未入力であることを理由に具体的SWC設計を創作しない。
 
 まず「どのtaskを実行するか」「どのtoolを開くか」「何を読むか」を確定し、その後に実project inputを適用する。
+## 22. Compiled Tool Procedure Navigation — TTR-002 through TTR-010
+
+This section records the deterministic procedure-compilation result. It does not add SWC design decisions and does not extend into Configurator/MICROSAR, vVIRTUALtarget, CANoe, vTESTstudio, CANape/XCP runtime, HIL or physical-SUT procedure work.
+
+| Task | Procedure family/file | Steps | Exact GUI | Exact API | Current stop state |
+|---|---|---:|---|---|---|
+| TTR-002 | davinci-developer-classic | 8 | none | none | PROCEDURE_PARTIAL + BLOCKED_BY_PROJECT_INPUT |
+| TTR-003 | davinci-developer-classic | 6 | none | none | PROCEDURE_PARTIAL + BLOCKED_BY_PROJECT_INPUT |
+| TTR-004 | autosar-blockset | 8 | none | yes | PROCEDURE_PARTIAL + BLOCKED_BY_PROJECT_INPUT |
+| TTR-005 | simulink-stateflow | 7 | none | none | PROCEDURE_PARTIAL + BLOCKED_BY_PROJECT_INPUT |
+| TTR-006 | autosar-blockset | 6 | none | none | PROCEDURE_PARTIAL + BLOCKED_BY_PROJECT_INPUT |
+| TTR-007 | mil-sil | 9 | none | yes | PROCEDURE_PARTIAL + BLOCKED_BY_PROJECT_INPUT |
+| TTR-008 | embedded-coder | 6 | none | yes | PROCEDURE_PARTIAL + BLOCKED_BY_PROJECT_INPUT |
+| TTR-009 | mil-sil | 7 | none | yes | PROCEDURE_PARTIAL + BLOCKED_BY_PROJECT_INPUT |
+| TTR-010 | davinci-developer-classic + autosar-blockset | 8 | none | yes | PROCEDURE_PARTIAL + BLOCKED_BY_PROJECT_INPUT |
+
+Machine-readable procedure files:
+
+- docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/procedures/davinci-developer-classic.yaml
+- docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/procedures/autosar-blockset.yaml
+- docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/procedures/simulink-stateflow.yaml
+- docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/procedures/embedded-coder.yaml
+- docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/procedures/mil-sil.yaml
+
+The exact API claims are limited to names explicitly present in the frozen Reviewed Knowledge, including arxml.importer, createComponentAsModel, updateModel, updateAUTOSARProperties, dvdevc project link --workspace-path ... --davinci-project ..., coder.asap2.export, sltest.testmanager.exportResults and sltest.testmanager.report. These names do not imply that exact arguments, GUI routes, project configuration or a complete reproducible script were reviewed.
+
+No exact GUI procedure is claimed for TTR-002 through TTR-010. The operation-level object/workflow statements remain bounded by the exact locator tuples in the family files. Project-specific requirements, tool versions, schema, calibration, test assets, generated artifacts and code-generation configuration remain explicit inputs; they are not filled from vendor or AUTOSAR authority.

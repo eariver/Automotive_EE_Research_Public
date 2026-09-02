@@ -1,0 +1,839 @@
+{
+  "schema_version": "management-ecu-swc-tool-procedure/v1",
+  "artifact": "Management ECU SWC tool procedure family — AUTOSAR Blockset / Simulink comparison surfaces",
+  "date": "2026-09-02",
+  "status": "COMPILED_AT_SUPPORTED_EVIDENCE_LEVEL",
+  "repository": "eariver/Automotive_EE_Engineering_Knowledge",
+  "branch": "work/luna-management-ecu-swc-tool-procedure-compilation-20260902",
+  "starting_sha": "f58ac9e387dfb98c52117c53672b3c1b2c7d4ccf",
+  "starting_tree_sha": "7e188e645d3b3c08920385340a5b8db0ccdb1fbd",
+  "source_policy": {
+    "new_technical_research": false,
+    "external_source_access_count": 0,
+    "upstream_repositories_read_only": true,
+    "exact_pinned_reviewed_knowledge_only": true,
+    "current_upstream_head_not_used": true,
+    "raw_help_or_raw_standards_not_used": true,
+    "google_drive_not_used": true,
+    "observations_prompts_plans_worklogs_not_technical_authority": true
+  },
+  "allowed_evidence_levels": [
+    "EXACT_GUI_PATH_REVIEWED",
+    "EXACT_API_OPERATION_REVIEWED",
+    "WORKFLOW_OBJECT_OPERATION_REVIEWED",
+    "PROCEDURE_PARTIAL",
+    "BLOCKED_BY_PROJECT_INPUT",
+    "UNRESOLVED_AUTHORITY"
+  ],
+  "tool_family": "AUTOSAR Blockset / Simulink comparison surfaces",
+  "procedure_file": "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/procedures/autosar-blockset.yaml",
+  "fixed_technical_invariants": {
+    "nodes": 366,
+    "edges": 908,
+    "canonical_workflows": 34,
+    "engineering_concerns": 31,
+    "proposition_records": 101
+  },
+  "procedures": [
+    {
+      "exit_checks": [
+        "Input ARXML revision and initial/update/shared-definition lifecycle are recorded.",
+        "Imported component/ports/interfaces/runnables/mapping are inspected before behavior implementation.",
+        "Update report/backup and manual-change boundary are retained where the reviewed operation provides them."
+      ],
+      "intent": "Import or update the DaVinci SWC Contract ARXML into the AUTOSAR Blockset/Simulink representation.",
+      "next_task_ids": [
+        "TTR-005",
+        "TTR-006"
+      ],
+      "overall_maturity": "PROCEDURE_PARTIAL",
+      "prerequisites": [
+        "Controlled DaVinci SWC Contract ARXML and its revision/provenance record.",
+        "Actual MATLAB/Simulink/AUTOSAR Blockset release and Classic schema baseline.",
+        "Decision whether the operation is initial component creation, changed-ARXML update or shared-definition update."
+      ],
+      "procedure_id": "PROC-TTR-004",
+      "read_first_locator_ids": [
+        "DS-004",
+        "V-004",
+        "MW-001",
+        "MW-002",
+        "MW-003",
+        "AS-001",
+        "AS-002",
+        "AS-003"
+      ],
+      "release_scope": "Reviewed MathWorks baseline: R2025b; direct AUTOSAR semantics: Classic Platform 4.4.0; actual project release/schema remain TBD.",
+      "steps": [
+        {
+          "action": "Create an arxml.importer representation from the controlled ARXML input and keep the input revision as a separate artifact identity.",
+          "boundary": "ARXML description != imported Simulink/AUTOSAR representation; no lossless identity is inferred.",
+          "evidence_level": "EXACT_API_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+            "exact_ref": null,
+            "path": "docs/knowledge/r2025b/autosar-arxml-lifecycle.md",
+            "repository": "eariver/Research_MathWorks_Documents",
+            "section_or_locator": "## 2. Import and model creation; ## 5. Classic changed-ARXML update lifecycle; ## 6. Shared-definition update is a different lifecycle; ## 12. External AAT merge boundary",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "MW-002",
+            "MW-001",
+            "DS-004"
+          ],
+          "operation_surface": "API",
+          "resulting_artifact_or_check": "Importer object/parsed ARXML context with the input revision recorded.",
+          "step_id": "TTR-004-S01",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+              "exact_ref": null,
+              "path": "docs/knowledge/r2025b/model-architecture-ownership.md",
+              "repository": "eariver/Research_MathWorks_Documents",
+              "section_or_locator": "## 3. AUTOSAR component model identity; ## 4. AUTOSAR architecture versus behavior implementation; ## 5. ARXML import is representation/transformation, not identity",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            },
+            {
+              "commit": "938ac4af696d263019ebdc61106a444447e15c4d",
+              "exact_ref": "authority/autosar-cp-4.4.0-current-depth-20260830",
+              "path": "docs/knowledge/concepts/swc-port-interface-connector-model-boundary.json",
+              "repository": "eariver/Research_AUTOSAR_CP_Documents",
+              "section_or_locator": "Software Component Template: Component types, PortPrototypes, PortInterfaces, compositions and connectors, p.80; Requirements on Runtime Environment: SW-C API mapping and RTE generation requirements, p.20",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        },
+        {
+          "action": "For initial creation, invoke the reviewed createComponentAsModel operation for the imported AUTOSAR atomic software component.",
+          "boundary": "Initial representation is not a verbatim rendering of every ARXML element and is not the DaVinci source contract.",
+          "evidence_level": "EXACT_API_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+            "exact_ref": null,
+            "path": "docs/knowledge/r2025b/autosar-arxml-lifecycle.md",
+            "repository": "eariver/Research_MathWorks_Documents",
+            "section_or_locator": "## 2. Import and model creation; ## 5. Classic changed-ARXML update lifecycle; ## 6. Shared-definition update is a different lifecycle; ## 12. External AAT merge boundary",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "MW-002",
+            "MW-001"
+          ],
+          "operation_surface": "API",
+          "resulting_artifact_or_check": "Initial Simulink AUTOSAR component-model representation with initial/default mapping.",
+          "step_id": "TTR-004-S02",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+              "exact_ref": null,
+              "path": "docs/knowledge/r2025b/model-architecture-ownership.md",
+              "repository": "eariver/Research_MathWorks_Documents",
+              "section_or_locator": "## 3. AUTOSAR component model identity; ## 4. AUTOSAR architecture versus behavior implementation; ## 5. ARXML import is representation/transformation, not identity",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            },
+            {
+              "commit": "938ac4af696d263019ebdc61106a444447e15c4d",
+              "exact_ref": "authority/autosar-cp-4.4.0-current-depth-20260830",
+              "path": "docs/knowledge/concepts/swc-port-interface-connector-model-boundary.json",
+              "repository": "eariver/Research_AUTOSAR_CP_Documents",
+              "section_or_locator": "Software Component Template: Component types, PortPrototypes, PortInterfaces, compositions and connectors, p.80; Requirements on Runtime Environment: SW-C API mapping and RTE generation requirements, p.20",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        },
+        {
+          "action": "For a changed Classic component ARXML, invoke the reviewed updateModel operation against the existing mapped model/architecture.",
+          "boundary": "Update is not universally automatic; manual repair may be required and the model update route is Classic-scoped.",
+          "evidence_level": "EXACT_API_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+            "exact_ref": null,
+            "path": "docs/knowledge/r2025b/autosar-arxml-lifecycle.md",
+            "repository": "eariver/Research_MathWorks_Documents",
+            "section_or_locator": "## 2. Import and model creation; ## 5. Classic changed-ARXML update lifecycle; ## 6. Shared-definition update is a different lifecycle; ## 12. External AAT merge boundary",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "MW-002",
+            "AS-002"
+          ],
+          "operation_surface": "API",
+          "resulting_artifact_or_check": "Updated model plus original-model backup and HTML update report, with automatic/manual changes distinguished where provided.",
+          "step_id": "TTR-004-S03",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "938ac4af696d263019ebdc61106a444447e15c4d",
+              "exact_ref": "authority/autosar-cp-4.4.0-current-depth-20260830",
+              "path": "docs/knowledge/concepts/rte-generation-contract-runtime-boundary.json",
+              "repository": "eariver/Research_AUTOSAR_CP_Documents",
+              "section_or_locator": "Requirements on Runtime Environment: RTE generation and ECU-specific configuration requirements, p.25; Specification of RTE Software: RTE contract phase and generation phase / generator input-output model, p.30",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            },
+            {
+              "commit": "938ac4af696d263019ebdc61106a444447e15c4d",
+              "exact_ref": "authority/autosar-cp-4.4.0-current-depth-20260830",
+              "path": "docs/knowledge/concepts/runnable-rteevent-os-activation-boundary.json",
+              "repository": "eariver/Research_AUTOSAR_CP_Documents",
+              "section_or_locator": "Software Component Template: SwcInternalBehavior / RunnableEntity / RTEEvent, p.720; Requirements on Runtime Environment: Runnable categories, activation and task mapping, p.60",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        },
+        {
+          "action": "When the change is a shared AUTOSAR definition rather than a mapped component update, use the distinct reviewed updateAUTOSARProperties lifecycle.",
+          "boundary": "Shared-definition update is not the same as updateModel and does not authorize independent architecture re-authoring.",
+          "evidence_level": "EXACT_API_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+            "exact_ref": null,
+            "path": "docs/knowledge/r2025b/autosar-arxml-lifecycle.md",
+            "repository": "eariver/Research_MathWorks_Documents",
+            "section_or_locator": "## 2. Import and model creation; ## 5. Classic changed-ARXML update lifecycle; ## 6. Shared-definition update is a different lifecycle; ## 12. External AAT merge boundary",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "MW-002",
+            "MW-003"
+          ],
+          "operation_surface": "API",
+          "resulting_artifact_or_check": "Shared AUTOSAR definitions/dependencies imported or updated in the model context.",
+          "step_id": "TTR-004-S04",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+              "exact_ref": null,
+              "path": "docs/knowledge/r2025b/model-architecture-ownership.md",
+              "repository": "eariver/Research_MathWorks_Documents",
+              "section_or_locator": "## 4. AUTOSAR architecture versus behavior implementation; ## 7. Canonical R2025b ownership map",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        },
+        {
+          "action": "Inspect the imported/updated component, ports, interfaces, runnables and mapping state before behavior implementation; record unexpected differences.",
+          "boundary": "Imported representation != ARXML artifact and != behavior model; RunnableEntity/RTEEvent != OS Task/Event.",
+          "evidence_level": "WORKFLOW_OBJECT_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+            "exact_ref": null,
+            "path": "docs/knowledge/r2025b/model-architecture-ownership.md",
+            "repository": "eariver/Research_MathWorks_Documents",
+            "section_or_locator": "## 3. AUTOSAR component model identity; ## 4. AUTOSAR architecture versus behavior implementation; ## 5. ARXML import is representation/transformation, not identity",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "MW-001",
+            "MW-002",
+            "MW-003",
+            "AS-001",
+            "AS-003"
+          ],
+          "operation_surface": "TOOL_OBJECT",
+          "resulting_artifact_or_check": "Model-scaffold inspection record tied to the input ARXML revision and initial/update mode.",
+          "step_id": "TTR-004-S05",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+              "exact_ref": null,
+              "path": "docs/knowledge/r2025b/autosar-arxml-lifecycle.md",
+              "repository": "eariver/Research_MathWorks_Documents",
+              "section_or_locator": "## 2. Import and model creation; ## 5. Classic changed-ARXML update lifecycle; ## 6. Shared-definition update is a different lifecycle; ## 12. External AAT merge boundary",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            },
+            {
+              "commit": "938ac4af696d263019ebdc61106a444447e15c4d",
+              "exact_ref": "authority/autosar-cp-4.4.0-current-depth-20260830",
+              "path": "docs/knowledge/concepts/swc-port-interface-connector-model-boundary.json",
+              "repository": "eariver/Research_AUTOSAR_CP_Documents",
+              "section_or_locator": "Software Component Template: Component types, PortPrototypes, PortInterfaces, compositions and connectors, p.80; Requirements on Runtime Environment: SW-C API mapping and RTE generation requirements, p.20",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            },
+            {
+              "commit": "938ac4af696d263019ebdc61106a444447e15c4d",
+              "exact_ref": "authority/autosar-cp-4.4.0-current-depth-20260830",
+              "path": "docs/knowledge/concepts/runnable-rteevent-os-activation-boundary.json",
+              "repository": "eariver/Research_AUTOSAR_CP_Documents",
+              "section_or_locator": "Software Component Template: SwcInternalBehavior / RunnableEntity / RTEEvent, p.720; Requirements on Runtime Environment: Runnable categories, activation and task mapping, p.60",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        },
+        {
+          "action": "Preserve the distinction between initial creation, changed-ARXML update and later external-AAT merge; do not treat round-trip support as byte-for-byte identity.",
+          "boundary": "External AAT/production integration remains a separate handoff; no unconditional merge is performed.",
+          "evidence_level": "WORKFLOW_OBJECT_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+            "exact_ref": null,
+            "path": "docs/knowledge/r2025b/autosar-arxml-lifecycle.md",
+            "repository": "eariver/Research_MathWorks_Documents",
+            "section_or_locator": "## 2. Import and model creation; ## 5. Classic changed-ARXML update lifecycle; ## 6. Shared-definition update is a different lifecycle; ## 12. External AAT merge boundary",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "MW-002",
+            "V-004",
+            "AS-002"
+          ],
+          "operation_surface": "REVIEW",
+          "resulting_artifact_or_check": "Lifecycle classification and merge boundary recorded.",
+          "step_id": "TTR-004-S06",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "3ea3dfa2bee51f938fbb427897f1dde5d008ff97",
+              "exact_ref": null,
+              "path": "docs/knowledge/autosar-arxml-profile-followup-2026-08-28.md",
+              "repository": "eariver/Research_Vector_Documents",
+              "section_or_locator": "## Developer producer/consumer contract; ### Import; ### Export; ## Version/profile boundary retained",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            },
+            {
+              "commit": "938ac4af696d263019ebdc61106a444447e15c4d",
+              "exact_ref": "authority/autosar-cp-4.4.0-current-depth-20260830",
+              "path": "docs/knowledge/concepts/rte-generation-contract-runtime-boundary.json",
+              "repository": "eariver/Research_AUTOSAR_CP_Documents",
+              "section_or_locator": "Requirements on Runtime Environment: RTE generation and ECU-specific configuration requirements, p.25; Specification of RTE Software: RTE contract phase and generation phase / generator input-output model, p.30",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        },
+        {
+          "action": "Stop executable project setup until the actual MATLAB/Simulink/AUTOSAR Blockset release, schema and compatibility record are supplied.",
+          "boundary": "Exact API names do not supply the missing project release, schema or input artifact.",
+          "evidence_level": "BLOCKED_BY_PROJECT_INPUT",
+          "exact_reviewed_knowledge": {
+            "commit": "f58ac9e387dfb98c52117c53672b3c1b2c7d4ccf",
+            "exact_ref": "work/luna-management-ecu-swc-tool-procedure-compilation-20260902",
+            "path": "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/references/project/tool-version-baseline.yaml",
+            "repository": "eariver/Automotive_EE_Engineering_Knowledge",
+            "section_or_locator": "actual_project_baseline.* and compatibility_record.status",
+            "source_role": "fixed project input/navigation record; not technical authority"
+          },
+          "locator_ids": [
+            "DS-PROJ-002"
+          ],
+          "operation_surface": "REVIEW",
+          "resulting_artifact_or_check": "Actual-release blocker recorded without substituting R2025b.",
+          "step_id": "TTR-004-S07",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "f58ac9e387dfb98c52117c53672b3c1b2c7d4ccf",
+              "exact_ref": "work/luna-management-ecu-swc-tool-procedure-compilation-20260902",
+              "path": "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/20260902_ManagementECU_Tool_Task_Reference_Matrix.yaml",
+              "repository": "eariver/Automotive_EE_Engineering_Knowledge",
+              "section_or_locator": "TTR-004 required_inputs and exit_conditions",
+              "source_role": "fixed project input/navigation record; not technical authority"
+            }
+          ]
+        },
+        {
+          "action": "Do not claim that the exact file-selection dialog, API argument set, update-report handling sequence or version-specific GUI route is fully reviewed.",
+          "boundary": "No GUI/API detail beyond the explicitly named API operations is inferred.",
+          "evidence_level": "PROCEDURE_PARTIAL",
+          "exact_reviewed_knowledge": {
+            "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+            "exact_ref": null,
+            "path": "docs/knowledge/r2025b/autosar-arxml-lifecycle.md",
+            "repository": "eariver/Research_MathWorks_Documents",
+            "section_or_locator": "## 2. Import and model creation; ## 5. Classic changed-ARXML update lifecycle; ## 6. Shared-definition update is a different lifecycle; ## 12. External AAT merge boundary",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "MW-002",
+            "V-004"
+          ],
+          "operation_surface": "GUI",
+          "resulting_artifact_or_check": "Remaining reproducible-procedure detail is explicit.",
+          "step_id": "TTR-004-S08",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "3ea3dfa2bee51f938fbb427897f1dde5d008ff97",
+              "exact_ref": null,
+              "path": "docs/knowledge/autosar-arxml-profile-followup-2026-08-28.md",
+              "repository": "eariver/Research_Vector_Documents",
+              "section_or_locator": "## Developer producer/consumer contract; ### Import; ### Export; ## Version/profile boundary retained",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        }
+      ],
+      "task_ids": [
+        "TTR-004"
+      ],
+      "tool": "AUTOSAR Blockset / Simulink",
+      "unsupported_or_unreviewed_details": [
+        "Exact API argument values, project file-selection recipe, GUI menu/dialog route and complete update-repair sequence.",
+        "Production RTE/BSW/OS configuration or Configurator/MICROSAR integration."
+      ]
+    },
+    {
+      "exit_checks": [
+        "Each applicable mapping relation is reviewable and dispositioned.",
+        "No unexplained mapping remains before generation/reconciliation."
+      ],
+      "intent": "Configure and review the Simulink-to-AUTOSAR mapping layer for the imported component model.",
+      "next_task_ids": [
+        "TTR-007",
+        "TTR-008"
+      ],
+      "overall_maturity": "PROCEDURE_PARTIAL",
+      "prerequisites": [
+        "Imported AUTOSAR component model.",
+        "DaVinci-originated SWC contract and accepted mapping decisions.",
+        "Actual tool release/schema and project-specific object identities."
+      ],
+      "procedure_id": "PROC-TTR-006",
+      "read_first_locator_ids": [
+        "DS-004",
+        "V-004",
+        "MW-002",
+        "MW-003",
+        "AS-001",
+        "AS-003"
+      ],
+      "release_scope": "Reviewed MathWorks baseline: R2025b; actual mapping/project baseline remains TBD.",
+      "steps": [
+        {
+          "action": "Open/select the imported AUTOSAR component model and its mapping/configuration context.",
+          "boundary": "AUTOSAR mapping is an association/transformation layer, not independent SWC architecture ownership.",
+          "evidence_level": "WORKFLOW_OBJECT_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+            "exact_ref": null,
+            "path": "docs/knowledge/r2025b/model-architecture-ownership.md",
+            "repository": "eariver/Research_MathWorks_Documents",
+            "section_or_locator": "## 4. AUTOSAR architecture versus behavior implementation; ## 7. Canonical R2025b ownership map",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "MW-001",
+            "MW-003",
+            "DS-004"
+          ],
+          "operation_surface": "TOOL_OBJECT",
+          "resulting_artifact_or_check": "Mapping review context tied to the imported model and source contract revision.",
+          "step_id": "TTR-006-S01",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+              "exact_ref": null,
+              "path": "docs/knowledge/r2025b/model-architecture-ownership.md",
+              "repository": "eariver/Research_MathWorks_Documents",
+              "section_or_locator": "## 3. AUTOSAR component model identity; ## 4. AUTOSAR architecture versus behavior implementation; ## 5. ARXML import is representation/transformation, not identity",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            },
+            {
+              "commit": "938ac4af696d263019ebdc61106a444447e15c4d",
+              "exact_ref": "authority/autosar-cp-4.4.0-current-depth-20260830",
+              "path": "docs/knowledge/concepts/swc-port-interface-connector-model-boundary.json",
+              "repository": "eariver/Research_AUTOSAR_CP_Documents",
+              "section_or_locator": "Software Component Template: Component types, PortPrototypes, PortInterfaces, compositions and connectors, p.80; Requirements on Runtime Environment: SW-C API mapping and RTE generation requirements, p.20",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        },
+        {
+          "action": "Review or configure applicable Simulink Inport ↔ AUTOSAR R-Port and Outport ↔ AUTOSAR P-Port associations.",
+          "boundary": "Port mapping does not become a generated RTE API or transport implementation.",
+          "evidence_level": "WORKFLOW_OBJECT_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+            "exact_ref": null,
+            "path": "docs/knowledge/r2025b/model-architecture-ownership.md",
+            "repository": "eariver/Research_MathWorks_Documents",
+            "section_or_locator": "## 4. AUTOSAR architecture versus behavior implementation; ## 7. Canonical R2025b ownership map",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "MW-003",
+            "AS-001"
+          ],
+          "operation_surface": "TOOL_OBJECT",
+          "resulting_artifact_or_check": "Port mapping state and any intentional/unresolved association are recorded.",
+          "step_id": "TTR-006-S02",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "938ac4af696d263019ebdc61106a444447e15c4d",
+              "exact_ref": "authority/autosar-cp-4.4.0-current-depth-20260830",
+              "path": "docs/knowledge/concepts/swc-port-interface-connector-model-boundary.json",
+              "repository": "eariver/Research_AUTOSAR_CP_Documents",
+              "section_or_locator": "Software Component Template: Component types, PortPrototypes, PortInterfaces, compositions and connectors, p.80; Requirements on Runtime Environment: SW-C API mapping and RTE generation requirements, p.20",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        },
+        {
+          "action": "Review or configure Function/Subsystem ↔ Runnable, parameter ↔ calibration and Data Store ↔ PIM associations where the contract requires them.",
+          "boundary": "RunnableEntity != OS Task; calibration/PIM mapping is not runtime calibration or production integration.",
+          "evidence_level": "WORKFLOW_OBJECT_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+            "exact_ref": null,
+            "path": "docs/knowledge/r2025b/model-architecture-ownership.md",
+            "repository": "eariver/Research_MathWorks_Documents",
+            "section_or_locator": "## 4. AUTOSAR architecture versus behavior implementation; ## 7. Canonical R2025b ownership map",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "MW-003",
+            "AS-003"
+          ],
+          "operation_surface": "TOOL_OBJECT",
+          "resulting_artifact_or_check": "Runnable, calibration and PIM mapping review record.",
+          "step_id": "TTR-006-S03",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "938ac4af696d263019ebdc61106a444447e15c4d",
+              "exact_ref": "authority/autosar-cp-4.4.0-current-depth-20260830",
+              "path": "docs/knowledge/concepts/runnable-rteevent-os-activation-boundary.json",
+              "repository": "eariver/Research_AUTOSAR_CP_Documents",
+              "section_or_locator": "Software Component Template: SwcInternalBehavior / RunnableEntity / RTEEvent, p.720; Requirements on Runtime Environment: Runnable categories, activation and task mapping, p.60",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        },
+        {
+          "action": "Record unresolved or intentional deviations rather than silently changing the DaVinci-owned contract or recreating its architecture in Simulink.",
+          "boundary": "Simulink representation != DaVinci contract; no reverse ownership transfer is implied.",
+          "evidence_level": "WORKFLOW_OBJECT_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+            "exact_ref": null,
+            "path": "docs/knowledge/r2025b/model-architecture-ownership.md",
+            "repository": "eariver/Research_MathWorks_Documents",
+            "section_or_locator": "## 3. AUTOSAR component model identity; ## 4. AUTOSAR architecture versus behavior implementation; ## 5. ARXML import is representation/transformation, not identity",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "MW-001",
+            "MW-002",
+            "DS-004"
+          ],
+          "operation_surface": "REVIEW",
+          "resulting_artifact_or_check": "Mapping disposition record with source-contract comparison reference.",
+          "step_id": "TTR-006-S04",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+              "exact_ref": null,
+              "path": "docs/knowledge/r2025b/autosar-arxml-lifecycle.md",
+              "repository": "eariver/Research_MathWorks_Documents",
+              "section_or_locator": "## 2. Import and model creation; ## 5. Classic changed-ARXML update lifecycle; ## 6. Shared-definition update is a different lifecycle; ## 12. External AAT merge boundary",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        },
+        {
+          "action": "Do not baseline the mapping as executable project procedure until actual contract/object identities and the project tool/schema combination are supplied.",
+          "boundary": "Reviewed mapping roles do not supply missing project ports, runnables, periods, datatypes or release compatibility.",
+          "evidence_level": "BLOCKED_BY_PROJECT_INPUT",
+          "exact_reviewed_knowledge": {
+            "commit": "f58ac9e387dfb98c52117c53672b3c1b2c7d4ccf",
+            "exact_ref": "work/luna-management-ecu-swc-tool-procedure-compilation-20260902",
+            "path": "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/references/project/tool-version-baseline.yaml",
+            "repository": "eariver/Automotive_EE_Engineering_Knowledge",
+            "section_or_locator": "actual_project_baseline.* remains TBD_PROJECT_DECISION",
+            "source_role": "fixed project input/navigation record; not technical authority"
+          },
+          "locator_ids": [
+            "DS-PROJ-002",
+            "DS-004"
+          ],
+          "operation_surface": "REVIEW",
+          "resulting_artifact_or_check": "Project-input blocker recorded.",
+          "step_id": "TTR-006-S05",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "f58ac9e387dfb98c52117c53672b3c1b2c7d4ccf",
+              "exact_ref": "work/luna-management-ecu-swc-tool-procedure-compilation-20260902",
+              "path": "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/20260902_ManagementECU_Tool_Task_Reference_Matrix.yaml",
+              "repository": "eariver/Automotive_EE_Engineering_Knowledge",
+              "section_or_locator": "TTR-006 required_inputs and exit_conditions",
+              "source_role": "fixed project input/navigation record; not technical authority"
+            }
+          ]
+        },
+        {
+          "action": "Stop before an exact version-specific mapping GUI/API sequence because the frozen mapping authority names object relations but not a complete click/API procedure.",
+          "boundary": "No menu path, dialog sequence or API call is inferred from mapping terminology.",
+          "evidence_level": "PROCEDURE_PARTIAL",
+          "exact_reviewed_knowledge": {
+            "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+            "exact_ref": null,
+            "path": "docs/knowledge/r2025b/model-architecture-ownership.md",
+            "repository": "eariver/Research_MathWorks_Documents",
+            "section_or_locator": "## 4. AUTOSAR architecture versus behavior implementation; ## 7. Canonical R2025b ownership map",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "MW-003",
+            "MW-002"
+          ],
+          "operation_surface": "GUI",
+          "resulting_artifact_or_check": "Unreviewed mapping procedure detail recorded.",
+          "step_id": "TTR-006-S06",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+              "exact_ref": null,
+              "path": "docs/knowledge/r2025b/autosar-arxml-lifecycle.md",
+              "repository": "eariver/Research_MathWorks_Documents",
+              "section_or_locator": "## 2. Import and model creation; ## 5. Classic changed-ARXML update lifecycle; ## 6. Shared-definition update is a different lifecycle; ## 12. External AAT merge boundary",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        }
+      ],
+      "task_ids": [
+        "TTR-006"
+      ],
+      "tool": "AUTOSAR Blockset / Simulink",
+      "unsupported_or_unreviewed_details": [
+        "Exact mapping-property names, GUI route, API calls/arguments and complete deviation-repair sequence.",
+        "Production RTE/BSW/OS generation."
+      ]
+    },
+    {
+      "exit_checks": [
+        "All comparison identities and per-difference dispositions are recorded.",
+        "No unapproved source-contract overwrite or production integration is performed."
+      ],
+      "intent": "Provide the AUTOSAR Blockset/MathWorks-side comparison inputs and preserve the contract/generated-artifact boundary.",
+      "next_task_ids": [
+        "TTR-011"
+      ],
+      "overall_maturity": "PROCEDURE_PARTIAL",
+      "prerequisites": [
+        "Original DaVinci SWC Contract ARXML.",
+        "Generated MathWorks implementation ARXML.",
+        "Corresponding model/mapping and schema/package provenance."
+      ],
+      "procedure_id": "PROC-TTR-010-AUTOSAR-BLOCKSET",
+      "read_first_locator_ids": [
+        "DS-004",
+        "V-003",
+        "V-004",
+        "MW-002",
+        "MW-004",
+        "AS-001",
+        "AS-002",
+        "AS-003"
+      ],
+      "release_scope": "Reviewed MathWorks R2025b and AUTOSAR Classic 4.4.0 exact-pinned knowledge; actual project artifacts remain TBD.",
+      "steps": [
+        {
+          "action": "Collect the original contract ARXML and generated MathWorks implementation ARXML as separate comparison inputs.",
+          "boundary": "Original DaVinci contract != generated MathWorks ARXML; generated implementation != production RTE/BSW/OS.",
+          "evidence_level": "WORKFLOW_OBJECT_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+            "exact_ref": null,
+            "path": "docs/knowledge/r2025b/autosar-arxml-lifecycle.md",
+            "repository": "eariver/Research_MathWorks_Documents",
+            "section_or_locator": "## 2. Import and model creation; ## 5. Classic changed-ARXML update lifecycle; ## 6. Shared-definition update is a different lifecycle; ## 12. External AAT merge boundary",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "MW-002",
+            "MW-004",
+            "DS-004"
+          ],
+          "operation_surface": "REVIEW",
+          "resulting_artifact_or_check": "Versioned comparison input pair with source role and schema/package provenance.",
+          "step_id": "TTR-010-MW-S01",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+              "exact_ref": null,
+              "path": "docs/knowledge/r2025b/code-generation-build-artifacts.md",
+              "repository": "eariver/Research_MathWorks_Documents",
+              "section_or_locator": "## 2. Generated code versus compiled binary; ## 4. Code-generation report identity; ## 6. AUTOSAR Classic generation and production-RTE boundary; ## 9. R2025b ASAP2/A2L generation lifecycle",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            },
+            {
+              "commit": "938ac4af696d263019ebdc61106a444447e15c4d",
+              "exact_ref": "authority/autosar-cp-4.4.0-current-depth-20260830",
+              "path": "docs/knowledge/concepts/rte-generation-contract-runtime-boundary.json",
+              "repository": "eariver/Research_AUTOSAR_CP_Documents",
+              "section_or_locator": "Requirements on Runtime Environment: RTE generation and ECU-specific configuration requirements, p.25; Specification of RTE Software: RTE contract phase and generation phase / generator input-output model, p.30",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        },
+        {
+          "action": "Compare SWC, port, interface, datatype, runnable, event, calibration, PIM, schema/package and unexpected-object identities.",
+          "boundary": "Comparison is an engineering review; it does not establish byte-for-byte identity or universal merge.",
+          "evidence_level": "WORKFLOW_OBJECT_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+            "exact_ref": null,
+            "path": "docs/knowledge/r2025b/autosar-arxml-lifecycle.md",
+            "repository": "eariver/Research_MathWorks_Documents",
+            "section_or_locator": "## 2. Import and model creation; ## 5. Classic changed-ARXML update lifecycle; ## 6. Shared-definition update is a different lifecycle; ## 12. External AAT merge boundary",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "MW-002",
+            "MW-004",
+            "AS-001",
+            "AS-002",
+            "AS-003"
+          ],
+          "operation_surface": "REVIEW",
+          "resulting_artifact_or_check": "Contract Reconciliation Record with per-difference identity and evidence.",
+          "step_id": "TTR-010-MW-S02",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+              "exact_ref": null,
+              "path": "docs/knowledge/r2025b/code-generation-build-artifacts.md",
+              "repository": "eariver/Research_MathWorks_Documents",
+              "section_or_locator": "## 2. Generated code versus compiled binary; ## 4. Code-generation report identity; ## 6. AUTOSAR Classic generation and production-RTE boundary; ## 9. R2025b ASAP2/A2L generation lifecycle",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            },
+            {
+              "commit": "938ac4af696d263019ebdc61106a444447e15c4d",
+              "exact_ref": "authority/autosar-cp-4.4.0-current-depth-20260830",
+              "path": "docs/knowledge/concepts/swc-port-interface-connector-model-boundary.json",
+              "repository": "eariver/Research_AUTOSAR_CP_Documents",
+              "section_or_locator": "Software Component Template: Component types, PortPrototypes, PortInterfaces, compositions and connectors, p.80; Requirements on Runtime Environment: SW-C API mapping and RTE generation requirements, p.20",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            },
+            {
+              "commit": "938ac4af696d263019ebdc61106a444447e15c4d",
+              "exact_ref": "authority/autosar-cp-4.4.0-current-depth-20260830",
+              "path": "docs/knowledge/concepts/runnable-rteevent-os-activation-boundary.json",
+              "repository": "eariver/Research_AUTOSAR_CP_Documents",
+              "section_or_locator": "Software Component Template: SwcInternalBehavior / RunnableEntity / RTEEvent, p.720; Requirements on Runtime Environment: Runnable categories, activation and task mapping, p.60",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        },
+        {
+          "action": "Classify each difference as intended, derived/representation-specific or unresolved, and record the disposition before any update/reimport.",
+          "boundary": "A verdict/disposition is not a coverage result and does not change source ownership by itself.",
+          "evidence_level": "WORKFLOW_OBJECT_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+            "exact_ref": null,
+            "path": "docs/knowledge/r2025b/autosar-arxml-lifecycle.md",
+            "repository": "eariver/Research_MathWorks_Documents",
+            "section_or_locator": "## 2. Import and model creation; ## 5. Classic changed-ARXML update lifecycle; ## 6. Shared-definition update is a different lifecycle; ## 12. External AAT merge boundary",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "MW-002",
+            "DS-004"
+          ],
+          "operation_surface": "REVIEW",
+          "resulting_artifact_or_check": "Difference-disposition table and explicit unresolved items.",
+          "step_id": "TTR-010-MW-S03",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "5618cca212cd5d2a4ad5d8ac44a4a0d1edf311d7",
+              "exact_ref": null,
+              "path": "docs/knowledge/r2025b/coverage-evidence-lifecycle.md",
+              "repository": "eariver/Research_MathWorks_Documents",
+              "section_or_locator": "## 1. Executive finding; ## 3. Verdict and coverage are parallel results; ## 4. Model versus generated-code coverage; ## 9. Report identity",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        },
+        {
+          "action": "Use controlled update/reimport only after an explicit disposition; do not unconditionally overwrite the DaVinci source contract.",
+          "boundary": "The reviewed lifecycle supports bounded update/merge roles but not a universal automatic two-way merge.",
+          "evidence_level": "PROCEDURE_PARTIAL",
+          "exact_reviewed_knowledge": {
+            "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+            "exact_ref": null,
+            "path": "docs/knowledge/r2025b/autosar-arxml-lifecycle.md",
+            "repository": "eariver/Research_MathWorks_Documents",
+            "section_or_locator": "## 2. Import and model creation; ## 5. Classic changed-ARXML update lifecycle; ## 6. Shared-definition update is a different lifecycle; ## 12. External AAT merge boundary",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "MW-002",
+            "V-003",
+            "V-004"
+          ],
+          "operation_surface": "REVIEW",
+          "resulting_artifact_or_check": "Approved follow-up action or retained stop state.",
+          "step_id": "TTR-010-MW-S04",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "7a6821cd3f2ad677ca7069c9b114355e98f16842",
+              "exact_ref": null,
+              "path": "docs/knowledge/cross-product-bridges.md",
+              "repository": "eariver/Research_Vector_Documents",
+              "section_or_locator": "## 1. DaVinci Developer Classic ↔ DaVinci Configurator Classic; ### Project/workspace linkage",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            },
+            {
+              "commit": "3ea3dfa2bee51f938fbb427897f1dde5d008ff97",
+              "exact_ref": null,
+              "path": "docs/knowledge/autosar-arxml-profile-followup-2026-08-28.md",
+              "repository": "eariver/Research_Vector_Documents",
+              "section_or_locator": "## Developer producer/consumer contract; ### Import; ### Export; ## Version/profile boundary retained",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        },
+        {
+          "action": "Stop at review-level procedure detail because the frozen sources do not provide one complete comparison tool, GUI route or automation command for this reconciliation task.",
+          "boundary": "No comparison UI/API is inferred from ARXML names or product adjacency.",
+          "evidence_level": "PROCEDURE_PARTIAL",
+          "exact_reviewed_knowledge": {
+            "commit": "7a6821cd3f2ad677ca7069c9b114355e98f16842",
+            "exact_ref": null,
+            "path": "docs/knowledge/cross-product-bridges.md",
+            "repository": "eariver/Research_Vector_Documents",
+            "section_or_locator": "## 1. DaVinci Developer Classic ↔ DaVinci Configurator Classic; ### Project/workspace linkage",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "V-003",
+            "MW-002",
+            "MW-004"
+          ],
+          "operation_surface": "GUI",
+          "resulting_artifact_or_check": "Unreviewed comparison procedure boundary recorded.",
+          "step_id": "TTR-010-MW-S05",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+              "exact_ref": null,
+              "path": "docs/knowledge/r2025b/code-generation-build-artifacts.md",
+              "repository": "eariver/Research_MathWorks_Documents",
+              "section_or_locator": "## 2. Generated code versus compiled binary; ## 4. Code-generation report identity; ## 6. AUTOSAR Classic generation and production-RTE boundary; ## 9. R2025b ASAP2/A2L generation lifecycle",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        }
+      ],
+      "task_ids": [
+        "TTR-010"
+      ],
+      "tool": "AUTOSAR Blockset / Simulink comparison review",
+      "unsupported_or_unreviewed_details": [
+        "Complete version-specific comparison tool invocation, GUI route, API and merge/update sequence."
+      ]
+    }
+  ],
+  "excluded_scope": [
+    "DaVinci Configurator / MICROSAR procedure",
+    "vVIRTUALtarget",
+    "CANoe",
+    "vTESTstudio",
+    "CANape/XCP runtime",
+    "HIL",
+    "physical-SUT procedure"
+  ],
+  "completion_checks": {
+    "every_step_has_allowed_evidence_level": true,
+    "every_exact_gui_api_step_has_exact_pinned_tuple": true,
+    "no_gui_api_detail_inferred": true,
+    "only_scope_ttr_002_to_010": true,
+    "external_source_access_zero": true
+  }
+}

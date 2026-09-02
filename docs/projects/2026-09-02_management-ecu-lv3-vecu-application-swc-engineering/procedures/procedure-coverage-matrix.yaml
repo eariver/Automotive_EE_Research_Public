@@ -1,0 +1,529 @@
+{
+  "schema_version": "management-ecu-swc-procedure-coverage-matrix/v1",
+  "artifact": "Management ECU SWC tool procedure coverage matrix",
+  "date": "2026-09-02",
+  "status": "COMPILED_AT_SUPPORTED_EVIDENCE_LEVEL",
+  "repository": "eariver/Automotive_EE_Engineering_Knowledge",
+  "branch": "work/luna-management-ecu-swc-tool-procedure-compilation-20260902",
+  "starting_sha": "f58ac9e387dfb98c52117c53672b3c1b2c7d4ccf",
+  "starting_tree_sha": "7e188e645d3b3c08920385340a5b8db0ccdb1fbd",
+  "fixed_technical_invariants": {
+    "nodes": 366,
+    "edges": 908,
+    "canonical_workflows": 34,
+    "engineering_concerns": 31,
+    "proposition_records": 101
+  },
+  "source_policy": {
+    "new_technical_research": false,
+    "external_source_access_count": 0,
+    "upstream_repositories_read_only": true,
+    "exact_pinned_reviewed_knowledge_only": true,
+    "current_upstream_head_not_used": true,
+    "raw_help_or_raw_standards_not_used": true,
+    "google_drive_not_used": true,
+    "observations_prompts_plans_worklogs_not_technical_authority": true
+  },
+  "allowed_evidence_levels": [
+    "EXACT_GUI_PATH_REVIEWED",
+    "EXACT_API_OPERATION_REVIEWED",
+    "WORKFLOW_OBJECT_OPERATION_REVIEWED",
+    "PROCEDURE_PARTIAL",
+    "BLOCKED_BY_PROJECT_INPUT",
+    "UNRESOLVED_AUTHORITY"
+  ],
+  "procedure_families": [
+    {
+      "evidence_level_counts": {
+        "BLOCKED_BY_PROJECT_INPUT": 2,
+        "EXACT_API_OPERATION_REVIEWED": 1,
+        "EXACT_GUI_PATH_REVIEWED": 0,
+        "PROCEDURE_PARTIAL": 3,
+        "UNRESOLVED_AUTHORITY": 0,
+        "WORKFLOW_OBJECT_OPERATION_REVIEWED": 11
+      },
+      "family_id": "davinci-developer-classic",
+      "procedure_count": 3,
+      "procedure_file": "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/procedures/davinci-developer-classic.yaml",
+      "step_count": 17,
+      "task_ids": [
+        "TTR-002",
+        "TTR-003",
+        "TTR-010"
+      ],
+      "tool_family": "DaVinci Developer Classic"
+    },
+    {
+      "evidence_level_counts": {
+        "BLOCKED_BY_PROJECT_INPUT": 2,
+        "EXACT_API_OPERATION_REVIEWED": 4,
+        "EXACT_GUI_PATH_REVIEWED": 0,
+        "PROCEDURE_PARTIAL": 4,
+        "UNRESOLVED_AUTHORITY": 0,
+        "WORKFLOW_OBJECT_OPERATION_REVIEWED": 9
+      },
+      "family_id": "autosar-blockset",
+      "procedure_count": 3,
+      "procedure_file": "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/procedures/autosar-blockset.yaml",
+      "step_count": 19,
+      "task_ids": [
+        "TTR-004",
+        "TTR-006",
+        "TTR-010"
+      ],
+      "tool_family": "AUTOSAR Blockset / Simulink comparison surfaces"
+    },
+    {
+      "evidence_level_counts": {
+        "BLOCKED_BY_PROJECT_INPUT": 2,
+        "EXACT_API_OPERATION_REVIEWED": 0,
+        "EXACT_GUI_PATH_REVIEWED": 0,
+        "PROCEDURE_PARTIAL": 1,
+        "UNRESOLVED_AUTHORITY": 0,
+        "WORKFLOW_OBJECT_OPERATION_REVIEWED": 4
+      },
+      "family_id": "simulink-stateflow",
+      "procedure_count": 1,
+      "procedure_file": "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/procedures/simulink-stateflow.yaml",
+      "step_count": 7,
+      "task_ids": [
+        "TTR-005"
+      ],
+      "tool_family": "Simulink / Stateflow"
+    },
+    {
+      "evidence_level_counts": {
+        "BLOCKED_BY_PROJECT_INPUT": 1,
+        "EXACT_API_OPERATION_REVIEWED": 1,
+        "EXACT_GUI_PATH_REVIEWED": 0,
+        "PROCEDURE_PARTIAL": 1,
+        "UNRESOLVED_AUTHORITY": 0,
+        "WORKFLOW_OBJECT_OPERATION_REVIEWED": 3
+      },
+      "family_id": "embedded-coder",
+      "procedure_count": 1,
+      "procedure_file": "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/procedures/embedded-coder.yaml",
+      "step_count": 6,
+      "task_ids": [
+        "TTR-008"
+      ],
+      "tool_family": "Embedded Coder"
+    },
+    {
+      "evidence_level_counts": {
+        "BLOCKED_BY_PROJECT_INPUT": 2,
+        "EXACT_API_OPERATION_REVIEWED": 4,
+        "EXACT_GUI_PATH_REVIEWED": 0,
+        "PROCEDURE_PARTIAL": 2,
+        "UNRESOLVED_AUTHORITY": 0,
+        "WORKFLOW_OBJECT_OPERATION_REVIEWED": 8
+      },
+      "family_id": "mil-sil",
+      "procedure_count": 2,
+      "procedure_file": "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/procedures/mil-sil.yaml",
+      "step_count": 16,
+      "task_ids": [
+        "TTR-007",
+        "TTR-009"
+      ],
+      "tool_family": "MIL / SIL"
+    }
+  ],
+  "task_coverage": [
+    {
+      "evidence_level_counts": {
+        "BLOCKED_BY_PROJECT_INPUT": 1,
+        "EXACT_API_OPERATION_REVIEWED": 0,
+        "EXACT_GUI_PATH_REVIEWED": 0,
+        "PROCEDURE_PARTIAL": 1,
+        "UNRESOLVED_AUTHORITY": 0,
+        "WORKFLOW_OBJECT_OPERATION_REVIEWED": 6
+      },
+      "exact_api_coverage": [],
+      "exact_gui_coverage": [],
+      "intent": "Application SWC structure, I/O, Runnable and RTE-access contract in DaVinci Developer",
+      "operation_step_count": 8,
+      "procedure_families": [
+        "davinci-developer-classic"
+      ],
+      "procedure_file_paths": [
+        "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/procedures/davinci-developer-classic.yaml"
+      ],
+      "procedure_ids": [
+        "PROC-TTR-002"
+      ],
+      "procedure_partial_items": [
+        "TTR-002-S08"
+      ],
+      "project_input_blockers": [
+        "DS-PROJ-001",
+        "DS-PROJ-002",
+        "TTR-002-S07"
+      ],
+      "recommended_sol_follow_up": "Approve requirement allocation and actual DaVinci/schema baseline; Sol follow-up for exact Developer GUI/API details.",
+      "reproducible_api_procedure": false,
+      "reproducible_gui_procedure": false,
+      "retained_boundary": "Application architecture != AUTOSAR contract != behavior model != generated implementation != production RTE/BSW/OS.",
+      "task_id": "TTR-002",
+      "unresolved_authority_details": []
+    },
+    {
+      "evidence_level_counts": {
+        "BLOCKED_BY_PROJECT_INPUT": 1,
+        "EXACT_API_OPERATION_REVIEWED": 0,
+        "EXACT_GUI_PATH_REVIEWED": 0,
+        "PROCEDURE_PARTIAL": 1,
+        "UNRESOLVED_AUTHORITY": 0,
+        "WORKFLOW_OBJECT_OPERATION_REVIEWED": 4
+      },
+      "exact_api_coverage": [],
+      "exact_gui_coverage": [],
+      "intent": "DaVinci SWC contract ARXML export",
+      "operation_step_count": 6,
+      "procedure_families": [
+        "davinci-developer-classic"
+      ],
+      "procedure_file_paths": [
+        "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/procedures/davinci-developer-classic.yaml"
+      ],
+      "procedure_ids": [
+        "PROC-TTR-003"
+      ],
+      "procedure_partial_items": [
+        "TTR-003-S05"
+      ],
+      "project_input_blockers": [
+        "DS-PROJ-002",
+        "DS-PROJ-006",
+        "TTR-003-S06"
+      ],
+      "recommended_sol_follow_up": "Fix actual schema/tool baseline and obtain Sol decision for any exact export route needed.",
+      "reproducible_api_procedure": false,
+      "reproducible_gui_procedure": false,
+      "retained_boundary": "DaVinci export != cross-tool semantic equivalence proof; ARXML artifact remains distinct from model/generated implementation.",
+      "task_id": "TTR-003",
+      "unresolved_authority_details": []
+    },
+    {
+      "evidence_level_counts": {
+        "BLOCKED_BY_PROJECT_INPUT": 1,
+        "EXACT_API_OPERATION_REVIEWED": 4,
+        "EXACT_GUI_PATH_REVIEWED": 0,
+        "PROCEDURE_PARTIAL": 1,
+        "UNRESOLVED_AUTHORITY": 0,
+        "WORKFLOW_OBJECT_OPERATION_REVIEWED": 2
+      },
+      "exact_api_coverage": [
+        "TTR-004-S01",
+        "TTR-004-S02",
+        "TTR-004-S03",
+        "TTR-004-S04"
+      ],
+      "exact_gui_coverage": [],
+      "intent": "DaVinci SWC ARXML import/update into AUTOSAR Blockset/Simulink",
+      "operation_step_count": 8,
+      "procedure_families": [
+        "autosar-blockset"
+      ],
+      "procedure_file_paths": [
+        "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/procedures/autosar-blockset.yaml"
+      ],
+      "procedure_ids": [
+        "PROC-TTR-004"
+      ],
+      "procedure_partial_items": [
+        "TTR-004-S08"
+      ],
+      "project_input_blockers": [
+        "DS-PROJ-002",
+        "DS-PROJ-006",
+        "TTR-004-S07"
+      ],
+      "recommended_sol_follow_up": "Approve actual MathWorks release/schema and project ARXML; exact file-selection/update repair detail remains a bounded follow-up.",
+      "reproducible_api_procedure": false,
+      "reproducible_gui_procedure": false,
+      "retained_boundary": "ARXML artifact != imported Simulink representation; initial creation, changed update and shared-definition update remain distinct.",
+      "task_id": "TTR-004",
+      "unresolved_authority_details": []
+    },
+    {
+      "evidence_level_counts": {
+        "BLOCKED_BY_PROJECT_INPUT": 2,
+        "EXACT_API_OPERATION_REVIEWED": 0,
+        "EXACT_GUI_PATH_REVIEWED": 0,
+        "PROCEDURE_PARTIAL": 1,
+        "UNRESOLVED_AUTHORITY": 0,
+        "WORKFLOW_OBJECT_OPERATION_REVIEWED": 4
+      },
+      "exact_api_coverage": [],
+      "exact_gui_coverage": [],
+      "intent": "Simulink/Stateflow behavior implementation",
+      "operation_step_count": 7,
+      "procedure_families": [
+        "simulink-stateflow"
+      ],
+      "procedure_file_paths": [
+        "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/procedures/simulink-stateflow.yaml"
+      ],
+      "procedure_ids": [
+        "PROC-TTR-005"
+      ],
+      "procedure_partial_items": [
+        "TTR-005-S07"
+      ],
+      "project_input_blockers": [
+        "DS-PROJ-001",
+        "DS-PROJ-003",
+        "DS-PROJ-004",
+        "DS-PROJ-005",
+        "TTR-005-S01",
+        "TTR-005-S05"
+      ],
+      "recommended_sol_follow_up": "Approve behavior/calibration inputs; Sol follow-up for exact chart/block construction details if required.",
+      "reproducible_api_procedure": false,
+      "reproducible_gui_procedure": false,
+      "retained_boundary": "Stateflow source behavior != generated implementation; DiagMgr != DCM != DEM; project counter/checksum != AUTOSAR E2E.",
+      "task_id": "TTR-005",
+      "unresolved_authority_details": []
+    },
+    {
+      "evidence_level_counts": {
+        "BLOCKED_BY_PROJECT_INPUT": 1,
+        "EXACT_API_OPERATION_REVIEWED": 0,
+        "EXACT_GUI_PATH_REVIEWED": 0,
+        "PROCEDURE_PARTIAL": 1,
+        "UNRESOLVED_AUTHORITY": 0,
+        "WORKFLOW_OBJECT_OPERATION_REVIEWED": 4
+      },
+      "exact_api_coverage": [],
+      "exact_gui_coverage": [],
+      "intent": "Simulink ↔ AUTOSAR mapping configuration/review",
+      "operation_step_count": 6,
+      "procedure_families": [
+        "autosar-blockset"
+      ],
+      "procedure_file_paths": [
+        "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/procedures/autosar-blockset.yaml"
+      ],
+      "procedure_ids": [
+        "PROC-TTR-006"
+      ],
+      "procedure_partial_items": [
+        "TTR-006-S06"
+      ],
+      "project_input_blockers": [
+        "DS-PROJ-002",
+        "DS-PROJ-006",
+        "TTR-006-S05"
+      ],
+      "recommended_sol_follow_up": "Fix contract/tool baseline and decide which object/property mapping detail requires exact GUI/API compilation.",
+      "reproducible_api_procedure": false,
+      "reproducible_gui_procedure": false,
+      "retained_boundary": "Mapping is an association/transformation layer; it does not transfer SWC contract ownership or become production RTE.",
+      "task_id": "TTR-006",
+      "unresolved_authority_details": []
+    },
+    {
+      "evidence_level_counts": {
+        "BLOCKED_BY_PROJECT_INPUT": 1,
+        "EXACT_API_OPERATION_REVIEWED": 2,
+        "EXACT_GUI_PATH_REVIEWED": 0,
+        "PROCEDURE_PARTIAL": 1,
+        "UNRESOLVED_AUTHORITY": 0,
+        "WORKFLOW_OBJECT_OPERATION_REVIEWED": 5
+      },
+      "exact_api_coverage": [
+        "TTR-007-S05",
+        "TTR-007-S06"
+      ],
+      "exact_gui_coverage": [],
+      "intent": "MIL test definition, execution, results, coverage and traceability",
+      "operation_step_count": 9,
+      "procedure_families": [
+        "mil-sil"
+      ],
+      "procedure_file_paths": [
+        "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/procedures/mil-sil.yaml"
+      ],
+      "procedure_ids": [
+        "PROC-TTR-007"
+      ],
+      "procedure_partial_items": [
+        "TTR-007-S09"
+      ],
+      "project_input_blockers": [
+        "DS-PROJ-001",
+        "DS-PROJ-003",
+        "DS-PROJ-006",
+        "TTR-007-S08"
+      ],
+      "recommended_sol_follow_up": "Approve requirement-linked test assets/calibration and exact harness/run recipe if needed.",
+      "reproducible_api_procedure": false,
+      "reproducible_gui_procedure": false,
+      "retained_boundary": "MIL != SIL != VECU/HIL/physical-SUT; verdict != coverage; definitions/results/reports are distinct.",
+      "task_id": "TTR-007",
+      "unresolved_authority_details": []
+    },
+    {
+      "evidence_level_counts": {
+        "BLOCKED_BY_PROJECT_INPUT": 1,
+        "EXACT_API_OPERATION_REVIEWED": 1,
+        "EXACT_GUI_PATH_REVIEWED": 0,
+        "PROCEDURE_PARTIAL": 1,
+        "UNRESOLVED_AUTHORITY": 0,
+        "WORKFLOW_OBJECT_OPERATION_REVIEWED": 3
+      },
+      "exact_api_coverage": [
+        "TTR-008-S04"
+      ],
+      "exact_gui_coverage": [],
+      "intent": "Embedded Coder production-intent C/H/ARXML/report generation",
+      "operation_step_count": 6,
+      "procedure_families": [
+        "embedded-coder"
+      ],
+      "procedure_file_paths": [
+        "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/procedures/embedded-coder.yaml"
+      ],
+      "procedure_ids": [
+        "PROC-TTR-008"
+      ],
+      "procedure_partial_items": [
+        "TTR-008-S06"
+      ],
+      "project_input_blockers": [
+        "DS-PROJ-002",
+        "DS-PROJ-006",
+        "TTR-008-S01"
+      ],
+      "recommended_sol_follow_up": "Fix actual code-generation configuration/checksum and decide whether optional A2L is in scope.",
+      "reproducible_api_procedure": false,
+      "reproducible_gui_procedure": false,
+      "retained_boundary": "Code generation != compile != link; MathWorks RTE stub != production MICROSAR RTE; A2L remains a separate artifact.",
+      "task_id": "TTR-008",
+      "unresolved_authority_details": []
+    },
+    {
+      "evidence_level_counts": {
+        "BLOCKED_BY_PROJECT_INPUT": 1,
+        "EXACT_API_OPERATION_REVIEWED": 2,
+        "EXACT_GUI_PATH_REVIEWED": 0,
+        "PROCEDURE_PARTIAL": 1,
+        "UNRESOLVED_AUTHORITY": 0,
+        "WORKFLOW_OBJECT_OPERATION_REVIEWED": 3
+      },
+      "exact_api_coverage": [
+        "TTR-009-S04",
+        "TTR-009-S05"
+      ],
+      "exact_gui_coverage": [],
+      "intent": "SIL execution/result and MIL/SIL correspondence",
+      "operation_step_count": 7,
+      "procedure_families": [
+        "mil-sil"
+      ],
+      "procedure_file_paths": [
+        "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/procedures/mil-sil.yaml"
+      ],
+      "procedure_ids": [
+        "PROC-TTR-009"
+      ],
+      "procedure_partial_items": [
+        "TTR-009-S07"
+      ],
+      "project_input_blockers": [
+        "DS-PROJ-002",
+        "DS-PROJ-006",
+        "TTR-009-S01"
+      ],
+      "recommended_sol_follow_up": "Approve generated target/toolchain/test correspondence and exact SIL run recipe if needed.",
+      "reproducible_api_procedure": false,
+      "reproducible_gui_procedure": false,
+      "retained_boundary": "SIL != MIL and neither is VECU/HIL/physical-SUT evidence; verdict != coverage.",
+      "task_id": "TTR-009",
+      "unresolved_authority_details": []
+    },
+    {
+      "evidence_level_counts": {
+        "BLOCKED_BY_PROJECT_INPUT": 0,
+        "EXACT_API_OPERATION_REVIEWED": 1,
+        "EXACT_GUI_PATH_REVIEWED": 0,
+        "PROCEDURE_PARTIAL": 3,
+        "UNRESOLVED_AUTHORITY": 0,
+        "WORKFLOW_OBJECT_OPERATION_REVIEWED": 4
+      },
+      "exact_api_coverage": [
+        "TTR-010-DV-S01"
+      ],
+      "exact_gui_coverage": [],
+      "intent": "DaVinci contract vs generated MathWorks ARXML reconciliation",
+      "operation_step_count": 8,
+      "procedure_families": [
+        "davinci-developer-classic",
+        "autosar-blockset"
+      ],
+      "procedure_file_paths": [
+        "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/procedures/davinci-developer-classic.yaml",
+        "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/procedures/autosar-blockset.yaml"
+      ],
+      "procedure_ids": [
+        "PROC-TTR-010-DAVINCI",
+        "PROC-TTR-010-AUTOSAR-BLOCKSET"
+      ],
+      "procedure_partial_items": [
+        "TTR-010-DV-S03",
+        "TTR-010-MW-S04",
+        "TTR-010-MW-S05"
+      ],
+      "project_input_blockers": [
+        "DS-PROJ-006"
+      ],
+      "recommended_sol_follow_up": "Approve comparison disposition policy; Sol follow-up for any exact comparison/update automation requested.",
+      "reproducible_api_procedure": false,
+      "reproducible_gui_procedure": false,
+      "retained_boundary": "Original DaVinci contract != generated MathWorks ARXML; round-trip != byte-for-byte identity or unconditional merge.",
+      "task_id": "TTR-010",
+      "unresolved_authority_details": []
+    }
+  ],
+  "overall": {
+    "procedure_count": 10,
+    "operation_step_count": 65,
+    "evidence_level_counts": {
+      "BLOCKED_BY_PROJECT_INPUT": 9,
+      "EXACT_API_OPERATION_REVIEWED": 10,
+      "EXACT_GUI_PATH_REVIEWED": 0,
+      "PROCEDURE_PARTIAL": 11,
+      "UNRESOLVED_AUTHORITY": 0,
+      "WORKFLOW_OBJECT_OPERATION_REVIEWED": 35
+    },
+    "exact_gui_task_ids": [],
+    "exact_api_task_ids": [
+      "TTR-004",
+      "TTR-007",
+      "TTR-008",
+      "TTR-009",
+      "TTR-010"
+    ],
+    "unresolved_authority_task_ids": [],
+    "external_source_access_count": 0
+  },
+  "excluded_scope": [
+    "DaVinci Configurator / MICROSAR procedure",
+    "vVIRTUALtarget",
+    "CANoe",
+    "vTESTstudio",
+    "CANape/XCP runtime",
+    "HIL",
+    "physical-SUT procedure"
+  ],
+  "completion_checks": {
+    "every_ttr_002_to_010_present": true,
+    "every_step_has_allowed_evidence_level": true,
+    "every_exact_gui_api_step_has_exact_pinned_tuple": true,
+    "no_gui_api_detail_inferred": true,
+    "only_scope_ttr_002_to_010": true,
+    "external_source_access_zero": true,
+    "family_counts_match_task_coverage": true
+  }
+}

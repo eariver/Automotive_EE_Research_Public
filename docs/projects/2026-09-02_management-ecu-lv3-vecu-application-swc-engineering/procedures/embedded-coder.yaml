@@ -1,0 +1,272 @@
+{
+  "schema_version": "management-ecu-swc-tool-procedure/v1",
+  "artifact": "Management ECU SWC tool procedure family — Embedded Coder",
+  "date": "2026-09-02",
+  "status": "COMPILED_AT_SUPPORTED_EVIDENCE_LEVEL",
+  "repository": "eariver/Automotive_EE_Engineering_Knowledge",
+  "branch": "work/luna-management-ecu-swc-tool-procedure-compilation-20260902",
+  "starting_sha": "f58ac9e387dfb98c52117c53672b3c1b2c7d4ccf",
+  "starting_tree_sha": "7e188e645d3b3c08920385340a5b8db0ccdb1fbd",
+  "source_policy": {
+    "new_technical_research": false,
+    "external_source_access_count": 0,
+    "upstream_repositories_read_only": true,
+    "exact_pinned_reviewed_knowledge_only": true,
+    "current_upstream_head_not_used": true,
+    "raw_help_or_raw_standards_not_used": true,
+    "google_drive_not_used": true,
+    "observations_prompts_plans_worklogs_not_technical_authority": true
+  },
+  "allowed_evidence_levels": [
+    "EXACT_GUI_PATH_REVIEWED",
+    "EXACT_API_OPERATION_REVIEWED",
+    "WORKFLOW_OBJECT_OPERATION_REVIEWED",
+    "PROCEDURE_PARTIAL",
+    "BLOCKED_BY_PROJECT_INPUT",
+    "UNRESOLVED_AUTHORITY"
+  ],
+  "tool_family": "Embedded Coder",
+  "procedure_file": "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/procedures/embedded-coder.yaml",
+  "fixed_technical_invariants": {
+    "nodes": 366,
+    "edges": 908,
+    "canonical_workflows": 34,
+    "engineering_concerns": 31,
+    "proposition_records": 101
+  },
+  "procedures": [
+    {
+      "exit_checks": [
+        "Generation inputs are version/configuration-fixed or explicitly blocked.",
+        "C/H, implementation ARXML, metadata and report identities are recorded separately.",
+        "A2L, when applicable, remains a bounded separate artifact."
+      ],
+      "intent": "Generate production-intent C/H, AUTOSAR implementation ARXML and code-generation/report artifacts from the mapped model.",
+      "next_task_ids": [
+        "TTR-009",
+        "TTR-010"
+      ],
+      "overall_maturity": "PROCEDURE_PARTIAL",
+      "prerequisites": [
+        "Mapped AUTOSAR component model and accepted mapping review.",
+        "Actual Embedded Coder/MATLAB release and fixed code-generation configuration/checksum.",
+        "Project artifact destination and generation provenance policy."
+      ],
+      "procedure_id": "PROC-TTR-008",
+      "read_first_locator_ids": [
+        "DS-003",
+        "DS-004",
+        "V-002",
+        "MW-004",
+        "MW-013",
+        "AS-002"
+      ],
+      "release_scope": "Reviewed MathWorks baseline: R2025b; exact project release and code-generation configuration checksum remain TBD.",
+      "steps": [
+        {
+          "action": "Select the mapped AUTOSAR component model and fixed code-generation configuration; stop project generation baseline until the actual configuration/checksum is supplied.",
+          "boundary": "Reviewed R2025b behavior does not prove the actual project release, target/compiler or configuration checksum.",
+          "evidence_level": "BLOCKED_BY_PROJECT_INPUT",
+          "exact_reviewed_knowledge": {
+            "commit": "f58ac9e387dfb98c52117c53672b3c1b2c7d4ccf",
+            "exact_ref": "work/luna-management-ecu-swc-tool-procedure-compilation-20260902",
+            "path": "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/references/project/tool-version-baseline.yaml",
+            "repository": "eariver/Automotive_EE_Engineering_Knowledge",
+            "section_or_locator": "code_generation_configuration_checksum.value: null; compatibility_record.status: NOT_YET_ESTABLISHED",
+            "source_role": "fixed project input/navigation record; not technical authority"
+          },
+          "locator_ids": [
+            "DS-PROJ-002",
+            "DS-004"
+          ],
+          "operation_surface": "REVIEW",
+          "resulting_artifact_or_check": "Generation-input blocker recorded.",
+          "step_id": "TTR-008-S01",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "f58ac9e387dfb98c52117c53672b3c1b2c7d4ccf",
+              "exact_ref": "work/luna-management-ecu-swc-tool-procedure-compilation-20260902",
+              "path": "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/20260902_ManagementECU_Tool_Task_Reference_Matrix.yaml",
+              "repository": "eariver/Automotive_EE_Engineering_Knowledge",
+              "section_or_locator": "TTR-008 required_inputs and exit_conditions",
+              "source_role": "fixed project input/navigation record; not technical authority"
+            }
+          ]
+        },
+        {
+          "action": "Run the reviewed Embedded Coder/AUTOSAR component build workflow to generate C source, headers and implementation AUTOSAR XML descriptions.",
+          "boundary": "Code generation != compile != link; generated implementation != production RTE/BSW/OS.",
+          "evidence_level": "WORKFLOW_OBJECT_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+            "exact_ref": null,
+            "path": "docs/knowledge/r2025b/code-generation-build-artifacts.md",
+            "repository": "eariver/Research_MathWorks_Documents",
+            "section_or_locator": "## 2. Generated code versus compiled binary; ## 4. Code-generation report identity; ## 6. AUTOSAR Classic generation and production-RTE boundary; ## 9. R2025b ASAP2/A2L generation lifecycle",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "MW-004",
+            "MW-013",
+            "AS-002",
+            "DS-004"
+          ],
+          "operation_surface": "TOOL_OBJECT",
+          "resulting_artifact_or_check": "Generated C/H and implementation ARXML artifact set.",
+          "step_id": "TTR-008-S02",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "938ac4af696d263019ebdc61106a444447e15c4d",
+              "exact_ref": "authority/autosar-cp-4.4.0-current-depth-20260830",
+              "path": "docs/knowledge/concepts/rte-generation-contract-runtime-boundary.json",
+              "repository": "eariver/Research_AUTOSAR_CP_Documents",
+              "section_or_locator": "Requirements on Runtime Environment: RTE generation and ECU-specific configuration requirements, p.25; Specification of RTE Software: RTE contract phase and generation phase / generator input-output model, p.30",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            },
+            {
+              "commit": "7a6821cd3f2ad677ca7069c9b114355e98f16842",
+              "exact_ref": null,
+              "path": "docs/knowledge/davinci-configurator-classic.md",
+              "repository": "eariver/Research_Vector_Documents",
+              "section_or_locator": "## Reviewed role; ## BSW, OS, task mapping and generation",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        },
+        {
+          "action": "Inspect and retain build metadata and the derived code-generation report as separate artifacts from the generated source and model.",
+          "boundary": "Report != generated source/binary and does not prove compile/link or production integration.",
+          "evidence_level": "WORKFLOW_OBJECT_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+            "exact_ref": null,
+            "path": "docs/knowledge/r2025b/code-generation-build-artifacts.md",
+            "repository": "eariver/Research_MathWorks_Documents",
+            "section_or_locator": "## 2. Generated code versus compiled binary; ## 4. Code-generation report identity; ## 6. AUTOSAR Classic generation and production-RTE boundary; ## 9. R2025b ASAP2/A2L generation lifecycle",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "MW-004",
+            "DS-004"
+          ],
+          "operation_surface": "TOOL_OBJECT",
+          "resulting_artifact_or_check": "Build metadata and code-generation report linked to the generation run.",
+          "step_id": "TTR-008-S03"
+        },
+        {
+          "action": "If and only if the project generation configuration explicitly includes an A2L output, invoke the reviewed coder.asap2.export operation after code generation and keep the A2L identity separate.",
+          "boundary": "A2L artifact support does not prove generic live XCP interoperability or CANape procedure.",
+          "evidence_level": "EXACT_API_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+            "exact_ref": null,
+            "path": "docs/knowledge/r2025b/code-generation-build-artifacts.md",
+            "repository": "eariver/Research_MathWorks_Documents",
+            "section_or_locator": "## 2. Generated code versus compiled binary; ## 4. Code-generation report identity; ## 6. AUTOSAR Classic generation and production-RTE boundary; ## 9. R2025b ASAP2/A2L generation lifecycle",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "MW-004",
+            "MW-013"
+          ],
+          "operation_surface": "API",
+          "resulting_artifact_or_check": "Bounded post-code-generation A2L artifact, optionally with later symbol/address resolution as a separate state.",
+          "step_id": "TTR-008-S04"
+        },
+        {
+          "action": "Record generated artifact revisions/hashes separately from the source model and keep MathWorks RTE stubs distinct from production MICROSAR RTE output.",
+          "boundary": "Generated application code and local RTE stub are not production ECU integration.",
+          "evidence_level": "WORKFLOW_OBJECT_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+            "exact_ref": null,
+            "path": "docs/knowledge/r2025b/code-generation-build-artifacts.md",
+            "repository": "eariver/Research_MathWorks_Documents",
+            "section_or_locator": "## 2. Generated code versus compiled binary; ## 4. Code-generation report identity; ## 6. AUTOSAR Classic generation and production-RTE boundary; ## 9. R2025b ASAP2/A2L generation lifecycle",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "MW-004",
+            "V-002",
+            "AS-002"
+          ],
+          "operation_surface": "REVIEW",
+          "resulting_artifact_or_check": "Generation provenance record with source/model/code/ARXML/report and RTE-stub boundary.",
+          "step_id": "TTR-008-S05",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "938ac4af696d263019ebdc61106a444447e15c4d",
+              "exact_ref": "authority/autosar-cp-4.4.0-current-depth-20260830",
+              "path": "docs/knowledge/concepts/rte-generation-contract-runtime-boundary.json",
+              "repository": "eariver/Research_AUTOSAR_CP_Documents",
+              "section_or_locator": "Requirements on Runtime Environment: RTE generation and ECU-specific configuration requirements, p.25; Specification of RTE Software: RTE contract phase and generation phase / generator input-output model, p.30",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            },
+            {
+              "commit": "7a6821cd3f2ad677ca7069c9b114355e98f16842",
+              "exact_ref": null,
+              "path": "docs/knowledge/davinci-configurator-classic.md",
+              "repository": "eariver/Research_Vector_Documents",
+              "section_or_locator": "## Reviewed role; ## BSW, OS, task mapping and generation",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        },
+        {
+          "action": "Stop before an exact version-specific generation menu/API command sequence, compiler/linker recipe or production build procedure because those details are not fully stated in the frozen Reviewed Knowledge.",
+          "boundary": "No command syntax or build recipe is inferred from generic code-generation wording.",
+          "evidence_level": "PROCEDURE_PARTIAL",
+          "exact_reviewed_knowledge": {
+            "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+            "exact_ref": null,
+            "path": "docs/knowledge/r2025b/code-generation-build-artifacts.md",
+            "repository": "eariver/Research_MathWorks_Documents",
+            "section_or_locator": "## 2. Generated code versus compiled binary; ## 4. Code-generation report identity; ## 6. AUTOSAR Classic generation and production-RTE boundary; ## 9. R2025b ASAP2/A2L generation lifecycle",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "MW-004",
+            "V-002"
+          ],
+          "operation_surface": "GUI",
+          "resulting_artifact_or_check": "Unreviewed generation/build detail recorded.",
+          "step_id": "TTR-008-S06",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "7a6821cd3f2ad677ca7069c9b114355e98f16842",
+              "exact_ref": null,
+              "path": "docs/knowledge/davinci-configurator-classic.md",
+              "repository": "eariver/Research_Vector_Documents",
+              "section_or_locator": "## Reviewed role; ## BSW, OS, task mapping and generation",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        }
+      ],
+      "task_ids": [
+        "TTR-008"
+      ],
+      "tool": "Embedded Coder",
+      "unsupported_or_unreviewed_details": [
+        "Exact generation GUI/API sequence for C/H/ARXML, compiler/linker configuration and production RTE generation.",
+        "CANape/XCP runtime procedure or live endpoint interoperability."
+      ]
+    }
+  ],
+  "excluded_scope": [
+    "DaVinci Configurator / MICROSAR procedure",
+    "vVIRTUALtarget",
+    "CANoe",
+    "vTESTstudio",
+    "CANape/XCP runtime",
+    "HIL",
+    "physical-SUT procedure"
+  ],
+  "completion_checks": {
+    "every_step_has_allowed_evidence_level": true,
+    "every_exact_gui_api_step_has_exact_pinned_tuple": true,
+    "no_gui_api_detail_inferred": true,
+    "only_scope_ttr_002_to_010": true,
+    "external_source_access_zero": true
+  }
+}

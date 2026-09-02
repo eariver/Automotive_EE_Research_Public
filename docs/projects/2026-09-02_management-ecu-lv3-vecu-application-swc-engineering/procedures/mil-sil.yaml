@@ -1,0 +1,580 @@
+{
+  "schema_version": "management-ecu-swc-tool-procedure/v1",
+  "artifact": "Management ECU SWC tool procedure family — Simulink simulation / MathWorks test environment",
+  "date": "2026-09-02",
+  "status": "COMPILED_AT_SUPPORTED_EVIDENCE_LEVEL",
+  "repository": "eariver/Automotive_EE_Engineering_Knowledge",
+  "branch": "work/luna-management-ecu-swc-tool-procedure-compilation-20260902",
+  "starting_sha": "f58ac9e387dfb98c52117c53672b3c1b2c7d4ccf",
+  "starting_tree_sha": "7e188e645d3b3c08920385340a5b8db0ccdb1fbd",
+  "source_policy": {
+    "new_technical_research": false,
+    "external_source_access_count": 0,
+    "upstream_repositories_read_only": true,
+    "exact_pinned_reviewed_knowledge_only": true,
+    "current_upstream_head_not_used": true,
+    "raw_help_or_raw_standards_not_used": true,
+    "google_drive_not_used": true,
+    "observations_prompts_plans_worklogs_not_technical_authority": true
+  },
+  "allowed_evidence_levels": [
+    "EXACT_GUI_PATH_REVIEWED",
+    "EXACT_API_OPERATION_REVIEWED",
+    "WORKFLOW_OBJECT_OPERATION_REVIEWED",
+    "PROCEDURE_PARTIAL",
+    "BLOCKED_BY_PROJECT_INPUT",
+    "UNRESOLVED_AUTHORITY"
+  ],
+  "tool_family": "Simulink simulation / MathWorks test environment",
+  "procedure_file": "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/procedures/mil-sil.yaml",
+  "fixed_technical_invariants": {
+    "nodes": 366,
+    "edges": 908,
+    "canonical_workflows": 34,
+    "engineering_concerns": 31,
+    "proposition_records": 101
+  },
+  "procedures": [
+    {
+      "exit_checks": [
+        "Test definitions, execution results, reports, coverage and traceability are separately identified.",
+        "MIL evidence is explicit for the accepted test intent and project inputs."
+      ],
+      "intent": "Define, execute and record model-level MIL verification with separate test, result, coverage and traceability identities.",
+      "next_task_ids": [
+        "TTR-008"
+      ],
+      "overall_maturity": "PROCEDURE_PARTIAL",
+      "prerequisites": [
+        "Behavior model and requirement-linked test intent.",
+        "Project calibration values required by the tested behavior.",
+        "Selected test environment/harness and approved test case scope."
+      ],
+      "procedure_id": "PROC-TTR-007",
+      "read_first_locator_ids": [
+        "DS-009",
+        "DS-010",
+        "MW-006",
+        "MW-007",
+        "MW-008",
+        "MW-009",
+        "MW-015"
+      ],
+      "release_scope": "Reviewed MathWorks R2025b; actual test assets, project requirements and calibration values remain project inputs.",
+      "steps": [
+        {
+          "action": "Create or select the durable test-definition objects: TestFile, TestSuite, TestCase and any required TestIteration/harness association.",
+          "boundary": "TestFile/TestCase/harness/result/report are separate identities; .mldatx extension alone is not sufficient.",
+          "evidence_level": "WORKFLOW_OBJECT_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+            "exact_ref": null,
+            "path": "docs/knowledge/r2025b/test-design-execution-results.md",
+            "repository": "eariver/Research_MathWorks_Documents",
+            "section_or_locator": "## 3. Test-definition hierarchy; ## 9. Test execution is a lifecycle; ## 10. Definition objects and result objects; ## 11. mldatx artifact roles; ## 12. Result report and test specification report",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "MW-007",
+            "DS-010"
+          ],
+          "operation_surface": "TOOL_OBJECT",
+          "resulting_artifact_or_check": "Test-definition artifact and hierarchy, distinct from Test Manager environment and result objects.",
+          "step_id": "TTR-007-S01"
+        },
+        {
+          "action": "Define test inputs, iterations, harness/environment selection and verification criteria separately from execution results.",
+          "boundary": "TestIteration is an execution variant; modeled fault definition != test-local fault set != fault effect.",
+          "evidence_level": "WORKFLOW_OBJECT_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+            "exact_ref": null,
+            "path": "docs/knowledge/r2025b/test-design-execution-results.md",
+            "repository": "eariver/Research_MathWorks_Documents",
+            "section_or_locator": "## 3. Test-definition hierarchy; ## 9. Test execution is a lifecycle; ## 10. Definition objects and result objects; ## 11. mldatx artifact roles; ## 12. Result report and test specification report",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "MW-007",
+            "MW-015"
+          ],
+          "operation_surface": "TOOL_OBJECT",
+          "resulting_artifact_or_check": "Test definitions/configuration and any test-local fault-set selection.",
+          "step_id": "TTR-007-S02",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "6edc12aebb719f77ccd69ff19978c3918f98c66e",
+              "exact_ref": null,
+              "path": "docs/knowledge/r2025b/fault-safety-analysis-lifecycle.md",
+              "repository": "eariver/Research_MathWorks_Documents",
+              "section_or_locator": "## 2. Fault definition is not nominal design behavior; ## 3. Simulink Test fault sets are test selection/configuration; ## 4. Fault simulation evidence is not a safety-analysis conclusion",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        },
+        {
+          "action": "Configure normal model execution as the model-side MIL workflow and keep it distinct from SIL/PIL backends.",
+          "boundary": "MIL is workflow terminology here; Normal model execution != SIL and accelerator targets != production SIL code.",
+          "evidence_level": "WORKFLOW_OBJECT_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+            "exact_ref": null,
+            "path": "docs/knowledge/r2025b/mil-sil-pil-execution.md",
+            "repository": "eariver/Research_MathWorks_Documents",
+            "section_or_locator": "## 2. MIL is workflow terminology; ## 4. SIL execution identity; ## 10. Back-to-back/equivalence testing is a comparison workflow",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "MW-006",
+            "DS-009"
+          ],
+          "operation_surface": "TOOL_OBJECT",
+          "resulting_artifact_or_check": "MIL/model-execution configuration record.",
+          "step_id": "TTR-007-S03",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+              "exact_ref": null,
+              "path": "docs/knowledge/r2025b/test-design-execution-results.md",
+              "repository": "eariver/Research_MathWorks_Documents",
+              "section_or_locator": "## 3. Test-definition hierarchy; ## 9. Test execution is a lifecycle; ## 10. Definition objects and result objects; ## 11. mldatx artifact roles; ## 12. Result report and test specification report",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        },
+        {
+          "action": "Execute the test lifecycle and preserve execution result objects independently from the test definition.",
+          "boundary": "Test result != test definition and MIL result != SIL/VECU/HIL/physical-SUT evidence.",
+          "evidence_level": "WORKFLOW_OBJECT_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+            "exact_ref": null,
+            "path": "docs/knowledge/r2025b/test-design-execution-results.md",
+            "repository": "eariver/Research_MathWorks_Documents",
+            "section_or_locator": "## 3. Test-definition hierarchy; ## 9. Test execution is a lifecycle; ## 10. Definition objects and result objects; ## 11. mldatx artifact roles; ## 12. Result report and test specification report",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "MW-007",
+            "MW-006"
+          ],
+          "operation_surface": "TOOL_OBJECT",
+          "resulting_artifact_or_check": "ResultSet → TestFileResult → TestSuiteResult → TestCaseResult → TestIterationResult hierarchy or equivalent reviewed result record.",
+          "step_id": "TTR-007-S04",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+              "exact_ref": null,
+              "path": "docs/knowledge/r2025b/mil-sil-pil-execution.md",
+              "repository": "eariver/Research_MathWorks_Documents",
+              "section_or_locator": "## 2. MIL is workflow terminology; ## 4. SIL execution identity; ## 10. Back-to-back/equivalence testing is a comparison workflow",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        },
+        {
+          "action": "Persist/export the result set with the explicitly named sltest.testmanager.exportResults operation when an exported result artifact is required.",
+          "boundary": "Exported result .mldatx does not contain the corresponding test cases and does not preserve original links automatically.",
+          "evidence_level": "EXACT_API_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+            "exact_ref": null,
+            "path": "docs/knowledge/r2025b/test-design-execution-results.md",
+            "repository": "eariver/Research_MathWorks_Documents",
+            "section_or_locator": "## 3. Test-definition hierarchy; ## 9. Test execution is a lifecycle; ## 10. Definition objects and result objects; ## 11. mldatx artifact roles; ## 12. Result report and test specification report",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "MW-007"
+          ],
+          "operation_surface": "API",
+          "resulting_artifact_or_check": "Exported-results .mldatx artifact with result-set role recorded.",
+          "step_id": "TTR-007-S05"
+        },
+        {
+          "action": "Generate a result-derived report with the explicitly named sltest.testmanager.report operation when a result report is required.",
+          "boundary": "Result report != test specification report and neither is the underlying test/result authority.",
+          "evidence_level": "EXACT_API_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+            "exact_ref": null,
+            "path": "docs/knowledge/r2025b/test-design-execution-results.md",
+            "repository": "eariver/Research_MathWorks_Documents",
+            "section_or_locator": "## 3. Test-definition hierarchy; ## 9. Test execution is a lifecycle; ## 10. Definition objects and result objects; ## 11. mldatx artifact roles; ## 12. Result report and test specification report",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "MW-007"
+          ],
+          "operation_surface": "API",
+          "resulting_artifact_or_check": "Test result report derived from execution result objects.",
+          "step_id": "TTR-007-S06"
+        },
+        {
+          "action": "Record coverage and typed requirement traceability separately from the semantic test verdict.",
+          "boundary": "Verdict != coverage; model coverage != generated-code coverage; Verify link != result-backed verification status.",
+          "evidence_level": "WORKFLOW_OBJECT_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "5618cca212cd5d2a4ad5d8ac44a4a0d1edf311d7",
+            "exact_ref": null,
+            "path": "docs/knowledge/r2025b/coverage-evidence-lifecycle.md",
+            "repository": "eariver/Research_MathWorks_Documents",
+            "section_or_locator": "## 1. Executive finding; ## 3. Verdict and coverage are parallel results; ## 4. Model versus generated-code coverage; ## 9. Report identity",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "MW-008",
+            "MW-009",
+            "DS-010"
+          ],
+          "operation_surface": "REVIEW",
+          "resulting_artifact_or_check": "Coverage data/report, typed Implement/Verify links and verdict/result recorded as separate dimensions.",
+          "step_id": "TTR-007-S07",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "5618cca212cd5d2a4ad5d8ac44a4a0d1edf311d7",
+              "exact_ref": null,
+              "path": "docs/knowledge/r2025b/requirements-traceability-lifecycle.md",
+              "repository": "eariver/Research_MathWorks_Documents",
+              "section_or_locator": "## 3. Link and link-set identity; ## 4. Typed traceability semantics; ## 8. Verification status is a derived result-backed state",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            },
+            {
+              "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+              "exact_ref": null,
+              "path": "docs/knowledge/r2025b/test-design-execution-results.md",
+              "repository": "eariver/Research_MathWorks_Documents",
+              "section_or_locator": "## 3. Test-definition hierarchy; ## 9. Test execution is a lifecycle; ## 10. Definition objects and result objects; ## 11. mldatx artifact roles; ## 12. Result report and test specification report",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        },
+        {
+          "action": "Stop executable MIL baselining until requirement-linked test cases and applicable project calibration values are approved.",
+          "boundary": "The reviewed test lifecycle does not supply missing project requirements, test vectors or calibration values.",
+          "evidence_level": "BLOCKED_BY_PROJECT_INPUT",
+          "exact_reviewed_knowledge": {
+            "commit": "f58ac9e387dfb98c52117c53672b3c1b2c7d4ccf",
+            "exact_ref": "work/luna-management-ecu-swc-tool-procedure-compilation-20260902",
+            "path": "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/references/project/requirement-baseline.yaml",
+            "repository": "eariver/Automotive_EE_Engineering_Knowledge",
+            "section_or_locator": "status: DRAFT_PROJECT_BASELINE; requirement allocation/test linkage not accepted",
+            "source_role": "fixed project input/navigation record; not technical authority"
+          },
+          "locator_ids": [
+            "DS-PROJ-001",
+            "DS-PROJ-003"
+          ],
+          "operation_surface": "REVIEW",
+          "resulting_artifact_or_check": "Project-input blocker recorded.",
+          "step_id": "TTR-007-S08",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "f58ac9e387dfb98c52117c53672b3c1b2c7d4ccf",
+              "exact_ref": "work/luna-management-ecu-swc-tool-procedure-compilation-20260902",
+              "path": "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/references/project/calibration-input-baseline.yaml",
+              "repository": "eariver/Automotive_EE_Engineering_Knowledge",
+              "section_or_locator": "calibration_inputs remain TBD_PROJECT_DECISION",
+              "source_role": "fixed project input/navigation record; not technical authority"
+            },
+            {
+              "commit": "f58ac9e387dfb98c52117c53672b3c1b2c7d4ccf",
+              "exact_ref": "work/luna-management-ecu-swc-tool-procedure-compilation-20260902",
+              "path": "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/20260902_ManagementECU_Tool_Task_Reference_Matrix.yaml",
+              "repository": "eariver/Automotive_EE_Engineering_Knowledge",
+              "section_or_locator": "TTR-007 required_inputs and exit_conditions",
+              "source_role": "fixed project input/navigation record; not technical authority"
+            }
+          ]
+        },
+        {
+          "action": "Do not claim a complete version-specific harness/test-run GUI sequence, callback/API script or report configuration recipe beyond the explicitly named result APIs.",
+          "boundary": "No test menu path, callback order or configuration syntax is inferred.",
+          "evidence_level": "PROCEDURE_PARTIAL",
+          "exact_reviewed_knowledge": {
+            "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+            "exact_ref": null,
+            "path": "docs/knowledge/r2025b/test-design-execution-results.md",
+            "repository": "eariver/Research_MathWorks_Documents",
+            "section_or_locator": "## 3. Test-definition hierarchy; ## 9. Test execution is a lifecycle; ## 10. Definition objects and result objects; ## 11. mldatx artifact roles; ## 12. Result report and test specification report",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "MW-007",
+            "MW-009"
+          ],
+          "operation_surface": "GUI",
+          "resulting_artifact_or_check": "Remaining MIL procedure detail recorded.",
+          "step_id": "TTR-007-S09",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "5618cca212cd5d2a4ad5d8ac44a4a0d1edf311d7",
+              "exact_ref": null,
+              "path": "docs/knowledge/r2025b/coverage-evidence-lifecycle.md",
+              "repository": "eariver/Research_MathWorks_Documents",
+              "section_or_locator": "## 1. Executive finding; ## 3. Verdict and coverage are parallel results; ## 4. Model versus generated-code coverage; ## 9. Report identity",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        }
+      ],
+      "task_ids": [
+        "TTR-007"
+      ],
+      "tool": "Simulink simulation / MathWorks test environment",
+      "unsupported_or_unreviewed_details": [
+        "Exact harness construction, test-vector, callback, execution-control GUI/API sequence and project-specific test data."
+      ]
+    },
+    {
+      "exit_checks": [
+        "SIL execution and result are independently recorded against the generated implementation.",
+        "MIL/SIL comparison scope and configured criteria are explicit.",
+        "Coverage and verdict remain separate."
+      ],
+      "intent": "Execute generated implementation in SIL identity and record independent result/correspondence evidence.",
+      "next_task_ids": [
+        "TTR-010"
+      ],
+      "overall_maturity": "PROCEDURE_PARTIAL",
+      "prerequisites": [
+        "Generated implementation and corresponding code-generation provenance.",
+        "MIL test intent or corresponding SIL test definitions.",
+        "Host compiler/toolchain and approved SIL execution scope."
+      ],
+      "procedure_id": "PROC-TTR-009",
+      "read_first_locator_ids": [
+        "DS-009",
+        "DS-010",
+        "MW-006",
+        "MW-007",
+        "MW-008",
+        "MW-009"
+      ],
+      "release_scope": "Reviewed MathWorks R2025b; actual generated target, host toolchain and project test baseline remain inputs.",
+      "steps": [
+        {
+          "action": "Select the generated implementation and corresponding MIL test intent; stop if the generated artifact or test correspondence is not project-baselined.",
+          "boundary": "A reviewed SIL lifecycle does not create missing generated artifacts or project test cases.",
+          "evidence_level": "BLOCKED_BY_PROJECT_INPUT",
+          "exact_reviewed_knowledge": {
+            "commit": "f58ac9e387dfb98c52117c53672b3c1b2c7d4ccf",
+            "exact_ref": "work/luna-management-ecu-swc-tool-procedure-compilation-20260902",
+            "path": "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/references/project/tool-version-baseline.yaml",
+            "repository": "eariver/Automotive_EE_Engineering_Knowledge",
+            "section_or_locator": "actual_project_baseline.* remains TBD_PROJECT_DECISION",
+            "source_role": "fixed project input/navigation record; not technical authority"
+          },
+          "locator_ids": [
+            "DS-PROJ-002",
+            "DS-009",
+            "DS-010"
+          ],
+          "operation_surface": "REVIEW",
+          "resulting_artifact_or_check": "Generated-implementation/test-correspondence blocker recorded.",
+          "step_id": "TTR-009-S01",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "f58ac9e387dfb98c52117c53672b3c1b2c7d4ccf",
+              "exact_ref": "work/luna-management-ecu-swc-tool-procedure-compilation-20260902",
+              "path": "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/20260902_ManagementECU_Tool_Task_Reference_Matrix.yaml",
+              "repository": "eariver/Automotive_EE_Engineering_Knowledge",
+              "section_or_locator": "TTR-009 required_inputs and exit_conditions",
+              "source_role": "fixed project input/navigation record; not technical authority"
+            }
+          ]
+        },
+        {
+          "action": "Generate or reuse the selected SIL code target, compile generated source for the host and execute the host generated-code process in SIL identity.",
+          "boundary": "SIL is non-real-time host execution and does not validate target-compiled object code or VECU/HIL behavior.",
+          "evidence_level": "WORKFLOW_OBJECT_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+            "exact_ref": null,
+            "path": "docs/knowledge/r2025b/mil-sil-pil-execution.md",
+            "repository": "eariver/Research_MathWorks_Documents",
+            "section_or_locator": "## 2. MIL is workflow terminology; ## 4. SIL execution identity; ## 10. Back-to-back/equivalence testing is a comparison workflow",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "MW-006"
+          ],
+          "operation_surface": "TOOL_OBJECT",
+          "resulting_artifact_or_check": "Host SIL execution result for the selected scope.",
+          "step_id": "TTR-009-S02",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+              "exact_ref": null,
+              "path": "docs/knowledge/r2025b/code-generation-build-artifacts.md",
+              "repository": "eariver/Research_MathWorks_Documents",
+              "section_or_locator": "## 2. Generated code versus compiled binary; ## 4. Code-generation report identity; ## 6. AUTOSAR Classic generation and production-RTE boundary; ## 9. R2025b ASAP2/A2L generation lifecycle",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        },
+        {
+          "action": "Compare the selected SIL result with the corresponding model/MIL result using configured back-to-back signal criteria and tolerances.",
+          "boundary": "A passing comparison does not establish artifact identity, complete behavior equivalence, target timing or deployment correctness.",
+          "evidence_level": "WORKFLOW_OBJECT_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+            "exact_ref": null,
+            "path": "docs/knowledge/r2025b/mil-sil-pil-execution.md",
+            "repository": "eariver/Research_MathWorks_Documents",
+            "section_or_locator": "## 2. MIL is workflow terminology; ## 4. SIL execution identity; ## 10. Back-to-back/equivalence testing is a comparison workflow",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "MW-006",
+            "MW-007"
+          ],
+          "operation_surface": "REVIEW",
+          "resulting_artifact_or_check": "Back-to-back/equivalence comparison result scoped to exercised inputs/signals and criteria.",
+          "step_id": "TTR-009-S03",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+              "exact_ref": null,
+              "path": "docs/knowledge/r2025b/test-design-execution-results.md",
+              "repository": "eariver/Research_MathWorks_Documents",
+              "section_or_locator": "## 3. Test-definition hierarchy; ## 9. Test execution is a lifecycle; ## 10. Definition objects and result objects; ## 11. mldatx artifact roles; ## 12. Result report and test specification report",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        },
+        {
+          "action": "Persist/export the SIL result set with the explicitly named sltest.testmanager.exportResults operation when a result artifact is required.",
+          "boundary": "SIL result artifact != MIL result artifact and exported results do not automatically contain test definitions.",
+          "evidence_level": "EXACT_API_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+            "exact_ref": null,
+            "path": "docs/knowledge/r2025b/test-design-execution-results.md",
+            "repository": "eariver/Research_MathWorks_Documents",
+            "section_or_locator": "## 3. Test-definition hierarchy; ## 9. Test execution is a lifecycle; ## 10. Definition objects and result objects; ## 11. mldatx artifact roles; ## 12. Result report and test specification report",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "MW-007"
+          ],
+          "operation_surface": "API",
+          "resulting_artifact_or_check": "SIL result artifact with its result-set role and source execution recorded.",
+          "step_id": "TTR-009-S04"
+        },
+        {
+          "action": "Generate a result-derived SIL report with the explicitly named sltest.testmanager.report operation when reporting is required.",
+          "boundary": "Report != test specification and does not turn SIL into VECU/HIL/physical-SUT evidence.",
+          "evidence_level": "EXACT_API_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+            "exact_ref": null,
+            "path": "docs/knowledge/r2025b/test-design-execution-results.md",
+            "repository": "eariver/Research_MathWorks_Documents",
+            "section_or_locator": "## 3. Test-definition hierarchy; ## 9. Test execution is a lifecycle; ## 10. Definition objects and result objects; ## 11. mldatx artifact roles; ## 12. Result report and test specification report",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "MW-007"
+          ],
+          "operation_surface": "API",
+          "resulting_artifact_or_check": "SIL result report linked to the SIL result objects.",
+          "step_id": "TTR-009-S05"
+        },
+        {
+          "action": "Record SIL verdict, coverage and MIL/SIL correspondence as distinct result dimensions.",
+          "boundary": "Verdict != coverage; SIL != MIL and neither is later VECU/HIL/physical-SUT evidence.",
+          "evidence_level": "WORKFLOW_OBJECT_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "5618cca212cd5d2a4ad5d8ac44a4a0d1edf311d7",
+            "exact_ref": null,
+            "path": "docs/knowledge/r2025b/coverage-evidence-lifecycle.md",
+            "repository": "eariver/Research_MathWorks_Documents",
+            "section_or_locator": "## 1. Executive finding; ## 3. Verdict and coverage are parallel results; ## 4. Model versus generated-code coverage; ## 9. Report identity",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "MW-006",
+            "MW-009",
+            "MW-008"
+          ],
+          "operation_surface": "REVIEW",
+          "resulting_artifact_or_check": "Independent SIL result, coverage evidence and correspondence record.",
+          "step_id": "TTR-009-S06",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+              "exact_ref": null,
+              "path": "docs/knowledge/r2025b/mil-sil-pil-execution.md",
+              "repository": "eariver/Research_MathWorks_Documents",
+              "section_or_locator": "## 2. MIL is workflow terminology; ## 4. SIL execution identity; ## 10. Back-to-back/equivalence testing is a comparison workflow",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            },
+            {
+              "commit": "5618cca212cd5d2a4ad5d8ac44a4a0d1edf311d7",
+              "exact_ref": null,
+              "path": "docs/knowledge/r2025b/requirements-traceability-lifecycle.md",
+              "repository": "eariver/Research_MathWorks_Documents",
+              "section_or_locator": "## 3. Link and link-set identity; ## 4. Typed traceability semantics; ## 8. Verification status is a derived result-backed state",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        },
+        {
+          "action": "Stop before an exact SIL mode-selection GUI, build/reuse trigger, compiler/toolchain setup or host-process control sequence because those details are not fully reviewed here.",
+          "boundary": "No exact click/API/command sequence is inferred from the SIL identity description.",
+          "evidence_level": "PROCEDURE_PARTIAL",
+          "exact_reviewed_knowledge": {
+            "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+            "exact_ref": null,
+            "path": "docs/knowledge/r2025b/mil-sil-pil-execution.md",
+            "repository": "eariver/Research_MathWorks_Documents",
+            "section_or_locator": "## 2. MIL is workflow terminology; ## 4. SIL execution identity; ## 10. Back-to-back/equivalence testing is a comparison workflow",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "MW-006",
+            "MW-007"
+          ],
+          "operation_surface": "GUI",
+          "resulting_artifact_or_check": "Unreviewed SIL procedure detail recorded.",
+          "step_id": "TTR-009-S07",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+              "exact_ref": null,
+              "path": "docs/knowledge/r2025b/test-design-execution-results.md",
+              "repository": "eariver/Research_MathWorks_Documents",
+              "section_or_locator": "## 3. Test-definition hierarchy; ## 9. Test execution is a lifecycle; ## 10. Definition objects and result objects; ## 11. mldatx artifact roles; ## 12. Result report and test specification report",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        }
+      ],
+      "task_ids": [
+        "TTR-009"
+      ],
+      "tool": "MathWorks SIL execution workflow",
+      "unsupported_or_unreviewed_details": [
+        "Exact SIL mode GUI/API sequence, compiler/toolchain configuration, target reuse/build trigger and project test assets.",
+        "PIL, VECU, HIL or physical-SUT procedure."
+      ]
+    }
+  ],
+  "excluded_scope": [
+    "DaVinci Configurator / MICROSAR procedure",
+    "vVIRTUALtarget",
+    "CANoe",
+    "vTESTstudio",
+    "CANape/XCP runtime",
+    "HIL",
+    "physical-SUT procedure"
+  ],
+  "completion_checks": {
+    "every_step_has_allowed_evidence_level": true,
+    "every_exact_gui_api_step_has_exact_pinned_tuple": true,
+    "no_gui_api_detail_inferred": true,
+    "only_scope_ttr_002_to_010": true,
+    "external_source_access_zero": true
+  }
+}

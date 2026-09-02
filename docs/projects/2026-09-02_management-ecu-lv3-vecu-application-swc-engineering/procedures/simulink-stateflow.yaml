@@ -1,0 +1,383 @@
+{
+  "schema_version": "management-ecu-swc-tool-procedure/v1",
+  "artifact": "Management ECU SWC tool procedure family — Simulink / Stateflow",
+  "date": "2026-09-02",
+  "status": "COMPILED_AT_SUPPORTED_EVIDENCE_LEVEL",
+  "repository": "eariver/Automotive_EE_Engineering_Knowledge",
+  "branch": "work/luna-management-ecu-swc-tool-procedure-compilation-20260902",
+  "starting_sha": "f58ac9e387dfb98c52117c53672b3c1b2c7d4ccf",
+  "starting_tree_sha": "7e188e645d3b3c08920385340a5b8db0ccdb1fbd",
+  "source_policy": {
+    "new_technical_research": false,
+    "external_source_access_count": 0,
+    "upstream_repositories_read_only": true,
+    "exact_pinned_reviewed_knowledge_only": true,
+    "current_upstream_head_not_used": true,
+    "raw_help_or_raw_standards_not_used": true,
+    "google_drive_not_used": true,
+    "observations_prompts_plans_worklogs_not_technical_authority": true
+  },
+  "allowed_evidence_levels": [
+    "EXACT_GUI_PATH_REVIEWED",
+    "EXACT_API_OPERATION_REVIEWED",
+    "WORKFLOW_OBJECT_OPERATION_REVIEWED",
+    "PROCEDURE_PARTIAL",
+    "BLOCKED_BY_PROJECT_INPUT",
+    "UNRESOLVED_AUTHORITY"
+  ],
+  "tool_family": "Simulink / Stateflow",
+  "procedure_file": "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/procedures/simulink-stateflow.yaml",
+  "fixed_technical_invariants": {
+    "nodes": 366,
+    "edges": 908,
+    "canonical_workflows": 34,
+    "engineering_concerns": 31,
+    "proposition_records": 101
+  },
+  "procedures": [
+    {
+      "exit_checks": [
+        "Behavior is implemented against the existing contract and accepted project inputs.",
+        "State/event/fault boundaries are reviewed before mapping and MIL.",
+        "No diagnostic stack or project mechanism is reimplemented from generic authority."
+      ],
+      "intent": "Implement accepted Application SWC algorithmic and state/event behavior in Simulink and Stateflow without reauthoring the contract.",
+      "next_task_ids": [
+        "TTR-006",
+        "TTR-007"
+      ],
+      "overall_maturity": "PROCEDURE_PARTIAL",
+      "prerequisites": [
+        "Imported AUTOSAR component model scaffold.",
+        "Accepted project behavior requirements and ownership decisions.",
+        "Applicable project calibration values and explicit fault/diagnostic boundaries."
+      ],
+      "procedure_id": "PROC-TTR-005",
+      "read_first_locator_ids": [
+        "DS-PROJ-003",
+        "DS-PROJ-004",
+        "DS-PROJ-005",
+        "DS-006",
+        "DS-007",
+        "MW-005",
+        "MW-012",
+        "MW-015",
+        "AS-004",
+        "AS-005",
+        "AS-006",
+        "AS-007"
+      ],
+      "release_scope": "Reviewed MathWorks baseline: R2025b; exact project behavior, calibration and tool baseline remain project inputs.",
+      "steps": [
+        {
+          "action": "Select the imported component scaffold, accepted behavior allocation and applicable calibration/input baseline; stop if these project inputs are not approved.",
+          "boundary": "Vendor and AUTOSAR authority do not supply project control logic, signal identities, timing, thresholds or ownership decisions.",
+          "evidence_level": "BLOCKED_BY_PROJECT_INPUT",
+          "exact_reviewed_knowledge": {
+            "commit": "f58ac9e387dfb98c52117c53672b3c1b2c7d4ccf",
+            "exact_ref": "work/luna-management-ecu-swc-tool-procedure-compilation-20260902",
+            "path": "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/references/project/requirement-baseline.yaml",
+            "repository": "eariver/Automotive_EE_Engineering_Knowledge",
+            "section_or_locator": "status: DRAFT_PROJECT_BASELINE; requirement allocation and project-specific behavior are not fully accepted",
+            "source_role": "fixed project input/navigation record; not technical authority"
+          },
+          "locator_ids": [
+            "DS-PROJ-003",
+            "DS-PROJ-004",
+            "DS-PROJ-005"
+          ],
+          "operation_surface": "REVIEW",
+          "resulting_artifact_or_check": "Project behavior/calibration blocker recorded.",
+          "step_id": "TTR-005-S01",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "f58ac9e387dfb98c52117c53672b3c1b2c7d4ccf",
+              "exact_ref": "work/luna-management-ecu-swc-tool-procedure-compilation-20260902",
+              "path": "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/references/project/calibration-input-baseline.yaml",
+              "repository": "eariver/Automotive_EE_Engineering_Knowledge",
+              "section_or_locator": "all calibration_inputs remain TBD_PROJECT_DECISION",
+              "source_role": "fixed project input/navigation record; not technical authority"
+            },
+            {
+              "commit": "f58ac9e387dfb98c52117c53672b3c1b2c7d4ccf",
+              "exact_ref": "work/luna-management-ecu-swc-tool-procedure-compilation-20260902",
+              "path": "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/20260902_ManagementECU_Tool_Task_Reference_Matrix.yaml",
+              "repository": "eariver/Automotive_EE_Engineering_Knowledge",
+              "section_or_locator": "TTR-005 required_inputs and do_not_do",
+              "source_role": "fixed project input/navigation record; not technical authority"
+            }
+          ]
+        },
+        {
+          "action": "Implement accepted continuous/discrete algorithmic logic in the Simulink behavior model using the already-established component interface.",
+          "boundary": "Behavior model != AUTOSAR contract and != generated implementation; no specific project algorithm is invented here.",
+          "evidence_level": "WORKFLOW_OBJECT_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "6edc12aebb719f77ccd69ff19978c3918f98c66e",
+            "exact_ref": null,
+            "path": "docs/knowledge/r2025b/stateflow-decision-logic-semantics.md",
+            "repository": "eariver/Research_MathWorks_Documents",
+            "section_or_locator": "## 2. Chart/state/transition semantics are executable behavior; ## 3. Exclusive and parallel state decomposition differ materially; ## 4. Transition/event lifecycle is not generic signal flow; ## 7. Source behavior is not generated implementation",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "MW-005",
+            "DS-PROJ-004"
+          ],
+          "operation_surface": "TOOL_OBJECT",
+          "resulting_artifact_or_check": "Simulink behavior-model revision with the contract reference retained.",
+          "step_id": "TTR-005-S02",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+              "exact_ref": null,
+              "path": "docs/knowledge/r2025b/model-architecture-ownership.md",
+              "repository": "eariver/Research_MathWorks_Documents",
+              "section_or_locator": "## 3. AUTOSAR component model identity; ## 4. AUTOSAR architecture versus behavior implementation; ## 5. ARXML import is representation/transformation, not identity",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        },
+        {
+          "action": "Use Stateflow chart/state/transition/event objects for explicit sequential or event-driven behavior where the accepted requirement calls for them.",
+          "boundary": "Exclusive/parallel states and event/transition semantics are behaviorally material; Stateflow source != generated C/C++.",
+          "evidence_level": "WORKFLOW_OBJECT_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "6edc12aebb719f77ccd69ff19978c3918f98c66e",
+            "exact_ref": null,
+            "path": "docs/knowledge/r2025b/stateflow-decision-logic-semantics.md",
+            "repository": "eariver/Research_MathWorks_Documents",
+            "section_or_locator": "## 2. Chart/state/transition semantics are executable behavior; ## 3. Exclusive and parallel state decomposition differ materially; ## 4. Transition/event lifecycle is not generic signal flow; ## 7. Source behavior is not generated implementation",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "MW-005",
+            "AS-004"
+          ],
+          "operation_surface": "TOOL_OBJECT",
+          "resulting_artifact_or_check": "Stateflow source behavior model and state-domain review record.",
+          "step_id": "TTR-005-S03",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "938ac4af696d263019ebdc61106a444447e15c4d",
+              "exact_ref": "authority/autosar-cp-4.4.0-current-depth-20260830",
+              "path": "docs/knowledge/concepts/swc-mode-model-rte-machine-boundary.json",
+              "repository": "eariver/Research_AUTOSAR_CP_Documents",
+              "section_or_locator": "Software Component Template: ModeSwitchInterface / ModeDeclarationGroup / mode events and dependencies, p.820; Requirements on Runtime Environment: Mode switch event, notification and interface mapping, p.75",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        },
+        {
+          "action": "For diagnostic/fault behavior, model only the accepted application-side behavior and use the reviewed diagnostic-event/service or fault-injection surfaces for simulation evidence where applicable.",
+          "boundary": "DiagMgr != DCM != DEM; fault injection/configuration != runtime state != safety conclusion.",
+          "evidence_level": "WORKFLOW_OBJECT_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+            "exact_ref": null,
+            "path": "docs/knowledge/r2025b/diagnostics-coverage.md",
+            "repository": "eariver/Research_MathWorks_Documents",
+            "section_or_locator": "## 5. AUTOSAR diagnostic BSW modeling is source-explicit; ## 6. UDS semantics are present at the diagnostic-event status level; ## 11. Diagnostic behavior testing is positive",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "MW-012",
+            "MW-015",
+            "AS-005",
+            "AS-006",
+            "AS-007",
+            "DS-006"
+          ],
+          "operation_surface": "TOOL_OBJECT",
+          "resulting_artifact_or_check": "Behavior/fault-injection configuration or diagnostic-service simulation record.",
+          "step_id": "TTR-005-S04",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "6edc12aebb719f77ccd69ff19978c3918f98c66e",
+              "exact_ref": null,
+              "path": "docs/knowledge/r2025b/fault-safety-analysis-lifecycle.md",
+              "repository": "eariver/Research_MathWorks_Documents",
+              "section_or_locator": "## 2. Fault definition is not nominal design behavior; ## 3. Simulink Test fault sets are test selection/configuration; ## 4. Fault simulation evidence is not a safety-analysis conclusion",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            },
+            {
+              "commit": "938ac4af696d263019ebdc61106a444447e15c4d",
+              "exact_ref": "authority/autosar-cp-4.4.0-current-depth-20260830",
+              "path": "docs/knowledge/concepts/dcm-diagnostic-service-ownership.json",
+              "repository": "eariver/Research_AUTOSAR_CP_Documents",
+              "section_or_locator": "Specification of Diagnostic Communication Manager: 5 Dependencies to other modules, p.30; 7.2.1 Submodules within the Dcm module, p.46; 7.3.4.2 request reception / 7.3.4.4 response transmission, p.52",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            },
+            {
+              "commit": "938ac4af696d263019ebdc61106a444447e15c4d",
+              "exact_ref": "authority/autosar-cp-4.4.0-current-depth-20260830",
+              "path": "docs/knowledge/concepts/dem-event-dtc-status-processing-boundary.json",
+              "repository": "eariver/Research_AUTOSAR_CP_Documents",
+              "section_or_locator": "Specification of Diagnostic Event Manager: 7.4 Event reporting, p.75; 7.5 Event status processing, p.77",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            },
+            {
+              "commit": "938ac4af696d263019ebdc61106a444447e15c4d",
+              "exact_ref": "authority/autosar-cp-4.4.0-current-depth-20260830",
+              "path": "docs/knowledge/concepts/dem-event-fault-memory-ownership.json",
+              "repository": "eariver/Research_AUTOSAR_CP_Documents",
+              "section_or_locator": "Specification of Diagnostic Event Manager: 5 Dependencies to other modules, p.29; 7.7.1 Event status management, p.75; 7.7.2 Event memory management, p.86; 7.11.2.2/7.11.2.3, pp.187–190",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        },
+        {
+          "action": "Keep project counter/checksum, node/bus latch, timer and arbitration rules in the project-design boundary; do not translate them into AUTOSAR E2E, DCM or DEM semantics.",
+          "boundary": "Project counter/checksum != AUTOSAR E2E; native CAN BUS_OFF != project BUS_FAILED_LATCHED; DCM/DEM ownership remains separate.",
+          "evidence_level": "BLOCKED_BY_PROJECT_INPUT",
+          "exact_reviewed_knowledge": {
+            "commit": "f58ac9e387dfb98c52117c53672b3c1b2c7d4ccf",
+            "exact_ref": "work/luna-management-ecu-swc-tool-procedure-compilation-20260902",
+            "path": "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/references/project/requirement-baseline.yaml",
+            "repository": "eariver/Automotive_EE_Engineering_Knowledge",
+            "section_or_locator": "MECU-SWC-REQ-004..013; project-specific design and architecture boundaries",
+            "source_role": "fixed project input/navigation record; not technical authority"
+          },
+          "locator_ids": [
+            "DS-PROJ-004",
+            "DS-PROJ-005",
+            "AS-005",
+            "AS-006",
+            "AS-007"
+          ],
+          "operation_surface": "REVIEW",
+          "resulting_artifact_or_check": "Boundary checklist and missing project-value/design decisions remain explicit.",
+          "step_id": "TTR-005-S05",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "938ac4af696d263019ebdc61106a444447e15c4d",
+              "exact_ref": "authority/autosar-cp-4.4.0-current-depth-20260830",
+              "path": "docs/knowledge/concepts/dcm-diagnostic-service-ownership.json",
+              "repository": "eariver/Research_AUTOSAR_CP_Documents",
+              "section_or_locator": "Specification of Diagnostic Communication Manager: 5 Dependencies to other modules, p.30; 7.2.1 Submodules within the Dcm module, p.46; 7.3.4.2 request reception / 7.3.4.4 response transmission, p.52",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            },
+            {
+              "commit": "938ac4af696d263019ebdc61106a444447e15c4d",
+              "exact_ref": "authority/autosar-cp-4.4.0-current-depth-20260830",
+              "path": "docs/knowledge/concepts/dem-event-dtc-status-processing-boundary.json",
+              "repository": "eariver/Research_AUTOSAR_CP_Documents",
+              "section_or_locator": "Specification of Diagnostic Event Manager: 7.4 Event reporting, p.75; 7.5 Event status processing, p.77",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            },
+            {
+              "commit": "938ac4af696d263019ebdc61106a444447e15c4d",
+              "exact_ref": "authority/autosar-cp-4.4.0-current-depth-20260830",
+              "path": "docs/knowledge/concepts/dem-event-fault-memory-ownership.json",
+              "repository": "eariver/Research_AUTOSAR_CP_Documents",
+              "section_or_locator": "Specification of Diagnostic Event Manager: 5 Dependencies to other modules, p.29; 7.7.1 Event status management, p.75; 7.7.2 Event memory management, p.86; 7.11.2.2/7.11.2.3, pp.187–190",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        },
+        {
+          "action": "Inspect state domains, event/transition behavior, diagnostic boundaries and source-model revision before moving to mapping or MIL.",
+          "boundary": "Inspection does not prove generated-code behavior, MIL/SIL results or production RTE integration.",
+          "evidence_level": "WORKFLOW_OBJECT_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "6edc12aebb719f77ccd69ff19978c3918f98c66e",
+            "exact_ref": null,
+            "path": "docs/knowledge/r2025b/stateflow-decision-logic-semantics.md",
+            "repository": "eariver/Research_MathWorks_Documents",
+            "section_or_locator": "## 2. Chart/state/transition semantics are executable behavior; ## 3. Exclusive and parallel state decomposition differ materially; ## 4. Transition/event lifecycle is not generic signal flow; ## 7. Source behavior is not generated implementation",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "MW-005",
+            "MW-012",
+            "AS-004"
+          ],
+          "operation_surface": "REVIEW",
+          "resulting_artifact_or_check": "Behavior review record with state/event and ownership boundaries.",
+          "step_id": "TTR-005-S06",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+              "exact_ref": null,
+              "path": "docs/knowledge/r2025b/diagnostics-coverage.md",
+              "repository": "eariver/Research_MathWorks_Documents",
+              "section_or_locator": "## 5. AUTOSAR diagnostic BSW modeling is source-explicit; ## 6. UDS semantics are present at the diagnostic-event status level; ## 11. Diagnostic behavior testing is positive",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            },
+            {
+              "commit": "938ac4af696d263019ebdc61106a444447e15c4d",
+              "exact_ref": "authority/autosar-cp-4.4.0-current-depth-20260830",
+              "path": "docs/knowledge/concepts/swc-mode-model-rte-machine-boundary.json",
+              "repository": "eariver/Research_AUTOSAR_CP_Documents",
+              "section_or_locator": "Software Component Template: ModeSwitchInterface / ModeDeclarationGroup / mode events and dependencies, p.820; Requirements on Runtime Environment: Mode switch event, notification and interface mapping, p.75",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        },
+        {
+          "action": "Stop before an exact chart/block construction sequence, GUI route or API script because the frozen sources establish behavior semantics and boundaries, not a complete version-specific work instruction.",
+          "boundary": "No chart layout, block parameter, callback, menu path or command is inferred.",
+          "evidence_level": "PROCEDURE_PARTIAL",
+          "exact_reviewed_knowledge": {
+            "commit": "6edc12aebb719f77ccd69ff19978c3918f98c66e",
+            "exact_ref": null,
+            "path": "docs/knowledge/r2025b/stateflow-decision-logic-semantics.md",
+            "repository": "eariver/Research_MathWorks_Documents",
+            "section_or_locator": "## 2. Chart/state/transition semantics are executable behavior; ## 3. Exclusive and parallel state decomposition differ materially; ## 4. Transition/event lifecycle is not generic signal flow; ## 7. Source behavior is not generated implementation",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "MW-005",
+            "MW-012",
+            "MW-015"
+          ],
+          "operation_surface": "GUI",
+          "resulting_artifact_or_check": "Unreviewed behavior-construction detail recorded.",
+          "step_id": "TTR-005-S07",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+              "exact_ref": null,
+              "path": "docs/knowledge/r2025b/diagnostics-coverage.md",
+              "repository": "eariver/Research_MathWorks_Documents",
+              "section_or_locator": "## 5. AUTOSAR diagnostic BSW modeling is source-explicit; ## 6. UDS semantics are present at the diagnostic-event status level; ## 11. Diagnostic behavior testing is positive",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            },
+            {
+              "commit": "6edc12aebb719f77ccd69ff19978c3918f98c66e",
+              "exact_ref": null,
+              "path": "docs/knowledge/r2025b/fault-safety-analysis-lifecycle.md",
+              "repository": "eariver/Research_MathWorks_Documents",
+              "section_or_locator": "## 2. Fault definition is not nominal design behavior; ## 3. Simulink Test fault sets are test selection/configuration; ## 4. Fault simulation evidence is not a safety-analysis conclusion",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        }
+      ],
+      "task_ids": [
+        "TTR-005"
+      ],
+      "tool": "Simulink / Stateflow",
+      "unsupported_or_unreviewed_details": [
+        "Exact Simulink/Stateflow menu sequence, block/chart property values, callback/API script and project algorithm details.",
+        "Generated code, MIL/SIL verdict, VECU/HIL or physical-SUT evidence."
+      ]
+    }
+  ],
+  "excluded_scope": [
+    "DaVinci Configurator / MICROSAR procedure",
+    "vVIRTUALtarget",
+    "CANoe",
+    "vTESTstudio",
+    "CANape/XCP runtime",
+    "HIL",
+    "physical-SUT procedure"
+  ],
+  "completion_checks": {
+    "every_step_has_allowed_evidence_level": true,
+    "every_exact_gui_api_step_has_exact_pinned_tuple": true,
+    "no_gui_api_detail_inferred": true,
+    "only_scope_ttr_002_to_010": true,
+    "external_source_access_zero": true
+  }
+}

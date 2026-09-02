@@ -1,0 +1,713 @@
+{
+  "schema_version": "management-ecu-swc-tool-procedure/v1",
+  "artifact": "Management ECU SWC tool procedure family — DaVinci Developer Classic",
+  "date": "2026-09-02",
+  "status": "COMPILED_AT_SUPPORTED_EVIDENCE_LEVEL",
+  "repository": "eariver/Automotive_EE_Engineering_Knowledge",
+  "branch": "work/luna-management-ecu-swc-tool-procedure-compilation-20260902",
+  "starting_sha": "f58ac9e387dfb98c52117c53672b3c1b2c7d4ccf",
+  "starting_tree_sha": "7e188e645d3b3c08920385340a5b8db0ccdb1fbd",
+  "source_policy": {
+    "new_technical_research": false,
+    "external_source_access_count": 0,
+    "upstream_repositories_read_only": true,
+    "exact_pinned_reviewed_knowledge_only": true,
+    "current_upstream_head_not_used": true,
+    "raw_help_or_raw_standards_not_used": true,
+    "google_drive_not_used": true,
+    "observations_prompts_plans_worklogs_not_technical_authority": true
+  },
+  "allowed_evidence_levels": [
+    "EXACT_GUI_PATH_REVIEWED",
+    "EXACT_API_OPERATION_REVIEWED",
+    "WORKFLOW_OBJECT_OPERATION_REVIEWED",
+    "PROCEDURE_PARTIAL",
+    "BLOCKED_BY_PROJECT_INPUT",
+    "UNRESOLVED_AUTHORITY"
+  ],
+  "tool_family": "DaVinci Developer Classic",
+  "procedure_file": "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/procedures/davinci-developer-classic.yaml",
+  "fixed_technical_invariants": {
+    "nodes": 366,
+    "edges": 908,
+    "canonical_workflows": 34,
+    "engineering_concerns": 31,
+    "proposition_records": 101
+  },
+  "procedures": [
+    {
+      "exit_checks": [
+        "SWC identity, ports/interfaces, datatypes, runnables/events and RTE-access-facing design objects are reviewable at object level.",
+        "Accepted project allocation and actual release/schema baseline are explicitly available before execution."
+      ],
+      "intent": "Define the Application SWC structure, ports/interfaces, runnable/event contract and RTE-access-facing design objects in DaVinci Developer Classic.",
+      "next_task_ids": [
+        "TTR-003"
+      ],
+      "overall_maturity": "PROCEDURE_PARTIAL",
+      "prerequisites": [
+        "Accepted SWC requirement allocation and ownership decisions.",
+        "Actual DaVinci Developer/schema baseline, currently TBD in the fixed project baseline.",
+        "Shared datatype and interface decisions where applicable."
+      ],
+      "procedure_id": "PROC-TTR-002",
+      "read_first_locator_ids": [
+        "DS-001",
+        "V-001",
+        "V-004",
+        "MW-001",
+        "MW-003",
+        "AS-001",
+        "AS-003"
+      ],
+      "release_scope": "Reviewed Vector baseline: 4.18 SP3 family; actual project release and schema remain project inputs.",
+      "steps": [
+        {
+          "action": "Open/select the DaVinci Developer workspace/project model and preserve the workspace as the unit of persistence.",
+          "boundary": "The workspace/project model is not production RTE/BSW/OS configuration and is not VECU runtime.",
+          "evidence_level": "WORKFLOW_OBJECT_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "7a6821cd3f2ad677ca7069c9b114355e98f16842",
+            "exact_ref": null,
+            "path": "docs/knowledge/davinci-developer-classic.md",
+            "repository": "eariver/Research_Vector_Documents",
+            "section_or_locator": "## Reviewed role; ## Workspace and persistence; ## Software-design model",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "V-001",
+            "DS-001"
+          ],
+          "operation_surface": "TOOL_OBJECT",
+          "resulting_artifact_or_check": "Selected .dcf-centered workspace/project context and a traceable workspace revision.",
+          "step_id": "TTR-002-S01",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+              "exact_ref": null,
+              "path": "docs/knowledge/r2025b/model-architecture-ownership.md",
+              "repository": "eariver/Research_MathWorks_Documents",
+              "section_or_locator": "## 3. AUTOSAR component model identity; ## 4. AUTOSAR architecture versus behavior implementation; ## 5. ARXML import is representation/transformation, not identity",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        },
+        {
+          "action": "Create or confirm the Atomic SWC/component type that owns the accepted application responsibility.",
+          "boundary": "Atomic and Composition component types remain distinct; this step does not create behavior-model or generated-code identity.",
+          "evidence_level": "WORKFLOW_OBJECT_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "7a6821cd3f2ad677ca7069c9b114355e98f16842",
+            "exact_ref": null,
+            "path": "docs/knowledge/davinci-developer-classic.md",
+            "repository": "eariver/Research_Vector_Documents",
+            "section_or_locator": "## Reviewed role; ## Workspace and persistence; ## Software-design model",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "V-001",
+            "DS-001"
+          ],
+          "operation_surface": "TOOL_OBJECT",
+          "resulting_artifact_or_check": "DaVinci software-design model contains the selected SWC/component identity.",
+          "step_id": "TTR-002-S02",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "938ac4af696d263019ebdc61106a444447e15c4d",
+              "exact_ref": "authority/autosar-cp-4.4.0-current-depth-20260830",
+              "path": "docs/knowledge/concepts/swc-port-interface-connector-model-boundary.json",
+              "repository": "eariver/Research_AUTOSAR_CP_Documents",
+              "section_or_locator": "Software Component Template: Component types, PortPrototypes, PortInterfaces, compositions and connectors, p.80; Requirements on Runtime Environment: SW-C API mapping and RTE generation requirements, p.20",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        },
+        {
+          "action": "Define required/provided ports and the applicable PortInterfaces for the accepted contract.",
+          "boundary": "A port/interface/connector is a design-time interaction contract, not a generated API, buffer or transport implementation.",
+          "evidence_level": "WORKFLOW_OBJECT_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "7a6821cd3f2ad677ca7069c9b114355e98f16842",
+            "exact_ref": null,
+            "path": "docs/knowledge/davinci-developer-classic.md",
+            "repository": "eariver/Research_Vector_Documents",
+            "section_or_locator": "## Reviewed role; ## Workspace and persistence; ## Software-design model",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "V-001",
+            "AS-001",
+            "DS-001"
+          ],
+          "operation_surface": "TOOL_OBJECT",
+          "resulting_artifact_or_check": "PortPrototype and PortInterface objects are present for later contract export.",
+          "step_id": "TTR-002-S03",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "938ac4af696d263019ebdc61106a444447e15c4d",
+              "exact_ref": "authority/autosar-cp-4.4.0-current-depth-20260830",
+              "path": "docs/knowledge/concepts/swc-port-interface-connector-model-boundary.json",
+              "repository": "eariver/Research_AUTOSAR_CP_Documents",
+              "section_or_locator": "Software Component Template: Component types, PortPrototypes, PortInterfaces, compositions and connectors, p.80; Requirements on Runtime Environment: SW-C API mapping and RTE generation requirements, p.20",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        },
+        {
+          "action": "Define RunnableEntity identities and activation/event/access-point relationships required by the accepted SWC contract.",
+          "boundary": "RunnableEntity is not an OS Task and RTEEvent is not an OS Event object; project periods and task mapping are not invented here.",
+          "evidence_level": "WORKFLOW_OBJECT_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "7a6821cd3f2ad677ca7069c9b114355e98f16842",
+            "exact_ref": null,
+            "path": "docs/knowledge/davinci-developer-classic.md",
+            "repository": "eariver/Research_Vector_Documents",
+            "section_or_locator": "## Reviewed role; ## Workspace and persistence; ## Software-design model",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "V-001",
+            "AS-003",
+            "DS-001"
+          ],
+          "operation_surface": "TOOL_OBJECT",
+          "resulting_artifact_or_check": "RunnableEntity/event/access-point object set is reviewable before export.",
+          "step_id": "TTR-002-S04",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "938ac4af696d263019ebdc61106a444447e15c4d",
+              "exact_ref": "authority/autosar-cp-4.4.0-current-depth-20260830",
+              "path": "docs/knowledge/concepts/runnable-rteevent-os-activation-boundary.json",
+              "repository": "eariver/Research_AUTOSAR_CP_Documents",
+              "section_or_locator": "Software Component Template: SwcInternalBehavior / RunnableEntity / RTEEvent, p.720; Requirements on Runtime Environment: Runnable categories, activation and task mapping, p.60",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        },
+        {
+          "action": "Define or reference application/implementation datatype relations and explicit mapping-set objects under project governance.",
+          "boundary": "Datatype mapping is not behavior implementation and does not prove generated RTE behavior or production integration.",
+          "evidence_level": "WORKFLOW_OBJECT_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "7a6821cd3f2ad677ca7069c9b114355e98f16842",
+            "exact_ref": null,
+            "path": "docs/knowledge/davinci-developer-classic.md",
+            "repository": "eariver/Research_Vector_Documents",
+            "section_or_locator": "## Reviewed role; ## Workspace and persistence; ## Software-design model",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "V-001",
+            "MW-003",
+            "AS-001"
+          ],
+          "operation_surface": "TOOL_OBJECT",
+          "resulting_artifact_or_check": "Datatype and mapping-set state is recorded in the DaVinci software-design model.",
+          "step_id": "TTR-002-S05",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+              "exact_ref": null,
+              "path": "docs/knowledge/r2025b/model-architecture-ownership.md",
+              "repository": "eariver/Research_MathWorks_Documents",
+              "section_or_locator": "## 4. AUTOSAR architecture versus behavior implementation; ## 7. Canonical R2025b ownership map",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            },
+            {
+              "commit": "938ac4af696d263019ebdc61106a444447e15c4d",
+              "exact_ref": "authority/autosar-cp-4.4.0-current-depth-20260830",
+              "path": "docs/knowledge/concepts/swc-port-interface-connector-model-boundary.json",
+              "repository": "eariver/Research_AUTOSAR_CP_Documents",
+              "section_or_locator": "Software Component Template: Component types, PortPrototypes, PortInterfaces, compositions and connectors, p.80; Requirements on Runtime Environment: SW-C API mapping and RTE generation requirements, p.20",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        },
+        {
+          "action": "Record RTE access-facing, PIM and calibration-interface identities where required, while keeping production RTE/BSW/OS configuration outside this task.",
+          "boundary": "PIM/calibration identity and RTE access contract are not production RTE, BSW or OS configuration.",
+          "evidence_level": "WORKFLOW_OBJECT_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "7a6821cd3f2ad677ca7069c9b114355e98f16842",
+            "exact_ref": null,
+            "path": "docs/knowledge/davinci-developer-classic.md",
+            "repository": "eariver/Research_Vector_Documents",
+            "section_or_locator": "## Reviewed role; ## Workspace and persistence; ## Software-design model",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "V-001",
+            "DS-003",
+            "AS-003"
+          ],
+          "operation_surface": "REVIEW",
+          "resulting_artifact_or_check": "Contract review checklist distinguishes design objects from later generated/runtime realization.",
+          "step_id": "TTR-002-S06",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "938ac4af696d263019ebdc61106a444447e15c4d",
+              "exact_ref": "authority/autosar-cp-4.4.0-current-depth-20260830",
+              "path": "docs/knowledge/concepts/runnable-rteevent-os-activation-boundary.json",
+              "repository": "eariver/Research_AUTOSAR_CP_Documents",
+              "section_or_locator": "Software Component Template: SwcInternalBehavior / RunnableEntity / RTEEvent, p.720; Requirements on Runtime Environment: Runnable categories, activation and task mapping, p.60",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        },
+        {
+          "action": "Apply the accepted requirement allocation and actual tool/schema baseline; stop the executable project procedure until those project inputs are approved.",
+          "boundary": "Reviewed object semantics do not replace accepted project requirements, actual release selection or schema compatibility.",
+          "evidence_level": "BLOCKED_BY_PROJECT_INPUT",
+          "exact_reviewed_knowledge": {
+            "commit": "f58ac9e387dfb98c52117c53672b3c1b2c7d4ccf",
+            "exact_ref": "work/luna-management-ecu-swc-tool-procedure-compilation-20260902",
+            "path": "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/references/project/tool-version-baseline.yaml",
+            "repository": "eariver/Automotive_EE_Engineering_Knowledge",
+            "section_or_locator": "actual_project_baseline.* remains TBD_PROJECT_DECISION; requirements baseline is draft and acceptance is not recorded",
+            "source_role": "fixed project input/navigation record; not technical authority"
+          },
+          "locator_ids": [
+            "DS-001",
+            "DS-PROJ-001",
+            "DS-PROJ-002"
+          ],
+          "operation_surface": "REVIEW",
+          "resulting_artifact_or_check": "Project-input blocker is recorded; no project-specific SWC design value is invented.",
+          "step_id": "TTR-002-S07",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "f58ac9e387dfb98c52117c53672b3c1b2c7d4ccf",
+              "exact_ref": "work/luna-management-ecu-swc-tool-procedure-compilation-20260902",
+              "path": "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/references/project/requirement-baseline.yaml",
+              "repository": "eariver/Automotive_EE_Engineering_Knowledge",
+              "section_or_locator": "status: DRAFT_PROJECT_BASELINE; unresolved project inputs",
+              "source_role": "fixed project input/navigation record; not technical authority"
+            },
+            {
+              "commit": "f58ac9e387dfb98c52117c53672b3c1b2c7d4ccf",
+              "exact_ref": "work/luna-management-ecu-swc-tool-procedure-compilation-20260902",
+              "path": "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/20260902_ManagementECU_Tool_Task_Reference_Matrix.yaml",
+              "repository": "eariver/Automotive_EE_Engineering_Knowledge",
+              "section_or_locator": "TTR-002 required_inputs and exit_conditions",
+              "source_role": "fixed project input/navigation record; not technical authority"
+            }
+          ]
+        },
+        {
+          "action": "Do not claim a reproducible version-specific click sequence or API script: the frozen sources do not name a complete Developer menu/dialog route for this design operation.",
+          "boundary": "No menu path, dialog sequence, command syntax or API is inferred from the product name or object names.",
+          "evidence_level": "PROCEDURE_PARTIAL",
+          "exact_reviewed_knowledge": {
+            "commit": "7a6821cd3f2ad677ca7069c9b114355e98f16842",
+            "exact_ref": null,
+            "path": "docs/knowledge/davinci-developer-classic.md",
+            "repository": "eariver/Research_Vector_Documents",
+            "section_or_locator": "## Reviewed role; ## Workspace and persistence; ## Software-design model",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "V-001",
+            "V-004"
+          ],
+          "operation_surface": "GUI",
+          "resulting_artifact_or_check": "Unreviewed-detail boundary is recorded for Sol follow-up.",
+          "step_id": "TTR-002-S08",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "3ea3dfa2bee51f938fbb427897f1dde5d008ff97",
+              "exact_ref": null,
+              "path": "docs/knowledge/autosar-arxml-profile-followup-2026-08-28.md",
+              "repository": "eariver/Research_Vector_Documents",
+              "section_or_locator": "## Developer producer/consumer contract; ### Import; ### Export; ## Version/profile boundary retained",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        }
+      ],
+      "task_ids": [
+        "TTR-002"
+      ],
+      "tool": "DaVinci Developer Classic",
+      "unsupported_or_unreviewed_details": [
+        "Exact Developer GUI menu/dialog path and version-specific property sequence.",
+        "Complete Developer API/command procedure for object creation or export.",
+        "Project-specific periods, signals, behavior, calibration and production integration settings."
+      ]
+    },
+    {
+      "exit_checks": [
+        "The artifact is traceable to a fixed DaVinci component contract and selected schema/profile.",
+        "The result is identified as a Software Component Description handoff, not an ECU Extract."
+      ],
+      "intent": "Export the selected DaVinci Developer SWC contract as a controlled AUTOSAR XML handoff artifact.",
+      "next_task_ids": [
+        "TTR-004"
+      ],
+      "overall_maturity": "PROCEDURE_PARTIAL",
+      "prerequisites": [
+        "Fixed DaVinci SWC contract.",
+        "Actual project tool/schema baseline and controlled export profile.",
+        "Project artifact revision/provenance destination."
+      ],
+      "procedure_id": "PROC-TTR-003",
+      "read_first_locator_ids": [
+        "DS-004",
+        "V-001",
+        "V-004",
+        "MW-002",
+        "AS-001"
+      ],
+      "release_scope": "Reviewed Vector baseline: 4.18 SP3 family and bounded ARXML profile follow-up; actual project release/schema remain TBD.",
+      "steps": [
+        {
+          "action": "Select the intended component-type export scope and perform the reviewed AUTOSAR XML export operation for the Software Component Description.",
+          "boundary": "Selected Component Type export is distinct from ECU Project export to an ECU Extract; export is not cross-tool semantic equivalence proof.",
+          "evidence_level": "WORKFLOW_OBJECT_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "3ea3dfa2bee51f938fbb427897f1dde5d008ff97",
+            "exact_ref": null,
+            "path": "docs/knowledge/autosar-arxml-profile-followup-2026-08-28.md",
+            "repository": "eariver/Research_Vector_Documents",
+            "section_or_locator": "## Developer producer/consumer contract; ### Import; ### Export; ## Version/profile boundary retained",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "V-001",
+            "V-004",
+            "DS-004"
+          ],
+          "operation_surface": "TOOL_OBJECT",
+          "resulting_artifact_or_check": "AUTOSAR SWC Contract ARXML representing the selected component-type scope.",
+          "step_id": "TTR-003-S01",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "7a6821cd3f2ad677ca7069c9b114355e98f16842",
+              "exact_ref": null,
+              "path": "docs/knowledge/davinci-developer-classic.md",
+              "repository": "eariver/Research_Vector_Documents",
+              "section_or_locator": "## Reviewed role; ## Workspace and persistence; ## Software-design model",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            },
+            {
+              "commit": "938ac4af696d263019ebdc61106a444447e15c4d",
+              "exact_ref": "authority/autosar-cp-4.4.0-current-depth-20260830",
+              "path": "docs/knowledge/concepts/swc-port-interface-connector-model-boundary.json",
+              "repository": "eariver/Research_AUTOSAR_CP_Documents",
+              "section_or_locator": "Software Component Template: Component types, PortPrototypes, PortInterfaces, compositions and connectors, p.80; Requirements on Runtime Environment: SW-C API mapping and RTE generation requirements, p.20",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        },
+        {
+          "action": "Select the project-approved schema version/profile within the reviewed export scope and preserve the selected schema as provenance.",
+          "boundary": "The reviewed route does not provide a complete per-operation release matrix or authorize silent schema substitution.",
+          "evidence_level": "WORKFLOW_OBJECT_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "3ea3dfa2bee51f938fbb427897f1dde5d008ff97",
+            "exact_ref": null,
+            "path": "docs/knowledge/autosar-arxml-profile-followup-2026-08-28.md",
+            "repository": "eariver/Research_Vector_Documents",
+            "section_or_locator": "## Developer producer/consumer contract; ### Import; ### Export; ## Version/profile boundary retained",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "V-004",
+            "AS-001"
+          ],
+          "operation_surface": "TOOL_OBJECT",
+          "resulting_artifact_or_check": "Schema/profile selection is recorded alongside the ARXML revision.",
+          "step_id": "TTR-003-S02",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "938ac4af696d263019ebdc61106a444447e15c4d",
+              "exact_ref": "authority/autosar-cp-4.4.0-current-depth-20260830",
+              "path": "docs/knowledge/concepts/swc-port-interface-connector-model-boundary.json",
+              "repository": "eariver/Research_AUTOSAR_CP_Documents",
+              "section_or_locator": "Software Component Template: Component types, PortPrototypes, PortInterfaces, compositions and connectors, p.80; Requirements on Runtime Environment: SW-C API mapping and RTE generation requirements, p.20",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        },
+        {
+          "action": "Record the exported ARXML revision, source DaVinci baseline and artifact hash/location under project configuration management.",
+          "boundary": "ARXML artifact identity remains distinct from the later Simulink representation and generated implementation.",
+          "evidence_level": "WORKFLOW_OBJECT_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+            "exact_ref": null,
+            "path": "docs/knowledge/r2025b/autosar-arxml-lifecycle.md",
+            "repository": "eariver/Research_MathWorks_Documents",
+            "section_or_locator": "## 2. Import and model creation; ## 5. Classic changed-ARXML update lifecycle; ## 6. Shared-definition update is a different lifecycle; ## 12. External AAT merge boundary",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "DS-004",
+            "MW-002"
+          ],
+          "operation_surface": "REVIEW",
+          "resulting_artifact_or_check": "ARXML revision/provenance record linked to the fixed DaVinci contract.",
+          "step_id": "TTR-003-S03",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "3ea3dfa2bee51f938fbb427897f1dde5d008ff97",
+              "exact_ref": null,
+              "path": "docs/knowledge/autosar-arxml-profile-followup-2026-08-28.md",
+              "repository": "eariver/Research_Vector_Documents",
+              "section_or_locator": "## Developer producer/consumer contract; ### Import; ### Export; ## Version/profile boundary retained",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        },
+        {
+          "action": "Check that graphical layout is not treated as part of the AUTOSAR XML exchange artifact.",
+          "boundary": "No graphics-preservation or byte-for-byte round-trip claim follows from the export.",
+          "evidence_level": "WORKFLOW_OBJECT_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "3ea3dfa2bee51f938fbb427897f1dde5d008ff97",
+            "exact_ref": null,
+            "path": "docs/knowledge/autosar-arxml-profile-followup-2026-08-28.md",
+            "repository": "eariver/Research_Vector_Documents",
+            "section_or_locator": "## Developer producer/consumer contract; ### Import; ### Export; ## Version/profile boundary retained",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "V-004",
+            "DS-004"
+          ],
+          "operation_surface": "REVIEW",
+          "resulting_artifact_or_check": "Export review explicitly excludes Developer graphics from the ARXML identity.",
+          "step_id": "TTR-003-S04",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+              "exact_ref": null,
+              "path": "docs/knowledge/r2025b/autosar-arxml-lifecycle.md",
+              "repository": "eariver/Research_MathWorks_Documents",
+              "section_or_locator": "## 2. Import and model creation; ## 5. Classic changed-ARXML update lifecycle; ## 6. Shared-definition update is a different lifecycle; ## 12. External AAT merge boundary",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        },
+        {
+          "action": "Stop at partial procedure maturity because the exact version-specific export menu/dialog route, file chooser sequence and command/API alternative are not stated in the frozen Reviewed Knowledge.",
+          "boundary": "Do not manufacture a menu path, dialog sequence or API call from generic export wording.",
+          "evidence_level": "PROCEDURE_PARTIAL",
+          "exact_reviewed_knowledge": {
+            "commit": "3ea3dfa2bee51f938fbb427897f1dde5d008ff97",
+            "exact_ref": null,
+            "path": "docs/knowledge/autosar-arxml-profile-followup-2026-08-28.md",
+            "repository": "eariver/Research_Vector_Documents",
+            "section_or_locator": "## Developer producer/consumer contract; ### Import; ### Export; ## Version/profile boundary retained",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "V-001",
+            "V-004"
+          ],
+          "operation_surface": "GUI",
+          "resulting_artifact_or_check": "Missing export-route detail is recorded without an invented click sequence.",
+          "step_id": "TTR-003-S05",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "7a6821cd3f2ad677ca7069c9b114355e98f16842",
+              "exact_ref": null,
+              "path": "docs/knowledge/davinci-developer-classic.md",
+              "repository": "eariver/Research_Vector_Documents",
+              "section_or_locator": "## Reviewed role; ## Workspace and persistence; ## Software-design model",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        },
+        {
+          "action": "Do not execute a project-specific export baseline until the actual schema/tool release is supplied and compatibility-fixed.",
+          "boundary": "The reviewed Vector baseline is evidence, not proof of the actual project combination.",
+          "evidence_level": "BLOCKED_BY_PROJECT_INPUT",
+          "exact_reviewed_knowledge": {
+            "commit": "f58ac9e387dfb98c52117c53672b3c1b2c7d4ccf",
+            "exact_ref": "work/luna-management-ecu-swc-tool-procedure-compilation-20260902",
+            "path": "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/references/project/tool-version-baseline.yaml",
+            "repository": "eariver/Automotive_EE_Engineering_Knowledge",
+            "section_or_locator": "actual_project_baseline.* and compatibility_record.status",
+            "source_role": "fixed project input/navigation record; not technical authority"
+          },
+          "locator_ids": [
+            "DS-PROJ-002"
+          ],
+          "operation_surface": "REVIEW",
+          "resulting_artifact_or_check": "Project compatibility blocker recorded.",
+          "step_id": "TTR-003-S06",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "f58ac9e387dfb98c52117c53672b3c1b2c7d4ccf",
+              "exact_ref": "work/luna-management-ecu-swc-tool-procedure-compilation-20260902",
+              "path": "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/20260902_ManagementECU_Tool_Task_Reference_Matrix.yaml",
+              "repository": "eariver/Automotive_EE_Engineering_Knowledge",
+              "section_or_locator": "TTR-003 required_inputs and exit_conditions",
+              "source_role": "fixed project input/navigation record; not technical authority"
+            }
+          ]
+        }
+      ],
+      "task_ids": [
+        "TTR-003"
+      ],
+      "tool": "DaVinci Developer Classic",
+      "unsupported_or_unreviewed_details": [
+        "Exact export GUI route and full version-specific command/API.",
+        "Complete producer/consumer release/profile compatibility matrix."
+      ]
+    },
+    {
+      "exit_checks": [
+        "The original contract and generated ARXML remain separately identifiable before disposition.",
+        "Any linkage is an existing named route only; no new bridge or downstream integration procedure is created."
+      ],
+      "intent": "Provide the DaVinci-side source-contract baseline and preserve the bounded existing workspace-link route for contract reconciliation.",
+      "next_task_ids": [],
+      "overall_maturity": "PROCEDURE_PARTIAL",
+      "prerequisites": [
+        "Original DaVinci SWC contract ARXML and source workspace baseline.",
+        "Generated MathWorks implementation ARXML available for comparison.",
+        "An already approved project linkage, if linkage is part of the review context."
+      ],
+      "procedure_id": "PROC-TTR-010-DAVINCI",
+      "read_first_locator_ids": [
+        "DS-004",
+        "V-003",
+        "V-004",
+        "MW-002",
+        "MW-004",
+        "AS-001",
+        "AS-002",
+        "AS-003"
+      ],
+      "release_scope": "Reviewed Vector baseline: Developer 4.18 SP3 family and Configurator 6.3.10 linkage evidence; this is not a Configurator/MICROSAR procedure.",
+      "steps": [
+        {
+          "action": "If an existing Developer/Configurator workspace link must be established or re-confirmed as part of the review context, use only the explicitly named dvdevc project link --workspace-path ... --davinci-project ... operation.",
+          "boundary": "This is an existing linkage operation, not a complete two-way update/reimport procedure and not permission to begin Configurator/MICROSAR work.",
+          "evidence_level": "EXACT_API_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "7a6821cd3f2ad677ca7069c9b114355e98f16842",
+            "exact_ref": null,
+            "path": "docs/knowledge/cross-product-bridges.md",
+            "repository": "eariver/Research_Vector_Documents",
+            "section_or_locator": "## 1. DaVinci Developer Classic ↔ DaVinci Configurator Classic; ### Project/workspace linkage",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "V-003",
+            "DS-004"
+          ],
+          "operation_surface": "API",
+          "resulting_artifact_or_check": "Existing .dcf workspace linkage state is recorded for the comparison context.",
+          "step_id": "TTR-010-DV-S01",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "7a6821cd3f2ad677ca7069c9b114355e98f16842",
+              "exact_ref": null,
+              "path": "docs/knowledge/davinci-configurator-classic.md",
+              "repository": "eariver/Research_Vector_Documents",
+              "section_or_locator": "## Reviewed role; ## BSW, OS, task mapping and generation",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        },
+        {
+          "action": "Use the original DaVinci contract as the source-side comparison baseline; do not replace it with the generated MathWorks ARXML before disposition.",
+          "boundary": "Original contract != generated ARXML; ARXML role/profile overlap does not establish semantic equivalence.",
+          "evidence_level": "WORKFLOW_OBJECT_OPERATION_REVIEWED",
+          "exact_reviewed_knowledge": {
+            "commit": "3ea3dfa2bee51f938fbb427897f1dde5d008ff97",
+            "exact_ref": null,
+            "path": "docs/knowledge/autosar-arxml-profile-followup-2026-08-28.md",
+            "repository": "eariver/Research_Vector_Documents",
+            "section_or_locator": "## Developer producer/consumer contract; ### Import; ### Export; ## Version/profile boundary retained",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "V-003",
+            "V-004",
+            "DS-004"
+          ],
+          "operation_surface": "REVIEW",
+          "resulting_artifact_or_check": "Comparison input pair is identified: original DaVinci contract and generated MathWorks ARXML.",
+          "step_id": "TTR-010-DV-S02",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "ad51f604e0e6f9820f0f258795c12d603558c20d",
+              "exact_ref": null,
+              "path": "docs/knowledge/r2025b/autosar-arxml-lifecycle.md",
+              "repository": "eariver/Research_MathWorks_Documents",
+              "section_or_locator": "## 2. Import and model creation; ## 5. Classic changed-ARXML update lifecycle; ## 6. Shared-definition update is a different lifecycle; ## 12. External AAT merge boundary",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            },
+            {
+              "commit": "938ac4af696d263019ebdc61106a444447e15c4d",
+              "exact_ref": "authority/autosar-cp-4.4.0-current-depth-20260830",
+              "path": "docs/knowledge/concepts/swc-port-interface-connector-model-boundary.json",
+              "repository": "eariver/Research_AUTOSAR_CP_Documents",
+              "section_or_locator": "Software Component Template: Component types, PortPrototypes, PortInterfaces, compositions and connectors, p.80; Requirements on Runtime Environment: SW-C API mapping and RTE generation requirements, p.20",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        },
+        {
+          "action": "Keep any update/reimport or overwrite decision at controlled-review level because the complete Configurator 6 two-way lifecycle is only partial in the frozen Vector authority.",
+          "boundary": "Do not silently apply Configurator 5 behavior to Configurator 6.3.10, and do not unconditionally overwrite the source contract.",
+          "evidence_level": "PROCEDURE_PARTIAL",
+          "exact_reviewed_knowledge": {
+            "commit": "7a6821cd3f2ad677ca7069c9b114355e98f16842",
+            "exact_ref": null,
+            "path": "docs/knowledge/cross-product-bridges.md",
+            "repository": "eariver/Research_Vector_Documents",
+            "section_or_locator": "## 1. DaVinci Developer Classic ↔ DaVinci Configurator Classic; ### Project/workspace linkage",
+            "source_role": "exact-pinned Reviewed Knowledge"
+          },
+          "locator_ids": [
+            "V-003",
+            "V-004",
+            "DS-004"
+          ],
+          "operation_surface": "REVIEW",
+          "resulting_artifact_or_check": "Controlled disposition gate and unresolved update-route detail are recorded.",
+          "step_id": "TTR-010-DV-S03",
+          "supporting_reviewed_knowledge": [
+            {
+              "commit": "3ea3dfa2bee51f938fbb427897f1dde5d008ff97",
+              "exact_ref": null,
+              "path": "docs/knowledge/autosar-arxml-profile-followup-2026-08-28.md",
+              "repository": "eariver/Research_Vector_Documents",
+              "section_or_locator": "## Developer producer/consumer contract; ### Import; ### Export; ## Version/profile boundary retained",
+              "source_role": "exact-pinned Reviewed Knowledge"
+            }
+          ]
+        }
+      ],
+      "task_ids": [
+        "TTR-010"
+      ],
+      "tool": "DaVinci Developer Classic",
+      "unsupported_or_unreviewed_details": [
+        "Complete comparison automation, update/reimport sequence and Configurator/MICROSAR generation.",
+        "Byte-for-byte identity or unconditional merge."
+      ]
+    }
+  ],
+  "excluded_scope": [
+    "DaVinci Configurator / MICROSAR procedure",
+    "vVIRTUALtarget",
+    "CANoe",
+    "vTESTstudio",
+    "CANape/XCP runtime",
+    "HIL",
+    "physical-SUT procedure"
+  ],
+  "completion_checks": {
+    "every_step_has_allowed_evidence_level": true,
+    "every_exact_gui_api_step_has_exact_pinned_tuple": true,
+    "no_gui_api_detail_inferred": true,
+    "only_scope_ttr_002_to_010": true,
+    "external_source_access_zero": true
+  }
+}

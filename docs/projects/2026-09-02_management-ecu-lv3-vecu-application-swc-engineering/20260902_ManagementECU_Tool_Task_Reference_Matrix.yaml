@@ -1,7 +1,7 @@
 schema_version: "management-ecu-tool-task-reference-matrix/v1"
 artifact: "Management ECU Lv3 VECU Application SWC Engineering — Tool / Task / Reference Matrix"
 date: "2026-09-02"
-status: "DRAFT_EXECUTION_NAVIGATION"
+status: "COMPILED_PROCEDURE_NAVIGATION"
 repository: "eariver/Automotive_EE_Engineering_Knowledge"
 branch: "work/management-ecu-swc-project-baselines-20260902"
 base_main_sha: "59250354d74100167b80ee40f44e73eb064dd515"
@@ -546,3 +546,4 @@ coverage_summary:
     version-specific click-by-click or API-by-API work instruction for DaVinci Developer,
     AUTOSAR Blockset/Simulink/Embedded Coder, DaVinci Configurator, vVIRTUALtarget, CANoe,
     vTESTstudio or CANape.
+procedure_compilation: {"status":"COMPILED_AT_SUPPORTED_EVIDENCE_LEVEL","work_unit":"TTR-002 through TTR-010 only","starting_sha":"f58ac9e387dfb98c52117c53672b3c1b2c7d4ccf","starting_tree_sha":"7e188e645d3b3c08920385340a5b8db0ccdb1fbd","procedure_coverage_matrix":"docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/procedures/procedure-coverage-matrix.yaml","procedure_family_outputs":["docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/procedures/davinci-developer-classic.yaml","docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/procedures/autosar-blockset.yaml","docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/procedures/simulink-stateflow.yaml","docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/procedures/embedded-coder.yaml","docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/procedures/mil-sil.yaml"],"operation_step_count":65,"evidence_level_counts":{"BLOCKED_BY_PROJECT_INPUT":9,"EXACT_API_OPERATION_REVIEWED":10,"EXACT_GUI_PATH_REVIEWED":0,"PROCEDURE_PARTIAL":11,"UNRESOLVED_AUTHORITY":0,"WORKFLOW_OBJECT_OPERATION_REVIEWED":35},"exact_gui_task_ids":[],"exact_api_task_ids":["TTR-004","TTR-007","TTR-008","TTR-009","TTR-010"],"unresolved_authority_task_ids":[],"external_source_access_count":0}

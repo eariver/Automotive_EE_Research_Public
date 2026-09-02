@@ -1,7 +1,7 @@
 schema_version: "management-ecu-publication-manifest/v1"
 artifact: "Management ECU Lv3 VECU Application SWC Engineering — Public Package Manifest"
 date: "2026-09-02"
-status: "PREPARED_AWAITING_LUNA_PROCEDURES"
+status: "LUNA_PROCEDURES_REVIEWED_AND_STAGED"
 
 public_repository: "eariver/Automotive_EE_Research_Public"
 public_branch: "publish/management-ecu-lv3-vecu-toolchain-reference-20260902"
@@ -12,8 +12,18 @@ pre_luna_source_branch: "work/management-ecu-swc-project-baselines-20260902"
 pre_luna_source_sha: "690b23a6d5f08713fc88f3ef251a041e4c9ec4d8"
 luna_branch: "work/luna-management-ecu-swc-tool-procedure-compilation-20260902"
 luna_exact_starting_sha: "f58ac9e387dfb98c52117c53672b3c1b2c7d4ccf"
-luna_ending_sha: null
-sol_accepted_source_sha: null
+luna_ending_sha: "d0f31a92a6031f3f90cf746dc0a5042739e91f33"
+sol_accepted_source_sha: "d0f31a92a6031f3f90cf746dc0a5042739e91f33"
+
+fixed_head_review:
+  starting_sha_matches_required: true
+  ending_commit_is_direct_child_of_starting_sha: true
+  source_compare_ahead: 1
+  source_compare_behind: 0
+  changed_path_count: 10
+  changed_paths_match_instruction_allowlist: true
+  publication_eligible_changed_path_count: 8
+  internal_changed_path_count_excluded_from_publication: 2
 
 package_root: "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering"
 
@@ -22,39 +32,57 @@ publication_policy:
   - "Do not copy canonical downstream docs/knowledge or upstream Vector/MathWorks/AUTOSAR Reviewed Knowledge bodies."
   - "Preserve exact repository/commit/ref/path/section locators for non-bundled authority."
   - "Do not imply that a provenance locator is publicly accessible."
-  - "Procedure files are added only after Luna completion and fixed-head Sol acceptance."
+  - "Luna worklogs and completion checkpoints are internal process artifacts and are not published."
 
 bundled_pre_luna:
   primary:
     - "20260902_ManagementECU_SWC_Development_Methodology.md"
     - "20260902_ManagementECU_SWC_Development_Step_by_Step_Guide.md"
     - "20260902_ManagementECU_SWC_Reference_Index.yaml"
-    - "20260902_ManagementECU_Tool_Task_Reference_Matrix.yaml"
-    - "20260902_ManagementECU_Toolchain_Execution_Reference_Guide.md"
   references:
     - "references/README.md"
     - "references/downstream/reference-locators.yaml"
     - "references/vector/reference-locators.yaml"
     - "references/mathworks/reference-locators.yaml"
     - "references/autosar/reference-locators.yaml"
-    - "references/reference-coverage-matrix.yaml"
     - "references/reference-coverage-report.md"
     - "references/project/requirement-baseline.yaml"
     - "references/project/tool-version-baseline.yaml"
     - "references/project/calibration-input-baseline.yaml"
 
-pending_luna_outputs:
-  status: "PENDING_LUNA"
-  expected:
-    - "procedures/davinci-developer-classic.yaml"
-    - "procedures/autosar-blockset.yaml"
-    - "procedures/simulink-stateflow.yaml"
-    - "procedures/embedded-coder.yaml"
-    - "procedures/mil-sil.yaml"
-    - "procedures/procedure-coverage-matrix.yaml"
-  updated_existing_after_luna:
-    - "20260902_ManagementECU_Tool_Task_Reference_Matrix.yaml"
-    - "20260902_ManagementECU_Toolchain_Execution_Reference_Guide.md"
+accepted_luna_outputs:
+  status: "ACCEPTED_AND_STAGED"
+  source_sha: "d0f31a92a6031f3f90cf746dc0a5042739e91f33"
+  procedure_family_outputs:
+    - path: "procedures/davinci-developer-classic.yaml"
+      source_blob_sha: "65e3b0ed1e6a1ac3605e31128190715258420673"
+    - path: "procedures/autosar-blockset.yaml"
+      source_blob_sha: "b708196c147ba8f1e1def9a0f401a3abb20c3d48"
+    - path: "procedures/simulink-stateflow.yaml"
+      source_blob_sha: "71d9d6a58aae1c6113342736d9aa04c83b2bfe5d"
+    - path: "procedures/embedded-coder.yaml"
+      source_blob_sha: "19f4cf12e0a73331143e0acf89d6d3ff7d64754d"
+    - path: "procedures/mil-sil.yaml"
+      source_blob_sha: "c52f73489e48f71106d635252f2440ff3e45db2a"
+    - path: "procedures/procedure-coverage-matrix.yaml"
+      source_blob_sha: "1d93ad8eef86da18ae7e28c05acbd996025fd82b"
+  refreshed_existing:
+    - path: "20260902_ManagementECU_Tool_Task_Reference_Matrix.yaml"
+      source_blob_sha: "3b21191e0104c6378597b771f0b4d09d6dd27c8d"
+    - path: "20260902_ManagementECU_Toolchain_Execution_Reference_Guide.md"
+      source_blob_sha: "93554f5f1a91fea7f93447a87712d1b851453ea1"
+  procedure_count: 10
+  operation_step_count: 65
+  evidence_level_counts:
+    EXACT_GUI_PATH_REVIEWED: 0
+    EXACT_API_OPERATION_REVIEWED: 10
+    WORKFLOW_OBJECT_OPERATION_REVIEWED: 35
+    PROCEDURE_PARTIAL: 11
+    BLOCKED_BY_PROJECT_INPUT: 9
+    UNRESOLVED_AUTHORITY: 0
+  exact_api_task_ids: ["TTR-004", "TTR-007", "TTR-008", "TTR-009", "TTR-010"]
+  exact_gui_task_ids: []
+  external_source_access_count: 0
 
 excluded:
   - "luna/**"
@@ -68,11 +96,16 @@ excluded:
   - "confidential raw project specifications"
 
 validation:
-  pre_luna_files_staged: false
-  source_blob_identity_checked: false
-  luna_outputs_accepted: false
-  post_luna_matrix_guide_refreshed: false
-  final_reference_closure_checked: false
+  pre_luna_files_staged: true
+  pre_luna_source_blob_identity_fully_normalized: false
+  luna_output_blob_identity_checked: true
+  luna_outputs_accepted: true
+  post_luna_matrix_guide_refreshed: true
+  final_reference_closure_checked: true
   public_main_unchanged: true
 
-next_action: "Stage all existing bundled_pre_luna files byte-identically, then wait for Luna completion and Sol fixed-head acceptance before adding procedures and refreshing Matrix/Guide."
+notes:
+  - "The eight accepted Luna publication artifacts are transferred as source-identical Git blobs."
+  - "Some pre-Luna staged long-form files were previously content-preserving repacks and have not all been normalized to source-identical blobs in this update; this does not alter the accepted Luna output identity."
+
+next_action: "Review this publication branch. Merge to public main only after explicit authorization."
