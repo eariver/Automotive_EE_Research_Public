@@ -1,0 +1,26 @@
+schema_version: "management-ecu-uds-can-procedure-family/v1"
+artifact: "Embedded Coder procedure family"
+status: "SOL_INTEGRATED_FROM_ACCEPTED_COMPILATION"
+accepted_luna_ending_sha: "3b5f2cdfc418e46cd2ad4a8509fc77ac50eacc12"
+source_compilation: "20260902_ManagementECU_UDS_CAN_Tool_Procedure_Compilation_Matrix.yaml"
+tool: "Embedded Coder"
+reviewed_release: "MathWorks R2025b"
+covered_tasks:
+  - task_id: "DTR-009"
+    procedure_classification: "PARTIAL_PROCEDURE_AVAILABLE"
+    locator_ids: ["MW-DIAG-005", "AS-DIAG-009"]
+    intent: "Generate production-intent AUTOSAR Application SWC implementation artifacts."
+    operations:
+      - "Generate AUTOSAR-compliant C/H and ARXML from the mapped component model."
+      - "Use Generate code only when compile/link are intentionally downstream."
+      - "Retain build metadata and code-generation report as separate derived artifacts."
+    named_surfaces: ["Generate code only", "code-generation report"]
+    api_surfaces: ["codebuild", "coder.report.generate"]
+    outputs: ["Generated C/H", "generated/implementation ARXML", "build metadata", "code-generation report", "local RTE stub where applicable"]
+    exit_evidence: ["Generated artifacts are traceable to model/mapping/code-generation configuration."]
+    project_blockers: ["Actual code-generation configuration/toolchain"]
+    missing_detail: "Complete project generation configuration and exact command/button sequence are not fixed by authority."
+retained_boundaries:
+  - "code generation != compile != link."
+  - "MathWorks local RTE stub != production MICROSAR RTE."
+  - "Generated Application implementation != integrated ECU binary."
