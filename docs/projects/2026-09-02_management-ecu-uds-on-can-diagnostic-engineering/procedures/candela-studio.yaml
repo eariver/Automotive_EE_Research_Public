@@ -1,0 +1,35 @@
+schema_version: "management-ecu-uds-can-procedure-family/v1"
+artifact: "CANdela Studio procedure family"
+status: "SOL_INTEGRATED_FROM_ACCEPTED_COMPILATION"
+accepted_luna_ending_sha: "3b5f2cdfc418e46cd2ad4a8509fc77ac50eacc12"
+source_compilation: "20260902_ManagementECU_UDS_CAN_Tool_Procedure_Compilation_Matrix.yaml"
+tool: "CANdela Studio"
+reviewed_release: "25 SP1"
+covered_tasks:
+  - task_id: "DTR-002"
+    procedure_classification: "WORKFLOW_ONLY"
+    intent: "Author the controlled UDS diagnostic specification."
+    locator_ids: ["V-DIAG-001", "V-DIAG-002"]
+    operations:
+      - "Maintain CDDT Template, CDD Document and Variant as distinct identities."
+      - "Author applicable Diagnostic Class/Instance/Service, Data Type/Data Object, DID and DTC/fault-memory description objects."
+      - "Version the native CDD/CDDT artifacts under project configuration control."
+    exit_evidence: ["Controlled CDD revision with reviewable external diagnostic semantics."]
+    project_blockers: ["Service inventory", "DID/RID/DTC definitions", "session/security/NRC policy"]
+    missing_detail: "No exact 25 SP1 object-creation menu/dialog sequence is compiled."
+  - task_id: "DTR-003"
+    procedure_classification: "PARTIAL_PROCEDURE_AVAILABLE"
+    intent: "Create a controlled diagnostic-description handoff."
+    locator_ids: ["V-DIAG-002", "V-DIAG-003", "V-DIAG-004"]
+    operations:
+      - "Select native CDD consumption or a reviewed ODX exchange route according to the consumer."
+      - "For ODX, use a supported 2.0.1/2.1.0/2.2.0 version and explicit complete/DTC-only/selected-element scope."
+      - "Record export scope, format/profile and warnings/omissions."
+    exit_evidence: ["Source revision, exported format/profile/scope and consumer are traceable."]
+    project_blockers: ["Actual downstream consumer/profile decision"]
+    missing_detail: "No one mandatory CANdela export subset for DiVa 20 is established."
+retained_boundaries:
+  - "CDDT != CDD != Variant != contained diagnostic objects."
+  - "CDD/ODX exchange != lossless CANdela round trip."
+  - "CANdela specification != DCM/DEM ECU configuration."
+project_value_policy: "Do not invent project diagnostic values from Vector or AUTOSAR authority."
