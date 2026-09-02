@@ -1,0 +1,25 @@
+schema_version: "management-ecu-uds-can-procedure-family/v1"
+artifact: "Simulink / Stateflow diagnostic behavior procedure family"
+status: "SOL_INTEGRATED_FROM_ACCEPTED_COMPILATION"
+accepted_luna_ending_sha: "3b5f2cdfc418e46cd2ad4a8509fc77ac50eacc12"
+source_compilation: "20260902_ManagementECU_UDS_CAN_Tool_Procedure_Compilation_Matrix.yaml"
+tools: ["Simulink", "Stateflow"]
+reviewed_release: "MathWorks R2025b"
+covered_tasks:
+  - task_id: "DTR-006"
+    procedure_classification: "WORKFLOW_ONLY"
+    locator_ids: ["MW-DIAG-003", "MW-DIAG-004", "AS-DIAG-001", "AS-DIAG-002"]
+    intent: "Implement only the diagnostic behavior allocated to the Application SWC."
+    operations:
+      - "Implement application data preparation, routine function, application state/precondition and monitor behavior."
+      - "Use Stateflow for explicit state/transition/event behavior when required."
+      - "Use documented Dem/FiM simulation roles only as model-level BSW-service behavior where applicable."
+    named_surfaces: ["Simulink model", "Stateflow chart/state/transition/event", "Diagnostic Service Component/Dem caller simulation surface where applicable"]
+    exit_evidence: ["Accepted Application SWC diagnostic behavior is implemented against the fixed contract without taking DCM/DEM ownership."]
+    project_blockers: ["DID/Routine application behavior", "application preconditions/results", "application monitor/fault policy"]
+    missing_detail: "No generic Management ECU behavior implementation procedure exists because the behavior is project-specific."
+retained_boundaries:
+  - "Application result != actual UDS response encoding/dispatch by DCM."
+  - "Application monitor result != DEM event/DTC/fault-memory state."
+  - "Stateflow source behavior != generated implementation."
+  - "MathWorks diagnostic BSW simulation != production MICROSAR DCM/DEM."
