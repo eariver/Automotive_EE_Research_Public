@@ -1,0 +1,37 @@
+schema_version: "management-ecu-uds-can-procedure-family/v1"
+artifact: "AUTOSAR Blockset procedure family"
+status: "SOL_INTEGRATED_FROM_ACCEPTED_COMPILATION"
+accepted_luna_ending_sha: "3b5f2cdfc418e46cd2ad4a8509fc77ac50eacc12"
+source_compilation: "20260902_ManagementECU_UDS_CAN_Tool_Procedure_Compilation_Matrix.yaml"
+tool: "AUTOSAR Blockset"
+reviewed_release: "MathWorks R2025b"
+covered_tasks:
+  - task_id: "DTR-005"
+    procedure_classification: "PARTIAL_PROCEDURE_AVAILABLE"
+    locator_ids: ["MW-DIAG-001", "MW-DIAG-002"]
+    intent: "Import/create/update the Simulink AUTOSAR representation from controlled SWC ARXML."
+    operations:
+      - "Parse controlled ARXML using arxml.importer."
+      - "For initial atomic-component creation, use createComponentAsModel."
+      - "For changed Classic ARXML, use updateModel where applicable and inspect update report/manual repair needs."
+      - "Use updateAUTOSARProperties for shared-definition update when that distinct lifecycle applies."
+    api_surfaces: ["arxml.importer", "createComponentAsModel", "updateModel", "updateAUTOSARProperties"]
+    exit_evidence: ["Model representation is tied to exact input ARXML and update differences are recorded."]
+    project_blockers: ["Actual AUTOSAR schema/profile", "initial-create vs update intent"]
+    missing_detail: "Project-specific API arguments and complete inspection script are not compiled."
+  - task_id: "DTR-007"
+    procedure_classification: "WORKFLOW_ONLY"
+    locator_ids: ["MW-DIAG-001", "MW-DIAG-002"]
+    intent: "Review/configure model-to-AUTOSAR mappings."
+    operations:
+      - "Inspect/configure mappings required by the fixed external SWC contract."
+      - "Record deviations rather than silently redefining contract ownership."
+    named_surfaces: ["Code Mappings", "AUTOSAR Dictionary", "AUTOSAR Component Designer"]
+    exit_evidence: ["No unexplained port/operation/runnable/data mapping remains."]
+    project_blockers: ["Contract-specific mapping decisions"]
+    missing_detail: "Exact mapping clicks/API calls are not compiled."
+retained_boundaries:
+  - "ARXML description != Simulink AUTOSAR representation."
+  - "updateModel != updateAUTOSARProperties."
+  - "Round-trip structural preservation != byte-for-byte identity."
+  - "Mapping/configuration in MathWorks does not transfer wider-system merge ownership from the external AUTOSAR authoring/integration tool."
