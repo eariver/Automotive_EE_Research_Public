@@ -1,0 +1,1186 @@
+schema_version: "management-ecu-swc-reference-locators/v1"
+artifact: "Management ECU SWC authority/reference locators — downstream"
+date: "2026-09-02"
+repository: "eariver/Automotive_EE_Engineering_Knowledge"
+branch: "work/luna-management-ecu-swc-authority-index-20260902"
+starting_sha: "997d09d57ca3246c5323c2e366598bd9f7a9f50e"
+authority_plane: "downstream"
+source_policy:
+  mode: "existing-authority-compilation"
+  new_technical_research: false
+  external_source_access_count: 0
+  exact_pinned_upstream_only: true
+coverage_posture_vocabulary:
+  - "REVIEWED_ROUTE_AVAILABLE"
+  - "BOUNDED_ROUTE_AVAILABLE"
+  - "NO_EXPLICIT_MAPPING"
+  - "PROJECT_SPECIFIC_DESIGN"
+  - "PROJECT_INPUT_REQUIRED"
+  - "PROJECT_ARTIFACT"
+  - "PROCESS_RULE"
+  - "UNRESOLVED_AUTHORITY"
+locator_count: 24
+locators:
+  -
+    locator_id: "DS-001"
+    methodology_sections:
+      - "§3"
+      - "§6"
+      - "§7"
+      - "§8"
+      - "§33"
+    guide_steps:
+      - "Step 2"
+      - "Step 3"
+      - "Step 4"
+      - "ModeMgr Quick Start"
+    engineering_object: "application architecture ownership and SWC contract navigation"
+    coverage_posture: "REVIEWED_ROUTE_AVAILABLE"
+    downstream:
+      goal_ids:
+        - "CG-001"
+        - "CG-021"
+      concern_ids:
+        - "C-ARCH"
+        - "C-ECU"
+        - "C-LIFE"
+        - "C-SYSARCH"
+      workflow_ids:
+        - "WF-01"
+        - "WF-06"
+      proposition_ids:
+        - "P01-001"
+        - "P01-002"
+        - "P01-003"
+        - "P01-004"
+        - "P01-005"
+        - "P01-006"
+        - "P3-MW-004"
+        - "P5-MW-003"
+        - "P09-001"
+        - "P09-002"
+        - "P09-003"
+        - "P09-006"
+        - "P3-MW-005"
+        - "P4-MW-006"
+      knowledge_paths:
+        - "docs/knowledge/goals/cg-001-autosar-classic-swc-interfaces.md"
+        - "docs/knowledge/goals/cg-021-model-autosar-generated-integration.md"
+    authority:
+      type: "DOWNSTREAM_REVIEWED_KNOWLEDGE"
+      repository: "eariver/Automotive_EE_Engineering_Knowledge"
+      exact_commit: "997d09d57ca3246c5323c2e366598bd9f7a9f50e"
+      exact_ref: "work/luna-management-ecu-swc-authority-index-20260902"
+      path: "docs/knowledge/goals/cg-001-autosar-classic-swc-interfaces.md"
+      section_or_locator: "Engineering Goal pages: application architecture / model integration route"
+      source_state: "fixed starting commit"
+    boundary: "Application architecture, AUTOSAR contract and behavior model are separate navigation targets."
+    notes: "Open the goal page first; use the external-plane manifest only for the exact-pinned vendor or standards locator."
+  -
+    locator_id: "DS-002"
+    methodology_sections:
+      - "§4"
+      - "§6"
+      - "§32"
+    guide_steps:
+      - "Step 2"
+      - "Step 4"
+      - "Step 13"
+    engineering_object: "ECU allocation, ECU Extract and application-to-ECU boundary"
+    coverage_posture: "REVIEWED_ROUTE_AVAILABLE"
+    downstream:
+      goal_ids:
+        - "CG-002"
+        - "CG-021"
+      concern_ids:
+        - "C-ARCH"
+        - "C-ECU"
+        - "C-LIFE"
+        - "C-SYSARCH"
+      workflow_ids:
+        - "WF-01"
+        - "WF-06"
+      proposition_ids:
+        - "P01-001"
+        - "P01-002"
+        - "P01-003"
+        - "P01-004"
+        - "P01-005"
+        - "P01-006"
+        - "P09-002"
+        - "P09-006"
+        - "P3-MW-004"
+        - "P4-MW-006"
+        - "P09-001"
+        - "P09-003"
+        - "P3-MW-005"
+      knowledge_paths:
+        - "docs/knowledge/goals/cg-002-ecu-allocation-ecu-extract.md"
+        - "docs/knowledge/goals/cg-021-model-autosar-generated-integration.md"
+    authority:
+      type: "DOWNSTREAM_REVIEWED_KNOWLEDGE"
+      repository: "eariver/Automotive_EE_Engineering_Knowledge"
+      exact_commit: "997d09d57ca3246c5323c2e366598bd9f7a9f50e"
+      exact_ref: "work/luna-management-ecu-swc-authority-index-20260902"
+      path: "docs/knowledge/goals/cg-002-ecu-allocation-ecu-extract.md"
+      section_or_locator: "Engineering Goal pages: ECU allocation / ECU Extract and generated integration"
+      source_state: "fixed starting commit"
+    boundary: "Allocation and ECU Extract are not the SWC behavior model and do not by themselves prove runtime integration."
+    notes: "Use the explicit CG-002/CG-021 route; do not broaden it to unreviewed integration behavior."
+  -
+    locator_id: "DS-003"
+    methodology_sections:
+      - "§2"
+      - "§3"
+      - "§4"
+      - "§21"
+      - "§32"
+    guide_steps:
+      - "Step 1"
+      - "Step 10"
+      - "Step 13"
+      - "Change Request Routing"
+    engineering_object: "production RTE / BSW / OS integration boundary"
+    coverage_posture: "REVIEWED_ROUTE_AVAILABLE"
+    downstream:
+      goal_ids:
+        - "CG-003"
+        - "CG-004"
+        - "CG-010"
+      concern_ids:
+        - "C-ARCH"
+        - "C-ECU"
+        - "C-LIFE"
+      workflow_ids:
+        - "WF-01"
+        - "WF-06"
+      proposition_ids:
+        - "P01-002"
+        - "P01-004"
+        - "P01-005"
+        - "P09-001"
+        - "P09-006"
+        - "P3-MW-004"
+        - "P3-MW-005"
+        - "P01-003"
+      knowledge_paths:
+        - "docs/knowledge/goals/cg-003-rte-generation-production-integration.md"
+        - "docs/knowledge/goals/cg-004-classic-bsw-ecu-platform-services.md"
+        - "docs/knowledge/goals/cg-010-os-task-event-scheduling.md"
+    authority:
+      type: "DOWNSTREAM_REVIEWED_KNOWLEDGE"
+      repository: "eariver/Automotive_EE_Engineering_Knowledge"
+      exact_commit: "997d09d57ca3246c5323c2e366598bd9f7a9f50e"
+      exact_ref: "work/luna-management-ecu-swc-authority-index-20260902"
+      path: "docs/knowledge/goals/cg-003-rte-generation-production-integration.md"
+      section_or_locator: "Engineering Goal pages: RTE generation, Classic BSW services and OS scheduling"
+      source_state: "fixed starting commit"
+    boundary: "Generated implementation is not production RTE/BSW/OS; SWC Development ends before VECU integration."
+    notes: "This is a navigation boundary, not an assertion that this project already owns the production integration artifacts."
+  -
+    locator_id: "DS-004"
+    methodology_sections:
+      - "§4"
+      - "§9"
+      - "§17"
+      - "§20"
+      - "§22"
+      - "§27"
+    guide_steps:
+      - "Step 5"
+      - "Step 8"
+      - "Step 10"
+      - "Step 12"
+    engineering_object: "contract → model → mapping → generated implementation → reconciliation identity chain"
+    coverage_posture: "REVIEWED_ROUTE_AVAILABLE"
+    downstream:
+      goal_ids:
+        - "CG-003"
+        - "CG-021"
+      concern_ids:
+        - "C-ARCH"
+        - "C-ECU"
+        - "C-LIFE"
+        - "C-SYSARCH"
+      workflow_ids:
+        - "WF-01"
+        - "WF-06"
+      proposition_ids:
+        - "P01-002"
+        - "P01-004"
+        - "P01-005"
+        - "P09-001"
+        - "P09-006"
+        - "P3-MW-004"
+        - "P3-MW-005"
+        - "P01-001"
+        - "P01-003"
+        - "P01-006"
+        - "P09-002"
+        - "P09-003"
+        - "P4-MW-006"
+      knowledge_paths:
+        - "docs/knowledge/goals/cg-003-rte-generation-production-integration.md"
+        - "docs/knowledge/goals/cg-021-model-autosar-generated-integration.md"
+    authority:
+      type: "DOWNSTREAM_REVIEWED_KNOWLEDGE"
+      repository: "eariver/Automotive_EE_Engineering_Knowledge"
+      exact_commit: "997d09d57ca3246c5323c2e366598bd9f7a9f50e"
+      exact_ref: "work/luna-management-ecu-swc-authority-index-20260902"
+      path: "docs/knowledge/goals/cg-003-rte-generation-production-integration.md"
+      section_or_locator: "Engineering Goal pages: RTE generation / production integration and model/AUTOSAR/generated integration"
+      source_state: "fixed starting commit"
+    boundary: "AUTOSAR contract != behavior model != generated implementation != production integration."
+    notes: "Keep each artifact identity in its own project record and follow the exact upstream locator from the vendor or direct-standards manifest."
+  -
+    locator_id: "DS-005"
+    methodology_sections:
+      - "§2"
+      - "§14"
+      - "§32"
+    guide_steps:
+      - "Step 1"
+      - "Step 6"
+      - "Step 7"
+      - "DiagMgr Quick Start"
+    engineering_object: "CAN description, communication-state input and application observation boundary"
+    coverage_posture: "REVIEWED_ROUTE_AVAILABLE"
+    downstream:
+      goal_ids:
+        - "CG-005"
+      concern_ids:
+        - "C-COMM"
+      workflow_ids:
+        - "WF-03"
+        - "WF-05"
+      proposition_ids:
+        - "P03-001"
+        - "P03-002"
+        - "P03-003"
+        - "P03-004"
+        - "P03-005"
+        - "P03-006"
+        - "P3-MW-006"
+        - "P4-MW-004"
+      knowledge_paths:
+        - "docs/knowledge/goals/cg-005-can-canfd-communication.md"
+    authority:
+      type: "DOWNSTREAM_REVIEWED_KNOWLEDGE"
+      repository: "eariver/Automotive_EE_Engineering_Knowledge"
+      exact_commit: "997d09d57ca3246c5323c2e366598bd9f7a9f50e"
+      exact_ref: "work/luna-management-ecu-swc-authority-index-20260902"
+      path: "docs/knowledge/goals/cg-005-can-canfd-communication.md"
+      section_or_locator: "Engineering Goal page: CAN/CAN FD communication"
+      source_state: "fixed starting commit"
+    boundary: "Project communication observation is not native controller state; native CAN BUS_OFF is not project BUS_FAILED_LATCHED."
+    notes: "The project route exposes the distinction; network algorithms and concrete project values remain separate inputs/design."
+  -
+    locator_id: "DS-006"
+    methodology_sections:
+      - "§7"
+      - "§12"
+      - "§16"
+    guide_steps:
+      - "Step 6"
+      - "Step 7"
+      - "DiagMgr Quick Start"
+    engineering_object: "layered diagnostic navigation for application DiagMgr, DCM and DEM"
+    coverage_posture: "REVIEWED_ROUTE_AVAILABLE"
+    downstream:
+      goal_ids:
+        - "CG-007"
+      concern_ids:
+        - "C-DIAG"
+      workflow_ids:
+        - "WF-04"
+      proposition_ids:
+        - "P04-001"
+        - "P04-002"
+        - "P04-003"
+        - "P04-004"
+        - "P04-005"
+        - "P04-006"
+        - "P3-MW-007"
+      knowledge_paths:
+        - "docs/knowledge/goals/cg-007-diagnostics-authoring-test-runtime.md"
+    authority:
+      type: "DOWNSTREAM_REVIEWED_KNOWLEDGE"
+      repository: "eariver/Automotive_EE_Engineering_Knowledge"
+      exact_commit: "997d09d57ca3246c5323c2e366598bd9f7a9f50e"
+      exact_ref: "work/luna-management-ecu-swc-authority-index-20260902"
+      path: "docs/knowledge/goals/cg-007-diagnostics-authoring-test-runtime.md"
+      section_or_locator: "Engineering Goal page: diagnostics authoring / test / runtime"
+      source_state: "fixed starting commit"
+    boundary: "DiagMgr != DCM != DEM; application fault policy is not DCM service/session/security ownership or DEM event-memory ownership."
+    notes: "Use the AUTOSAR manifest for the direct DCM/DEM boundary and the MathWorks/Vector manifests only for their reviewed product-local surfaces."
+  -
+    locator_id: "DS-007"
+    methodology_sections:
+      - "§2"
+      - "§7"
+      - "§10.1"
+      - "§32"
+    guide_steps:
+      - "Step 1"
+      - "Step 4"
+      - "ModeMgr Quick Start"
+    engineering_object: "CG-009 startup / shutdown / mode-management downstream navigation"
+    coverage_posture: "NO_EXPLICIT_MAPPING"
+    downstream:
+      goal_ids:
+        - "CG-009"
+      concern_ids:
+        []
+      workflow_ids:
+        []
+      proposition_ids:
+        []
+      knowledge_paths:
+        - "docs/knowledge/goals/cg-009-startup-shutdown-mode-management.md"
+    authority:
+      type: "DOWNSTREAM_REVIEWED_KNOWLEDGE"
+      repository: "eariver/Automotive_EE_Engineering_Knowledge"
+      exact_commit: "997d09d57ca3246c5323c2e366598bd9f7a9f50e"
+      exact_ref: "work/luna-management-ecu-swc-authority-index-20260902"
+      path: "docs/knowledge/goals/cg-009-startup-shutdown-mode-management.md"
+      section_or_locator: "CG-009 page: explicit downstream route status"
+      source_state: "fixed starting commit"
+    boundary: "The absence is a downstream navigation gap, not evidence that startup, shutdown or mode management is unsupported."
+    notes: "Keep this NO_EXPLICIT_MAPPING row. The exact direct AUTOSAR mode/lifecycle locators are recorded separately in the AUTOSAR manifest without adding a new proposition mapping."
+  -
+    locator_id: "DS-008"
+    methodology_sections:
+      - "§2"
+      - "§12"
+      - "§16"
+      - "§32"
+    guide_steps:
+      - "Step 1"
+      - "Step 6"
+      - "Step 7"
+      - "DiagMgr Quick Start"
+    engineering_object: "CG-008 NvM / memory-services downstream navigation"
+    coverage_posture: "NO_EXPLICIT_MAPPING"
+    downstream:
+      goal_ids:
+        - "CG-008"
+      concern_ids:
+        []
+      workflow_ids:
+        []
+      proposition_ids:
+        []
+      knowledge_paths:
+        - "docs/knowledge/goals/cg-008-nvm-memory-services.md"
+    authority:
+      type: "DOWNSTREAM_REVIEWED_KNOWLEDGE"
+      repository: "eariver/Automotive_EE_Engineering_Knowledge"
+      exact_commit: "997d09d57ca3246c5323c2e366598bd9f7a9f50e"
+      exact_ref: "work/luna-management-ecu-swc-authority-index-20260902"
+      path: "docs/knowledge/goals/cg-008-nvm-memory-services.md"
+      section_or_locator: "CG-008 page: explicit downstream route status"
+      source_state: "fixed starting commit"
+    boundary: "NO_EXPLICIT_MAPPING does not mean NvM is unsupported and is not capability-negative evidence."
+    notes: "Do not create an inferred memory-service membership from the goal ID or from a neighboring DEM/NvM dependency."
+  -
+    locator_id: "DS-009"
+    methodology_sections:
+      - "§18"
+      - "§19"
+      - "§31"
+    guide_steps:
+      - "Step 9"
+      - "Step 11"
+      - "Definition of Done"
+    engineering_object: "model-level verification, MIL/SIL identity and verification handoff"
+    coverage_posture: "REVIEWED_ROUTE_AVAILABLE"
+    downstream:
+      goal_ids:
+        - "CG-013"
+        - "CG-015"
+        - "CG-016"
+      concern_ids:
+        - "C-PORT"
+        - "C-VIRT"
+        - "C-AUTO"
+        - "C-TEST"
+        - "C-ASSURE"
+      workflow_ids:
+        - "WF-02"
+        - "WF-07"
+        - "WF-06"
+        - "WF-08"
+        - "WF-09"
+        - "WF-10"
+      proposition_ids:
+        - "P02-001"
+        - "P02-002"
+        - "P02-003"
+        - "P02-004"
+        - "P02-005"
+        - "P02-006"
+        - "P06-001"
+        - "P06-002"
+        - "P06-003"
+        - "P06-004"
+        - "P06-005"
+        - "P06-006"
+        - "P3-MW-005"
+        - "P3-MW-009"
+        - "P05-001"
+        - "P05-002"
+        - "P05-003"
+        - "P05-004"
+        - "P05-005"
+        - "P05-006"
+        - "P07-003"
+        - "P09-006"
+        - "P3-MW-008"
+        - "P4-MW-007"
+        - "P4-MW-008"
+        - "P4-MW-009"
+        - "P4-MW-010"
+      knowledge_paths:
+        - "docs/knowledge/goals/cg-013-mil-sil-pil-verification.md"
+        - "docs/knowledge/goals/cg-015-test-definition-execution-verdict-report.md"
+        - "docs/knowledge/goals/cg-016-verdict-coverage-formal-static-analysis.md"
+    authority:
+      type: "DOWNSTREAM_REVIEWED_KNOWLEDGE"
+      repository: "eariver/Automotive_EE_Engineering_Knowledge"
+      exact_commit: "997d09d57ca3246c5323c2e366598bd9f7a9f50e"
+      exact_ref: "work/luna-management-ecu-swc-authority-index-20260902"
+      path: "docs/knowledge/goals/cg-013-mil-sil-pil-verification.md"
+      section_or_locator: "Engineering Goal pages: MIL/SIL/PIL, test evidence and verdict/coverage distinctions"
+      source_state: "fixed starting commit"
+    boundary: "MIL != SIL != later VECU/HIL/physical-SUT evidence."
+    notes: "The downstream route identifies verification families; the MathWorks manifest records the exact execution and evidence locators."
+  -
+    locator_id: "DS-010"
+    methodology_sections:
+      - "§18"
+      - "§19"
+      - "§31"
+    guide_steps:
+      - "Step 9"
+      - "Step 11"
+      - "Definition of Done"
+    engineering_object: "test definition → execution → verdict/result/report navigation"
+    coverage_posture: "REVIEWED_ROUTE_AVAILABLE"
+    downstream:
+      goal_ids:
+        - "CG-015"
+        - "CG-016"
+        - "CG-017"
+      concern_ids:
+        - "C-AUTO"
+        - "C-TEST"
+        - "C-ASSURE"
+      workflow_ids:
+        - "WF-06"
+        - "WF-08"
+        - "WF-09"
+        - "WF-10"
+      proposition_ids:
+        - "P05-001"
+        - "P05-002"
+        - "P05-003"
+        - "P05-004"
+        - "P05-005"
+        - "P05-006"
+        - "P07-003"
+        - "P09-006"
+        - "P3-MW-008"
+        - "P4-MW-007"
+        - "P4-MW-008"
+        - "P4-MW-009"
+        - "P4-MW-010"
+        - "P07-001"
+        - "P07-002"
+        - "P07-004"
+        - "P07-005"
+        - "P3-MW-010"
+        - "P4-MW-011"
+      knowledge_paths:
+        - "docs/knowledge/goals/cg-015-test-definition-execution-verdict-report.md"
+        - "docs/knowledge/goals/cg-016-verdict-coverage-formal-static-analysis.md"
+        - "docs/knowledge/goals/cg-017-ci-ct-orchestration-runner-verdict.md"
+    authority:
+      type: "DOWNSTREAM_REVIEWED_KNOWLEDGE"
+      repository: "eariver/Automotive_EE_Engineering_Knowledge"
+      exact_commit: "997d09d57ca3246c5323c2e366598bd9f7a9f50e"
+      exact_ref: "work/luna-management-ecu-swc-authority-index-20260902"
+      path: "docs/knowledge/goals/cg-015-test-definition-execution-verdict-report.md"
+      section_or_locator: "Engineering Goal pages: test definition/execution/result and automation/verdict"
+      source_state: "fixed starting commit"
+    boundary: "Test definition, execution result, coverage, verdict and report are distinct artifact/result identities."
+    notes: "No universal cross-product runner or report contract is inferred from product-local routes."
+  -
+    locator_id: "DS-011"
+    methodology_sections:
+      - "§2"
+      - "§32"
+      - "§33"
+    guide_steps:
+      - "Step 1"
+      - "Step 13"
+      - "Final Boundary"
+    engineering_object: "VECU / realtime / HIL / physical-SUT boundary after SWC Development"
+    coverage_posture: "REVIEWED_ROUTE_AVAILABLE"
+    downstream:
+      goal_ids:
+        - "CG-013"
+        - "CG-014"
+        - "CG-022"
+      concern_ids:
+        - "C-PORT"
+        - "C-VIRT"
+        - "C-PLANT"
+        - "C-SCENARIO"
+      workflow_ids:
+        - "WF-02"
+        - "WF-07"
+        - "WF-12"
+        - "WF-17"
+      proposition_ids:
+        - "P02-001"
+        - "P02-002"
+        - "P02-003"
+        - "P02-004"
+        - "P02-005"
+        - "P02-006"
+        - "P06-001"
+        - "P06-002"
+        - "P06-003"
+        - "P06-004"
+        - "P06-005"
+        - "P06-006"
+        - "P3-MW-005"
+        - "P3-MW-009"
+        - "P5-MW-002"
+        - "P9-MW-001"
+      knowledge_paths:
+        - "docs/knowledge/goals/cg-013-mil-sil-pil-verification.md"
+        - "docs/knowledge/goals/cg-014-realtime-hil-controller-plant-physical-sut.md"
+        - "docs/knowledge/goals/cg-022-physical-plant-environment-sil-hil.md"
+    authority:
+      type: "DOWNSTREAM_REVIEWED_KNOWLEDGE"
+      repository: "eariver/Automotive_EE_Engineering_Knowledge"
+      exact_commit: "997d09d57ca3246c5323c2e366598bd9f7a9f50e"
+      exact_ref: "work/luna-management-ecu-swc-authority-index-20260902"
+      path: "docs/knowledge/goals/cg-013-mil-sil-pil-verification.md"
+      section_or_locator: "Engineering Goal pages: verification, realtime/HIL and physical plant"
+      source_state: "fixed starting commit"
+    boundary: "SWC Development complete != VECU complete; MIL/SIL evidence is not VECU/HIL/physical-SUT evidence."
+    notes: "Use this as phase navigation only; it does not add VECU runtime authority to the SWC project."
+  -
+    locator_id: "DS-012"
+    methodology_sections:
+      - "§2"
+      - "§25"
+      - "§32"
+    guide_steps:
+      - "Step 1"
+      - "Step 13"
+      - "Change Request Routing"
+    engineering_object: "XCP / A2L / calibration-runtime phase boundary"
+    coverage_posture: "BOUNDED_ROUTE_AVAILABLE"
+    downstream:
+      goal_ids:
+        - "CG-011"
+        - "CG-012"
+      concern_ids:
+        []
+      workflow_ids:
+        - "WF-03"
+        - "WF-05"
+      proposition_ids:
+        - "P03-005"
+        - "P03-006"
+        - "P08-005"
+        - "P3-MW-002"
+        - "P3-MW-011"
+        - "P4-MW-001"
+      knowledge_paths:
+        - "docs/knowledge/goals/cg-011-xcp-measurement-calibration.md"
+        - "docs/knowledge/goals/cg-012-a2l-artifact-interoperability-boundary.md"
+    authority:
+      type: "DOWNSTREAM_REVIEWED_KNOWLEDGE"
+      repository: "eariver/Automotive_EE_Engineering_Knowledge"
+      exact_commit: "997d09d57ca3246c5323c2e366598bd9f7a9f50e"
+      exact_ref: "work/luna-management-ecu-swc-authority-index-20260902"
+      path: "docs/knowledge/goals/cg-011-xcp-measurement-calibration.md"
+      section_or_locator: "Engineering Goal pages: XCP measurement/calibration and A2L interoperability boundary"
+      source_state: "fixed starting commit"
+    boundary: "A2L is a description artifact and XCP is a runtime protocol/session; a bounded route is not generic cross-vendor interoperability."
+    notes: "Use the exact Vector and MathWorks bounded locators; do not treat the route as proof of a generic live endpoint."
+  -
+    locator_id: "DS-013"
+    methodology_sections:
+      - "§2"
+      - "§3"
+      - "§4"
+      - "§32"
+    guide_steps:
+      - "Step 1"
+      - "Step 20"
+    engineering_object: "existing cross-vendor bridge classification lookup"
+    coverage_posture: "PROCESS_RULE"
+    downstream:
+      goal_ids:
+        - "CG-028"
+      concern_ids:
+        []
+      workflow_ids:
+        - "WF-01"
+        - "WF-02"
+        - "WF-04"
+        - "WF-05"
+        - "WF-07"
+      proposition_ids:
+        - "P08-001"
+        - "P08-002"
+        - "P08-003"
+        - "P08-004"
+        - "P08-005"
+        - "P08-006"
+        - "P08-007"
+        - "P3-MW-001"
+        - "P3-MW-002"
+        - "P3-MW-003"
+        - "P4-MW-001"
+        - "P4-MW-002"
+      knowledge_paths:
+        - "docs/knowledge/goals/cg-028-cross-vendor-bridge-evaluation.md"
+    authority:
+      type: "DOWNSTREAM_REVIEWED_KNOWLEDGE"
+      repository: "eariver/Automotive_EE_Engineering_Knowledge"
+      exact_commit: "997d09d57ca3246c5323c2e366598bd9f7a9f50e"
+      exact_ref: "work/luna-management-ecu-swc-authority-index-20260902"
+      path: "docs/knowledge/goals/cg-028-cross-vendor-bridge-evaluation.md"
+      section_or_locator: "CG-028 page: existing bridge classification lookup"
+      source_state: "fixed starting commit"
+    boundary: "No new bridge is created and no existing bridge is reclassified by this compilation."
+    notes: "CG-028 is used only as an existing classification/navigation lookup; no semantic similarity or product-name inference is added."
+  -
+    locator_id: "DS-014"
+    methodology_sections:
+      - "§3"
+      - "§6"
+      - "§7"
+      - "§12"
+      - "§21"
+      - "§32"
+    guide_steps:
+      - "Step 4"
+      - "Step 6"
+      - "Step 10"
+      - "Step 20"
+    engineering_object: "vendor-authority and direct-standards authority lookup"
+    coverage_posture: "PROCESS_RULE"
+    downstream:
+      goal_ids:
+        - "CG-029"
+      concern_ids:
+        - "C-ARCH"
+        - "C-ASSURE"
+        - "C-AUTO"
+        - "C-COMM"
+        - "C-CTUNE"
+        - "C-DESOPT"
+        - "C-DIAG"
+        - "C-ECU"
+        - "C-GSCHED"
+        - "C-HINFSYN"
+        - "C-HWIMPL"
+        - "C-LIFE"
+        - "C-MODELCAL"
+        - "C-MPC"
+        - "C-MUSYN"
+        - "C-NUMERIC"
+        - "C-ONEST"
+        - "C-PIDAUT"
+        - "C-PLANT"
+        - "C-PORT"
+        - "C-REQ"
+        - "C-ROBUST"
+        - "C-ROM"
+        - "C-SAFE"
+        - "C-SCENARIO"
+        - "C-SENS"
+        - "C-SYSARCH"
+        - "C-SYSID"
+        - "C-TEST"
+        - "C-VARIANT"
+        - "C-VIRT"
+      workflow_ids:
+        - "WF-01"
+        - "WF-02"
+        - "WF-03"
+        - "WF-04"
+        - "WF-05"
+        - "WF-06"
+        - "WF-07"
+        - "WF-08"
+        - "WF-09"
+        - "WF-10"
+        - "WF-11"
+        - "WF-12"
+        - "WF-13"
+        - "WF-14"
+        - "WF-15"
+        - "WF-16"
+        - "WF-17"
+        - "WF-18"
+        - "WF-19"
+        - "WF-20"
+        - "WF-21"
+        - "WF-22"
+        - "WF-23"
+        - "WF-24"
+        - "WF-25"
+        - "WF-26"
+        - "WF-27"
+        - "WF-28"
+        - "WF-29"
+        - "WF-30"
+        - "WF-31"
+        - "WF-32"
+        - "WF-33"
+        - "WF-34"
+      proposition_ids:
+        - "P01-001"
+        - "P01-002"
+        - "P01-003"
+        - "P01-004"
+        - "P01-005"
+        - "P01-006"
+        - "P02-001"
+        - "P02-002"
+        - "P02-003"
+        - "P02-004"
+        - "P02-005"
+        - "P02-006"
+        - "P03-001"
+        - "P03-002"
+        - "P03-003"
+        - "P03-004"
+        - "P03-005"
+        - "P03-006"
+        - "P04-001"
+        - "P04-002"
+        - "P04-003"
+        - "P04-004"
+        - "P04-005"
+        - "P04-006"
+        - "P05-001"
+        - "P05-002"
+        - "P05-003"
+        - "P05-004"
+        - "P05-005"
+        - "P05-006"
+        - "P06-001"
+        - "P06-002"
+        - "P06-003"
+        - "P06-004"
+        - "P06-005"
+        - "P06-006"
+        - "P07-001"
+        - "P07-002"
+        - "P07-003"
+        - "P07-004"
+        - "P07-005"
+        - "P08-001"
+        - "P08-002"
+        - "P08-003"
+        - "P08-004"
+        - "P08-005"
+        - "P08-006"
+        - "P08-007"
+        - "P09-001"
+        - "P09-002"
+        - "P09-003"
+        - "P09-004"
+        - "P09-005"
+        - "P09-006"
+        - "P10-MW-001"
+        - "P11-MW-001"
+        - "P12-MW-001"
+        - "P13-MW-001"
+        - "P14-MW-001"
+        - "P15-MW-001"
+        - "P16-MW-001"
+        - "P17-MW-001"
+        - "P18-MW-001"
+        - "P19-MW-001"
+        - "P20-MW-001"
+        - "P21-MW-001"
+        - "P22-MW-001"
+        - "P23-MW-001"
+        - "P24-MW-001"
+        - "P25-MW-001"
+        - "P3-MW-001"
+        - "P3-MW-002"
+        - "P3-MW-003"
+        - "P3-MW-004"
+        - "P3-MW-005"
+        - "P3-MW-006"
+        - "P3-MW-007"
+        - "P3-MW-008"
+        - "P3-MW-009"
+        - "P3-MW-010"
+        - "P3-MW-011"
+        - "P4-MW-001"
+        - "P4-MW-002"
+        - "P4-MW-003"
+        - "P4-MW-004"
+        - "P4-MW-005"
+        - "P4-MW-006"
+        - "P4-MW-007"
+        - "P4-MW-008"
+        - "P4-MW-009"
+        - "P4-MW-010"
+        - "P4-MW-011"
+        - "P5-MW-001"
+        - "P5-MW-002"
+        - "P5-MW-003"
+        - "P6-MW-001"
+        - "P6-MW-002"
+        - "P6-MW-003"
+        - "P7-MW-001"
+        - "P8-MW-001"
+        - "P9-MW-001"
+      knowledge_paths:
+        - "docs/knowledge/goals/cg-029-vendor-authority-lookup.md"
+    authority:
+      type: "DOWNSTREAM_REVIEWED_KNOWLEDGE"
+      repository: "eariver/Automotive_EE_Engineering_Knowledge"
+      exact_commit: "997d09d57ca3246c5323c2e366598bd9f7a9f50e"
+      exact_ref: "work/luna-management-ecu-swc-authority-index-20260902"
+      path: "docs/knowledge/goals/cg-029-vendor-authority-lookup.md"
+      section_or_locator: "CG-029 page: exact existing vendor-authority lookup"
+      source_state: "fixed starting commit"
+    boundary: "Vendor realization is not direct AUTOSAR standards authority."
+    notes: "Use exact existing vendor-authority lookup only; direct standards navigation is separately anchored by CG-030."
+  -
+    locator_id: "DS-015"
+    methodology_sections:
+      - "§2"
+      - "§32"
+    guide_steps:
+      - "Step 1"
+      - "Step 13"
+      - "Final Boundary"
+    engineering_object: "C3 Management ECU / Level-3 VECU acceptance navigation precedent"
+    coverage_posture: "PROJECT_ARTIFACT"
+    downstream:
+      goal_ids:
+        []
+      concern_ids:
+        []
+      workflow_ids:
+        []
+      proposition_ids:
+        []
+      knowledge_paths:
+        []
+    authority:
+      type: "DOWNSTREAM_VALIDATION_ARTIFACT"
+      repository: "eariver/Automotive_EE_Engineering_Knowledge"
+      exact_commit: "997d09d57ca3246c5323c2e366598bd9f7a9f50e"
+      exact_ref: "work/luna-management-ecu-swc-authority-index-20260902"
+      path: "docs/validation/2026-09-01_c3-management-ecu-lv3-vecu-acceptance-result.md"
+      section_or_locator: "C3 generalized Management ECU / Level-3 virtual ECU acceptance result"
+    boundary: "Acceptance precedent is a navigation artifact, not a technical authority and not a substitute for project requirements."
+    notes: "Use only for navigation precedent; it does not authorize copying scenario details into the SWC baseline."
+  -
+    locator_id: "DS-016"
+    methodology_sections:
+      - "§25"
+      - "§32"
+    guide_steps:
+      - "Step 1"
+      - "Step 13"
+      - "Step 20"
+    engineering_object: "CANape-specific runtime calibration consumer route"
+    coverage_posture: "UNRESOLVED_AUTHORITY"
+    downstream:
+      goal_ids:
+        - "CG-011"
+      concern_ids:
+        []
+      workflow_ids:
+        - "WF-03"
+        - "WF-05"
+      proposition_ids:
+        - "P03-005"
+        - "P03-006"
+        - "P08-005"
+        - "P3-MW-002"
+        - "P3-MW-011"
+        - "P4-MW-001"
+      knowledge_paths:
+        - "docs/knowledge/goals/cg-011-xcp-measurement-calibration.md"
+    authority:
+      type: null
+      repository: null
+      exact_commit: null
+      exact_ref: null
+      path: null
+      section_or_locator: null
+    boundary: "The frozen exact-pinned material supports bounded XCP/A2L navigation but does not expose an exact CANape-specific Reviewed Knowledge locator in this work unit."
+    notes: "Stop this affected route here; do not use current upstream documentation or infer CANape behavior from CANoe/VNT/XCP similarity."
+  -
+    locator_id: "DS-017"
+    methodology_sections:
+      - "§2"
+      - "§14"
+      - "§32"
+    guide_steps:
+      - "Step 1"
+      - "Step 6"
+      - "Step 20"
+    engineering_object: "CG-006 Ethernet / SOME-IP lane"
+    coverage_posture: "NO_EXPLICIT_MAPPING"
+    downstream:
+      goal_ids:
+        - "CG-006"
+      concern_ids:
+        - "C-COMM"
+      workflow_ids:
+        - "WF-03"
+      proposition_ids:
+        - "P03-002"
+        - "P03-004"
+        - "P03-006"
+        - "P3-MW-006"
+        - "P4-MW-004"
+      knowledge_paths:
+        - "docs/knowledge/goals/cg-006-ethernet-someip-communication.md"
+    authority:
+      type: "DOWNSTREAM_REVIEWED_KNOWLEDGE"
+      repository: "eariver/Automotive_EE_Engineering_Knowledge"
+      exact_commit: "997d09d57ca3246c5323c2e366598bd9f7a9f50e"
+      exact_ref: "work/luna-management-ecu-swc-authority-index-20260902"
+      path: "docs/knowledge/goals/cg-006-ethernet-someip-communication.md"
+      section_or_locator: "CG-006 page: explicit reviewed-lane / no-explicit-mapping status"
+      source_state: "fixed starting commit"
+    boundary: "SOME/IP NO_EXPLICIT_MAPPING is not capability-negative evidence and must not be filled by naming or phase similarity."
+    notes: "Keep the existing CG-006 status; no generic Ethernet/SOME-IP route is created here."
+  -
+    locator_id: "DS-PROJ-001"
+    methodology_sections:
+      - "§5"
+    guide_steps:
+      - "Step 1"
+    engineering_object: "project requirement baseline and requirement IDs"
+    coverage_posture: "PROJECT_INPUT_REQUIRED"
+    downstream:
+      goal_ids:
+        []
+      concern_ids:
+        []
+      workflow_ids:
+        []
+      proposition_ids:
+        []
+      knowledge_paths:
+        []
+    authority:
+      type: null
+      repository: null
+      exact_commit: null
+      exact_ref: null
+      path: null
+      section_or_locator: null
+    boundary: "Project requirements are not replaced by AUTOSAR or vendor documentation."
+    notes: "The requirement artifact location is still to be defined by project configuration management."
+  -
+    locator_id: "DS-PROJ-002"
+    methodology_sections:
+      - "§29"
+    guide_steps:
+      - "Step 0"
+    engineering_object: "actual project tool / release / schema / code-generation baseline"
+    coverage_posture: "PROJECT_INPUT_REQUIRED"
+    downstream:
+      goal_ids:
+        []
+      concern_ids:
+        []
+      workflow_ids:
+        []
+      proposition_ids:
+        []
+      knowledge_paths:
+        []
+    authority:
+      type: null
+      repository: null
+      exact_commit: null
+      exact_ref: null
+      path: null
+      section_or_locator: null
+    boundary: "The reviewed baseline does not prove the actual project tool combination."
+    notes: "Record the project-specific release combination before implementation; do not silently substitute the reviewed baseline."
+  -
+    locator_id: "DS-PROJ-003"
+    methodology_sections:
+      - "§25"
+    guide_steps:
+      - "Step 1"
+      - "Step 7"
+    engineering_object: "project calibration values, thresholds and confirmation times"
+    coverage_posture: "PROJECT_INPUT_REQUIRED"
+    downstream:
+      goal_ids:
+        []
+      concern_ids:
+        []
+      workflow_ids:
+        []
+      proposition_ids:
+        []
+      knowledge_paths:
+        []
+    authority:
+      type: null
+      repository: null
+      exact_commit: null
+      exact_ref: null
+      path: null
+      section_or_locator: null
+    boundary: "Calibration contract identity is distinct from project calibration values."
+    notes: "SecurityAccess values and other project calibration values remain project inputs."
+  -
+    locator_id: "DS-PROJ-004"
+    methodology_sections:
+      - "§10"
+      - "§11"
+      - "§12"
+      - "§14"
+      - "§16"
+    guide_steps:
+      - "Step 6"
+      - "DiagMgr Quick Start"
+    engineering_object: "project application behavior, maintenance ownership and fault arbitration policy"
+    coverage_posture: "PROJECT_SPECIFIC_DESIGN"
+    downstream:
+      goal_ids:
+        []
+      concern_ids:
+        []
+      workflow_ids:
+        []
+      proposition_ids:
+        []
+      knowledge_paths:
+        []
+    authority:
+      type: null
+      repository: null
+      exact_commit: null
+      exact_ref: null
+      path: null
+      section_or_locator: null
+    boundary: "Project-specific application behavior is not promoted into generic vendor or AUTOSAR semantics."
+    notes: "This includes Maintenance ownership/priority, fault-source latch/clear behavior and application FSA/Indicator arbitration."
+  -
+    locator_id: "DS-PROJ-005"
+    methodology_sections:
+      - "§13"
+      - "§14"
+      - "§15"
+      - "§16"
+    guide_steps:
+      - "Step 7"
+      - "DiagMgr Quick Start"
+    engineering_object: "project counter/checksum, node latch/clear and BUS_FAILED_LATCHED policy"
+    coverage_posture: "PROJECT_SPECIFIC_DESIGN"
+    downstream:
+      goal_ids:
+        []
+      concern_ids:
+        []
+      workflow_ids:
+        []
+      proposition_ids:
+        []
+      knowledge_paths:
+        []
+    authority:
+      type: null
+      repository: null
+      exact_commit: null
+      exact_ref: null
+      path: null
+      section_or_locator: null
+    boundary: "Project counter/checksum != AUTOSAR E2E; native CAN BUS_OFF != project BUS_FAILED_LATCHED."
+    notes: "Keep project timer freeze, confirmation, latch/release and DTC-clear rules as explicit project design; no fake standards locator is created."
+  -
+    locator_id: "DS-PROJ-006"
+    methodology_sections:
+      - "§27"
+      - "§28"
+      - "§30"
+      - "§31"
+    guide_steps:
+      - "Step 5"
+      - "Step 8"
+      - "Step 10"
+      - "Step 11"
+      - "Step 12"
+      - "Step 13"
+    engineering_object: "SWC contract, model, mapping, generated, verification and delivery artifact set"
+    coverage_posture: "PROJECT_ARTIFACT"
+    downstream:
+      goal_ids:
+        []
+      concern_ids:
+        []
+      workflow_ids:
+        []
+      proposition_ids:
+        []
+      knowledge_paths:
+        []
+    authority:
+      type: null
+      repository: null
+      exact_commit: null
+      exact_ref: null
+      path: null
+      section_or_locator: null
+    boundary: "AUTOSAR contract != model != generated C/H/ARXML != production ECU integration."
+    notes: "Concrete implementation and verification artifact stores are project-controlled and are not created by this reference-index compilation."
+  -
+    locator_id: "DS-PROJ-007"
+    methodology_sections:
+      - "§23"
+      - "§24"
+      - "§25"
+      - "§32"
+    guide_steps:
+      - "Change Request Routing"
+      - "Definition of Done"
+    engineering_object: "change ownership and handoff process"
+    coverage_posture: "PROCESS_RULE"
+    downstream:
+      goal_ids:
+        []
+      concern_ids:
+        []
+      workflow_ids:
+        []
+      proposition_ids:
+        []
+      knowledge_paths:
+        []
+    authority:
+      type: null
+      repository: null
+      exact_commit: null
+      exact_ref: null
+      path: null
+      section_or_locator: null
+    boundary: "Behavior, interface, shared-definition, calibration and production-integration changes have different owners and lifecycle boundaries."
+    notes: "This is a project process/navigation rule; it is not a new technical authority claim."
