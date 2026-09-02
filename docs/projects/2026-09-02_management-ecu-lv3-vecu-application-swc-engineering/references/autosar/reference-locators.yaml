@@ -1,0 +1,903 @@
+schema_version: "management-ecu-swc-reference-locators/v1"
+artifact: "Management ECU SWC authority/reference locators — autosar"
+date: "2026-09-02"
+repository: "eariver/Automotive_EE_Engineering_Knowledge"
+branch: "work/luna-management-ecu-swc-authority-index-20260902"
+starting_sha: "997d09d57ca3246c5323c2e366598bd9f7a9f50e"
+authority_plane: "autosar"
+source_policy:
+  mode: "existing-authority-compilation"
+  new_technical_research: false
+  external_source_access_count: 0
+  exact_pinned_upstream_only: true
+coverage_posture_vocabulary:
+  - "REVIEWED_ROUTE_AVAILABLE"
+  - "BOUNDED_ROUTE_AVAILABLE"
+  - "NO_EXPLICIT_MAPPING"
+  - "PROJECT_SPECIFIC_DESIGN"
+  - "PROJECT_INPUT_REQUIRED"
+  - "PROJECT_ARTIFACT"
+  - "PROCESS_RULE"
+  - "UNRESOLVED_AUTHORITY"
+locator_count: 20
+locators:
+  -
+    locator_id: "AS-001"
+    methodology_sections:
+      - "§6.1"
+      - "§8"
+    guide_steps:
+      - "Step 3"
+      - "Step 4"
+    engineering_object: "AUTOSAR Classic SW-C ports, interfaces, connectors and shared interaction contracts"
+    coverage_posture: "REVIEWED_ROUTE_AVAILABLE"
+    downstream:
+      goal_ids:
+        - "CG-001"
+        - "CG-030"
+      concern_ids:
+        - "C-ARCH"
+        - "C-ECU"
+      workflow_ids:
+        - "WF-01"
+      proposition_ids:
+        - "P01-001"
+        - "P01-002"
+        - "P01-003"
+        - "P01-004"
+        - "P01-005"
+        - "P01-006"
+        - "P3-MW-004"
+        - "P5-MW-003"
+        - "P08-003"
+      knowledge_paths:
+        - "docs/knowledge/goals/cg-001-autosar-classic-swc-interfaces.md"
+        - "docs/knowledge/goals/cg-030-autosar-direct-standards-authority.md"
+    authority:
+      type: "DIRECT_AUTOSAR_STANDARDS_REVIEWED_KNOWLEDGE"
+      repository: "eariver/Research_AUTOSAR_CP_Documents"
+      exact_commit: "938ac4af696d263019ebdc61106a444447e15c4d"
+      exact_ref: "authority/autosar-cp-4.4.0-current-depth-20260830"
+      path: "docs/knowledge/concepts/swc-port-interface-connector-model-boundary.json"
+      section_or_locator: "Software Component Template: Component types, PortPrototypes, PortInterfaces, compositions and connectors, p.80; Requirements on Runtime Environment: SW-C API mapping and RTE generation requirements, p.20"
+      authority_id: "AUTOSAR-CP-4.4.0-CONCEPT-SWC-PORT-INTERFACE-CONNECTOR-MODEL-BOUNDARY"
+      standard_body: "AUTOSAR"
+      platform_release: "Classic Platform 4.4.0"
+    boundary: "A port/interface/connector is a design-time contract, not a generated API or transport implementation."
+    notes: "Direct AUTOSAR CP 4.4.0 semantics; COM/PduR/network mechanics remain neighboring authorities."
+  -
+    locator_id: "AS-002"
+    methodology_sections:
+      - "§4"
+      - "§21"
+      - "§22"
+    guide_steps:
+      - "Step 10"
+      - "Step 12"
+    engineering_object: "RTE contract phase, generation inputs and generated-runtime boundary"
+    coverage_posture: "REVIEWED_ROUTE_AVAILABLE"
+    downstream:
+      goal_ids:
+        - "CG-003"
+        - "CG-030"
+      concern_ids:
+        - "C-ARCH"
+        - "C-ECU"
+        - "C-LIFE"
+      workflow_ids:
+        - "WF-01"
+        - "WF-06"
+      proposition_ids:
+        - "P01-002"
+        - "P01-004"
+        - "P01-005"
+        - "P09-001"
+        - "P09-006"
+        - "P3-MW-004"
+        - "P3-MW-005"
+        - "P01-001"
+        - "P08-003"
+      knowledge_paths:
+        - "docs/knowledge/goals/cg-003-rte-generation-production-integration.md"
+        - "docs/knowledge/goals/cg-030-autosar-direct-standards-authority.md"
+    authority:
+      type: "DIRECT_AUTOSAR_STANDARDS_REVIEWED_KNOWLEDGE"
+      repository: "eariver/Research_AUTOSAR_CP_Documents"
+      exact_commit: "938ac4af696d263019ebdc61106a444447e15c4d"
+      exact_ref: "authority/autosar-cp-4.4.0-current-depth-20260830"
+      path: "docs/knowledge/concepts/rte-generation-contract-runtime-boundary.json"
+      section_or_locator: "Requirements on Runtime Environment: RTE generation and ECU-specific configuration requirements, p.25; Specification of RTE Software: RTE contract phase and generation phase / generator input-output model, p.30"
+      authority_id: "AUTOSAR-CP-4.4.0-CONCEPT-RTE-GENERATION-CONTRACT-RUNTIME-BOUNDARY"
+      standard_body: "AUTOSAR"
+      platform_release: "Classic Platform 4.4.0"
+    boundary: "Design-time model entities != generated RTE APIs/task bodies/runtime; detailed realization remains ECU-specific."
+    notes: "Use this direct standard route for generic RTE semantics and retain the production-RTE boundary."
+  -
+    locator_id: "AS-003"
+    methodology_sections:
+      - "§7"
+      - "§17"
+    guide_steps:
+      - "Step 4"
+      - "Step 8"
+    engineering_object: "RunnableEntity / RTEEvent activation and OS task-mapping boundary"
+    coverage_posture: "REVIEWED_ROUTE_AVAILABLE"
+    downstream:
+      goal_ids:
+        - "CG-001"
+        - "CG-003"
+        - "CG-010"
+        - "CG-030"
+      concern_ids:
+        - "C-ARCH"
+        - "C-ECU"
+        - "C-LIFE"
+      workflow_ids:
+        - "WF-01"
+        - "WF-06"
+      proposition_ids:
+        - "P01-001"
+        - "P01-002"
+        - "P01-003"
+        - "P01-004"
+        - "P01-005"
+        - "P01-006"
+        - "P3-MW-004"
+        - "P5-MW-003"
+        - "P09-001"
+        - "P09-006"
+        - "P3-MW-005"
+        - "P08-003"
+      knowledge_paths:
+        - "docs/knowledge/goals/cg-001-autosar-classic-swc-interfaces.md"
+        - "docs/knowledge/goals/cg-003-rte-generation-production-integration.md"
+        - "docs/knowledge/goals/cg-010-os-task-event-scheduling.md"
+        - "docs/knowledge/goals/cg-030-autosar-direct-standards-authority.md"
+    authority:
+      type: "DIRECT_AUTOSAR_STANDARDS_REVIEWED_KNOWLEDGE"
+      repository: "eariver/Research_AUTOSAR_CP_Documents"
+      exact_commit: "938ac4af696d263019ebdc61106a444447e15c4d"
+      exact_ref: "authority/autosar-cp-4.4.0-current-depth-20260830"
+      path: "docs/knowledge/concepts/runnable-rteevent-os-activation-boundary.json"
+      section_or_locator: "Software Component Template: SwcInternalBehavior / RunnableEntity / RTEEvent, p.720; Requirements on Runtime Environment: Runnable categories, activation and task mapping, p.60; Specification of RTE Software: Runnable activation / generated task-body and event handling, p.700"
+      authority_id: "AUTOSAR-CP-4.4.0-CONCEPT-RUNNABLE-RTEEVENT-OS-ACTIVATION-BOUNDARY"
+      standard_body: "AUTOSAR"
+      platform_release: "Classic Platform 4.4.0"
+    boundary: "RunnableEntity != OS Task; RTEEvent != OS Event object."
+    notes: "Use the direct standard locator for activation semantics; detailed OS scheduling remains separate."
+  -
+    locator_id: "AS-004"
+    methodology_sections:
+      - "§7"
+      - "§10.1"
+    guide_steps:
+      - "Step 4"
+      - "Step 6"
+      - "ModeMgr Quick Start"
+    engineering_object: "SW-C mode declaration, mode switch event and RTE mode-machine realization"
+    coverage_posture: "REVIEWED_ROUTE_AVAILABLE"
+    downstream:
+      goal_ids:
+        - "CG-009"
+      concern_ids:
+        []
+      workflow_ids:
+        []
+      proposition_ids:
+        []
+      knowledge_paths:
+        - "docs/knowledge/goals/cg-009-startup-shutdown-mode-management.md"
+    authority:
+      type: "DIRECT_AUTOSAR_STANDARDS_REVIEWED_KNOWLEDGE"
+      repository: "eariver/Research_AUTOSAR_CP_Documents"
+      exact_commit: "938ac4af696d263019ebdc61106a444447e15c4d"
+      exact_ref: "authority/autosar-cp-4.4.0-current-depth-20260830"
+      path: "docs/knowledge/concepts/swc-mode-model-rte-machine-boundary.json"
+      section_or_locator: "Software Component Template: ModeSwitchInterface / ModeDeclarationGroup / mode events and dependencies, p.820; Requirements on Runtime Environment: Mode switch event, notification and interface mapping, p.75; Specification of RTE Software: RTE mode machine and mode-switch runtime handling, p.800"
+      authority_id: "AUTOSAR-CP-4.4.0-CONCEPT-SWC-MODE-MODEL-RTE-MACHINE-BOUNDARY"
+      standard_body: "AUTOSAR"
+      platform_release: "Classic Platform 4.4.0"
+    boundary: "This exact direct route does not change the downstream CG-009 NO_EXPLICIT_MAPPING posture and does not transfer system mode policy to the SW-C/RTE."
+    notes: "Separate exact upstream authority for the CG-009 navigation gap; no new proposition mapping is introduced."
+  -
+    locator_id: "AS-005"
+    methodology_sections:
+      - "§12"
+    guide_steps:
+      - "Step 6"
+      - "DiagMgr Quick Start"
+    engineering_object: "DCM diagnostic service, session/security and transport-boundary ownership"
+    coverage_posture: "REVIEWED_ROUTE_AVAILABLE"
+    downstream:
+      goal_ids:
+        - "CG-007"
+        - "CG-030"
+      concern_ids:
+        - "C-DIAG"
+        - "C-ARCH"
+        - "C-ECU"
+      workflow_ids:
+        - "WF-04"
+        - "WF-01"
+      proposition_ids:
+        - "P04-001"
+        - "P04-002"
+        - "P04-003"
+        - "P04-004"
+        - "P04-005"
+        - "P04-006"
+        - "P3-MW-007"
+        - "P01-001"
+        - "P08-003"
+        - "P3-MW-004"
+      knowledge_paths:
+        - "docs/knowledge/goals/cg-007-diagnostics-authoring-test-runtime.md"
+        - "docs/knowledge/goals/cg-030-autosar-direct-standards-authority.md"
+    authority:
+      type: "DIRECT_AUTOSAR_STANDARDS_REVIEWED_KNOWLEDGE"
+      repository: "eariver/Research_AUTOSAR_CP_Documents"
+      exact_commit: "938ac4af696d263019ebdc61106a444447e15c4d"
+      exact_ref: "authority/autosar-cp-4.4.0-current-depth-20260830"
+      path: "docs/knowledge/concepts/dcm-diagnostic-service-ownership.json"
+      section_or_locator: "Specification of Diagnostic Communication Manager: 5 Dependencies to other modules, p.30; Specification of Diagnostic Communication Manager: 7.2.1 Submodules within the Dcm module, p.46; Specification of Diagnostic Communication Manager: 7.3.4.2 request reception / 7.3.4.4 response transmission, p.52"
+      authority_id: "AUTOSAR-CP-4.4.0-CONCEPT-DCM-DIAGNOSTIC-SERVICE-OWNERSHIP"
+      standard_body: "AUTOSAR"
+      platform_release: "Classic Platform 4.4.0"
+    boundary: "DCM != DiagMgr and DCM != DEM; DCM owns service/session/security orchestration, not DEM memory."
+    notes: "Use direct AUTOSAR authority for generic DCM responsibility and PduR boundary."
+  -
+    locator_id: "AS-006"
+    methodology_sections:
+      - "§12"
+      - "§16"
+    guide_steps:
+      - "Step 6"
+      - "Step 7"
+      - "DiagMgr Quick Start"
+    engineering_object: "DEM event reporting and event/DTC status processing"
+    coverage_posture: "REVIEWED_ROUTE_AVAILABLE"
+    downstream:
+      goal_ids:
+        - "CG-007"
+        - "CG-030"
+      concern_ids:
+        - "C-DIAG"
+        - "C-ARCH"
+        - "C-ECU"
+      workflow_ids:
+        - "WF-04"
+        - "WF-01"
+      proposition_ids:
+        - "P04-001"
+        - "P04-002"
+        - "P04-003"
+        - "P04-004"
+        - "P04-005"
+        - "P04-006"
+        - "P3-MW-007"
+        - "P01-001"
+        - "P08-003"
+        - "P3-MW-004"
+      knowledge_paths:
+        - "docs/knowledge/goals/cg-007-diagnostics-authoring-test-runtime.md"
+        - "docs/knowledge/goals/cg-030-autosar-direct-standards-authority.md"
+    authority:
+      type: "DIRECT_AUTOSAR_STANDARDS_REVIEWED_KNOWLEDGE"
+      repository: "eariver/Research_AUTOSAR_CP_Documents"
+      exact_commit: "938ac4af696d263019ebdc61106a444447e15c4d"
+      exact_ref: "authority/autosar-cp-4.4.0-current-depth-20260830"
+      path: "docs/knowledge/concepts/dem-event-dtc-status-processing-boundary.json"
+      section_or_locator: "Specification of Diagnostic Event Manager: 7.4 Event reporting, p.75; Specification of Diagnostic Event Manager: 7.5 Event status processing, p.77"
+      authority_id: "AUTOSAR-CP-4.4.0-CONCEPT-DEM-EVENT-DTC-STATUS-PROCESSING-BOUNDARY"
+      standard_body: "AUTOSAR"
+      platform_release: "Classic Platform 4.4.0"
+    boundary: "DEM status views and timing are not one application fault state and do not become DiagMgr ownership."
+    notes: "Keep application fault policy separate from DEM event-status semantics."
+  -
+    locator_id: "AS-007"
+    methodology_sections:
+      - "§12"
+      - "§16"
+    guide_steps:
+      - "Step 6"
+      - "Step 7"
+      - "DiagMgr Quick Start"
+    engineering_object: "DEM event, DTC and diagnostic fault-memory ownership"
+    coverage_posture: "REVIEWED_ROUTE_AVAILABLE"
+    downstream:
+      goal_ids:
+        - "CG-007"
+        - "CG-030"
+      concern_ids:
+        - "C-DIAG"
+        - "C-ARCH"
+        - "C-ECU"
+      workflow_ids:
+        - "WF-04"
+        - "WF-01"
+      proposition_ids:
+        - "P04-001"
+        - "P04-002"
+        - "P04-003"
+        - "P04-004"
+        - "P04-005"
+        - "P04-006"
+        - "P3-MW-007"
+        - "P01-001"
+        - "P08-003"
+        - "P3-MW-004"
+      knowledge_paths:
+        - "docs/knowledge/goals/cg-007-diagnostics-authoring-test-runtime.md"
+        - "docs/knowledge/goals/cg-030-autosar-direct-standards-authority.md"
+    authority:
+      type: "DIRECT_AUTOSAR_STANDARDS_REVIEWED_KNOWLEDGE"
+      repository: "eariver/Research_AUTOSAR_CP_Documents"
+      exact_commit: "938ac4af696d263019ebdc61106a444447e15c4d"
+      exact_ref: "authority/autosar-cp-4.4.0-current-depth-20260830"
+      path: "docs/knowledge/concepts/dem-event-fault-memory-ownership.json"
+      section_or_locator: "Specification of Diagnostic Event Manager: 5 Dependencies to other modules, p.29; Specification of Diagnostic Event Manager: 7.7.1 Event status management, p.75; Specification of Diagnostic Event Manager: 7.7.2 Event memory management, p.86; Specification of Diagnostic Event Manager: 7.11.2.2 Accessing diagnostic fault memory, p.187; Specification of Diagnostic Event Manager: 7.11.2.3 Access DTCs and Status Information, p.190"
+      authority_id: "AUTOSAR-CP-4.4.0-CONCEPT-DEM-EVENT-FAULT-MEMORY-OWNERSHIP"
+      standard_body: "AUTOSAR"
+      platform_release: "Classic Platform 4.4.0"
+    boundary: "DEM event/fault memory != DiagMgr latch and != DCM service ownership."
+    notes: "Use this route to avoid reimplementing DEM event memory in DiagMgr."
+  -
+    locator_id: "AS-008"
+    methodology_sections:
+      - "§12"
+      - "§16"
+    guide_steps:
+      - "Step 6"
+      - "Step 7"
+      - "DiagMgr Quick Start"
+    engineering_object: "DCM ↔ DEM tester-facing DTC service interaction"
+    coverage_posture: "REVIEWED_ROUTE_AVAILABLE"
+    downstream:
+      goal_ids:
+        - "CG-007"
+        - "CG-030"
+      concern_ids:
+        - "C-DIAG"
+        - "C-ARCH"
+        - "C-ECU"
+      workflow_ids:
+        - "WF-04"
+        - "WF-01"
+      proposition_ids:
+        - "P04-001"
+        - "P04-002"
+        - "P04-003"
+        - "P04-004"
+        - "P04-005"
+        - "P04-006"
+        - "P3-MW-007"
+        - "P01-001"
+        - "P08-003"
+        - "P3-MW-004"
+      knowledge_paths:
+        - "docs/knowledge/goals/cg-007-diagnostics-authoring-test-runtime.md"
+        - "docs/knowledge/goals/cg-030-autosar-direct-standards-authority.md"
+    authority:
+      type: "DIRECT_AUTOSAR_STANDARDS_REVIEWED_KNOWLEDGE"
+      repository: "eariver/Research_AUTOSAR_CP_Documents"
+      exact_commit: "938ac4af696d263019ebdc61106a444447e15c4d"
+      exact_ref: "authority/autosar-cp-4.4.0-current-depth-20260830"
+      path: "docs/knowledge/workflows/dcm-dem-dtc-service-interaction.json"
+      section_or_locator: "Specification of Diagnostic Communication Manager: 7.5.2.1 General behavior using DEM interfaces, p.110; Specification of Diagnostic Communication Manager: ClearDiagnosticInformation processing, p.114; Specification of Diagnostic Event Manager: 7.11.2.2/7.11.2.3 diagnostic fault-memory access, p.187; Specification of Diagnostic Event Manager: 7.11.2.7 Asynchronous Dcm operations, p.199"
+      authority_id: "AUTOSAR-CP-4.4.0-WORKFLOW-DCM-DEM-DTC-SERVICE-INTERACTION"
+      standard_body: "AUTOSAR"
+      platform_release: "Classic Platform 4.4.0"
+    boundary: "DCM service processing and DEM event/DTC/fault-memory operations remain separate layers."
+    notes: "The workflow is an ownership/navigation route, not a universal promise about every DTC subfunction."
+  -
+    locator_id: "AS-009"
+    methodology_sections:
+      - "§12"
+    guide_steps:
+      - "Step 6"
+      - "DiagMgr Quick Start"
+    engineering_object: "diagnostic transport reception through PduR into DCM service dispatch"
+    coverage_posture: "REVIEWED_ROUTE_AVAILABLE"
+    downstream:
+      goal_ids:
+        - "CG-007"
+        - "CG-030"
+      concern_ids:
+        - "C-DIAG"
+        - "C-ARCH"
+        - "C-ECU"
+      workflow_ids:
+        - "WF-04"
+        - "WF-01"
+      proposition_ids:
+        - "P04-001"
+        - "P04-002"
+        - "P04-003"
+        - "P04-004"
+        - "P04-005"
+        - "P04-006"
+        - "P3-MW-007"
+        - "P01-001"
+        - "P08-003"
+        - "P3-MW-004"
+      knowledge_paths:
+        - "docs/knowledge/goals/cg-007-diagnostics-authoring-test-runtime.md"
+        - "docs/knowledge/goals/cg-030-autosar-direct-standards-authority.md"
+    authority:
+      type: "DIRECT_AUTOSAR_STANDARDS_REVIEWED_KNOWLEDGE"
+      repository: "eariver/Research_AUTOSAR_CP_Documents"
+      exact_commit: "938ac4af696d263019ebdc61106a444447e15c4d"
+      exact_ref: "authority/autosar-cp-4.4.0-current-depth-20260830"
+      path: "docs/knowledge/workflows/diagnostic-request-transport-to-dcm-service-dispatch.json"
+      section_or_locator: "Specification of Diagnostic Communication Manager: 7.3.4.1 / 7.4.4.3, p.51"
+      authority_id: "AUTOSAR-CP-4.4.0-WORKFLOW-DIAGNOSTIC-REQUEST-TRANSPORT-TO-DCM-SERVICE-DISPATCH"
+      standard_body: "AUTOSAR"
+      platform_release: "Classic Platform 4.4.0"
+    boundary: "Transport routing != DCM service orchestration != application callout behavior."
+    notes: "Use the exact reviewed dispatch/pending lifecycle; do not turn it into project UDS/security policy."
+  -
+    locator_id: "AS-010"
+    methodology_sections:
+      - "§2"
+      - "§32"
+    guide_steps:
+      - "Step 1"
+      - "Step 13"
+      - "ModeMgr Quick Start"
+    engineering_object: "EcuM startup/up/shutdown lifecycle ownership"
+    coverage_posture: "REVIEWED_ROUTE_AVAILABLE"
+    downstream:
+      goal_ids:
+        - "CG-009"
+      concern_ids:
+        []
+      workflow_ids:
+        []
+      proposition_ids:
+        []
+      knowledge_paths:
+        - "docs/knowledge/goals/cg-009-startup-shutdown-mode-management.md"
+    authority:
+      type: "DIRECT_AUTOSAR_STANDARDS_REVIEWED_KNOWLEDGE"
+      repository: "eariver/Research_AUTOSAR_CP_Documents"
+      exact_commit: "938ac4af696d263019ebdc61106a444447e15c4d"
+      exact_ref: "authority/autosar-cp-4.4.0-current-depth-20260830"
+      path: "docs/knowledge/concepts/ecum-lifecycle-boundary.json"
+      section_or_locator: "Specification of ECU State Manager: 7.1.1 STARTUP Phase / 7.1.2 UP Phase, p.30; Specification of ECU State Manager: ECU Mode Handling / RUN Request Protocol, p.91; Specification of ECU State Manager: 7.1.3 SHUTDOWN Phase / 7.4.1 OffPreOS Sequence, p.44"
+      authority_id: "AUTOSAR-CP-4.4.0-CONCEPT-ECUM-LIFECYCLE-BOUNDARY"
+      standard_body: "AUTOSAR"
+      platform_release: "Classic Platform 4.4.0"
+    boundary: "EcuM lifecycle semantics do not become application ModeMgr behavior or a claim about project startup policy."
+    notes: "Exact upstream direct route is recorded separately from the downstream CG-009 navigation gap."
+  -
+    locator_id: "AS-011"
+    methodology_sections:
+      - "§2"
+      - "§32"
+    guide_steps:
+      - "Step 1"
+      - "Step 13"
+      - "ModeMgr Quick Start"
+    engineering_object: "EcuM ↔ BswM lifecycle/action interaction"
+    coverage_posture: "REVIEWED_ROUTE_AVAILABLE"
+    downstream:
+      goal_ids:
+        - "CG-009"
+      concern_ids:
+        []
+      workflow_ids:
+        []
+      proposition_ids:
+        []
+      knowledge_paths:
+        - "docs/knowledge/goals/cg-009-startup-shutdown-mode-management.md"
+    authority:
+      type: "DIRECT_AUTOSAR_STANDARDS_REVIEWED_KNOWLEDGE"
+      repository: "eariver/Research_AUTOSAR_CP_Documents"
+      exact_commit: "938ac4af696d263019ebdc61106a444447e15c4d"
+      exact_ref: "authority/autosar-cp-4.4.0-current-depth-20260830"
+      path: "docs/knowledge/concepts/ecum-bswm-lifecycle-interaction.json"
+      section_or_locator: "Specification of ECU State Manager: ECU Mode Handling / RUN Request Protocol, p.91; Specification of Basic Software Mode Manager: 8.3.12 BswM_EcuM_RequestedState, p.54; Specification of Basic Software Mode Manager: 10.2.59 BswMEcuMGoDownHaltPoll / 10.2.61 BswMEcuMStateSwitch, p.116; Specification of Basic Software Mode Manager: 10.2.61 BswMEcuMStateSwitch, p.118"
+      authority_id: "AUTOSAR-CP-4.4.0-CONCEPT-ECUM-BSWM-LIFECYCLE-INTERACTION"
+      standard_body: "AUTOSAR"
+      platform_release: "Classic Platform 4.4.0"
+    boundary: "BswM arbitration/action configuration != EcuM lifecycle ownership."
+    notes: "Use exact 4.4.0 direct semantics; project mode policy remains a project input/design."
+  -
+    locator_id: "AS-012"
+    methodology_sections:
+      - "§2"
+      - "§32"
+    guide_steps:
+      - "Step 1"
+      - "Step 13"
+      - "ModeMgr Quick Start"
+    engineering_object: "AUTOSAR ECU startup control handoff"
+    coverage_posture: "REVIEWED_ROUTE_AVAILABLE"
+    downstream:
+      goal_ids:
+        - "CG-009"
+      concern_ids:
+        []
+      workflow_ids:
+        []
+      proposition_ids:
+        []
+      knowledge_paths:
+        - "docs/knowledge/goals/cg-009-startup-shutdown-mode-management.md"
+    authority:
+      type: "DIRECT_AUTOSAR_STANDARDS_REVIEWED_KNOWLEDGE"
+      repository: "eariver/Research_AUTOSAR_CP_Documents"
+      exact_commit: "938ac4af696d263019ebdc61106a444447e15c4d"
+      exact_ref: "authority/autosar-cp-4.4.0-current-depth-20260830"
+      path: "docs/knowledge/workflows/ecu-startup-control-handoff.json"
+      section_or_locator: "Specification of ECU State Manager: 7.3 STARTUP Phase, p.34; Specification of ECU State Manager: StartPostOS Sequence, p.38; Specification of ECU State Manager: 8.3.2.3 EcuM_StartupTwo, p.104; Specification of Operating System: 7.1.2 Requirements, p.38; Specification of Basic Software Mode Manager: 8.3.17 BswM_Init, p.58"
+      authority_id: "AUTOSAR-CP-4.4.0-WORKFLOW-ECU-STARTUP-CONTROL-HANDOFF"
+      standard_body: "AUTOSAR"
+      platform_release: "Classic Platform 4.4.0"
+    boundary: "Startup control handoff != application startup state model; multi-core and post-OS details must remain distinct."
+    notes: "Exact direct standards workflow is recorded without changing CG-009 downstream identity."
+  -
+    locator_id: "AS-013"
+    methodology_sections:
+      - "§2"
+      - "§32"
+    guide_steps:
+      - "Step 1"
+      - "Step 13"
+      - "ModeMgr Quick Start"
+    engineering_object: "AUTOSAR ECU shutdown control handoff"
+    coverage_posture: "REVIEWED_ROUTE_AVAILABLE"
+    downstream:
+      goal_ids:
+        - "CG-009"
+      concern_ids:
+        []
+      workflow_ids:
+        []
+      proposition_ids:
+        []
+      knowledge_paths:
+        - "docs/knowledge/goals/cg-009-startup-shutdown-mode-management.md"
+    authority:
+      type: "DIRECT_AUTOSAR_STANDARDS_REVIEWED_KNOWLEDGE"
+      repository: "eariver/Research_AUTOSAR_CP_Documents"
+      exact_commit: "938ac4af696d263019ebdc61106a444447e15c4d"
+      exact_ref: "authority/autosar-cp-4.4.0-current-depth-20260830"
+      path: "docs/knowledge/workflows/ecu-shutdown-control-handoff.json"
+      section_or_locator: "Specification of Basic Software Mode Manager: 10.2.59 BswMEcuMGoDownHaltPoll, p.116; Specification of ECU State Manager: 7.1.3 SHUTDOWN Phase, p.31; Specification of ECU State Manager: 7.4.1 Activities in the OffPreOS Sequence, p.44; Specification of ECU State Manager: 7.9.6 SHUTDOWN Phase, p.75; Specification of Operating System: 7.9.18 Shutdown of the OS, p.97"
+      authority_id: "AUTOSAR-CP-4.4.0-WORKFLOW-ECU-SHUTDOWN-CONTROL-HANDOFF"
+      standard_body: "AUTOSAR"
+      platform_release: "Classic Platform 4.4.0"
+    boundary: "Shutdown handoff != project shutdown policy and does not collapse BswM, EcuM and OS ownership."
+    notes: "Exact direct standards workflow is recorded without changing CG-009 downstream identity."
+  -
+    locator_id: "AS-014"
+    methodology_sections:
+      - "§2"
+      - "§14"
+      - "§32"
+    guide_steps:
+      - "Step 1"
+      - "Step 6"
+      - "Step 7"
+    engineering_object: "CAN communication modeling: topology and signal/PDU/frame relations"
+    coverage_posture: "REVIEWED_ROUTE_AVAILABLE"
+    downstream:
+      goal_ids:
+        - "CG-005"
+        - "CG-030"
+      concern_ids:
+        - "C-COMM"
+        - "C-ARCH"
+        - "C-ECU"
+      workflow_ids:
+        - "WF-03"
+        - "WF-05"
+        - "WF-01"
+      proposition_ids:
+        - "P03-001"
+        - "P03-002"
+        - "P03-003"
+        - "P03-004"
+        - "P03-005"
+        - "P03-006"
+        - "P3-MW-006"
+        - "P4-MW-004"
+        - "P01-001"
+        - "P08-003"
+        - "P3-MW-004"
+      knowledge_paths:
+        - "docs/knowledge/goals/cg-005-can-canfd-communication.md"
+        - "docs/knowledge/goals/cg-030-autosar-direct-standards-authority.md"
+    authority:
+      type: "DIRECT_AUTOSAR_STANDARDS_REVIEWED_KNOWLEDGE"
+      repository: "eariver/Research_AUTOSAR_CP_Documents"
+      exact_commit: "938ac4af696d263019ebdc61106a444447e15c4d"
+      exact_ref: "authority/autosar-cp-4.4.0-current-depth-20260830"
+      path: "docs/knowledge/concepts/can-communication-modeling-boundary.json"
+      section_or_locator: "System Template: 3.3.1 CAN, p.56; System Template: 6 Communication, p.181"
+      authority_id: "AUTOSAR-CP-4.4.0-CONCEPT-CAN-COMMUNICATION-MODEL-BOUNDARY"
+      standard_body: "AUTOSAR"
+      platform_release: "Classic Platform 4.4.0"
+    boundary: "Communication model identity != runtime BSW path and does not define project counter/checksum or BUS_FAILED_LATCHED policy."
+    notes: "Use direct System Template semantics for generic CAN model navigation."
+  -
+    locator_id: "AS-015"
+    methodology_sections:
+      - "§2"
+      - "§14"
+    guide_steps:
+      - "Step 1"
+      - "Step 6"
+      - "Step 7"
+    engineering_object: "non-TP Classic CAN signal/I-PDU path through COM, PduR, CanIf and CanDrv"
+    coverage_posture: "REVIEWED_ROUTE_AVAILABLE"
+    downstream:
+      goal_ids:
+        - "CG-005"
+        - "CG-030"
+      concern_ids:
+        - "C-COMM"
+        - "C-ARCH"
+        - "C-ECU"
+      workflow_ids:
+        - "WF-03"
+        - "WF-05"
+        - "WF-01"
+      proposition_ids:
+        - "P03-001"
+        - "P03-002"
+        - "P03-003"
+        - "P03-004"
+        - "P03-005"
+        - "P03-006"
+        - "P3-MW-006"
+        - "P4-MW-004"
+        - "P01-001"
+        - "P08-003"
+        - "P3-MW-004"
+      knowledge_paths:
+        - "docs/knowledge/goals/cg-005-can-canfd-communication.md"
+        - "docs/knowledge/goals/cg-030-autosar-direct-standards-authority.md"
+    authority:
+      type: "DIRECT_AUTOSAR_STANDARDS_REVIEWED_KNOWLEDGE"
+      repository: "eariver/Research_AUTOSAR_CP_Documents"
+      exact_commit: "938ac4af696d263019ebdc61106a444447e15c4d"
+      exact_ref: "authority/autosar-cp-4.4.0-current-depth-20260830"
+      path: "docs/knowledge/workflows/can-signal-ipdu-data-path.json"
+      section_or_locator: "Specification of Communication: Introduction and Functional Overview / Dependencies to PDU Router, p.9; Specification of PDU Router: 1.3 I-PDU handling, p.13; Specification of CAN Interface: Introduction / CAN data flow, p.11; Specification of CAN Driver: 7.5 L-PDU transmission, p.42; System Template: 6 Communication, p.181"
+      authority_id: "AUTOSAR-CP-4.4.0-WORKFLOW-CAN-SIGNAL-IPDU-DATA-PATH"
+      standard_body: "AUTOSAR"
+      platform_release: "Classic Platform 4.4.0"
+    boundary: "The minimal path is a navigation example, not a universal synchronous route; optional configured modules may add stages."
+    notes: "Do not infer project CAN algorithms or physical-bus equivalence from this direct path."
+  -
+    locator_id: "AS-016"
+    methodology_sections:
+      - "§14"
+      - "§32"
+    guide_steps:
+      - "Step 6"
+      - "Step 7"
+    engineering_object: "ComM target communication mode and CanSM actual network-state boundary"
+    coverage_posture: "REVIEWED_ROUTE_AVAILABLE"
+    downstream:
+      goal_ids:
+        - "CG-005"
+        - "CG-030"
+      concern_ids:
+        - "C-COMM"
+        - "C-ARCH"
+        - "C-ECU"
+      workflow_ids:
+        - "WF-03"
+        - "WF-05"
+        - "WF-01"
+      proposition_ids:
+        - "P03-001"
+        - "P03-002"
+        - "P03-003"
+        - "P03-004"
+        - "P03-005"
+        - "P03-006"
+        - "P3-MW-006"
+        - "P4-MW-004"
+        - "P01-001"
+        - "P08-003"
+        - "P3-MW-004"
+      knowledge_paths:
+        - "docs/knowledge/goals/cg-005-can-canfd-communication.md"
+        - "docs/knowledge/goals/cg-030-autosar-direct-standards-authority.md"
+    authority:
+      type: "DIRECT_AUTOSAR_STANDARDS_REVIEWED_KNOWLEDGE"
+      repository: "eariver/Research_AUTOSAR_CP_Documents"
+      exact_commit: "938ac4af696d263019ebdc61106a444447e15c4d"
+      exact_ref: "authority/autosar-cp-4.4.0-current-depth-20260830"
+      path: "docs/knowledge/concepts/can-communication-mode-ownership.json"
+      section_or_locator: "Specification of Communication Manager: Introduction and functional overview / Dependencies / Communication mode coordination, p.10; Specification of CAN State Manager: Dependencies to ComM/CanIf and CANSM_BSM state machine, p.15"
+      authority_id: "AUTOSAR-CP-4.4.0-CONCEPT-CAN-COMMUNICATION-MODE-OWNERSHIP"
+      standard_body: "AUTOSAR"
+      platform_release: "Classic Platform 4.4.0"
+    boundary: "ComM target mode != CanSM actual network state != project BUS_FAILED_LATCHED."
+    notes: "Use the direct standard boundary when mapping abstract communication-state inputs into DiagMgr."
+  -
+    locator_id: "AS-017"
+    methodology_sections:
+      - "§7"
+      - "§32"
+    guide_steps:
+      - "Step 4"
+      - "Step 13"
+    engineering_object: "AUTOSAR OS task/event/counter/alarm/schedule-table runtime object ownership"
+    coverage_posture: "REVIEWED_ROUTE_AVAILABLE"
+    downstream:
+      goal_ids:
+        - "CG-010"
+        - "CG-030"
+      concern_ids:
+        - "C-ECU"
+        - "C-ARCH"
+      workflow_ids:
+        - "WF-01"
+      proposition_ids:
+        - "P01-003"
+        - "P01-004"
+        - "P01-001"
+        - "P08-003"
+        - "P3-MW-004"
+      knowledge_paths:
+        - "docs/knowledge/goals/cg-010-os-task-event-scheduling.md"
+        - "docs/knowledge/goals/cg-030-autosar-direct-standards-authority.md"
+    authority:
+      type: "DIRECT_AUTOSAR_STANDARDS_REVIEWED_KNOWLEDGE"
+      repository: "eariver/Research_AUTOSAR_CP_Documents"
+      exact_commit: "938ac4af696d263019ebdc61106a444447e15c4d"
+      exact_ref: "authority/autosar-cp-4.4.0-current-depth-20260830"
+      path: "docs/knowledge/concepts/os-runtime-object-scheduling-boundary.json"
+      section_or_locator: "Specification of Operating System: 7.3 Schedule Tables / Counter relation, p.41; Requirements on Operating System: 4.3 Schedule tables / 4.6 Counters, p.15; Specification of Operating System: Task and Event functional specification, p.110"
+      authority_id: "AUTOSAR-CP-4.4.0-CONCEPT-OS-RUNTIME-OBJECT-SCHEDULING-BOUNDARY"
+      standard_body: "AUTOSAR"
+      platform_release: "Classic Platform 4.4.0"
+    boundary: "RunnableEntity/RTEEvent != OS task/event and OS runtime objects are not application state variables."
+    notes: "Use direct OS authority for generic scheduling/object semantics only."
+  -
+    locator_id: "AS-018"
+    methodology_sections:
+      - "§2"
+      - "§32"
+    guide_steps:
+      - "Step 1"
+      - "Step 13"
+    engineering_object: "AUTOSAR OS execution startup and shutdown lifecycle"
+    coverage_posture: "REVIEWED_ROUTE_AVAILABLE"
+    downstream:
+      goal_ids:
+        - "CG-010"
+        - "CG-030"
+      concern_ids:
+        - "C-ECU"
+        - "C-ARCH"
+      workflow_ids:
+        - "WF-01"
+      proposition_ids:
+        - "P01-003"
+        - "P01-004"
+        - "P01-001"
+        - "P08-003"
+        - "P3-MW-004"
+      knowledge_paths:
+        - "docs/knowledge/goals/cg-010-os-task-event-scheduling.md"
+        - "docs/knowledge/goals/cg-030-autosar-direct-standards-authority.md"
+    authority:
+      type: "DIRECT_AUTOSAR_STANDARDS_REVIEWED_KNOWLEDGE"
+      repository: "eariver/Research_AUTOSAR_CP_Documents"
+      exact_commit: "938ac4af696d263019ebdc61106a444447e15c4d"
+      exact_ref: "authority/autosar-cp-4.4.0-current-depth-20260830"
+      path: "docs/knowledge/concepts/os-execution-lifecycle-boundary.json"
+      section_or_locator: "Specification of Operating System: 7.1 Core OS, p.36; Specification of Operating System: 7.1.2 Requirements, p.38; Specification of Operating System: Multi-Core startup, p.85; Specification of Operating System: 7.9.18 Shutdown of the OS, p.97; Requirements on Operating System: 4.2.1 Functional description, p.12"
+      authority_id: "AUTOSAR-CP-4.4.0-CONCEPT-OS-EXECUTION-LIFECYCLE-BOUNDARY"
+      standard_body: "AUTOSAR"
+      platform_release: "Classic Platform 4.4.0"
+    boundary: "OS lifecycle != EcuM/BswM policy and != project startup/shutdown behavior."
+    notes: "Keep OS execution lifecycle separate from application ModeMgr and VECU runtime evidence."
+  locator_id: "AS-019"
+  methodology_sections:
+    - "§4"
+    - "§20"
+    - "§21"
+    - "§22"
+  guide_steps:
+    - "Step 5"
+    - "Step 10"
+    - "Step 12"
+  engineering_object: "AUTOSAR RTE contract phase versus generation phase workflow"
+  coverage_posture: "REVIEWED_ROUTE_AVAILABLE"
+  downstream:
+    goal_ids:
+      - "CG-003"
+      - "CG-030"
+    concern_ids:
+      - "C-ARCH"
+      - "C-ECU"
+      - "C-LIFE"
+    workflow_ids:
+      - "WF-01"
+      - "WF-06"
+    proposition_ids:
+      - "P01-002"
+      - "P01-004"
+      - "P01-005"
+      - "P09-001"
+      - "P09-006"
+      - "P3-MW-004"
+      - "P3-MW-005"
+      - "P01-001"
+      - "P08-003"
+    knowledge_paths:
+      - "docs/knowledge/goals/cg-003-rte-generation-production-integration.md"
+      - "docs/knowledge/goals/cg-030-autosar-direct-standards-authority.md"
+  authority:
+    type: "DIRECT_AUTOSAR_STANDARDS_REVIEWED_KNOWLEDGE"
+    repository: "eariver/Research_AUTOSAR_CP_Documents"
+    exact_commit: "938ac4af696d263019ebdc61106a444447e15c4d"
+    exact_ref: "authority/autosar-cp-4.4.0-current-depth-20260830"
+    path: "docs/knowledge/workflows/rte-contract-vs-generation.json"
+    section_or_locator: "Specification of RTE Software: Contract Phase, p.85; Specification of RTE Software: Configuration and Generation Phase, p.88; Specification of RTE Software: Generated Basic Software Module Description, p.92"
+    authority_id: "AUTOSAR-CP-4.4.0-WORKFLOW-RTE-CONTRACT-VS-GENERATION"
+    standard_body: "AUTOSAR"
+    platform_release: "Classic Platform 4.4.0"
+  boundary: "RTE contract/generation workflow != production runtime behavior and does not replace vendor realization."
+  notes: "Use the exact workflow record to navigate the contract-to-generation lifecycle; no new downstream proposition mapping is created."
+  locator_id: "AS-020"
+  methodology_sections:
+    - "§7"
+    - "§17"
+  guide_steps:
+    - "Step 4"
+    - "Step 8"
+  engineering_object: "RTEEvent → RunnableEntity activation workflow"
+  coverage_posture: "REVIEWED_ROUTE_AVAILABLE"
+  downstream:
+    goal_ids:
+      - "CG-001"
+      - "CG-003"
+      - "CG-010"
+      - "CG-030"
+    concern_ids:
+      - "C-ARCH"
+      - "C-ECU"
+      - "C-LIFE"
+    workflow_ids:
+      - "WF-01"
+      - "WF-06"
+    proposition_ids:
+      - "P01-001"
+      - "P01-002"
+      - "P01-003"
+      - "P01-004"
+      - "P01-005"
+      - "P01-006"
+      - "P3-MW-004"
+      - "P5-MW-003"
+      - "P09-001"
+      - "P09-006"
+      - "P3-MW-005"
+      - "P08-003"
+    knowledge_paths:
+      - "docs/knowledge/goals/cg-001-autosar-classic-swc-interfaces.md"
+      - "docs/knowledge/goals/cg-003-rte-generation-production-integration.md"
+      - "docs/knowledge/goals/cg-010-os-task-event-scheduling.md"
+      - "docs/knowledge/goals/cg-030-autosar-direct-standards-authority.md"
+  authority:
+    type: "DIRECT_AUTOSAR_STANDARDS_REVIEWED_KNOWLEDGE"
+    repository: "eariver/Research_AUTOSAR_CP_Documents"
+    exact_commit: "938ac4af696d263019ebdc61106a444447e15c4d"
+    exact_ref: "authority/autosar-cp-4.4.0-current-depth-20260830"
+    path: "docs/knowledge/workflows/rteevent-to-runnable-activation.json"
+    section_or_locator: "Software Component Template: RunnableEntity / RTEEvent / mode disabling and wait points, p.720; Requirements on Runtime Environment: Runnable activation, categories and task mapping, p.60"
+    authority_id: "AUTOSAR-CP-4.4.0-WORKFLOW-RTEEVENT-TO-RUNNABLE-ACTIVATION"
+    standard_body: "AUTOSAR"
+    platform_release: "Classic Platform 4.4.0"
+  boundary: "RTEEvent activation semantics != OS Event identity and RunnableEntity != OS Task."
+  notes: "Use this direct workflow with AS-003; detailed OS scheduling remains the separate direct authority."
