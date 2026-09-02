@@ -1,0 +1,46 @@
+schema_version: "management-ecu-uds-can-procedure-family/v1"
+artifact: "DaVinci Configurator Classic / MICROSAR procedure family"
+status: "SOL_INTEGRATED_FROM_ACCEPTED_COMPILATION"
+accepted_luna_ending_sha: "3b5f2cdfc418e46cd2ad4a8509fc77ac50eacc12"
+source_compilation: "20260902_ManagementECU_UDS_CAN_Tool_Procedure_Compilation_Matrix.yaml"
+tools: ["DaVinci Configurator Classic", "MICROSAR"]
+reviewed_release: "DaVinci Configurator Classic 6.3.10; MICROSAR role as reviewed"
+covered_tasks:
+  - task_id: "DTR-011"
+    procedure_classification: "WORKFLOW_ONLY"
+    locator_ids: ["V-DIAG-012", "V-DIAG-013", "AS-DIAG-001", "AS-DIAG-002", "AS-DIAG-003"]
+    intent: "Configure DCM/DEM according to accepted diagnostic requirements and ownership."
+    operations:
+      - "Configure DCM-owned service/session/security/request-response responsibilities and DEM-owned event/DTC/status/fault-memory responsibilities."
+      - "Trace DCM DTC services to DEM selection/query/clear services without moving DEM memory ownership into DCM."
+    exit_evidence: ["Every implemented diagnostic element has explicit DCM/DEM/application ownership and trace identity."]
+    project_blockers: ["Service/session/security/NRC policy", "DTC/event/debounce/persistence policy"]
+    missing_detail: "Exact 6.3.10 DCM/DEM object-by-object configuration procedure is not present in frozen Reviewed Knowledge."
+  - task_id: "DTR-012"
+    procedure_classification: "WORKFLOW_ONLY"
+    locator_ids: ["V-DIAG-010", "V-DIAG-012", "AS-DIAG-001", "AS-DIAG-002", "AS-DIAG-009"]
+    intent: "Bind diagnostic BSW dependencies to Application SWC behavior through production RTE integration."
+    operations:
+      - "Bind configured diagnostic service/event paths to project Application SWC/RTE interfaces where required."
+      - "Preserve DCM/DEM/Application ownership while preparing ECU-specific production RTE generation."
+    exit_evidence: ["Diagnostic operation/data/event paths are traceable across Application SWC, DCM/DEM and RTE integration."]
+    project_blockers: ["Actual callback/service/data/event mapping"]
+    missing_detail: "Exact diagnostic callback/RTE mapping sequence and generated symbols are not compiled."
+  - task_id: "DTR-014"
+    procedure_classification: "PARTIAL_PROCEDURE_AVAILABLE"
+    locator_ids: ["V-DIAG-012", "AS-DIAG-009", "DS-DIAG-002", "DS-DIAG-006"]
+    intent: "Validate/generate production RTE/BSW and build a reconciled integrated ECU baseline."
+    operations:
+      - "Reconcile CANdela, Application SWC, DCM/DEM and transport identities before generation."
+      - "Generate configured BSW/RTE using the reviewed Configurator generation surface."
+      - "Compile/link under project build control while preserving generated-source versus integrated-binary identity."
+    cli_surfaces: ["dvcfg-b project generate"]
+    named_surfaces: ["Configurator validation/generation", "Gradle/Bazel CI/build routes"]
+    exit_evidence: ["Generation/build provenance is fixed and intended specification-to-implementation differences are explained."]
+    project_blockers: ["Actual Configurator/MICROSAR versions", "compiler/build configuration", "accepted diagnostic/network configuration"]
+    missing_detail: "Full reconciliation, validation, compile/link and selected artifact procedure remains project-specific."
+retained_boundaries:
+  - "CANdela specification != production ECU-C/BSW configuration."
+  - "No universal direct CANdela -> Configurator synchronization/import contract is established."
+  - "DCM != DEM != Application SWC."
+  - "generated Application implementation != production RTE/BSW != integrated ECU binary."
