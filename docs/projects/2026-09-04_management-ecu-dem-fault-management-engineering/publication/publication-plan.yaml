@@ -1,0 +1,42 @@
+schema_version: "management-ecu-dem-fault-management-publication-plan/v1"
+date: "2026-09-04"
+status: "PREPARED_NOT_STAGED"
+project: "Management ECU DEM Fault Management Engineering"
+private_source:
+  repository: "eariver/Automotive_EE_Engineering_Knowledge"
+  branch: "work/management-ecu-dem-fault-management-engineering-20260904"
+  initialized_head: "d8557c66c84b3ba23d62c60196a37a98a8a6ade9"
+  base_main_sha: "59250354d74100167b80ee40f44e73eb064dd515"
+public:
+  repository: "eariver/Automotive_EE_Research_Public"
+  branch: "publish/management-ecu-dem-fault-management-engineering-20260904"
+  base_main_sha: "183d9dc0ab120484e4018e530a33e5b291bd7baa"
+  main_merged: false
+source_bundle_policy:
+  source_derived_files_are_byte_identical: true
+  upstream_reviewed_knowledge: "LOCATOR_ONLY"
+  raw_vendor_or_standard_sources: "EXCLUDED"
+  internal_luna_material: "EXCLUDED"
+  confidential_project_values: "EXCLUDED"
+planned_source_derived_roles:
+  - "project README"
+  - "Methodology"
+  - "Step-by-Step Guide"
+  - "Tool / Task / Reference Matrix"
+  - "Execution Reference Guide"
+  - "DEM State & Evidence Model"
+  - "Procedure Coverage Matrix"
+  - "authority locator manifests"
+  - "publication-safe project input scaffolds"
+  - "Sol-reviewed procedure/gap records"
+promotion_gates:
+  - "Luna baseline compilation fixed-head review PASS"
+  - "Required upstream authority expansion reviewed or explicitly bounded"
+  - "No invented Management ECU event/DTC/debounce/memory/test values"
+  - "Source-derived bundle identified at one accepted Private source HEAD"
+  - "Public blob identity verified against accepted Private source"
+  - "Public main remains unchanged unless human explicitly approves merge"
+validation:
+  source_derived_file_count: 0
+  publication_generated_file_count: 2
+  technical_package_staged: false
