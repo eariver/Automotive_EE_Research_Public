@@ -1,68 +1,95 @@
-schema_version: "management-ecu-uds-can-procedure-coverage/v1"
+schema_version: "management-ecu-uds-can-procedure-coverage/v2"
 artifact: "Management ECU UDS on CAN procedure coverage matrix"
-status: "SOL_INTEGRATED_FROM_ACCEPTED_COMPILATION"
-date: "2026-09-02"
-accepted_luna_ending_sha: "3b5f2cdfc418e46cd2ad4a8509fc77ac50eacc12"
-source_compilation:
+status: "SOL_REVIEWED_AFTER_VECTOR_AND_MATHWORKS_AUTHORITY_EXPANSION"
+date: "2026-09-03"
+base_compilation:
+  accepted_luna_ending_sha: "3b5f2cdfc418e46cd2ad4a8509fc77ac50eacc12"
   matrix: "20260902_ManagementECU_UDS_CAN_Tool_Procedure_Compilation_Matrix.yaml"
   report: "20260902_ManagementECU_UDS_CAN_Tool_Procedure_Compilation_Report.md"
+final_overlay: "procedure-authority-expansion-overlay.yaml"
+upstream_authority_pins: "../references/procedure-authority-expansion-pins.yaml"
 classification_counts:
-  EXACT_PROCEDURE_AVAILABLE: 1
-  PARTIAL_PROCEDURE_AVAILABLE: 11
-  WORKFLOW_ONLY: 5
+  EXACT_PROCEDURE_AVAILABLE: 11
+  PARTIAL_PROCEDURE_AVAILABLE: 5
+  WORKFLOW_ONLY: 1
   NO_EXPLICIT_PROCEDURE: 0
   PROJECT_INPUT_REQUIRED: 1
   UNRESOLVED_AUTHORITY: 0
   total: 18
 tasks:
-  DTR-002: {tool_family: "candela-studio.yaml", classification: "WORKFLOW_ONLY"}
+  DTR-002: {tool_family: "candela-studio.yaml", classification: "EXACT_PROCEDURE_AVAILABLE"}
   DTR-003: {tool_family: "candela-studio.yaml", classification: "PARTIAL_PROCEDURE_AVAILABLE"}
-  DTR-004: {tool_family: "davinci-developer-classic.yaml", classification: "PARTIAL_PROCEDURE_AVAILABLE"}
-  DTR-005: {tool_family: "autosar-blockset.yaml", classification: "PARTIAL_PROCEDURE_AVAILABLE"}
+  DTR-004: {tool_family: "davinci-developer-classic.yaml", classification: "EXACT_PROCEDURE_AVAILABLE"}
+  DTR-005: {tool_family: "autosar-blockset.yaml", classification: "EXACT_PROCEDURE_AVAILABLE"}
   DTR-006: {tool_family: "simulink-stateflow.yaml", classification: "WORKFLOW_ONLY"}
-  DTR-007: {tool_family: "autosar-blockset.yaml", classification: "WORKFLOW_ONLY"}
-  DTR-008: {tool_family: "mil-sil.yaml", classification: "PARTIAL_PROCEDURE_AVAILABLE"}
-  DTR-009: {tool_family: "embedded-coder.yaml", classification: "PARTIAL_PROCEDURE_AVAILABLE"}
-  DTR-010: {tool_family: "mil-sil.yaml", classification: "PARTIAL_PROCEDURE_AVAILABLE"}
-  DTR-011: {tool_family: "davinci-configurator-microsar.yaml", secondary_family: "diagnostic-bsw-uds-on-can.yaml", classification: "WORKFLOW_ONLY"}
-  DTR-012: {tool_family: "davinci-configurator-microsar.yaml", secondary_family: "diagnostic-bsw-uds-on-can.yaml", classification: "WORKFLOW_ONLY"}
+  DTR-007: {tool_family: "autosar-blockset.yaml", classification: "EXACT_PROCEDURE_AVAILABLE"}
+  DTR-008: {tool_family: "mil-sil.yaml", classification: "EXACT_PROCEDURE_AVAILABLE"}
+  DTR-009: {tool_family: "embedded-coder.yaml", classification: "EXACT_PROCEDURE_AVAILABLE"}
+  DTR-010: {tool_family: "mil-sil.yaml", classification: "EXACT_PROCEDURE_AVAILABLE"}
+  DTR-011: {tool_family: "davinci-configurator-microsar.yaml", secondary_family: "diagnostic-bsw-uds-on-can.yaml", classification: "PARTIAL_PROCEDURE_AVAILABLE"}
+  DTR-012: {tool_family: "davinci-configurator-microsar.yaml", secondary_family: "diagnostic-bsw-uds-on-can.yaml", classification: "PARTIAL_PROCEDURE_AVAILABLE"}
   DTR-013: {tool_family: "diagnostic-bsw-uds-on-can.yaml", secondary_family: "davinci-configurator-microsar.yaml", classification: "PROJECT_INPUT_REQUIRED"}
   DTR-014: {tool_family: "davinci-configurator-microsar.yaml", classification: "PARTIAL_PROCEDURE_AVAILABLE"}
-  DTR-015: {tool_family: "vvirtualtarget.yaml", classification: "PARTIAL_PROCEDURE_AVAILABLE"}
-  DTR-016: {tool_family: "canoe-diva.yaml", classification: "PARTIAL_PROCEDURE_AVAILABLE"}
+  DTR-015: {tool_family: "vvirtualtarget.yaml", classification: "EXACT_PROCEDURE_AVAILABLE"}
+  DTR-016: {tool_family: "canoe-diva.yaml", classification: "EXACT_PROCEDURE_AVAILABLE"}
   DTR-017: {tool_family: "canoe-diva.yaml", classification: "PARTIAL_PROCEDURE_AVAILABLE"}
-  DTR-018: {tool_family: "canoe-diva.yaml", classification: "PARTIAL_PROCEDURE_AVAILABLE"}
+  DTR-018: {tool_family: "canoe-diva.yaml", classification: "EXACT_PROCEDURE_AVAILABLE"}
   DTR-019: {tool_family: "canoe-diva.yaml", classification: "EXACT_PROCEDURE_AVAILABLE"}
 strongest_routes:
+  - task_id: "DTR-005"
+    classification: "EXACT_PROCEDURE_AVAILABLE"
+    surface: "arxml.importer -> createComponentAsModel/importFromARXML -> updateModel/updateAUTOSARProperties/updateArchitecturalData -> validateModel"
+  - task_id: "DTR-007"
+    classification: "EXACT_PROCEDURE_AVAILABLE"
+    surface: "AUTOSAR Component Designer -> AUTOSAR Dictionary -> Code Mappings -> Update/Validate; programmatic mapping/property APIs"
+  - task_id: "DTR-008"
+    classification: "EXACT_PROCEDURE_AVAILABLE"
+    surface: "Test Manager -> TestFile/TestSuite/TestCase -> run -> ResultSet -> export/report; coverage separate"
+  - task_id: "DTR-009"
+    classification: "EXACT_PROCEDURE_AVAILABLE"
+    surface: "AUTOSAR model -> Generate Code -> generated C/ARXML/RTE stub/report; compile/link retained separately"
+  - task_id: "DTR-010"
+    classification: "EXACT_PROCEDURE_AVAILABLE"
+    surface: "SIL/PIL Manager -> scope/mode/logging -> run -> Data Inspector -> project-controlled model/SIL comparison"
+  - task_id: "DTR-015"
+    classification: "EXACT_PROCEDURE_AVAILABLE"
+    surface: "vVIRTUALtarget Integration -> DPA/DVJSON/VttMake -> generation/build -> Integration SUT DLL"
+  - task_id: "DTR-016"
+    classification: "EXACT_PROCEDURE_AVAILABLE"
+    surface: "CANoe node Configuration > Components > Add SUT DLL -> Diagnostics & XCP > Diagnostics/ISO TP Configuration"
+  - task_id: "DTR-018"
+    classification: "EXACT_PROCEDURE_AVAILABLE"
+    surface: "diva-make.exe diva.yaml [options] plus bounded DiVa test configuration"
   - task_id: "DTR-019"
     classification: "EXACT_PROCEDURE_AVAILABLE"
     surface: "Diagnostics & XCP | Test | Import DiVa Project -> Assigned Bus -> Diagnostics/ISO TP -> ECU Qualifier -> Test Module/Test Unit -> execution -> report"
-  - task_id: "DTR-005"
-    classification: "PARTIAL_PROCEDURE_AVAILABLE"
-    surface: "arxml.importer / createComponentAsModel / updateModel / updateAUTOSARProperties"
+remaining_material_gaps:
+  - task_id: "DTR-003"
+    gap: "No one universal mandatory CANdela Studio 25 SP1 export subset is established as the DiVa 20 producer contract."
+  - task_id: "DTR-006"
+    gap: "Management ECU diagnostic Application behavior is project design first."
+  - task_id: "DTR-011"
+    gap: "Complete Configurator 6.3.10 DCM service/session/security and full DEM object procedure remains incomplete."
+  - task_id: "DTR-012"
+    gap: "Diagnostic Application SWC callback/runnable to production RTE/DCM binding remains incomplete."
+  - task_id: "DTR-013"
+    gap: "Management ECU CAN/CanTp/PduR/CanIf project values are required before execution."
   - task_id: "DTR-014"
-    classification: "PARTIAL_PROCEDURE_AVAILABLE"
-    surface: "dvcfg-b project generate"
-  - task_id: "DTR-018"
-    classification: "PARTIAL_PROCEDURE_AVAILABLE"
-    surface: "diva-make.exe diva.yaml [options]"
-  - task_id: "DTR-016"
-    classification: "PARTIAL_PROCEDURE_AVAILABLE"
-    surface: "Communication Setup: Add VTT model + Diagnostics/ISO TP Configuration"
-primary_procedure_gaps:
-  - "Configurator 6.3.10 DCM/DEM object configuration procedure."
-  - "Configurator diagnostic Application/RTE callback mapping procedure."
-  - "Configurator PduR/CanTp/CanIf/Can procedure after Management ECU network values are fixed."
-  - "CANdela 25 SP1 object-authoring GUI procedure."
-  - "Developer 4.18 SP3 diagnostic-facing SWC authoring GUI procedure."
-  - "Complete vVIRTUALtarget Integration artifact/version recipe."
-  - "Complete DiVa project serialization/version matrix."
+    gap: "Project reconciliation, compiler/linker/build and artifact acceptance remain project/bounded concerns."
+  - task_id: "DTR-017"
+    gap: "DiVa project creation values, persistence/validation and project acceptance remain project-specific."
+canonical_project_route:
+  vvirtualtarget: "Integration"
+  canoe_sut_import: "Integration SUT DLL -> Configuration > Components > Add"
+  alternate_vvirtualtarget_route: "BSW Emulation retained as separate non-canonical route"
 project_blocked_tasks:
   - task_id: "DTR-013"
     blockers: ["NET-IN-001", "NET-IN-002", "NET-IN-003", "NET-IN-004", "NET-IN-005", "NET-IN-006", "NET-IN-007", "NET-IN-008", "NET-IN-009", "NET-IN-010", "NET-IN-011"]
 validation:
   task_count: 18
   classification_count_sum: 18
-  exact_procedure_task_count: 1
+  exact_procedure_task_count: 11
+  partial_procedure_task_count: 5
+  workflow_only_task_count: 1
   project_input_required_task_count: 1
-  source_of_truth: "Accepted Luna fixed-head compilation; family files are Sol reorganization only."
+  source_of_truth: "Base Luna compilation plus Sol-reviewed Vector and MathWorks procedure authority expansions."

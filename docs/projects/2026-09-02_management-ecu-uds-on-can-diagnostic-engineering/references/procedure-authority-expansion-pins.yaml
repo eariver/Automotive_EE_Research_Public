@@ -1,0 +1,31 @@
+schema_version: "management-ecu-uds-can-procedure-authority-expansion-pins/v1"
+date: "2026-09-03"
+status: "SOL_REVIEWED_UPSTREAM_AUTHORITY_PINS"
+project: "Management ECU UDS on CAN Diagnostic Engineering"
+authorities:
+  vector:
+    repository: "eariver/Research_Vector_Documents"
+    reviewed_branch: "work/luna-management-ecu-uds-can-vector-procedure-authority-expansion-20260903"
+    luna_starting_sha: "671287e1a349b8a18b64590f7d35f7fdb4fc5892"
+    luna_terminal_sha: "da8a8f3d5c9f159f964130d7e248ddf938732ce1"
+    sol_reviewed_ending_sha: "bcbe4e5b57aa144bfa5cb3d5e86f2a1e5a1274ee"
+    authority_path: "docs/knowledge/management-ecu-uds-can-vector-procedure-authority-expansion.md"
+    sol_review_path: "docs/worklogs/chatgpt/2026-09-03_management-ecu-uds-can-vector-procedure-authority-expansion-sol-review.md"
+    tasks: [DTR-002, DTR-003, DTR-004, DTR-011, DTR-012, DTR-014, DTR-015, DTR-016, DTR-017, DTR-018]
+  mathworks:
+    repository: "eariver/Research_MathWorks_Documents"
+    reviewed_branch: "work/luna-management-ecu-uds-can-mathworks-procedure-authority-expansion-20260903"
+    release_boundary: "R2025b / MATLAB 25.2"
+    luna_starting_sha: "e02fb34f1771819468802ea57a4309756ce273ab"
+    luna_terminal_sha: "f01fbd660d0704449dd094fd8baeec674d0ee585"
+    sol_reviewed_ending_sha: "2fb38fe40d87a9cb8e7a22f7fe4a1a6a04354187"
+    authority_path: "docs/knowledge/management-ecu-uds-can-mathworks-procedure-authority-expansion.md"
+    sol_review_path: "docs/worklogs/chatgpt/2026-09-03_management-ecu-uds-can-mathworks-procedure-authority-expansion-sol-review.md"
+    tasks: [DTR-005, DTR-007, DTR-008, DTR-009, DTR-010]
+retained_non_research_tasks:
+  DTR-006: "PROJECT_DESIGN_REQUIRED_FIRST"
+  DTR-013: "PROJECT_INPUT_REQUIRED_FIRST"
+  DTR-019: "PREVIOUS_EXACT_ROUTE_RETAINED"
+usage_rule: >-
+  Use the exact Sol-reviewed ending SHA and named authority path. Do not substitute upstream main,
+  a later branch head, Luna observations alone, current vendor Web, or project assumptions.

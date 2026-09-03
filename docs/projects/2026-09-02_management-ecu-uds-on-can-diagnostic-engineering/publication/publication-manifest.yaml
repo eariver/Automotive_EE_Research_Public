@@ -1,13 +1,25 @@
-schema_version: "management-ecu-uds-can-publication-manifest/v1"
+schema_version: "management-ecu-uds-can-publication-manifest/v2"
 artifact: "Management ECU UDS on CAN diagnostic engineering publication manifest"
-date: "2026-09-02"
-status: "SOL_REVIEWED_STAGED"
+date: "2026-09-03"
+status: "SOL_REVIEWED_PROCEDURE_AUTHORITY_EXPANDED_STAGED"
 source:
   repository: "eariver/Automotive_EE_Engineering_Knowledge"
   branch: "work/management-ecu-uds-can-diagnostic-toolchain-20260902"
-  accepted_head: "ec7f329b1b57b5dd550b633e875a10db618d3985"
+  accepted_head: "22cec277e88a416c2d71f696e5c45a2859842384"
   base_main_sha: "59250354d74100167b80ee40f44e73eb064dd515"
-  accepted_luna_procedure_ending_sha: "3b5f2cdfc418e46cd2ad4a8509fc77ac50eacc12"
+  historical_luna_procedure_ending_sha: "3b5f2cdfc418e46cd2ad4a8509fc77ac50eacc12"
+reviewed_upstream_authority:
+  vector:
+    repository: "eariver/Research_Vector_Documents"
+    luna_terminal_sha: "da8a8f3d5c9f159f964130d7e248ddf938732ce1"
+    sol_reviewed_ending_sha: "bcbe4e5b57aa144bfa5cb3d5e86f2a1e5a1274ee"
+    authority_path: "docs/knowledge/management-ecu-uds-can-vector-procedure-authority-expansion.md"
+  mathworks:
+    repository: "eariver/Research_MathWorks_Documents"
+    release_boundary: "R2025b / MATLAB 25.2"
+    luna_terminal_sha: "f01fbd660d0704449dd094fd8baeec674d0ee585"
+    sol_reviewed_ending_sha: "2fb38fe40d87a9cb8e7a22f7fe4a1a6a04354187"
+    authority_path: "docs/knowledge/management-ecu-uds-can-mathworks-procedure-authority-expansion.md"
 public:
   repository: "eariver/Automotive_EE_Research_Public"
   branch: "publish/management-ecu-uds-can-diagnostic-toolchain-20260902"
@@ -16,15 +28,21 @@ public:
 scope:
   protocol: "UDS on CAN"
   excludes: ["DoIP", "OBD-specific workflow", "SAE J1939 diagnostics", "physical ECU/HIL procedure"]
+canonical_project_route:
+  vvirtualtarget_use_case: "Integration"
+  canoe_sut_consumer: "Integration SUT DLL -> Configuration > Components > Add"
+  bsw_emulation: "separate alternate route, not canonical"
 procedure_maturity:
   task_scope: "DTR-002..DTR-019"
-  EXACT_PROCEDURE_AVAILABLE: 1
-  PARTIAL_PROCEDURE_AVAILABLE: 11
-  WORKFLOW_ONLY: 5
+  EXACT_PROCEDURE_AVAILABLE: 11
+  PARTIAL_PROCEDURE_AVAILABLE: 5
+  WORKFLOW_ONLY: 1
   NO_EXPLICIT_PROCEDURE: 0
   PROJECT_INPUT_REQUIRED: 1
   UNRESOLVED_AUTHORITY: 0
-  strongest_exact_task: "DTR-019"
+  exact_tasks: [DTR-002, DTR-004, DTR-005, DTR-007, DTR-008, DTR-009, DTR-010, DTR-015, DTR-016, DTR-018, DTR-019]
+  partial_tasks: [DTR-003, DTR-011, DTR-012, DTR-014, DTR-017]
+  project_design_first_task: "DTR-006"
   project_input_blocked_task: "DTR-013"
 bundle_policy:
   source_derived_files_are_byte_identical: true
@@ -39,6 +57,7 @@ source_derived_bundle:
     - "20260902_ManagementECU_UDS_CAN_Diagnostic_Reference_Index.yaml"
     - "20260902_ManagementECU_UDS_CAN_Diagnostic_Tool_Task_Reference_Matrix.yaml"
     - "20260902_ManagementECU_UDS_CAN_Diagnostic_Toolchain_Execution_Reference_Guide.md"
+    - "20260903_ManagementECU_UDS_CAN_Procedure_Authority_Expansion_Addendum.md"
   references:
     - "references/downstream/reference-locators.yaml"
     - "references/vector/reference-locators.yaml"
@@ -49,6 +68,7 @@ source_derived_bundle:
     - "references/project/uds-can-network-baseline.yaml"
     - "references/reference-coverage-matrix.yaml"
     - "references/reference-coverage-report.md"
+    - "references/procedure-authority-expansion-pins.yaml"
   procedures:
     - "procedures/candela-studio.yaml"
     - "procedures/davinci-developer-classic.yaml"
@@ -61,6 +81,7 @@ source_derived_bundle:
     - "procedures/vvirtualtarget.yaml"
     - "procedures/canoe-diva.yaml"
     - "procedures/procedure-coverage-matrix.yaml"
+    - "procedures/procedure-authority-expansion-overlay.yaml"
     - "procedures/20260902_ManagementECU_UDS_CAN_Tool_Procedure_Compilation_Matrix.yaml"
     - "procedures/20260902_ManagementECU_UDS_CAN_Tool_Procedure_Compilation_Report.md"
 publication_generated:
@@ -76,8 +97,8 @@ excluded_internal_paths:
   - "raw vendor HELP"
   - "raw standards documents"
 validation:
-  source_derived_file_count: 28
+  source_derived_file_count: 31
   publication_generated_file_count: 2
-  expected_total_package_file_count: 30
+  expected_total_package_file_count: 33
   exact_blob_transfer_required: true
   public_main_must_remain_unchanged: true

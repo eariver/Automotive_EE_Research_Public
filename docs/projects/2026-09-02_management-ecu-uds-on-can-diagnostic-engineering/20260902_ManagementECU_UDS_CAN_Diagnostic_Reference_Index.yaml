@@ -1,11 +1,12 @@
-schema_version: "management-ecu-uds-can-diagnostic-reference-index/v1"
+schema_version: "management-ecu-uds-can-diagnostic-reference-index/v2"
 artifact: "Management ECU UDS on CAN Diagnostic Engineering — Reference Index"
-date: "2026-09-02"
-status: "PROCEDURE_COMPILED_REFERENCE_INDEX"
+date: "2026-09-03"
+status: "PROCEDURE_AUTHORITY_EXPANDED_AND_SOL_REVIEWED"
 repository: "eariver/Automotive_EE_Engineering_Knowledge"
 branch: "work/management-ecu-uds-can-diagnostic-toolchain-20260902"
 base_main_sha: "59250354d74100167b80ee40f44e73eb064dd515"
 accepted_luna_procedure_ending_sha: "3b5f2cdfc418e46cd2ad4a8509fc77ac50eacc12"
+upstream_procedure_authority_expansion_pins: "references/procedure-authority-expansion-pins.yaml"
 
 reference_planes:
   downstream:
@@ -13,10 +14,12 @@ reference_planes:
     role: "Canonical EE Knowledge navigation and cross-domain boundary routes."
   vector:
     manifest: "references/vector/reference-locators.yaml"
-    role: "Exact-pinned CANdela/DaVinci/vVIRTUALtarget/CANoe/DiVa product Reviewed Knowledge."
+    reviewed_procedure_expansion_sha: "bcbe4e5b57aa144bfa5cb3d5e86f2a1e5a1274ee"
+    role: "Exact-pinned CANdela/DaVinci/vVIRTUALtarget/CANoe/DiVa Reviewed Knowledge plus Management ECU procedure authority expansion."
   mathworks:
     manifest: "references/mathworks/reference-locators.yaml"
-    role: "Exact-pinned R2025b model/AUTOSAR/diagnostics/codegen/MIL/SIL/test Reviewed Knowledge."
+    reviewed_procedure_expansion_sha: "2fb38fe40d87a9cb8e7a22f7fe4a1a6a04354187"
+    role: "Exact-pinned R2025b model/AUTOSAR/codegen/MIL/SIL/test Reviewed Knowledge plus Management ECU procedure authority expansion."
   autosar:
     manifest: "references/autosar/reference-locators.yaml"
     role: "Direct AUTOSAR Classic 4.4.0 DCM/DEM/CanTp/CAN/SWC/RTE authority."
@@ -45,13 +48,22 @@ primary_artifacts:
     role: "Human-oriented reverse navigation from engineering intent."
   - id: "REF-DIAG-005"
     path: "procedures/20260902_ManagementECU_UDS_CAN_Tool_Procedure_Compilation_Matrix.yaml"
-    role: "Accepted fixed-authority 18-task procedure-evidence compilation."
+    role: "Historical accepted fixed-authority 18-task procedure-evidence compilation."
   - id: "REF-DIAG-006"
     path: "procedures/20260902_ManagementECU_UDS_CAN_Tool_Procedure_Compilation_Report.md"
-    role: "Human-readable Sol-accepted procedure compilation findings."
+    role: "Historical human-readable Sol-accepted procedure compilation findings."
   - id: "REF-DIAG-007"
     path: "procedures/procedure-coverage-matrix.yaml"
-    role: "Task-to-procedure-family and accepted maturity overlay."
+    role: "Current task-to-procedure-family and final Sol-reviewed maturity overlay."
+  - id: "REF-DIAG-008"
+    path: "procedures/procedure-authority-expansion-overlay.yaml"
+    role: "Vector/MathWorks authority-expansion decisions and final DTR procedure classifications."
+  - id: "REF-DIAG-009"
+    path: "20260903_ManagementECU_UDS_CAN_Procedure_Authority_Expansion_Addendum.md"
+    role: "Human-readable current procedure routes after targeted authority expansion."
+  - id: "REF-DIAG-010"
+    path: "references/procedure-authority-expansion-pins.yaml"
+    role: "Exact Sol-reviewed Vector and MathWorks upstream pins."
 
 procedure_family_artifacts:
   - "procedures/candela-studio.yaml"
@@ -67,33 +79,42 @@ procedure_family_artifacts:
 
 procedure_maturity:
   task_scope: "DTR-002..DTR-019"
-  EXACT_PROCEDURE_AVAILABLE: 1
-  PARTIAL_PROCEDURE_AVAILABLE: 11
-  WORKFLOW_ONLY: 5
+  EXACT_PROCEDURE_AVAILABLE: 11
+  PARTIAL_PROCEDURE_AVAILABLE: 5
+  WORKFLOW_ONLY: 1
   NO_EXPLICIT_PROCEDURE: 0
   PROJECT_INPUT_REQUIRED: 1
   UNRESOLVED_AUTHORITY: 0
-  strongest_exact_task: "DTR-019"
+  exact_tasks: [DTR-002, DTR-004, DTR-005, DTR-007, DTR-008, DTR-009, DTR-010, DTR-015, DTR-016, DTR-018, DTR-019]
+  project_design_first_task: "DTR-006"
   project_input_blocked_task: "DTR-013"
 
+canonical_project_route:
+  vvirtualtarget_use_case: "Integration"
+  canoe_sut_consumer: "Integration SUT DLL -> Configuration > Components > Add"
+  bsw_emulation: "separate alternate route, not canonical"
+
 coverage_posture:
-  diagnostic_authoring_candela: "REVIEWED_ROUTE_AVAILABLE"
+  diagnostic_authoring_candela: "EXACT_BOUNDED_PROCEDURE_AVAILABLE"
   candela_native_cdd_consumer_route: "REVIEWED_ROUTE_AVAILABLE"
-  candela_odx_exchange: "REVIEWED_ROUTE_AVAILABLE"
-  candela_to_diva_format_interoperability: "REVIEWED_ROUTE_AVAILABLE"
-  one_mandatory_candela_export_subset_for_diva: "NO_EXPLICIT_MAPPING"
+  candela_odx_exchange: "EXACT_BOUNDED_PROCEDURE_AVAILABLE"
+  one_mandatory_candela_export_subset_for_diva: "DOCUMENTATION_SCOPE_NEGATIVE_RETAINED"
   candela_direct_to_configurator_sync_contract: "NO_EXPLICIT_MAPPING"
-  application_swc_contract: "REVIEWED_ROUTE_AVAILABLE"
-  application_model_autosar_codegen: "REVIEWED_ROUTE_AVAILABLE"
+  application_swc_contract: "EXACT_BOUNDED_PROCEDURE_AVAILABLE"
+  application_model_autosar_import_mapping_codegen: "EXACT_BOUNDED_PROCEDURE_AVAILABLE"
+  mil_test_manager: "EXACT_BOUNDED_PROCEDURE_AVAILABLE"
+  sil_execution_and_comparison: "EXACT_BOUNDED_PROCEDURE_AVAILABLE"
   dcm_ownership: "REVIEWED_ROUTE_AVAILABLE"
   dem_ownership: "REVIEWED_ROUTE_AVAILABLE"
-  dcm_dem_dtc_interaction: "REVIEWED_ROUTE_AVAILABLE"
-  uds_on_can_transport_branch: "REVIEWED_ROUTE_AVAILABLE"
-  configurator_microsar_bsw_generation: "REVIEWED_ROUTE_AVAILABLE"
-  configurator_to_vvirtualtarget: "BOUNDED_ROUTE_AVAILABLE"
-  vvirtualtarget_to_canoe: "REVIEWED_ROUTE_AVAILABLE"
-  diva_test_generation: "REVIEWED_ROUTE_AVAILABLE"
-  diva_to_canoe_named_execution_route: "REVIEWED_ROUTE_AVAILABLE"
+  dcm_dem_configurator_procedure: "PARTIAL_PROCEDURE_AVAILABLE"
+  application_rte_diagnostic_binding: "PARTIAL_PROCEDURE_AVAILABLE"
+  uds_on_can_transport_branch: "REVIEWED_ROUTE_AVAILABLE_PROJECT_VALUES_REQUIRED"
+  configurator_microsar_validation_generation: "PARTIAL_PROCEDURE_AVAILABLE"
+  configurator_to_vvirtualtarget_integration: "EXACT_BOUNDED_PROCEDURE_AVAILABLE"
+  vvirtualtarget_to_canoe: "EXACT_BOUNDED_PROCEDURE_AVAILABLE"
+  diva_project_configuration: "PARTIAL_PROCEDURE_AVAILABLE"
+  diva_test_generation: "EXACT_BOUNDED_PROCEDURE_AVAILABLE"
+  diva_to_canoe_named_execution_route: "EXACT_BOUNDED_PROCEDURE_AVAILABLE"
   complete_cross_product_version_matrix: "NO_EXPLICIT_MAPPING"
 
 non_collapse_rules:
@@ -101,13 +122,18 @@ non_collapse_rules:
   - "Application SWC != DCM != DEM."
   - "DCM service semantics != PduR/CanTp transport."
   - "PduR != CanTp != CanIf != CanDrv."
+  - "source ARXML != imported representation != generated implementation ARXML."
   - "generated Application SWC != production RTE/BSW/OS."
+  - "code generation != compile != link."
+  - "vVIRTUALtarget Integration != BSW Emulation."
   - "VECU artifact != MIL/SIL evidence."
   - "DiVa generated test definition != CANoe execution result/report."
+  - "verdict != coverage."
   - "format overlap/import-export support != lossless semantic equivalence."
 
 usage_rule: >-
-  Start from the Tool/Task Matrix for engineering intent and lifecycle context, then resolve the accepted
-  procedure maturity through procedures/procedure-coverage-matrix.yaml and the relevant tool-family file.
-  Resolve technical locator IDs through the authority manifests and use the recorded exact repository/commit/path/section.
-  Do not replace an exact pin with current upstream main, current vendor Web, generic domain knowledge or project assumptions.
+  Start from the Tool/Task Matrix for engineering intent and lifecycle context. Resolve current procedure maturity through
+  procedures/procedure-coverage-matrix.yaml and procedures/procedure-authority-expansion-overlay.yaml. Use the 2026-09-03
+  addendum for the current human-readable operation route and the historical tool-family YAML for product-family context.
+  Resolve technical authority through exact repository/commit/path pins. Do not replace an exact pin with current upstream main,
+  current vendor Web, generic domain knowledge or project assumptions.

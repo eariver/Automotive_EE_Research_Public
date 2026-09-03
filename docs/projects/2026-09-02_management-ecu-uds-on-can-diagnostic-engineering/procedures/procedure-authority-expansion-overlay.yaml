@@ -1,0 +1,92 @@
+schema_version: "management-ecu-uds-can-procedure-authority-expansion-overlay/v1"
+date: "2026-09-03"
+status: "SOL_REVIEWED_FINAL_PROCEDURE_MATURITY_OVERLAY"
+base_compilation_ending_sha: "3b5f2cdfc418e46cd2ad4a8509fc77ac50eacc12"
+upstream_pins: "../references/procedure-authority-expansion-pins.yaml"
+classification_counts:
+  EXACT_PROCEDURE_AVAILABLE: 11
+  PARTIAL_PROCEDURE_AVAILABLE: 5
+  WORKFLOW_ONLY: 1
+  PROJECT_INPUT_REQUIRED: 1
+  NO_EXPLICIT_PROCEDURE: 0
+  UNRESOLVED_AUTHORITY: 0
+  total: 18
+tasks:
+  DTR-002:
+    classification: "EXACT_PROCEDURE_AVAILABLE"
+    basis: "CANdela Studio 25 SP1 exact bounded GUI authoring surfaces; project object values remain inputs."
+  DTR-003:
+    classification: "PARTIAL_PROCEDURE_AVAILABLE"
+    basis: "Exact ODX/PDX export/compliance surfaces exist, but one universal mandatory CANdela-to-DiVa export subset remains documentation-scope unsupported."
+  DTR-004:
+    classification: "EXACT_PROCEDURE_AVAILABLE"
+    basis: "Developer 4.18 SP3-family exact bounded SWC object/ARXML/consistency GUI routes; .67-specific compatibility is not claimed."
+  DTR-005:
+    classification: "EXACT_PROCEDURE_AVAILABLE"
+    basis: "R2025b importer/create/update/shared-definition/validation route is source-explicit and bounded."
+  DTR-006:
+    classification: "WORKFLOW_ONLY"
+    basis: "Management ECU diagnostic Application behavior is project design first; vendor procedure must not substitute for behavior design."
+  DTR-007:
+    classification: "EXACT_PROCEDURE_AVAILABLE"
+    basis: "R2025b AUTOSAR Dictionary plus Code Mappings plus programmatic mapping route is source-explicit."
+  DTR-008:
+    classification: "EXACT_PROCEDURE_AVAILABLE"
+    basis: "R2025b Test Manager TestFile/TestSuite/TestCase/run/result/report route is explicit; vectors/tolerances remain project inputs."
+  DTR-009:
+    classification: "EXACT_PROCEDURE_AVAILABLE"
+    basis: "R2025b AUTOSAR code generation/report/artifact route is explicit with compile/link retained separately."
+  DTR-010:
+    classification: "EXACT_PROCEDURE_AVAILABLE"
+    basis: "R2025b SIL/PIL Manager and bounded model-versus-SIL comparison route is explicit; actual equivalence verdict remains project evidence."
+  DTR-011:
+    classification: "PARTIAL_PROCEDURE_AVAILABLE"
+    basis: "Configurator 6.3.10 Diagnostics Editor and Dem/NvM assistant are explicit; complete DCM/DEM object procedure remains incomplete."
+  DTR-012:
+    classification: "PARTIAL_PROCEDURE_AVAILABLE"
+    basis: "Service-port Component Connection Assistant is explicit, but diagnostic Application SWC callback/runnable to production RTE/DCM integration remains incomplete."
+  DTR-013:
+    classification: "PROJECT_INPUT_REQUIRED"
+    basis: "CAN IDs, addressing, CanTp timing, PduR/CanIf/CAN route identity and related Management ECU values must be supplied by the project before execution."
+  DTR-014:
+    classification: "PARTIAL_PROCEDURE_AVAILABLE"
+    basis: "dvcfg-b validate/generate is exact; project reconciliation, compile/link/build and artifact acceptance remain bounded gaps."
+  DTR-015:
+    classification: "EXACT_PROCEDURE_AVAILABLE"
+    basis: "Canonical project route is vVIRTUALtarget Integration with exact bounded VttMake/DPA-DVJSON/generate-build surfaces; BSW Emulation remains alternate."
+  DTR-016:
+    classification: "EXACT_PROCEDURE_AVAILABLE"
+    basis: "Canonical CANoe consumer route is Integration SUT DLL via Configuration > Components > Add, with exact Diagnostics/ISO TP configuration surfaces; project network values remain DTR-013 inputs."
+  DTR-017:
+    classification: "PARTIAL_PROCEDURE_AVAILABLE"
+    basis: "DiVa Project Configuration categories are exact, but project creation values, persistence/validation and acceptance remain incomplete."
+  DTR-018:
+    classification: "EXACT_PROCEDURE_AVAILABLE"
+    basis: "diva-make.exe diva.yaml [options] and bounded test-configuration surfaces provide an exact generation route; execution remains DTR-019."
+  DTR-019:
+    classification: "EXACT_PROCEDURE_AVAILABLE"
+    basis: "Previously accepted exact bounded DiVa-to-CANoe import/bind/execute/report route retained unchanged."
+canonical_project_decisions:
+  vvirtualtarget_use_case: "Integration"
+  canoe_sut_consumer_route: "Integration SUT DLL -> node Configuration -> Components -> Add"
+  vvirtualtarget_bsw_emulation: "ALTERNATE_NON_CANONICAL_ROUTE"
+  developer_release_authority: "4.18 SP3 family; .67 source-root label not independently elevated"
+  vvirtualtarget_release_authority: "10-series; page-local 10 SP2 identity only where explicit"
+retained_boundaries:
+  - "CANdela diagnostic specification != Application SWC contract/behavior."
+  - "Application SWC != DCM != DEM."
+  - "source ARXML != imported representation != generated implementation ARXML."
+  - "code generation != compile != link."
+  - "MathWorks local RTE stub != production MICROSAR RTE."
+  - "vVIRTUALtarget Integration != BSW Emulation."
+  - "MIL != SIL != PIL != VECU/HIL/physical-SUT evidence."
+  - "test definition/generation != execution result != report."
+  - "verdict != coverage."
+  - "shared format or AUTOSAR support != interoperability proof."
+validation:
+  task_count: 18
+  classification_count_sum: 18
+  exact_task_count: 11
+  partial_task_count: 5
+  workflow_only_task_count: 1
+  project_input_required_task_count: 1
