@@ -1,0 +1,68 @@
+schema_version: "management-ecu-dem-fault-management-authority-pins/v2"
+date: "2026-09-04"
+status: "SOL_REVIEWED_AUTHORITY_EXPANSION_PINNED"
+project: "Management ECU DEM Fault Management Engineering"
+authorities:
+  downstream:
+    repository: "eariver/Automotive_EE_Engineering_Knowledge"
+    commit: "59250354d74100167b80ee40f44e73eb064dd515"
+    paths:
+      - "docs/knowledge/diagnostics-engineering.md"
+      - "docs/knowledge/autosar-ownership-ecu-integration.md"
+      - "docs/knowledge/current-engineering-map.md"
+    use: "canonical vendor-neutral ownership/navigation and evidence boundaries"
+  autosar_cp_base:
+    repository: "eariver/Research_AUTOSAR_CP_Documents"
+    commit: "938ac4af696d263019ebdc61106a444447e15c4d"
+    release: "AUTOSAR Classic Platform 4.4.0"
+    required_paths:
+      - "docs/knowledge/concepts/dem-event-fault-memory-ownership.json"
+      - "docs/knowledge/workflows/dcm-dem-dtc-service-interaction.json"
+      - "docs/knowledge/concepts/fim-dem-inhibition-boundary.json"
+    use: "frozen reviewed AUTOSAR ownership/workflow backbone"
+  autosar_cp_dem_semantic_supplement:
+    repository: "eariver/Research_AUTOSAR_CP_Documents"
+    commit: "4eff43bdc4a99f3219104c2b16994a539e0b08eb"
+    release: "AUTOSAR Classic Platform 4.4.0"
+    path: "docs/knowledge/management-ecu-dem-autosar-semantic-depth.md"
+    use: "reviewed DEM debounce/cycle/condition/status/Event-DTC/memory/data/aging/healing/NvM/configuration semantic depth"
+  vector_base:
+    repository: "eariver/Research_Vector_Documents"
+    commit: "7a6821cd3f2ad677ca7069c9b114355e98f16842"
+    use: "frozen base Reviewed Knowledge for DaVinci Configurator/Developer, CANoe, DiVa, CANdela and vVIRTUALtarget"
+  vector_uds_procedure_supplement:
+    repository: "eariver/Research_Vector_Documents"
+    commit: "bcbe4e5b57aa144bfa5cb3d5e86f2a1e5a1274ee"
+    path: "docs/knowledge/management-ecu-uds-can-vector-procedure-authority-expansion.md"
+    use: "existing bounded procedure evidence reused only where directly applicable"
+    boundary: "The prior UDS project context does not define DEM project values or complete DEM semantics."
+  vector_dem_procedure_runtime_test_supplement:
+    repository: "eariver/Research_Vector_Documents"
+    commit: "d922812a20ed1e9669fff45f26aa17791254ae65"
+    path: "docs/knowledge/management-ecu-dem-vector-procedure-runtime-test.md"
+    use: "reviewed Configurator DEM realization bounds, vVIRTUALtarget Integration/CANoe runtime route, DiVa/CANoe generation/execution route and retained observability/documentation negatives"
+  mathworks:
+    repository: "eariver/Research_MathWorks_Documents"
+    commit: "2fb38fe40d87a9cb8e7a22f7fe4a1a6a04354187"
+    release: "R2025b / MATLAB 25.2"
+    primary_paths:
+      - "docs/knowledge/r2025b/model-architecture-ownership.md"
+      - "docs/knowledge/r2025b/autosar-arxml-lifecycle.md"
+      - "docs/knowledge/r2025b/mil-sil-pil-execution.md"
+      - "docs/knowledge/r2025b/test-design-execution-results.md"
+      - "docs/knowledge/r2025b/coverage-evidence-lifecycle.md"
+      - "docs/knowledge/r2025b/fault-safety-analysis-lifecycle.md"
+      - "docs/knowledge/management-ecu-uds-can-mathworks-procedure-authority-expansion.md"
+    use: "Application/model/AUTOSAR/MIL/SIL/test/coverage/fault-injection procedure and identity boundaries"
+source_policy:
+  allowed: "Only the exact-pinned Sol-reviewed authorities above and directly relevant Sol-reviewed docs/knowledge/** at those exact commits."
+  prohibited:
+    - "current/floating upstream main or branch head as technical authority"
+    - "Web/current vendor documentation"
+    - "raw vendor HELP"
+    - "raw AUTOSAR PDFs"
+    - "observations/worklogs/prompts as technical authority"
+    - "generic model/domain knowledge substituted for missing evidence"
+    - "project assumptions or example values"
+usage_rule: >-
+  Downstream compilation must preserve exact repository/commit/path provenance. Missing project inputs or design choices remain explicit blockers. Bounded documentation negatives and observability gaps must not be converted into capability negatives or filled by inference.

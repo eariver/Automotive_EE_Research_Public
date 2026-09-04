@@ -1,0 +1,35 @@
+schema_version: "management-ecu-dem-fault-management-project-input-baseline/v1"
+date: "2026-09-04"
+status: "PROJECT_INPUTS_NOT_YET_SUPPLIED"
+project: "Management ECU DEM Fault Management Engineering"
+rule: "These values are project-owned. Reviewed vendor/AUTOSAR authority may define configuration concepts but must not supply project choices."
+inputs:
+  tool_versions: {status: "TBD"}
+  autosar_schema: {status: "TBD"}
+  diagnostic_event_inventory: {status: "TBD"}
+  event_ids_names: {status: "TBD"}
+  dtc_inventory_numbers_formats: {status: "TBD"}
+  event_to_dtc_mapping: {status: "TBD"}
+  monitor_algorithms: {status: "TBD"}
+  monitor_runnable_callback_mapping: {status: "TBD"}
+  debounce_mechanism_and_values: {status: "TBD"}
+  operation_cycle_definition_and_binding: {status: "TBD"}
+  enable_condition_policy: {status: "TBD"}
+  storage_condition_policy: {status: "TBD"}
+  confirmation_policy: {status: "TBD"}
+  aging_healing_policy: {status: "TBD"}
+  event_memory_destinations_sizes_priorities: {status: "TBD"}
+  displacement_policy: {status: "TBD"}
+  freeze_frame_records_and_capture_policy: {status: "TBD"}
+  extended_data_records_and_update_policy: {status: "TBD"}
+  nvm_block_identities: {status: "TBD"}
+  fim_fid_event_relations: {status: "TBD"}
+  dcm_session_security_nrc_policy: {status: "TBD"}
+  uds_0x19_0x14_test_scope: {status: "TBD"}
+  fault_stimuli: {status: "TBD"}
+  expected_status_transitions: {status: "TBD"}
+  mil_sil_acceptance_criteria: {status: "TBD"}
+  vecu_canoe_diva_acceptance_criteria: {status: "TBD"}
+non_inference_rule: >-
+  Example values, AUTOSAR examples, vendor screenshots, tutorial projects and prior Management ECU UDS project values must not be promoted into this baseline.
+  A DFM task that requires any unresolved value above remains project-input/design blocked for actual execution even if a generic tool procedure is exact.

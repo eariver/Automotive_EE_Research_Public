@@ -1,0 +1,70 @@
+schema_version: "management-ecu-dem-final-availability-overlay/v1"
+date: "2026-09-04"
+status: "SOL_REVIEWED_CURRENT_AUTHORITY"
+project: "Management ECU DEM Fault Management Engineering"
+source_compilation:
+  repository: "eariver/Automotive_EE_Engineering_Knowledge"
+  commit: "283409a12eca334a619daccdf2733726e503cc09"
+  branch: "work/luna-management-ecu-dem-current-package-compilation-20260904"
+reviewed_upstream:
+  autosar:
+    repository: "eariver/Research_AUTOSAR_CP_Documents"
+    commit: "4eff43bdc4a99f3219104c2b16994a539e0b08eb"
+    path: "docs/knowledge/management-ecu-dem-autosar-semantic-depth.md"
+  vector:
+    repository: "eariver/Research_Vector_Documents"
+    commit: "d922812a20ed1e9669fff45f26aa17791254ae65"
+    path: "docs/knowledge/management-ecu-dem-vector-procedure-runtime-test.md"
+  mathworks:
+    repository: "eariver/Research_MathWorks_Documents"
+    commit: "2fb38fe40d87a9cb8e7a22f7fe4a1a6a04354187"
+final_availability_counts:
+  EXACT_PROCEDURE_AVAILABLE: 1
+  PARTIAL_PROCEDURE_AVAILABLE: 12
+  WORKFLOW_ONLY: 3
+  NO_EXPLICIT_PROCEDURE: 2
+  PROJECT_INPUT_REQUIRED: 1
+  PROJECT_DESIGN_REQUIRED: 1
+  total: 20
+tasks:
+  DFM-000: PROJECT_INPUT_REQUIRED
+  DFM-001: WORKFLOW_ONLY
+  DFM-002: PROJECT_DESIGN_REQUIRED
+  DFM-003: PARTIAL_PROCEDURE_AVAILABLE
+  DFM-004: NO_EXPLICIT_PROCEDURE
+  DFM-005: NO_EXPLICIT_PROCEDURE
+  DFM-006: PARTIAL_PROCEDURE_AVAILABLE
+  DFM-007: PARTIAL_PROCEDURE_AVAILABLE
+  DFM-008: PARTIAL_PROCEDURE_AVAILABLE
+  DFM-009: PARTIAL_PROCEDURE_AVAILABLE
+  DFM-010: PARTIAL_PROCEDURE_AVAILABLE
+  DFM-011: EXACT_PROCEDURE_AVAILABLE
+  DFM-012: WORKFLOW_ONLY
+  DFM-013: PARTIAL_PROCEDURE_AVAILABLE
+  DFM-014: PARTIAL_PROCEDURE_AVAILABLE
+  DFM-015: PARTIAL_PROCEDURE_AVAILABLE
+  DFM-016: PARTIAL_PROCEDURE_AVAILABLE
+  DFM-017: PARTIAL_PROCEDURE_AVAILABLE
+  DFM-018: PARTIAL_PROCEDURE_AVAILABLE
+  DFM-019: WORKFLOW_ONLY
+retained_boundaries:
+  - "fault condition != monitor algorithm != monitor result != DEM event report != debounce/qualification != monitor status != event UDS status != DTC status != DTC identity != event-memory entry != NvM representation != DCM tester response != test definition != execution != verdict != report"
+  - "Event != DTC"
+  - "DEM != DCM; DEM != FiM; DEM != NvM"
+  - "enable condition != storage condition"
+  - "operation cycle != ignition cycle by default"
+  - "ClearDTC != monitor pass != aging != AUTOSAR DEM indicator healing"
+  - "configuration != generated configuration != runtime state != tester response != test verdict/report"
+  - "verdict != coverage"
+retained_negatives:
+  - "DaVinci Configurator Classic 6.3.10 reviewed HELP does not establish a complete object-by-object DEM procedure for the detailed semantic areas."
+  - "Dem/NvM Event Memory Blocks Assistant is a bounded mapping surface, not a complete DEM procedure."
+  - "CANoe tester-visible DTC response is not proof of internal DEM debounce, event-memory entry, or NvM stored representation."
+  - "Actual vVIRTUALtarget/CANoe runtime execution, DiVa generation, and CANoe import/recompile/execution/result/report require project inputs."
+  - "No one universal cross-product Test Unit package/build/runtime contract is established in the reviewed documentation scope."
+project_gates:
+  DFM-000: "Project tool/schema/diagnostic inventory and acceptance baseline must be supplied."
+  DFM-002: "Application monitor algorithm and result semantics must be project-designed and approved."
+  runtime_test_execution: "Project artifacts, diagnostic description, stimulus, expected transitions, and acceptance criteria are required."
+sol_decision: >-
+  Luna candidate availability at source compilation commit 283409a12eca334a619daccdf2733726e503cc09 is accepted unchanged as the current final project authority. Additional semantic depth did not justify promoting the bounded Configurator or project-execution slices beyond the labels above.

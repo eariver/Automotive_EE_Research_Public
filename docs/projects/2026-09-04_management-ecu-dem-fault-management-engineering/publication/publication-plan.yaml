@@ -1,11 +1,12 @@
-schema_version: "management-ecu-dem-fault-management-publication-plan/v1"
+schema_version: "management-ecu-dem-fault-management-publication-plan/v2"
 date: "2026-09-04"
-status: "PREPARED_NOT_STAGED"
+status: "SOL_REVIEWED_STAGED"
 project: "Management ECU DEM Fault Management Engineering"
 private_source:
   repository: "eariver/Automotive_EE_Engineering_Knowledge"
   branch: "work/management-ecu-dem-fault-management-engineering-20260904"
-  initialized_head: "d8557c66c84b3ba23d62c60196a37a98a8a6ade9"
+  accepted_source_head: "b7d6e645db359416fe848608b5b7a5fd8134d4f9"
+  luna_current_package_terminal: "283409a12eca334a619daccdf2733726e503cc09"
   base_main_sha: "59250354d74100167b80ee40f44e73eb064dd515"
 public:
   repository: "eariver/Automotive_EE_Research_Public"
@@ -17,26 +18,53 @@ source_bundle_policy:
   upstream_reviewed_knowledge: "LOCATOR_ONLY"
   raw_vendor_or_standard_sources: "EXCLUDED"
   internal_luna_material: "EXCLUDED"
+  historical_baseline_research_artifacts: "EXCLUDED_FROM_CURRENT_CONSUMPTION_BUNDLE"
   confidential_project_values: "EXCLUDED"
-planned_source_derived_roles:
+reviewed_authority:
+  autosar: "eariver/Research_AUTOSAR_CP_Documents@4eff43bdc4a99f3219104c2b16994a539e0b08eb"
+  vector: "eariver/Research_Vector_Documents@d922812a20ed1e9669fff45f26aa17791254ae65"
+  mathworks: "eariver/Research_MathWorks_Documents@2fb38fe40d87a9cb8e7a22f7fe4a1a6a04354187"
+final_availability_counts:
+  EXACT_PROCEDURE_AVAILABLE: 1
+  PARTIAL_PROCEDURE_AVAILABLE: 12
+  WORKFLOW_ONLY: 3
+  NO_EXPLICIT_PROCEDURE: 2
+  PROJECT_INPUT_REQUIRED: 1
+  PROJECT_DESIGN_REQUIRED: 1
+  total: 20
+source_derived_roles:
   - "project README"
+  - "Project Scope"
   - "Methodology"
   - "Step-by-Step Guide"
   - "Tool / Task / Reference Matrix"
   - "Execution Reference Guide"
   - "DEM State & Evidence Model"
   - "Procedure Coverage Matrix"
-  - "authority locator manifests"
-  - "publication-safe project input scaffolds"
-  - "Sol-reviewed procedure/gap records"
+  - "Reference Index"
+  - "Compilation Report"
+  - "Sol final availability overlay"
+  - "Sol fixed-head review"
+  - "authority pins"
+  - "publication-safe project input baseline"
+retained_boundaries:
+  - "complete detailed Configurator DEM object procedure remains bounded in reviewed 6.3.10 HELP"
+  - "Dem/NvM Event Memory Blocks Assistant is bounded mapping evidence only"
+  - "vVIRTUALtarget Integration is canonical"
+  - "tester-visible DTC response is not proof of internal DEM/NvM state"
+  - "actual runtime/test execution requires project inputs"
+  - "no universal cross-product Test Unit package/build/runtime contract is established"
 promotion_gates:
-  - "Luna baseline compilation fixed-head review PASS"
-  - "Required upstream authority expansion reviewed or explicitly bounded"
+  - "Luna current-package fixed-head review PASS"
+  - "AUTOSAR and Vector authority expansion Sol-reviewed"
   - "No invented Management ECU event/DTC/debounce/memory/test values"
   - "Source-derived bundle identified at one accepted Private source HEAD"
   - "Public blob identity verified against accepted Private source"
   - "Public main remains unchanged unless human explicitly approves merge"
 validation:
-  source_derived_file_count: 0
+  source_derived_file_count: 14
   publication_generated_file_count: 2
-  technical_package_staged: false
+  expected_total_package_file_count: 16
+  technical_package_staged: true
+  byte_identical_source_derived: true
+  main_merged: false
