@@ -1,0 +1,305 @@
+schema_version: 1
+artifact: ManagementECU_OS_RTE_Procedure_Coverage_Matrix
+date: 2026-09-06
+status: LUNA_COMPILE_PROPOSAL
+scope: "Exactly OSRTE-001 through OSRTE-018; no task identity beyond this set."
+classification_basis: "Sol-reviewed exact-pinned authority; Vector classifications are carried forward without raw HELP re-investigation."
+
+authority_catalog:
+  AUTOSAR-RUNNABLE-RTEEVENT-BOUNDARY: {repository: eariver/Research_AUTOSAR_CP_Documents, exact_commit: 938ac4af696d263019ebdc61106a444447e15c4d, path: docs/knowledge/concepts/runnable-rteevent-os-activation-boundary.json, blob_sha: a6864f94f296713f1983d88f806828c754b91dbe, entry_id: AUTOSAR-CP-4.4.0-CONCEPT-RUNNABLE-RTEEVENT-OS-ACTIVATION-BOUNDARY, review_status: SOL_REVIEWED}
+  AUTOSAR-RTEEVENT-ACTIVATION-TRACE: {repository: eariver/Research_AUTOSAR_CP_Documents, exact_commit: 938ac4af696d263019ebdc61106a444447e15c4d, path: docs/knowledge/workflows/rteevent-to-runnable-activation.json, blob_sha: 981e523429c61b4162a3919384e79a148b28ae85, entry_id: AUTOSAR-CP-4.4.0-WORKFLOW-RTEEVENT-TO-RUNNABLE-ACTIVATION, review_status: SOL_REVIEWED}
+  AUTOSAR-RTE-GENERATION-RUNTIME-BOUNDARY: {repository: eariver/Research_AUTOSAR_CP_Documents, exact_commit: 938ac4af696d263019ebdc61106a444447e15c4d, path: docs/knowledge/concepts/rte-generation-contract-runtime-boundary.json, blob_sha: e120bb7159acdefed27401081ccc1c0e10d4bf93, entry_id: AUTOSAR-CP-4.4.0-CONCEPT-RTE-GENERATION-CONTRACT-RUNTIME-BOUNDARY, review_status: SOL_REVIEWED}
+  AUTOSAR-OS-EXECUTION-BOUNDARY: {repository: eariver/Research_AUTOSAR_CP_Documents, exact_commit: 938ac4af696d263019ebdc61106a444447e15c4d, path: docs/knowledge/concepts/os-execution-lifecycle-boundary.json, blob_sha: 5f6d7038a9b77d6873dfc751ea80dc05cf2a24f5, entry_id: AUTOSAR-CP-4.4.0-CONCEPT-OS-EXECUTION-LIFECYCLE-BOUNDARY, review_status: SOL_REVIEWED}
+  AUTOSAR-OS-RUNTIME-OBJECTS: {repository: eariver/Research_AUTOSAR_CP_Documents, exact_commit: 938ac4af696d263019ebdc61106a444447e15c4d, path: docs/knowledge/concepts/os-runtime-object-scheduling-boundary.json, blob_sha: a1f85c7b7af65b9234d4d37b51e502ab0b4aa15d, entry_id: AUTOSAR-CP-4.4.0-CONCEPT-OS-RUNTIME-OBJECT-SCHEDULING-BOUNDARY, review_status: SOL_REVIEWED}
+  AUTOSAR-OS-COUNTER-ALARM-SCHEDULETABLE: {repository: eariver/Research_AUTOSAR_CP_Documents, exact_commit: 938ac4af696d263019ebdc61106a444447e15c4d, path: docs/knowledge/workflows/os-counter-alarm-scheduletable-execution-path.json, blob_sha: 9f6cacaec41fd4a81b1c3ca1b4f72eae50d0d8d6, entry_id: AUTOSAR-CP-4.4.0-WORKFLOW-OS-COUNTER-ALARM-SCHEDULETABLE-EXECUTION-PATH, review_status: SOL_REVIEWED}
+  AUTOSAR-OS-MULTICORE-RESOURCE-SPINLOCK: {repository: eariver/Research_AUTOSAR_CP_Documents, exact_commit: 938ac4af696d263019ebdc61106a444447e15c4d, path: docs/knowledge/concepts/os-multicore-resource-spinlock-boundary.json, blob_sha: 1b2d4825ab09188b14fde9171173be839f05e039, entry_id: AUTOSAR-CP-4.4.0-CONCEPT-OS-MULTICORE-RESOURCE-SPINLOCK-BOUNDARY, review_status: SOL_REVIEWED}
+  AUTOSAR-OS-CROSS-CORE-TRACE: {repository: eariver/Research_AUTOSAR_CP_Documents, exact_commit: 938ac4af696d263019ebdc61106a444447e15c4d, path: docs/knowledge/workflows/os-multicore-cross-core-synchronization.json, blob_sha: 5505aa42f8ac1d321f3362848743e2ffb518755d, entry_id: AUTOSAR-CP-4.4.0-WORKFLOW-OS-MULTICORE-CROSS-CORE-SYNCHRONIZATION, review_status: SOL_REVIEWED}
+  AUTOSAR-OS-APPLICATION-PROTECTION: {repository: eariver/Research_AUTOSAR_CP_Documents, exact_commit: 938ac4af696d263019ebdc61106a444447e15c4d, path: docs/knowledge/concepts/os-protection-osapplication-recovery-boundary.json, blob_sha: 3ff39eace9dcf49e8cb1eeb098615b9521da4371, entry_id: AUTOSAR-CP-4.4.0-CONCEPT-OS-PROTECTION-OSAPPLICATION-RECOVERY-BOUNDARY, review_status: SOL_REVIEWED}
+  AUTOSAR-OS-PROTECTION-RECOVERY: {repository: eariver/Research_AUTOSAR_CP_Documents, exact_commit: 938ac4af696d263019ebdc61106a444447e15c4d, path: docs/knowledge/workflows/os-protection-violation-to-recovery-action.json, blob_sha: 7fd24b01d0c44309e80dc26afe7f642aad937189, entry_id: AUTOSAR-CP-4.4.0-WORKFLOW-OS-PROTECTION-VIOLATION-TO-RECOVERY-ACTION, review_status: SOL_REVIEWED}
+  AUTOSAR-OS-TIME-DOMAIN: {repository: eariver/Research_AUTOSAR_CP_Documents, exact_commit: 938ac4af696d263019ebdc61106a444447e15c4d, path: docs/knowledge/concepts/os-counter-swfrt-time-service-stbm-boundary.json, blob_sha: 53aa1e45760cc16c84ed30185b427c30bb6dcaa9, entry_id: AUTOSAR-CP-4.4.0-CONCEPT-OS-COUNTER-SWFRT-TIME-SERVICE-STBM-BOUNDARY, review_status: SOL_REVIEWED}
+  AUTOSAR-TIMING-EVENT-CHAIN: {repository: eariver/Research_AUTOSAR_CP_Documents, exact_commit: 938ac4af696d263019ebdc61106a444447e15c4d, path: docs/knowledge/concepts/timing-event-chain-observation-boundary.json, blob_sha: c73ed8556c3f3a1523d6f696a14889c12b56db4c, entry_id: AUTOSAR-CP-4.4.0-CONCEPT-TIMING-EVENT-CHAIN-OBSERVATION-BOUNDARY, review_status: SOL_REVIEWED}
+  AUTOSAR-TIMING-CONSTRAINT-REALIZATION: {repository: eariver/Research_AUTOSAR_CP_Documents, exact_commit: 938ac4af696d263019ebdc61106a444447e15c4d, path: docs/knowledge/concepts/timing-constraint-runtime-realization-boundary.json, blob_sha: 735708c80c85cc229372af65b471379b6ed2f3cd, entry_id: AUTOSAR-CP-4.4.0-CONCEPT-TIMING-CONSTRAINT-RUNTIME-REALIZATION-BOUNDARY, review_status: SOL_REVIEWED}
+  AUTOSAR-TIMING-REALIZATION-TRACE: {repository: eariver/Research_AUTOSAR_CP_Documents, exact_commit: 938ac4af696d263019ebdc61106a444447e15c4d, path: docs/knowledge/workflows/timing-constraint-to-runtime-realization.json, blob_sha: 0df862365f150cc4781fed2ddc093952d3ede3ac, entry_id: AUTOSAR-CP-4.4.0-WORKFLOW-TIMING-CONSTRAINT-TO-RUNTIME-REALIZATION, review_status: SOL_REVIEWED}
+  AUTOSAR-TIMING-ANALYSIS-WORK-PRODUCTS: {repository: eariver/Research_AUTOSAR_CP_Documents, exact_commit: 938ac4af696d263019ebdc61106a444447e15c4d, path: docs/knowledge/concepts/timing-analysis-work-product-boundary.json, blob_sha: 06ef0cc82332d863656aaff6f03ce34c4127c9cb, entry_id: AUTOSAR-CP-4.4.0-CONCEPT-TIMING-ANALYSIS-WORK-PRODUCT-BOUNDARY, review_status: SOL_REVIEWED}
+  AUTOSAR-SCHM-EXCLUSIVEAREA: {repository: eariver/Research_AUTOSAR_CP_Documents, exact_commit: 3eec41439f25f61c29e0c1a06a51df148e493014, path: docs/knowledge/management-ecu-os-rte-schm-autosar-semantic-depth.md, blob_sha: 9d43ebda90be848232054d953887ff6b98f5f89c, review_status: SOL_REVIEWED}
+  VECTOR-OS-RTE-PROCEDURE: {repository: eariver/Research_Vector_Documents, exact_commit: 7285e6a773433488c59186bbd241bdab39efb4ce, path: docs/knowledge/management-ecu-os-rte-vector-procedure.md, blob_sha: 9dba28ab75b9f1ae9f58350e085ffa3291188bb5, product_scope: DaVinci_Configurator_Classic_6.3.10, review_status: SOL_REVIEWED}
+
+blocker_policy:
+  project_input_blocker: "PROJECT_INPUT_REQUIRED for every row because the project baseline is UNRESOLVED_PROJECT_INPUT."
+  project_design_blocker: "PROJECT_DESIGN_REQUIRED where a project architecture/design decision is required; otherwise NOT_REQUIRED."
+  execution_evidence_blocker: "EXECUTION_EVIDENCE_REQUIRED only where runtime/build/measurement/verdict/coverage evidence is the task closure; otherwise NOT_REQUIRED_FOR_CURRENT_COMPILE."
+  independence: "Procedure maturity, project input/design and execution evidence are separate dimensions."
+
+task_rows:
+  - task_id: OSRTE-001
+    title: "Architecture, ownership and execution-chain baseline"
+    primary_procedure_availability: WORKFLOW_ONLY
+    exact_reviewed_authority_refs: [AUTOSAR-RUNNABLE-RTEEVENT-BOUNDARY, AUTOSAR-RTE-GENERATION-RUNTIME-BOUNDARY, AUTOSAR-OS-EXECUTION-BOUNDARY]
+    strongest_reviewed_workflow_or_procedure: "Navigate SW-C/RTE model, generated realization, OS execution and timing evidence as separate owner/state boundaries."
+    procedure_scope: "Reviewed architecture/workflow only; no product configuration route is asserted."
+    product_surface_or_workflow: "Model-to-generation-to-OS execution-chain navigation."
+    project_input_blocker: PROJECT_INPUT_REQUIRED
+    project_design_blocker: NOT_REQUIRED
+    execution_evidence_blocker: NOT_REQUIRED_FOR_CURRENT_COMPILE
+    retained_boundary: "No model, Task, ISR, core, timing or generated-artifact identity is inferred; navigation is not runtime proof."
+    next_promotion_evidence: "Accepted project model/mapping package, generated artifacts, compile/link result and correlated runtime evidence."
+
+  - task_id: OSRTE-002
+    title: "RunnableEntity semantics, category and activation/concurrency constraints"
+    primary_procedure_availability: WORKFLOW_ONLY
+    exact_reviewed_authority_refs: [AUTOSAR-RUNNABLE-RTEEVENT-BOUNDARY, AUTOSAR-RTEEVENT-ACTIVATION-TRACE]
+    strongest_reviewed_workflow_or_procedure: "Identify RunnableEntity in SwcInternalBehavior, inspect category and wait/mode constraints, then hand the contract to RTE realization."
+    procedure_scope: "Reviewed RunnableEntity/category workflow; no project RTE or vendor mapping procedure."
+    product_surface_or_workflow: "SW-C internal-behavior and RTE semantic handoff."
+    project_input_blocker: PROJECT_INPUT_REQUIRED
+    project_design_blocker: PROJECT_DESIGN_REQUIRED
+    execution_evidence_blocker: NOT_REQUIRED_FOR_CURRENT_COMPILE
+    retained_boundary: "RunnableEntity != OS Task; category/activation constraints != runtime scheduling outcome."
+    next_promotion_evidence: "Accepted SwcInternalBehavior/ARXML contract with identity, category, concurrency constraints and RTE handoff."
+
+  - task_id: OSRTE-003
+    title: "RTEEvent and TimingEvent activation semantics"
+    primary_procedure_availability: WORKFLOW_ONLY
+    exact_reviewed_authority_refs: [AUTOSAR-RTEEVENT-ACTIVATION-TRACE, AUTOSAR-TIMING-EVENT-CHAIN, AUTOSAR-RUNNABLE-RTEEVENT-BOUNDARY]
+    strongest_reviewed_workflow_or_procedure: "Trace RTEEvent to its RunnableEntity and configured RTE realization while keeping TimingDescriptionEvent/EventChain as an observation model."
+    procedure_scope: "Reviewed activation/observation workflow; no project event values or measurement API is asserted."
+    product_surface_or_workflow: "RTEEvent/Runnable activation and TIMEX event-chain trace."
+    project_input_blocker: PROJECT_INPUT_REQUIRED
+    project_design_blocker: PROJECT_DESIGN_REQUIRED
+    execution_evidence_blocker: NOT_REQUIRED_FOR_CURRENT_COMPILE
+    retained_boundary: "RTEEvent != OS Event; TimingDescriptionEvent/EventChain != runtime callback, probe or timestamp provider."
+    next_promotion_evidence: "Accepted project event model, generated activation trace and separately accepted timing-observation design."
+
+  - task_id: OSRTE-004
+    title: "Runnable-to-Task mapping and generated RTE activation boundary"
+    primary_procedure_availability: EXACT_PROCEDURE_AVAILABLE
+    exact_reviewed_authority_refs: [AUTOSAR-RTE-GENERATION-RUNTIME-BOUNDARY, AUTOSAR-RUNNABLE-RTEEVENT-BOUNDARY, AUTOSAR-RTEEVENT-ACTIVATION-TRACE, VECTOR-OS-RTE-PROCEDURE]
+    strongest_reviewed_workflow_or_procedure: "Use reviewed Task Mapping to locate unmapped inputs, map Runnable/schedulable entity to an OS Task, unmap it and reorder it."
+    procedure_scope: "Exact core Task Mapping operation at reviewed DaVinci Configurator Classic 6.3.10 scope."
+    product_surface_or_workflow: "Requires Mapping; Show Unmapped Only; Selection/Overview drag mapping; Unmap; reorder; Priority/OS Application/Core Assignment/Trigger Conditions columns."
+    project_input_blocker: PROJECT_INPUT_REQUIRED
+    project_design_blocker: PROJECT_DESIGN_REQUIRED
+    execution_evidence_blocker: NOT_REQUIRED_FOR_CURRENT_COMPILE
+    retained_boundary: "Exact generic mapping does not select Management ECU mapping/activation and does not prove runtime Task execution."
+    next_promotion_evidence: "Accepted project mapping design, exact generator/tool baseline, generated RTE artifact and OS traceability."
+
+  - task_id: OSRTE-005
+    title: "Basic/Extended Task lifecycle, activation and OS Event wait/set semantics"
+    primary_procedure_availability: PARTIAL_PROCEDURE_AVAILABLE
+    exact_reviewed_authority_refs: [AUTOSAR-OS-RUNTIME-OBJECTS, AUTOSAR-OS-EXECUTION-BOUNDARY, VECTOR-OS-RTE-PROCEDURE]
+    strongest_reviewed_workflow_or_procedure: "Use Task/OS configuration surface with reviewed Basic/Extended and OS Event wait/set semantics; retain incomplete type/activation-limit detail."
+    procedure_scope: "Task Add/configuration and auto-start surface, with partial object-specific coverage."
+    product_surface_or_workflow: "Task, OS Event, activation and wait/set configuration surface."
+    project_input_blocker: PROJECT_INPUT_REQUIRED
+    project_design_blocker: PROJECT_DESIGN_REQUIRED
+    execution_evidence_blocker: NOT_REQUIRED_FOR_CURRENT_COMPILE
+    retained_boundary: "Basic/Extended Task configuration != observed execution; RTEEvent != OS Event; complete type/activation-limit procedure is not established."
+    next_promotion_evidence: "Accepted Task/Event configuration, generated OS artifact and activation/wait/set runtime trace."
+
+  - task_id: OSRTE-006
+    title: "Task priority, preemption and scheduling semantics"
+    primary_procedure_availability: SURFACE_ONLY
+    exact_reviewed_authority_refs: [AUTOSAR-OS-RUNTIME-OBJECTS, VECTOR-OS-RTE-PROCEDURE]
+    strongest_reviewed_workflow_or_procedure: "Record reviewed priority/scheduler display information and obtain separate runtime dispatch/preemption/blocking evidence."
+    procedure_scope: "Surface only; the Priority display does not establish complete priority-edit or preemption procedure."
+    product_surface_or_workflow: "Priority and scheduler-context display surface."
+    project_input_blocker: PROJECT_INPUT_REQUIRED
+    project_design_blocker: PROJECT_DESIGN_REQUIRED
+    execution_evidence_blocker: NOT_REQUIRED_FOR_CURRENT_COMPILE
+    retained_boundary: "Configured priority != observed scheduling outcome; period/offset/activation != WCET."
+    next_promotion_evidence: "Accepted scheduler configuration/workload model, runtime dispatch/preemption/blocking trace and timing assessment."
+
+  - task_id: OSRTE-007
+    title: "ISR category/priority/source and Task boundary"
+    primary_procedure_availability: PARTIAL_PROCEDURE_AVAILABLE
+    exact_reviewed_authority_refs: [AUTOSAR-OS-APPLICATION-PROTECTION, AUTOSAR-OS-EXECUTION-BOUNDARY, VECTOR-OS-RTE-PROCEDURE]
+    strongest_reviewed_workflow_or_procedure: "Use ISR Add/configuration surface, classify source/category/context and retain category-specific protection scope."
+    procedure_scope: "ISR Add/configuration surface with partial project and category-specific coverage."
+    product_surface_or_workflow: "ISR configuration, source/category/core context and bounded timing-protection surface."
+    project_input_blocker: PROJECT_INPUT_REQUIRED
+    project_design_blocker: PROJECT_DESIGN_REQUIRED
+    execution_evidence_blocker: NOT_REQUIRED_FOR_CURRENT_COMPILE
+    retained_boundary: "ISR != Task; ISR category/priority != Runnable scheduling; Category 2 protection is not generalized to Category 1."
+    next_promotion_evidence: "Accepted ISR design, generated OS artifact, category-specific protection configuration and runtime handoff trace."
+
+  - task_id: OSRTE-008
+    title: "OS Counter and tick-domain semantics"
+    primary_procedure_availability: EXACT_PROCEDURE_AVAILABLE
+    exact_reviewed_authority_refs: [AUTOSAR-OS-RUNTIME-OBJECTS, AUTOSAR-OS-COUNTER-ALARM-SCHEDULETABLE, AUTOSAR-OS-TIME-DOMAIN, VECTOR-OS-RTE-PROCEDURE]
+    strongest_reviewed_workflow_or_procedure: "Use Counter Add and algorithm/tick/driver surfaces, then trace dependent Alarm/ScheduleTable objects."
+    procedure_scope: "Exact reviewed Counter product surface; project values and runtime tick correlation remain open."
+    product_surface_or_workflow: "Counter Add, algorithm, maximum tick, tick frequency and driver surface."
+    project_input_blocker: PROJECT_INPUT_REQUIRED
+    project_design_blocker: PROJECT_DESIGN_REQUIRED
+    execution_evidence_blocker: NOT_REQUIRED_FOR_CURRENT_COMPILE
+    retained_boundary: "Counter != Alarm != ScheduleTable; OS Counter != hardware timer/GPT/Time Service/StbM."
+    next_promotion_evidence: "Accepted Counter/driver configuration, generated artifact and runtime tick/expiry correlation."
+
+  - task_id: OSRTE-009
+    title: "Alarm expiry and configured action semantics"
+    primary_procedure_availability: EXACT_PROCEDURE_AVAILABLE
+    exact_reviewed_authority_refs: [AUTOSAR-OS-RUNTIME-OBJECTS, AUTOSAR-OS-COUNTER-ALARM-SCHEDULETABLE, VECTOR-OS-RTE-PROCEDURE]
+    strongest_reviewed_workflow_or_procedure: "Use Alarm action/timing/autostart/counter-reference surface, then trace downstream Task/Event state separately."
+    procedure_scope: "Exact reviewed Alarm product surface; runtime expiry/action evidence remains separate."
+    product_surface_or_workflow: "Alarm one-time/continuous, Counter reference, target Task/Event, expiry action and autostart surfaces."
+    project_input_blocker: PROJECT_INPUT_REQUIRED
+    project_design_blocker: PROJECT_DESIGN_REQUIRED
+    execution_evidence_blocker: NOT_REQUIRED_FOR_CURRENT_COMPILE
+    retained_boundary: "Alarm expiry != observed Task execution timing; no identity, expiry value, cycle, action or target is inferred."
+    next_promotion_evidence: "Accepted Alarm/Counter configuration, generated artifact and runtime increment/expiry/action trace."
+
+  - task_id: OSRTE-010
+    title: "ScheduleTable expiry points, actions and synchronization boundary"
+    primary_procedure_availability: EXACT_PROCEDURE_AVAILABLE
+    exact_reviewed_authority_refs: [AUTOSAR-OS-RUNTIME-OBJECTS, AUTOSAR-OS-COUNTER-ALARM-SCHEDULETABLE, AUTOSAR-OS-TIME-DOMAIN, VECTOR-OS-RTE-PROCEDURE]
+    strongest_reviewed_workflow_or_procedure: "Use ScheduleTable Add and Expiry Points surface, identify its driving Counter and retain synchronization as a separate time-base concern."
+    procedure_scope: "Exact reviewed ScheduleTable/Expiry Points product surface; project synchronization and runtime values remain open."
+    product_surface_or_workflow: "ScheduleTable, ordered Expiry Points and Task/Event actions."
+    project_input_blocker: PROJECT_INPUT_REQUIRED
+    project_design_blocker: PROJECT_DESIGN_REQUIRED
+    execution_evidence_blocker: NOT_REQUIRED_FOR_CURRENT_COMPILE
+    retained_boundary: "Counter != Alarm != ScheduleTable; configuration != observed wake-up timing; no expiry/duration/synchronization value is inferred."
+    next_promotion_evidence: "Accepted ScheduleTable/Counter configuration, generated artifact and runtime expiry/action/synchronization trace."
+
+  - task_id: OSRTE-011
+    title: "OS Resource and local mutual-exclusion boundary"
+    primary_procedure_availability: PARTIAL_PROCEDURE_AVAILABLE
+    exact_reviewed_authority_refs: [AUTOSAR-OS-MULTICORE-RESOURCE-SPINLOCK, AUTOSAR-SCHM-EXCLUSIVEAREA, VECTOR-OS-RTE-PROCEDURE]
+    strongest_reviewed_workflow_or_procedure: "Use Resource Add/resource-lock surface and trace local acquire/release ownership; evaluate Spinlock or SchM separately."
+    procedure_scope: "Partial Resource product surface; ceiling/use detail and runtime lock proof are not established."
+    product_surface_or_workflow: "Resource Add and shared-resource/resource-lock surface."
+    project_input_blocker: PROJECT_INPUT_REQUIRED
+    project_design_blocker: PROJECT_DESIGN_REQUIRED
+    execution_evidence_blocker: NOT_REQUIRED_FOR_CURRENT_COMPILE
+    retained_boundary: "OS Resource != Spinlock != SchM/ExclusiveArea; no Resource identity, ceiling or SchM mapping is inferred."
+    next_promotion_evidence: "Accepted Resource configuration, generated OS artifact and runtime acquire/release/blocking trace."
+
+  - task_id: OSRTE-012
+    title: "SchM / ExclusiveArea integration and mapping boundary"
+    primary_procedure_availability: NO_EXPLICIT_PROCEDURE_IN_REVIEWED_SOURCE
+    exact_reviewed_authority_refs: [AUTOSAR-SCHM-EXCLUSIVEAREA, VECTOR-OS-RTE-PROCEDURE]
+    strongest_reviewed_workflow_or_procedure: "Use the reviewed semantic identity/access-context checklist and supporting RTE/service-component surface, but retain the absence of an exact SchM/ExclusiveArea product procedure."
+    procedure_scope: "No explicit reviewed Vector product procedure; this is a documentation-scope negative, not a feature-absence claim."
+    product_surface_or_workflow: "Supporting RTE/service-component visibility only; no exact RteExclusiveAreaImplMechanism field or object-by-object mapping."
+    project_input_blocker: PROJECT_INPUT_REQUIRED
+    project_design_blocker: PROJECT_DESIGN_REQUIRED
+    execution_evidence_blocker: NOT_REQUIRED_FOR_CURRENT_COMPILE
+    retained_boundary: "ExclusiveArea model != RTE/SchM API != selected realization; no universal mapping to Resource, Spinlock or interrupt control."
+    next_promotion_evidence: "Owner-context-scoped design, selected realization record, exact product evidence, generated artifact, compile/link result and runtime exclusion trace."
+
+  - task_id: OSRTE-013
+    title: "Multicore core assignment, locality and cross-core Task/Event activation"
+    primary_procedure_availability: PARTIAL_PROCEDURE_AVAILABLE
+    exact_reviewed_authority_refs: [AUTOSAR-OS-MULTICORE-RESOURCE-SPINLOCK, AUTOSAR-OS-CROSS-CORE-TRACE, VECTOR-OS-RTE-PROCEDURE]
+    strongest_reviewed_workflow_or_procedure: "Use Core, OS-Application and Core Assignment surfaces, then preserve owner-core locality and synchronous/asynchronous cross-core service contracts."
+    procedure_scope: "Partial multicore product surfaces; project topology and runtime cross-core behavior remain open."
+    product_surface_or_workflow: "OS Core, scheduler/core stack, OS-Application, cross-core channel and Core Assignment surfaces."
+    project_input_blocker: PROJECT_INPUT_REQUIRED
+    project_design_blocker: PROJECT_DESIGN_REQUIRED
+    execution_evidence_blocker: NOT_REQUIRED_FOR_CURRENT_COMPILE
+    retained_boundary: "OS-Application != CPU core; core assignment != timing proof; cross-core action != owner-core change."
+    next_promotion_evidence: "Accepted multicore OS configuration, generated artifact and cross-core activation/event trace with timing assessment."
+
+  - task_id: OSRTE-014
+    title: "Spinlock and cross-core mutual-exclusion boundary"
+    primary_procedure_availability: PARTIAL_PROCEDURE_AVAILABLE
+    exact_reviewed_authority_refs: [AUTOSAR-OS-MULTICORE-RESOURCE-SPINLOCK, AUTOSAR-OS-CROSS-CORE-TRACE, VECTOR-OS-RTE-PROCEDURE]
+    strongest_reviewed_workflow_or_procedure: "Use Spin Lock Add/application-use surface and trace accepted acquisition/release behavior while keeping local Resource separate."
+    procedure_scope: "Partial Spin Lock product surface; ordering/successor/nesting detail and runtime proof are not established."
+    product_surface_or_workflow: "Spin Lock Add, different-core and application-use surface."
+    project_input_blocker: PROJECT_INPUT_REQUIRED
+    project_design_blocker: PROJECT_DESIGN_REQUIRED
+    execution_evidence_blocker: NOT_REQUIRED_FOR_CURRENT_COMPILE
+    retained_boundary: "OS Resource != Spinlock != SchM/ExclusiveArea; no identity, order, budget or SchM mapping is inferred."
+    next_promotion_evidence: "Accepted Spinlock configuration/order, generated artifact and runtime cross-core acquisition/release/blocking trace."
+
+  - task_id: OSRTE-015
+    title: "OS-Application, memory/timing protection and recovery boundary"
+    primary_procedure_availability: PARTIAL_PROCEDURE_AVAILABLE
+    exact_reviewed_authority_refs: [AUTOSAR-OS-APPLICATION-PROTECTION, AUTOSAR-OS-PROTECTION-RECOVERY, VECTOR-OS-RTE-PROCEDURE]
+    strongest_reviewed_workflow_or_procedure: "Use OS-Application, Memory Protection and timing/resource-lock surfaces, then trace protection error into ProtectionHook as an OS reaction only."
+    procedure_scope: "Partial OS-Application/protection product surfaces; budgets, recovery policy and runtime containment remain open."
+    product_surface_or_workflow: "OS-Application assignment, memory/access regions, Timing Protection Enabled and Resource Locks surfaces."
+    project_input_blocker: PROJECT_INPUT_REQUIRED
+    project_design_blocker: PROJECT_DESIGN_REQUIRED
+    execution_evidence_blocker: NOT_REQUIRED_FOR_CURRENT_COMPILE
+    retained_boundary: "OS timing protection != WdgM Deadline Supervision; ProtectionHook mechanics != project safe state; OS-Application != CPU core."
+    next_promotion_evidence: "Accepted protection configuration, generated artifact, observed fault reaction and separate project recovery/safe-state verdict."
+
+  - task_id: OSRTE-016
+    title: "RTE/OS configuration, generation, compile/link and vendor-procedure availability"
+    primary_procedure_availability: PARTIAL_PROCEDURE_AVAILABLE
+    exact_reviewed_authority_refs: [AUTOSAR-RTE-GENERATION-RUNTIME-BOUNDARY, AUTOSAR-OS-EXECUTION-BOUNDARY, AUTOSAR-TIMING-REALIZATION-TRACE, VECTOR-OS-RTE-PROCEDURE]
+    strongest_reviewed_workflow_or_procedure: "Use exact reviewed validate/generate/generate-schema sub-procedures and retain aggregate limits for diagnostics, artifacts and build ownership."
+    procedure_scope: "Partial aggregate coverage with exact sub-procedures for validation, generation and schema generation."
+    product_surface_or_workflow: "dvcfg-b project validate; project generate; project generate-schema; bounded CI/Gradle/Bazel/DaVinci Team handoff."
+    project_input_blocker: PROJECT_INPUT_REQUIRED
+    project_design_blocker: NOT_REQUIRED
+    execution_evidence_blocker: NOT_REQUIRED_FOR_CURRENT_COMPILE
+    retained_boundary: "Configuration != validation != generation != compile/link != runtime trace; no complete diagnostic/catalog, manifest, compiler/linker or binary procedure."
+    next_promotion_evidence: "Exact product tuple, accepted toolchain input, validation/generation logs, generated artifacts and compile/link result."
+
+  - task_id: OSRTE-017
+    title: "Timing requirements, event chains, constraints, models and analysis/realization boundary"
+    primary_procedure_availability: PARTIAL_PROCEDURE_AVAILABLE
+    exact_reviewed_authority_refs: [AUTOSAR-TIMING-EVENT-CHAIN, AUTOSAR-TIMING-CONSTRAINT-REALIZATION, AUTOSAR-TIMING-REALIZATION-TRACE, AUTOSAR-TIMING-ANALYSIS-WORK-PRODUCTS]
+    strongest_reviewed_workflow_or_procedure: "Model timing events/chains and constraints, refine with ECU context, trace to separate realization and assess with analysis/verification work products."
+    procedure_scope: "Reviewed timing workflow and work-product route; no project timing value, tool or acceptance threshold is selected."
+    product_surface_or_workflow: "TimingDescriptionEvent/EventChain, timing constraints, model-based/implementation-based analysis and verification work products."
+    project_input_blocker: PROJECT_INPUT_REQUIRED
+    project_design_blocker: PROJECT_DESIGN_REQUIRED
+    execution_evidence_blocker: NOT_REQUIRED_FOR_CURRENT_COMPILE
+    retained_boundary: "Timing constraint != OS task configuration; period/offset/activation != WCET; measured timing != requirement != verdict != coverage."
+    next_promotion_evidence: "Accepted timing requirements/model, realization trace, analysis report, measurements and separate verification/verdict/coverage artifacts."
+
+  - task_id: OSRTE-018
+    title: "Runtime scheduling/timing observation, measurement, verdict and coverage evidence"
+    primary_procedure_availability: WORKFLOW_ONLY
+    exact_reviewed_authority_refs: [AUTOSAR-OS-EXECUTION-BOUNDARY, AUTOSAR-RTE-GENERATION-RUNTIME-BOUNDARY, AUTOSAR-TIMING-EVENT-CHAIN, AUTOSAR-TIMING-REALIZATION-TRACE, AUTOSAR-TIMING-ANALYSIS-WORK-PRODUCTS]
+    strongest_reviewed_workflow_or_procedure: "Keep configured intent, generated artifact, compile/link, runtime trace, measurement, requirement comparison, verdict and coverage as separate layers."
+    procedure_scope: "Reviewed evidence workflow only; no execution result or product runtime procedure is claimed."
+    product_surface_or_workflow: "Layered configuration-to-runtime-to-assessment evidence chain."
+    project_input_blocker: PROJECT_INPUT_REQUIRED
+    project_design_blocker: PROJECT_DESIGN_REQUIRED
+    execution_evidence_blocker: EXECUTION_EVIDENCE_REQUIRED
+    retained_boundary: "Generated source/build success != runtime proof; measured timing != requirement != verdict != coverage; MIL/SIL/VECU timing != physical-target timing."
+    next_promotion_evidence: "Configured intent, generated artifacts, compile/link result, runtime trace, measurements, requirement comparison, verdict and coverage with target correlation."
+
+availability_counts:
+  EXACT_PROCEDURE_AVAILABLE: {count: 4, task_ids: [OSRTE-004, OSRTE-008, OSRTE-009, OSRTE-010]}
+  PARTIAL_PROCEDURE_AVAILABLE: {count: 8, task_ids: [OSRTE-005, OSRTE-007, OSRTE-011, OSRTE-013, OSRTE-014, OSRTE-015, OSRTE-016, OSRTE-017]}
+  SURFACE_ONLY: {count: 1, task_ids: [OSRTE-006]}
+  NO_EXPLICIT_PROCEDURE_IN_REVIEWED_SOURCE: {count: 1, task_ids: [OSRTE-012]}
+  WORKFLOW_ONLY: {count: 4, task_ids: [OSRTE-001, OSRTE-002, OSRTE-003, OSRTE-018]}
+  EXECUTION_EVIDENCE_REQUIRED: {count: 0, task_ids: []}
+  total: 18
+
+blocker_counts:
+  PROJECT_INPUT_REQUIRED: {count: 18, task_ids: [OSRTE-001, OSRTE-002, OSRTE-003, OSRTE-004, OSRTE-005, OSRTE-006, OSRTE-007, OSRTE-008, OSRTE-009, OSRTE-010, OSRTE-011, OSRTE-012, OSRTE-013, OSRTE-014, OSRTE-015, OSRTE-016, OSRTE-017, OSRTE-018]}
+  PROJECT_DESIGN_REQUIRED: {count: 16, task_ids: [OSRTE-002, OSRTE-003, OSRTE-004, OSRTE-005, OSRTE-006, OSRTE-007, OSRTE-008, OSRTE-009, OSRTE-010, OSRTE-011, OSRTE-012, OSRTE-013, OSRTE-014, OSRTE-015, OSRTE-017, OSRTE-018]}
+  EXECUTION_EVIDENCE_REQUIRED: {count: 1, task_ids: [OSRTE-018]}
+
+retained_documentation_negatives:
+  - "No exact reviewed RteExclusiveAreaImplMechanism Configurator field."
+  - "No exact SchM/ExclusiveArea object-by-object realization procedure."
+  - "No exact ExclusiveArea-to-Resource/Spinlock/interrupt-control mapping procedure."
+  - "No complete Basic/Extended Task, activation-limit, priority/preemption procedure in reviewed source."
+  - "No complete Resource ceiling/use or Spinlock ordering/successor/nesting procedure."
+  - "No complete protection-budget/ProtectionHook/recovery procedure."
+  - "No complete OS/RTE-specific diagnostic catalogue, generated-file manifest or build manifest."
+  - "No Management ECU compiler/linker/binary/deployment/runtime evidence."
+  - "These are documentation-scope negatives, not product capability-absence claims."
+
+non_collapse_rules:
+  - "RunnableEntity != OS Task"
+  - "RTEEvent != OS Event"
+  - "Runnable-to-Task mapping != runtime Task execution"
+  - "Counter != Alarm != ScheduleTable"
+  - "OS Resource != Spinlock != SchM/ExclusiveArea != interrupt-control mechanism"
+  - "SW-C ExclusiveArea != BSW ExclusiveArea project identity"
+  - "ExclusiveArea model != RTE/SchM API != selected realization"
+  - "SchM != AUTOSAR OS scheduler"
+  - "OS-Application != CPU core"
+  - "configuration != validation != generation != compile/link != runtime trace"
+  - "measured timing != timing requirement != verdict != coverage"
+  - "MIL/SIL/VECU timing != physical-target timing"
