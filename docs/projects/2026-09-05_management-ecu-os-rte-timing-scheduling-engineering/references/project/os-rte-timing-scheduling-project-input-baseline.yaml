@@ -1,0 +1,55 @@
+schema_version: 1
+project: management-ecu-os-rte-timing-scheduling-engineering
+date: 2026-09-05
+status: UNRESOLVED_PROJECT_INPUT
+policy: no_project_value_may_be_invented_or_defaulted_by_compilation
+
+input_families:
+  swc_execution_contract:
+    status: UNRESOLVED_PROJECT_INPUT
+    fields: [application_SWC_identities, RunnableEntity_names_and_identities, runnable_category, runnable_multiple_instantiation_and_concurrency_policy, minimum_start_interval_if_used, RTEEvent_identities_and_kinds, TimingEvent_periods_and_offsets, mode_disabling_or_wait_point_constraints, application_execution_requirements]
+  rte_os_mapping:
+    status: UNRESOLVED_PROJECT_INPUT
+    fields: [Runnable_to_Task_mapping, generated_RTE_activation_strategy, Task_ids_and_names, Basic_or_Extended_Task_type, Task_activation_limit, OS_Event_identities_and_masks, Task_to_OS_Event_wait_set_mapping]
+  scheduling_configuration:
+    status: UNRESOLVED_PROJECT_INPUT
+    fields: [Task_priority, preemption_policy, Task_period, Task_offset, Task_core_assignment, expected_activation_pattern, expected_preemption_and_blocking_behavior, CPU_utilization_target]
+  isr_configuration:
+    status: UNRESOLVED_PROJECT_INPUT
+    fields: [ISR_identity, ISR_category, ISR_priority, interrupt_source, ISR_core_assignment, ISR_to_Task_or_RTE_handoff]
+  time_driven_os_objects:
+    status: UNRESOLVED_PROJECT_INPUT
+    fields: [Counter_identity, Counter_tick_duration_or_frequency, Counter_driver_or_increment_source, Alarm_identity, Alarm_expiry_time_and_cycle, Alarm_expiry_action, ScheduleTable_identity, ScheduleTable_duration, ScheduleTable_expiry_points, ScheduleTable_Task_Event_actions, ScheduleTable_synchronization_policy]
+  mutual_exclusion_and_multicore:
+    status: UNRESOLVED_PROJECT_INPUT
+    fields: [Resource_identity, Resource_ownership, Resource_ceiling_or_priority_semantics, protected_data_or_critical_section, Spinlock_identity, Spinlock_ordering, cross_core_protected_data, cross_core_activation_requirements, SchM_ExclusiveArea_identities, SchM_to_OS_mapping, cross_core_synchronization_design]
+  os_application_and_protection:
+    status: UNRESOLVED_PROJECT_INPUT
+    fields: [OS_Application_identity, OS_Application_core_relation, trusted_or_non_trusted_policy, memory_access_regions, service_protection_policy, Task_ISR_execution_budget, inter_arrival_budget, Resource_lock_budget, interrupt_lock_budget, ProtectionHook_configuration, recovery_and_project_safe_state_policy]
+  timing_requirements_and_analysis:
+    status: UNRESOLVED_PROJECT_INPUT
+    fields: [TimingDescriptionEvent_identities, TimingDescriptionEventChain_scope, latency_age_synchronization_constraints, execution_order_constraints, execution_time_constraints, WCET, BCET, deadline, jitter_bound, response_time_budget, timing_model_inputs, analysis_method_and_tool, timing_acceptance_thresholds]
+  toolchain_baseline:
+    status: UNRESOLVED_PROJECT_INPUT
+    fields: [DaVinci_Developer_Classic_version, DaVinci_Configurator_Classic_version, MICROSAR_release_and_package, RTE_generator_version_and_configuration, OS_generator_configuration, compiler_and_linker_baseline, integration_build_variant, target_or_virtual_execution_environment]
+  verification_acceptance:
+    status: UNRESOLVED_PROJECT_INPUT
+    fields: [instrumentation_and_trace_source, runtime_test_stimuli, expected_activation_sequence, expected_dispatch_start_completion_sequence, expected_preemption_and_blocking, measured_execution_time_method, measured_response_time_method, jitter_measurement_method, deadline_and_tolerance_criteria, verdict_criteria, test_runner_and_result_artifacts, coverage_requirements, physical_target_correlation_requirement]
+
+non_inference_rules:
+  - Do not infer project object identities from AUTOSAR examples or sibling ECUs.
+  - Do not infer Runnable-to-Task mapping from Runnable or RTEEvent names.
+  - Do not infer Task priority, period, offset, activation limit or core assignment from generic authority.
+  - Do not infer Task priority or mapping directly from a TIMEX timing constraint.
+  - Do not infer WCET, BCET, deadline, jitter or CPU utilization from configured period or priority.
+  - Do not infer that an OS Resource or Spinlock realizes a SchM or SW-C ExclusiveArea.
+  - Do not infer successful runtime timing from successful generation or build.
+  - Do not infer physical-target timing from MIL, SIL or VECU timing.
+  - Do not infer deadline satisfaction, verdict or coverage from a raw timing sample.
+
+compilation_behavior:
+  when_required_input_missing: mark_PROJECT_INPUT_REQUIRED_and_continue_independent_safe_frontier
+  when_exact_vendor_procedure_missing: mark_RESEARCH_REQUIRED_without_inventing_steps
+  when_schm_authority_missing: isolate_OSRTE_012_and_preserve_independent_OS_Resource_Spinlock_authority
+  when_execution_evidence_missing: mark_EXECUTION_EVIDENCE_REQUIRED_without_downgrading_static_architecture
+  when_reviewed_architecture_exists: preserve_supported_architecture_or_workflow_even_if_project_values_are_missing
