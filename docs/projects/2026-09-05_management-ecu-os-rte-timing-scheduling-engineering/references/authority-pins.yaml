@@ -1,0 +1,106 @@
+schema_version: 2
+project: management-ecu-os-rte-timing-scheduling-engineering
+status: SOL_RESEARCH_REVIEWED
+date: 2026-09-06
+
+inherited_downstream:
+  repository: eariver/Automotive_EE_Engineering_Knowledge
+  branch: work/management-ecu-nvm-memory-persistence-engineering-20260905
+  exact_head: f0087d5705353a23cc6b45eca34daf2d66a15835
+  usage: lineage_context_only
+
+primary_reviewed_authority:
+  repository: eariver/Research_AUTOSAR_CP_Documents
+  exact_commit: 938ac4af696d263019ebdc61106a444447e15c4d
+  exact_commit_tree: f63c8cfa3a844649975a0ff67dfe5571f7b4563f
+  platform_release: AUTOSAR_Classic_4.4.0
+  policy: only_SOL_REVIEWED_knowledge_at_this_exact_commit
+
+reviewed_entries:
+  - {path: docs/knowledge/concepts/runnable-rteevent-os-activation-boundary.json, blob_sha: a6864f94f296713f1983d88f806828c754b91dbe, entry_id: AUTOSAR-CP-4.4.0-CONCEPT-RUNNABLE-RTEEVENT-OS-ACTIVATION-BOUNDARY, use: runnable_rteevent_boundary}
+  - {path: docs/knowledge/workflows/rteevent-to-runnable-activation.json, blob_sha: 981e523429c61b4162a3919384e79a148b28ae85, entry_id: AUTOSAR-CP-4.4.0-WORKFLOW-RTEEVENT-TO-RUNNABLE-ACTIVATION, use: rteevent_activation_trace}
+  - {path: docs/knowledge/concepts/rte-generation-contract-runtime-boundary.json, blob_sha: e120bb7159acdefed27401081ccc1c0e10d4bf93, entry_id: AUTOSAR-CP-4.4.0-CONCEPT-RTE-GENERATION-CONTRACT-RUNTIME-BOUNDARY, use: rte_generation_runtime_boundary}
+  - {path: docs/knowledge/concepts/os-execution-lifecycle-boundary.json, blob_sha: 5f6d7038a9b77d6873dfc751ea80dc05cf2a24f5, entry_id: AUTOSAR-CP-4.4.0-CONCEPT-OS-EXECUTION-LIFECYCLE-BOUNDARY, use: os_execution_boundary}
+  - {path: docs/knowledge/concepts/os-runtime-object-scheduling-boundary.json, blob_sha: a1f85c7b7af65b9234d4d37b51e502ab0b4aa15d, entry_id: AUTOSAR-CP-4.4.0-CONCEPT-OS-RUNTIME-OBJECT-SCHEDULING-BOUNDARY, use: task_event_counter_alarm_scheduletable}
+  - {path: docs/knowledge/workflows/os-counter-alarm-scheduletable-execution-path.json, blob_sha: 9f6cacaec41fd4a81b1c3ca1b4f72eae50d0d8d6, entry_id: AUTOSAR-CP-4.4.0-WORKFLOW-OS-COUNTER-ALARM-SCHEDULETABLE-EXECUTION-PATH, use: time_driven_os_trace}
+  - {path: docs/knowledge/concepts/os-multicore-resource-spinlock-boundary.json, blob_sha: 1b2d4825ab09188b14fde9171173be839f05e039, entry_id: AUTOSAR-CP-4.4.0-CONCEPT-OS-MULTICORE-RESOURCE-SPINLOCK-BOUNDARY, use: multicore_resource_spinlock}
+  - {path: docs/knowledge/workflows/os-multicore-cross-core-synchronization.json, blob_sha: 5505aa42f8ac1d321f3362848743e2ffb518755d, entry_id: AUTOSAR-CP-4.4.0-WORKFLOW-OS-MULTICORE-CROSS-CORE-SYNCHRONIZATION, use: cross_core_trace}
+  - {path: docs/knowledge/concepts/os-protection-osapplication-recovery-boundary.json, blob_sha: 3ff39eace9dcf49e8cb1eeb098615b9521da4371, entry_id: AUTOSAR-CP-4.4.0-CONCEPT-OS-PROTECTION-OSAPPLICATION-RECOVERY-BOUNDARY, use: osapplication_protection}
+  - {path: docs/knowledge/workflows/os-protection-violation-to-recovery-action.json, blob_sha: 7fd24b01d0c44309e80dc26afe7f642aad937189, entry_id: AUTOSAR-CP-4.4.0-WORKFLOW-OS-PROTECTION-VIOLATION-TO-RECOVERY-ACTION, use: protection_recovery_trace}
+  - {path: docs/knowledge/concepts/os-counter-swfrt-time-service-stbm-boundary.json, blob_sha: 53aa1e45760cc16c84ed30185b427c30bb6dcaa9, entry_id: AUTOSAR-CP-4.4.0-CONCEPT-OS-COUNTER-SWFRT-TIME-SERVICE-STBM-BOUNDARY, use: time_domain_boundary}
+  - {path: docs/knowledge/concepts/timing-event-chain-observation-boundary.json, blob_sha: c73ed8556c3f3a1523d6f696a14889c12b56db4c, entry_id: AUTOSAR-CP-4.4.0-CONCEPT-TIMING-EVENT-CHAIN-OBSERVATION-BOUNDARY, use: timing_event_chain}
+  - {path: docs/knowledge/concepts/timing-constraint-runtime-realization-boundary.json, blob_sha: 735708c80c85cc229372af65b471379b6ed2f3cd, entry_id: AUTOSAR-CP-4.4.0-CONCEPT-TIMING-CONSTRAINT-RUNTIME-REALIZATION-BOUNDARY, use: timing_constraint_realization}
+  - {path: docs/knowledge/workflows/timing-constraint-to-runtime-realization.json, blob_sha: 0df862365f150cc4781fed2ddc093952d3ede3ac, entry_id: AUTOSAR-CP-4.4.0-WORKFLOW-TIMING-CONSTRAINT-TO-RUNTIME-REALIZATION, use: timing_realization_trace}
+  - {path: docs/knowledge/concepts/timing-analysis-work-product-boundary.json, blob_sha: 06ef0cc82332d863656aaff6f03ce34c4127c9cb, entry_id: AUTOSAR-CP-4.4.0-CONCEPT-TIMING-ANALYSIS-WORK-PRODUCT-BOUNDARY, use: timing_analysis_work_products}
+
+focused_autosar_schm_authority:
+  repository: eariver/Research_AUTOSAR_CP_Documents
+  exact_commit: 3eec41439f25f61c29e0c1a06a51df148e493014
+  path: docs/knowledge/management-ecu-os-rte-schm-autosar-semantic-depth.md
+  source_release: AUTOSAR_Classic_4.4.0
+  review_status: SOL_REVIEWED
+  use: OSRTE_012_SchM_ExclusiveArea_semantics_and_realization_boundary
+  retained_rules:
+    - SWC_ExclusiveArea_and_BSW_ExclusiveArea_are_owner_context_scoped_identities
+    - ExclusiveArea_model_element_is_distinct_from_Rte_or_SchM_API_and_selected_realization
+    - ExclusiveArea_is_not_universally_OS_Resource_Spinlock_or_interrupt_control
+    - local_core_and_cross_core_mutual_exclusion_remain_distinct
+
+vector_os_rte_procedure_authority:
+  repository: eariver/Research_Vector_Documents
+  exact_commit: 7285e6a773433488c59186bbd241bdab39efb4ce
+  path: docs/knowledge/management-ecu-os-rte-vector-procedure.md
+  product_scope: DaVinci_Configurator_Classic_6.3.10
+  review_status: SOL_REVIEWED
+  use: OSRTE_004_through_OSRTE_016_product_local_configuration_validation_generation_and_build_handoff
+  procedure_coverage:
+    EXACT_PROCEDURE_AVAILABLE: [OSRTE-004, OSRTE-008, OSRTE-009, OSRTE-010]
+    PARTIAL_PROCEDURE_AVAILABLE: [OSRTE-005, OSRTE-007, OSRTE-011, OSRTE-013, OSRTE-014, OSRTE-015, OSRTE-016]
+    SURFACE_ONLY: [OSRTE-006]
+    NO_EXPLICIT_PROCEDURE_IN_REVIEWED_SOURCE: [OSRTE-012]
+  retained_limits:
+    - no_exact_reviewed_RteExclusiveAreaImplMechanism_product_field
+    - no_exact_SchM_ExclusiveArea_object_by_object_realization_procedure
+    - no_exact_ExclusiveArea_to_Resource_Spinlock_or_interrupt_control_mapping_procedure
+    - no_complete_task_type_activation_limit_priority_preemption_procedure
+    - no_complete_Resource_ceiling_or_Spinlock_ordering_successor_nesting_procedure
+    - no_complete_protection_budget_ProtectionHook_recovery_procedure
+    - no_complete_OS_RTE_specific_validation_diagnostic_or_generated_file_build_manifest
+    - no_Management_ECU_compiler_linker_binary_deployment_or_runtime_proof
+
+research_closure:
+  schm_exclusivearea_semantics:
+    status: SOL_REVIEWED_CLOSED
+    authority: focused_autosar_schm_authority
+  vector_microsar_os_rte_procedure:
+    status: SOL_REVIEWED_CLOSED_AT_REVIEWED_SCOPE
+    authority: vector_os_rte_procedure_authority
+  retained_product_documentation_boundary:
+    task: OSRTE-012
+    status: NO_EXPLICIT_PROCEDURE_IN_REVIEWED_SOURCE
+    interpretation: documentation_scope_negative_not_product_feature_absence
+    reopen_rule: do_not_start_broad_generic_HELP_research_without_new_product_or_release_authority
+
+current_gap_statement:
+  architecture_and_workflow: REVIEWED_AUTHORITY_AVAILABLE
+  schm_exclusivearea_semantics: SOL_REVIEWED
+  vector_microsar_os_rte_procedure: SOL_REVIEWED_BOUNDED
+  project_mapping_and_values: PROJECT_INPUT_REQUIRED
+  project_scheduling_multicore_protection_timing_design: PROJECT_DESIGN_REQUIRED
+  generation_build_runtime_timing: EXECUTION_EVIDENCE_REQUIRED
+  generic_technical_research: CLOSED_AT_CURRENT_REVIEWED_SCOPE
+
+source_exclusions:
+  - floating_upstream_heads
+  - raw_AUTOSAR_PDFs_during_downstream_compilation
+  - raw_Vector_HELP_during_downstream_compilation
+  - Web_or_current_vendor_docs
+  - generic_model_knowledge
+  - unreviewed_observations
+  - inferred_Vector_GUI_from_AUTOSAR_names
+
+notes:
+  - RunnableEntity remains distinct from OS Task and RTEEvent remains distinct from OS Event.
+  - Configuration, validation, generation, compile/link, runtime trace, measured timing, verdict and coverage remain distinct evidence layers.
+  - Project values must not be inferred from AUTOSAR or Vector examples/defaults.
+  - The current package should use exact reviewed authority while retaining project-input and execution blockers rather than reopening generic research.
