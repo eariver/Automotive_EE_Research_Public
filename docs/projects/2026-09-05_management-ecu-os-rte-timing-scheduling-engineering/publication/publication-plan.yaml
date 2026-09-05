@@ -1,0 +1,78 @@
+schema_version: "management-ecu-os-rte-timing-scheduling-publication-plan/v1"
+date: "2026-09-06"
+status: "SOL_REVIEWED_STAGED"
+project: "Management ECU OS/RTE Timing & Scheduling Engineering"
+private_source:
+  repository: "eariver/Automotive_EE_Engineering_Knowledge"
+  branch: "work/management-ecu-os-rte-timing-scheduling-engineering-20260905"
+  accepted_source_head: "161a6cd36bda3ef59ab7ace3e0ef3c69e4e9fd2a"
+  luna_current_package_terminal: "154572769446106e98347f6ea5d01ff8352fdcf5"
+  base_main_sha: "59250354d74100167b80ee40f44e73eb064dd515"
+  sol_review_verdict: "SOL_PACKAGE_REVIEW_PASS_AFTER_CANONICAL_PATH_NORMALIZATION"
+public:
+  repository: "eariver/Automotive_EE_Research_Public"
+  branch: "publish/management-ecu-os-rte-timing-scheduling-engineering-20260906"
+  base_main_sha: "183d9dc0ab120484e4018e530a33e5b291bd7baa"
+  main_merged: false
+source_bundle_policy:
+  source_derived_files_preserve_private_content: true
+  state_evidence_model:
+    content_blob: "e4b9e6e367b9cf51c92712474cf0875d3ba480a6"
+    canonical_public_path: "models/20260906_ManagementECU_OS_RTE_State_Evidence_Model.md"
+    normalization: "Sol administrative path normalization only; technical content unchanged"
+  sol_review_content_identical_with_publication_facing_filename: true
+  upstream_reviewed_knowledge: "LOCATOR_ONLY"
+  raw_vendor_or_standard_sources: "EXCLUDED"
+  internal_luna_material: "EXCLUDED"
+  historical_baseline_research_artifacts: "EXCLUDED_FROM_CURRENT_CONSUMPTION_BUNDLE"
+  confidential_project_values: "EXCLUDED"
+reviewed_authority:
+  autosar_base: "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d"
+  autosar_schm_semantic_depth: "eariver/Research_AUTOSAR_CP_Documents@3eec41439f25f61c29e0c1a06a51df148e493014"
+  vector_os_rte_procedure: "eariver/Research_Vector_Documents@7285e6a773433488c59186bbd241bdab39efb4ce"
+final_availability_counts:
+  EXACT_PROCEDURE_AVAILABLE: 4
+  PARTIAL_PROCEDURE_AVAILABLE: 8
+  SURFACE_ONLY: 1
+  NO_EXPLICIT_PROCEDURE_IN_REVIEWED_SOURCE: 1
+  WORKFLOW_ONLY: 4
+  total: 18
+secondary_blockers:
+  PROJECT_INPUT_REQUIRED: 18
+  PROJECT_DESIGN_REQUIRED: 16
+  EXECUTION_EVIDENCE_REQUIRED: [OSRTE-018]
+source_derived_roles:
+  - "project README"
+  - "Project Scope"
+  - "Methodology"
+  - "Step-by-Step Guide"
+  - "Tool / Task / Reference Matrix"
+  - "State & Evidence Model"
+  - "Execution Reference Guide"
+  - "Procedure Coverage Matrix"
+  - "Reference Index"
+  - "Current Package Compilation Report"
+  - "Sol fixed-head review"
+  - "authority pins"
+  - "publication-safe unresolved project input baseline"
+retained_boundaries:
+  - "RunnableEntity remains separate from OS Task"
+  - "RTEEvent remains separate from OS Event"
+  - "Resource, Spinlock and SchM/ExclusiveArea remain separate"
+  - "configuration, validation, generation, compile/link and runtime trace remain separate"
+  - "timing measurement remains separate from requirement, verdict and coverage"
+  - "MIL/SIL/VECU timing remains separate from physical-target timing"
+promotion_gates:
+  - "Luna current-package fixed-head technical review PASS"
+  - "Canonical State & Evidence path normalized without technical-content change"
+  - "AUTOSAR, SchM and Vector authority exact-pinned and Sol-reviewed"
+  - "No invented Management ECU OS/RTE/timing values"
+  - "Source-derived bundle identified at one accepted Private source HEAD"
+  - "Public source-derived content preserved"
+  - "Public main remains unchanged unless human explicitly approves merge"
+validation:
+  source_derived_file_count: 13
+  publication_generated_file_count: 2
+  expected_total_package_file_count: 15
+  technical_package_staged: true
+  main_merged: false
