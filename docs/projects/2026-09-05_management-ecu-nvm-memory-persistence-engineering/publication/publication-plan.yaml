@@ -1,0 +1,72 @@
+schema_version: "management-ecu-nvm-memory-persistence-publication-plan/v1"
+date: "2026-09-06"
+status: "SOL_REVIEWED_STAGED"
+project: "Management ECU NvM Memory Persistence Engineering"
+private_source:
+  repository: "eariver/Automotive_EE_Engineering_Knowledge"
+  branch: "work/management-ecu-nvm-memory-persistence-engineering-20260905"
+  accepted_source_head: "f0087d5705353a23cc6b45eca34daf2d66a15835"
+  luna_current_package_terminal: "09b3ced974717f32405e9df35910bd7b82f5c365"
+  base_main_sha: "59250354d74100167b80ee40f44e73eb064dd515"
+public:
+  repository: "eariver/Automotive_EE_Research_Public"
+  branch: "publish/management-ecu-nvm-memory-persistence-engineering-20260905"
+  base_main_sha: "183d9dc0ab120484e4018e530a33e5b291bd7baa"
+  main_merged: false
+source_bundle_policy:
+  source_derived_files_are_byte_identical: true
+  sol_review_content_identical_with_publication_facing_filename: true
+  upstream_reviewed_knowledge: "LOCATOR_ONLY"
+  raw_vendor_or_standard_sources: "EXCLUDED"
+  internal_luna_material: "EXCLUDED"
+  historical_baseline_research_artifacts: "EXCLUDED_FROM_CURRENT_CONSUMPTION_BUNDLE"
+  confidential_project_values: "EXCLUDED"
+reviewed_authority:
+  autosar_base: "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d"
+  autosar_nvm_semantic_depth: "eariver/Research_AUTOSAR_CP_Documents@d021e2471b8c76efc6af43f66c17d7ead68821cc"
+  vector_nvm_procedure: "eariver/Research_Vector_Documents@d7eb75af93ac82d155fe508681b7057802c3aa45"
+final_availability_counts:
+  EXACT_PROCEDURE_AVAILABLE: 0
+  PARTIAL_PROCEDURE_AVAILABLE: 10
+  WORKFLOW_ONLY: 5
+  NO_EXPLICIT_PROCEDURE: 1
+  PROJECT_DESIGN_REQUIRED: 1
+  EXECUTION_EVIDENCE_REQUIRED: 1
+  total: 18
+secondary_blockers:
+  project_input_required: "NVM-001 through NVM-018"
+  execution_evidence_required: [NVM-018]
+source_derived_roles:
+  - "project README"
+  - "Project Scope"
+  - "Methodology"
+  - "Step-by-Step Guide"
+  - "Tool / Task / Reference Matrix"
+  - "Execution Reference Guide"
+  - "NvM State & Evidence Model"
+  - "Procedure Coverage Matrix"
+  - "Reference Index"
+  - "Compilation Report"
+  - "Sol final availability overlay"
+  - "Sol fixed-head review"
+  - "authority pins"
+  - "publication-safe unresolved project input baseline"
+retained_boundaries:
+  - "Application persistence semantics remain separate from NvData/ARXML, RTE access and NvM configuration"
+  - "NvM, MemIf, Fee, Ea, Fls and Eep remain separate ownership layers"
+  - "NVM_REQ status remains separate from MEMIF job status and durable-persistence evidence"
+  - "generic validation/generation remains separate from compile/link/runtime persistence"
+  - "project values and execution evidence remain unresolved"
+promotion_gates:
+  - "Luna current-package fixed-head review PASS"
+  - "AUTOSAR and Vector authority exact-pinned and Sol-reviewed"
+  - "No invented Management ECU NvM or physical-memory values"
+  - "Source-derived bundle identified at one accepted Private source HEAD"
+  - "Public source-derived content preserved"
+  - "Public main remains unchanged unless human explicitly approves merge"
+validation:
+  source_derived_file_count: 14
+  publication_generated_file_count: 2
+  expected_total_package_file_count: 16
+  technical_package_staged: true
+  main_merged: false
