@@ -1,0 +1,248 @@
+schema_version: 1
+artifact: ManagementECU_NvM_Procedure_Coverage_Matrix
+status: LUNA_CURRENT_PACKAGE_COMPILE_PROPOSAL
+date: 2026-09-05
+scope: "Procedure and evidence coverage for the fixed 18-task current package."
+task_count: 18
+availability_counts:
+  EXACT_PROCEDURE_AVAILABLE: 0
+  PARTIAL_PROCEDURE_AVAILABLE: 10
+  WORKFLOW_ONLY: 5
+  NO_EXPLICIT_PROCEDURE: 1
+  PROJECT_INPUT_REQUIRED: 0
+  PROJECT_DESIGN_REQUIRED: 1
+  EXECUTION_EVIDENCE_REQUIRED: 1
+  total: 18
+rows:
+  - task_id: NVM-001
+    proposed_availability: WORKFLOW_ONLY
+    coverage_basis: "Reviewed logical ownership and BswM/NvM lifecycle workflow."
+    exact_reviewed_authority_tuples:
+      - "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d:docs/knowledge/concepts/nvm-logical-block-ownership.json#AUTOSAR-CP-4.4.0-CONCEPT-NVM-LOGICAL-BLOCK-OWNERSHIP"
+      - "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d:docs/knowledge/concepts/memory-stack-layer-ownership.json#AUTOSAR-CP-4.4.0-CONCEPT-MEMORY-STACK-LAYER-OWNERSHIP"
+      - "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d:docs/knowledge/workflows/nvm-readall-writeall-lifecycle.json#AUTOSAR-CP-4.4.0-WORKFLOW-NVM-READALL-WRITEALL-LIFECYCLE"
+    strongest_covered_route: "Define logical persistence ownership and lifecycle handoff."
+    retained_gap: "No project inventory, consumer identity, physical mapping or product procedure."
+    project_gate: "Persistence inventory and ownership input."
+    next_promotion_evidence: "Approved project inventory and owner/layer handoff."
+
+  - task_id: NVM-002
+    proposed_availability: PROJECT_DESIGN_REQUIRED
+    coverage_basis: "Reviewed upper-software-to-NvM boundary only."
+    exact_reviewed_authority_tuples:
+      - "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d:docs/knowledge/concepts/nvm-logical-block-ownership.json#AUTOSAR-CP-4.4.0-CONCEPT-NVM-LOGICAL-BLOCK-OWNERSHIP"
+      - "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d:docs/knowledge/concepts/memory-stack-layer-ownership.json#AUTOSAR-CP-4.4.0-CONCEPT-MEMORY-STACK-LAYER-OWNERSHIP"
+    strongest_covered_route: "Keep application semantics, NvData/ARXML contract, RTE access and NvM configuration separate."
+    retained_gap: "No explicit Management ECU SWC, NvData, port, runnable, callback or RTE mapping is reviewed."
+    project_gate: "Application/NvData/RTE design and input."
+    next_promotion_evidence: "Approved contract and traceable handoff to a logical NvM block."
+
+  - task_id: NVM-003
+    proposed_availability: PARTIAL_PROCEDURE_AVAILABLE
+    coverage_basis: "Logical block semantics plus bounded Memory Editor/Memory Blocks Editor product surface."
+    exact_reviewed_authority_tuples:
+      - "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d:docs/knowledge/concepts/nvm-logical-block-ownership.json#AUTOSAR-CP-4.4.0-CONCEPT-NVM-LOGICAL-BLOCK-OWNERSHIP"
+      - "eariver/Research_AUTOSAR_CP_Documents@d021e2471b8c76efc6af43f66c17d7ead68821cc:docs/knowledge/management-ecu-nvm-autosar-semantic-depth.md"
+      - "eariver/Research_Vector_Documents@d7eb75af93ac82d155fe508681b7057802c3aa45:docs/knowledge/management-ecu-nvm-vector-procedure.md"
+    strongest_covered_route: "Add a product-local partition and block through the reviewed bounded surface and retain logical NvM model."
+    retained_gap: "No complete object-by-object NvM procedure, management choice, object identity or physical mapping."
+    project_gate: "Block IDs, lengths, management type, dataset and synchronization design."
+    next_promotion_evidence: "Project configuration artifact and product-versioned remaining-field trace."
+
+  - task_id: NVM-004
+    proposed_availability: WORKFLOW_ONLY
+    coverage_basis: "Reviewed logical object and implicit/explicit synchronization semantics; no complete GUI route."
+    exact_reviewed_authority_tuples:
+      - "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d:docs/knowledge/concepts/nvm-logical-block-ownership.json#AUTOSAR-CP-4.4.0-CONCEPT-NVM-LOGICAL-BLOCK-OWNERSHIP"
+      - "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d:docs/knowledge/concepts/nvm-synchronization-recovery-boundary.json#AUTOSAR-CP-4.4.0-CONCEPT-NVM-SYNCHRONIZATION-RECOVERY-BOUNDARY"
+      - "eariver/Research_AUTOSAR_CP_Documents@d021e2471b8c76efc6af43f66c17d7ead68821cc:docs/knowledge/management-ecu-nvm-autosar-semantic-depth.md"
+    strongest_covered_route: "Map NV/RAM/optional ROM/Administrative identities and preserve explicit-sync mirror as transient storage."
+    retained_gap: "No complete product procedure for management type or RAM/NV/ROM/default realization."
+    project_gate: "Object identity, RAM lifetime, default policy and synchronization design."
+    next_promotion_evidence: "Approved object/synchronization design and callback/ownership record where applicable."
+
+  - task_id: NVM-005
+    proposed_availability: WORKFLOW_ONLY
+    coverage_basis: "Reviewed BswM-to-NvM startup ReadAll workflow."
+    exact_reviewed_authority_tuples:
+      - "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d:docs/knowledge/workflows/nvm-readall-writeall-lifecycle.json#AUTOSAR-CP-4.4.0-WORKFLOW-NVM-READALL-WRITEALL-LIFECYCLE"
+      - "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d:docs/knowledge/concepts/nvm-synchronization-recovery-boundary.json#AUTOSAR-CP-4.4.0-CONCEPT-NVM-SYNCHRONIZATION-RECOVERY-BOUNDARY"
+    strongest_covered_route: "BswM action issues ReadAll; NvM performs asynchronous configured processing and result handling."
+    retained_gap: "No project startup mode, timing, participating blocks or completion policy."
+    project_gate: "Startup action, EcuM/BswM handoff and timing design."
+    next_promotion_evidence: "ReadAll execution trace with per-block results and completion handoff."
+
+  - task_id: NVM-006
+    proposed_availability: PARTIAL_PROCEDURE_AVAILABLE
+    coverage_basis: "Reviewed explicit-read asynchronous route and lower result boundary."
+    exact_reviewed_authority_tuples:
+      - "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d:docs/knowledge/concepts/nvm-synchronization-recovery-boundary.json#AUTOSAR-CP-4.4.0-CONCEPT-NVM-SYNCHRONIZATION-RECOVERY-BOUNDARY"
+      - "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d:docs/knowledge/workflows/nvm-to-physical-memory-job-path.json#AUTOSAR-CP-4.4.0-WORKFLOW-NVM-TO-PHYSICAL-MEMORY-JOB-PATH"
+      - "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d:docs/knowledge/concepts/memif-dispatch-status-boundary.json#AUTOSAR-CP-4.4.0-CONCEPT-MEMIF-DISPATCH-STATUS-BOUNDARY"
+      - "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d:docs/knowledge/concepts/lower-memory-error-result-reporting-boundary.json#AUTOSAR-CP-4.4.0-CONCEPT-LOWER-MEMORY-ERROR-RESULT-REPORTING-BOUNDARY"
+    strongest_covered_route: "Trace explicit read acceptance, pending/result, lower dispatch and configured recovery separately."
+    retained_gap: "No project read API use, target block, callback, DeviceIndex or backend."
+    project_gate: "Explicit-read and synchronization design."
+    next_promotion_evidence: "Correlated request, lower job, NvM result and persistent re-read."
+
+  - task_id: NVM-007
+    proposed_availability: PARTIAL_PROCEDURE_AVAILABLE
+    coverage_basis: "Reviewed NvM-to-lower write path with separate Fee/Fls and Ea/Eep trace workflows."
+    exact_reviewed_authority_tuples:
+      - "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d:docs/knowledge/workflows/nvm-to-physical-memory-job-path.json#AUTOSAR-CP-4.4.0-WORKFLOW-NVM-TO-PHYSICAL-MEMORY-JOB-PATH"
+      - "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d:docs/knowledge/workflows/trace-fee-logical-write-to-fls-physical-job.json#AUTOSAR-CP-4.4.0-WORKFLOW-TRACE-FEE-LOGICAL-WRITE-TO-FLS-PHYSICAL-JOB"
+      - "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d:docs/knowledge/workflows/trace-ea-logical-write-to-eep-physical-job.json#AUTOSAR-CP-4.4.0-WORKFLOW-TRACE-EA-LOGICAL-WRITE-TO-EEP-PHYSICAL-JOB"
+      - "eariver/Research_AUTOSAR_CP_Documents@d021e2471b8c76efc6af43f66c17d7ead68821cc:docs/knowledge/management-ecu-nvm-autosar-semantic-depth.md"
+    strongest_covered_route: "Trace request through MemIf, selected logical abstraction and selected asynchronous physical job."
+    retained_gap: "No project write policy, branch selection, physical map or durability evidence."
+    project_gate: "Explicit-write/change/immediate policy and backend design."
+    next_promotion_evidence: "Correlated request/lower-job trace plus persistence re-read."
+
+  - task_id: NVM-008
+    proposed_availability: WORKFLOW_ONLY
+    coverage_basis: "Reviewed BswM-to-NvM shutdown WriteAll workflow."
+    exact_reviewed_authority_tuples:
+      - "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d:docs/knowledge/workflows/nvm-readall-writeall-lifecycle.json#AUTOSAR-CP-4.4.0-WORKFLOW-NVM-READALL-WRITEALL-LIFECYCLE"
+      - "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d:docs/knowledge/concepts/nvm-synchronization-recovery-boundary.json#AUTOSAR-CP-4.4.0-CONCEPT-NVM-SYNCHRONIZATION-RECOVERY-BOUNDARY"
+    strongest_covered_route: "BswM action issues WriteAll; NvM performs asynchronous configured processing and result handling."
+    retained_gap: "No project shutdown mode, time budget, retention or participating blocks."
+    project_gate: "Shutdown action, EcuM/BswM handoff and retention design."
+    next_promotion_evidence: "WriteAll execution trace and persistent-data re-read."
+
+  - task_id: NVM-009
+    proposed_availability: PARTIAL_PROCEDURE_AVAILABLE
+    coverage_basis: "Reviewed lower invalid/inconsistent-to-NvM recovery boundary and physical-to-upper integrity trace."
+    exact_reviewed_authority_tuples:
+      - "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d:docs/knowledge/concepts/nvm-synchronization-recovery-boundary.json#AUTOSAR-CP-4.4.0-CONCEPT-NVM-SYNCHRONIZATION-RECOVERY-BOUNDARY"
+      - "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d:docs/knowledge/workflows/trace-physical-verification-to-upper-integrity-policy.json#AUTOSAR-CP-4.4.0-WORKFLOW-TRACE-PHYSICAL-VERIFICATION-TO-UPPER-INTEGRITY-POLICY"
+      - "eariver/Research_AUTOSAR_CP_Documents@d021e2471b8c76efc6af43f66c17d7ead68821cc:docs/knowledge/management-ecu-nvm-autosar-semantic-depth.md"
+    strongest_covered_route: "Keep lower invalidity, NvM default/recovery and physical verification as separate decisions."
+    retained_gap: "No project CRC/default/recovery choice, corruption result or complete product mapping."
+    project_gate: "Recovery/default and integrity design."
+    next_promotion_evidence: "Scenario trace containing lower result, NvM result, recovery action and post-recovery data."
+
+  - task_id: NVM-010
+    proposed_availability: PARTIAL_PROCEDURE_AVAILABLE
+    coverage_basis: "Focused semantic depth for RAM-block status/change/write scheduling plus Vector partial product surface."
+    exact_reviewed_authority_tuples:
+      - "eariver/Research_AUTOSAR_CP_Documents@d021e2471b8c76efc6af43f66c17d7ead68821cc:docs/knowledge/management-ecu-nvm-autosar-semantic-depth.md"
+      - "eariver/Research_Vector_Documents@d7eb75af93ac82d155fe508681b7057802c3aa45:docs/knowledge/management-ecu-nvm-vector-procedure.md"
+      - "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d:docs/knowledge/concepts/nvm-synchronization-recovery-boundary.json#AUTOSAR-CP-4.4.0-CONCEPT-NVM-SYNCHRONIZATION-RECOVERY-BOUNDARY"
+    strongest_covered_route: "Distinguish SetRamBlockStatus, WriteAll selection, CRC comparison, explicit WriteBlock and source-defined immediate priority."
+    retained_gap: "No universal write-on-change mechanism, project composition, threshold, queue size or complete product operation."
+    project_gate: "Per-block changed/write/priority policy and RAM ownership."
+    next_promotion_evidence: "Trace showing changed state, request type, priority and lower job as separate observations."
+
+  - task_id: NVM-011
+    proposed_availability: PARTIAL_PROCEDURE_AVAILABLE
+    coverage_basis: "Focused conditional management/integrity semantics plus bounded product memory surface."
+    exact_reviewed_authority_tuples:
+      - "eariver/Research_AUTOSAR_CP_Documents@d021e2471b8c76efc6af43f66c17d7ead68821cc:docs/knowledge/management-ecu-nvm-autosar-semantic-depth.md"
+      - "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d:docs/knowledge/concepts/nvm-logical-block-ownership.json#AUTOSAR-CP-4.4.0-CONCEPT-NVM-LOGICAL-BLOCK-OWNERSHIP"
+      - "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d:docs/knowledge/concepts/physical-memory-verification-integrity-boundary.json#AUTOSAR-CP-4.4.0-CONCEPT-PHYSICAL-MEMORY-VERIFICATION-INTEGRITY-BOUNDARY"
+      - "eariver/Research_Vector_Documents@d7eb75af93ac82d155fe508681b7057802c3aa45:docs/knowledge/management-ecu-nvm-vector-procedure.md"
+    strongest_covered_route: "Keep Native/Redundant/Dataset, CRC/static-ID/write verification, defaults and physical compare at their owning layers."
+    retained_gap: "No project type/dataset/integrity choice and no complete product mapping."
+    project_gate: "Per-block management, integrity and default/recovery design."
+    next_promotion_evidence: "Separate NvM integrity/recovery and physical verification evidence."
+
+  - task_id: NVM-012
+    proposed_availability: NO_EXPLICIT_PROCEDURE
+    coverage_basis: "Focused semantic distinction of protection, write-once, block-lock and synchronization; no explicit product operation route."
+    exact_reviewed_authority_tuples:
+      - "eariver/Research_AUTOSAR_CP_Documents@d021e2471b8c76efc6af43f66c17d7ead68821cc:docs/knowledge/management-ecu-nvm-autosar-semantic-depth.md"
+      - "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d:docs/knowledge/concepts/nvm-synchronization-recovery-boundary.json#AUTOSAR-CP-4.4.0-CONCEPT-NVM-SYNCHRONIZATION-RECOVERY-BOUNDARY"
+      - "eariver/Research_Vector_Documents@d7eb75af93ac82d155fe508681b7057802c3aa45:docs/knowledge/management-ecu-nvm-vector-procedure.md"
+    strongest_covered_route: "Preserve separate protection/lock and RAM/synchronization concepts only."
+    retained_gap: "No explicit complete product operation for protection, write-once, block-lock, synchronization or callbacks."
+    project_gate: "Protection/RAM ownership/concurrency and callback design."
+    next_promotion_evidence: "Approved policy plus execution trace of protection/lock and synchronization states."
+
+  - task_id: NVM-013
+    proposed_availability: PARTIAL_PROCEDURE_AVAILABLE
+    coverage_basis: "Reviewed request/result, lower status/error and callback handoff workflow."
+    exact_reviewed_authority_tuples:
+      - "eariver/Research_AUTOSAR_CP_Documents@d021e2471b8c76efc6af43f66c17d7ead68821cc:docs/knowledge/management-ecu-nvm-autosar-semantic-depth.md"
+      - "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d:docs/knowledge/concepts/memif-dispatch-status-boundary.json#AUTOSAR-CP-4.4.0-CONCEPT-MEMIF-DISPATCH-STATUS-BOUNDARY"
+      - "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d:docs/knowledge/concepts/lower-memory-error-result-reporting-boundary.json#AUTOSAR-CP-4.4.0-CONCEPT-LOWER-MEMORY-ERROR-RESULT-REPORTING-BOUNDARY"
+      - "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d:docs/knowledge/workflows/nvm-to-physical-memory-job-path.json#AUTOSAR-CP-4.4.0-WORKFLOW-NVM-TO-PHYSICAL-MEMORY-JOB-PATH"
+    strongest_covered_route: "Record NvM request, MemIf job, Fee/Ea state, physical result, callback and diagnostic classification separately."
+    retained_gap: "No complete product request-result/notification procedure or project callback/error mapping."
+    project_gate: "Status, callback, timing and diagnostic mapping design."
+    next_promotion_evidence: "Correlated request/job/callback/error trace."
+
+  - task_id: NVM-014
+    proposed_availability: PARTIAL_PROCEDURE_AVAILABLE
+    coverage_basis: "Reviewed MemIf DeviceIndex dispatch/status boundary plus bounded Vector block/partition surface."
+    exact_reviewed_authority_tuples:
+      - "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d:docs/knowledge/concepts/memif-dispatch-status-boundary.json#AUTOSAR-CP-4.4.0-CONCEPT-MEMIF-DISPATCH-STATUS-BOUNDARY"
+      - "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d:docs/knowledge/concepts/memory-stack-layer-ownership.json#AUTOSAR-CP-4.4.0-CONCEPT-MEMORY-STACK-LAYER-OWNERSHIP"
+      - "eariver/Research_Vector_Documents@d7eb75af93ac82d155fe508681b7057802c3aa45:docs/knowledge/management-ecu-nvm-vector-procedure.md"
+    strongest_covered_route: "Use DeviceIndex as the MemIf dispatch key and correlate shared lower status/result; use product surface only for bounded association."
+    retained_gap: "No exact project DeviceIndex or complete NvM-to-MemIf mapping procedure."
+    project_gate: "DeviceIndex and block-to-abstraction design."
+    next_promotion_evidence: "Configured mapping artifact and correlated dispatch/result trace."
+
+  - task_id: NVM-015
+    proposed_availability: PARTIAL_PROCEDURE_AVAILABLE
+    coverage_basis: "Reviewed Fee/Ea logical ownership and consistency plus Vector partition-level branch surface."
+    exact_reviewed_authority_tuples:
+      - "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d:docs/knowledge/concepts/fee-ea-logical-consistency-internal-management-boundary.json#AUTOSAR-CP-4.4.0-CONCEPT-FEE-EA-LOGICAL-CONSISTENCY-INTERNAL-MANAGEMENT-BOUNDARY"
+      - "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d:docs/knowledge/workflows/nvm-to-physical-memory-job-path.json#AUTOSAR-CP-4.4.0-WORKFLOW-NVM-TO-PHYSICAL-MEMORY-JOB-PATH"
+      - "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d:docs/knowledge/concepts/memory-stack-layer-ownership.json#AUTOSAR-CP-4.4.0-CONCEPT-MEMORY-STACK-LAYER-OWNERSHIP"
+      - "eariver/Research_Vector_Documents@d7eb75af93ac82d155fe508681b7057802c3aa45:docs/knowledge/management-ecu-nvm-vector-procedure.md"
+    strongest_covered_route: "Select Fee or Ea as a project branch and preserve its logical consistency/internal-management ownership."
+    retained_gap: "No backend, DeviceIndex, logical block mapping, on-media metadata or complete lower-stack procedure."
+    project_gate: "Backend and logical-memory design."
+    next_promotion_evidence: "Approved branch mapping and abstraction-level result trace."
+
+  - task_id: NVM-016
+    proposed_availability: WORKFLOW_ONLY
+    coverage_basis: "Reviewed Fee-to-Fls and Ea-to-Eep asynchronous physical job trace workflows."
+    exact_reviewed_authority_tuples:
+      - "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d:docs/knowledge/workflows/trace-fee-logical-write-to-fls-physical-job.json#AUTOSAR-CP-4.4.0-WORKFLOW-TRACE-FEE-LOGICAL-WRITE-TO-FLS-PHYSICAL-JOB"
+      - "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d:docs/knowledge/workflows/trace-ea-logical-write-to-eep-physical-job.json#AUTOSAR-CP-4.4.0-WORKFLOW-TRACE-EA-LOGICAL-WRITE-TO-EEP-PHYSICAL-JOB"
+      - "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d:docs/knowledge/concepts/physical-memory-verification-integrity-boundary.json#AUTOSAR-CP-4.4.0-CONCEPT-PHYSICAL-MEMORY-VERIFICATION-INTEGRITY-BOUNDARY"
+    strongest_covered_route: "Trace selected logical processing to asynchronous Fls/Eep jobs, callbacks and scoped physical verification."
+    retained_gap: "No physical device, address, geometry, on-media behavior or endurance procedure."
+    project_gate: "Physical device/layout/endurance design."
+    next_promotion_evidence: "Correlated abstraction, physical job, callback and persistence re-read."
+
+  - task_id: NVM-017
+    proposed_availability: PARTIAL_PROCEDURE_AVAILABLE
+    coverage_basis: "Exact generic DaVinci project validate/generate/schema commands plus partial NvM product surfaces."
+    exact_reviewed_authority_tuples:
+      - "eariver/Research_AUTOSAR_CP_Documents@d021e2471b8c76efc6af43f66c17d7ead68821cc:docs/knowledge/management-ecu-nvm-autosar-semantic-depth.md"
+      - "eariver/Research_Vector_Documents@d7eb75af93ac82d155fe508681b7057802c3aa45:docs/knowledge/management-ecu-nvm-vector-procedure.md"
+    strongest_covered_route: "Run exact generic project validation/generation/schema commands; retain NvM-specific object/diagnostic mapping as incomplete."
+    retained_gap: "Generic procedure is not a complete NvM procedure and does not prove compile/link/runtime."
+    project_gate: "Actual project, BSW package, tool release and generator configuration."
+    next_promotion_evidence: "Command logs, generated artifact hashes, independent build/link evidence and NvM mapping review."
+
+  - task_id: NVM-018
+    proposed_availability: EXECUTION_EVIDENCE_REQUIRED
+    coverage_basis: "Reviewed layered request-to-physical and physical-to-upper-integrity evidence plan."
+    exact_reviewed_authority_tuples:
+      - "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d:docs/knowledge/workflows/nvm-to-physical-memory-job-path.json#AUTOSAR-CP-4.4.0-WORKFLOW-NVM-TO-PHYSICAL-MEMORY-JOB-PATH"
+      - "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d:docs/knowledge/workflows/trace-physical-verification-to-upper-integrity-policy.json#AUTOSAR-CP-4.4.0-WORKFLOW-TRACE-PHYSICAL-VERIFICATION-TO-UPPER-INTEGRITY-POLICY"
+      - "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d:docs/knowledge/concepts/lower-memory-cancel-hardware-completion-boundary.json#AUTOSAR-CP-4.4.0-CONCEPT-LOWER-MEMORY-CANCEL-HARDWARE-COMPLETION-BOUNDARY"
+      - "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d:docs/knowledge/concepts/physical-memory-verification-integrity-boundary.json#AUTOSAR-CP-4.4.0-CONCEPT-PHYSICAL-MEMORY-VERIFICATION-INTEGRITY-BOUNDARY"
+      - "eariver/Research_Vector_Documents@d7eb75af93ac82d155fe508681b7057802c3aa45:docs/knowledge/management-ecu-nvm-vector-procedure.md"
+    strongest_covered_route: "Plan separate configured intent, generated artifact, compile/link, request, lower job, re-read, reset/power-loss, interruption, verdict and coverage evidence."
+    retained_gap: "No project artifact or execution result exists; generic generation and job success do not close persistence."
+    project_gate: "All project runtime/test inputs and actual execution."
+    next_promotion_evidence: "Complete layered evidence package with separate verdict and coverage."
+
+semantic_contract:
+  - "NVM_REQ_* != MEMIF_JOB_*."
+  - "software request/job completion != durable persistence proof."
+  - "test definition != execution result != verdict != coverage."
+  - "generated artifact != compile/link/runtime evidence."
+  - "Fee/Fls branch != Ea/Eep branch."
+  - "NvM NVRAM block != Fee/Ea logical block != Fls/Eep physical storage/address."
+validation_expectations:
+  task_rows_exactly_once: true
+  duplicate_or_extra_task: false
+  supported_claims_have_exact_tuples: true
+  project_values_invented: false
+  new_technical_research: false
