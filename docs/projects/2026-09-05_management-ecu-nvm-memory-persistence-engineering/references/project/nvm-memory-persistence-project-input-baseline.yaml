@@ -1,0 +1,106 @@
+schema_version: 1
+project: management-ecu-nvm-memory-persistence-engineering
+date: 2026-09-05
+status: UNRESOLVED_PROJECT_INPUT
+policy: no_project_value_may_be_invented_or_defaulted_by_compilation
+
+input_families:
+  application_persistence_contract:
+    status: UNRESOLVED_PROJECT_INPUT
+    fields:
+      - persistent_data_objects
+      - owning_SWC_or_BSW_consumer
+      - NvData_or_service_port_contract
+      - runnable_or_callback_mapping
+      - read_write_semantics
+      - default_and_recovery_semantics
+
+  nvm_block_configuration:
+    status: UNRESOLVED_PROJECT_INPUT
+    fields:
+      - block_ids
+      - block_count
+      - block_lengths_and_alignment
+      - management_type_native_redundant_dataset
+      - dataset_count_and_data_index_policy
+      - RAM_block_identity
+      - permanent_or_temporary_RAM_policy
+      - ROM_default_identity_and_policy
+      - administrative_block_policy
+      - explicit_or_implicit_synchronization
+      - CRC_and_static_block_id_policy
+      - changed_state_and_write_on_change_policy
+      - immediate_write_policy
+      - write_protection_or_locking_policy
+      - queue_priority_and_retry_policy
+
+  lifecycle_policy:
+    status: UNRESOLVED_PROJECT_INPUT
+    fields:
+      - startup_ReadAll_policy
+      - shutdown_WriteAll_policy
+      - EcuM_BswM_handoff
+      - explicit_ReadBlock_WriteBlock_usage
+      - restore_default_policy
+      - retention_requirement
+      - power_loss_behavior_requirement
+      - shutdown_time_budget
+
+  lower_memory_stack:
+    status: UNRESOLVED_PROJECT_INPUT
+    fields:
+      - MemIf_device_indices
+      - Fee_or_Ea_backend_selection
+      - Fee_Ea_logical_block_identifiers
+      - Fls_or_Eep_device_selection
+      - physical_addresses
+      - sector_page_erase_geometry
+      - erase_write_constraints
+      - flash_wear_endurance_assumptions
+      - expected_write_frequency
+
+  consumer_mappings:
+    status: UNRESOLVED_PROJECT_INPUT
+    fields:
+      - DEM_event_memory_or_internal_data_persistence_mapping
+      - DTC_related_persistence_mapping
+      - DID_RID_or_diagnostic_data_persistence_mapping
+      - application_parameter_state_persistence_mapping
+      - reset_or_factory_default_semantics
+
+  toolchain_baseline:
+    status: UNRESOLVED_PROJECT_INPUT
+    fields:
+      - DaVinci_Configurator_Classic_version
+      - MICROSAR_release_and_package
+      - compiler_and_linker_baseline
+      - generator_configuration
+      - integration_build_variant
+      - target_or_virtual_execution_environment
+
+  verification_acceptance:
+    status: UNRESOLVED_PROJECT_INPUT
+    fields:
+      - initial_NV_contents
+      - test_stimuli
+      - expected_RAM_and_NV_values
+      - reset_power_cycle_scenarios
+      - interrupted_write_or_power_loss_scenarios
+      - corruption_or_invalid_block_scenarios
+      - acceptance_criteria
+      - test_runner_and_result_artifacts
+      - coverage_requirements
+
+non_inference_rules:
+  - Do not infer a block ID or physical address from an example, tool screenshot, AUTOSAR requirement or sibling ECU.
+  - Do not infer Native, Redundant or Dataset selection from generic safety or persistence intent.
+  - Do not infer Fee versus Ea from the existence of both reviewed branches.
+  - Do not infer CRC, ROM defaults, immediate write, changed-state or permanent-RAM use for every block.
+  - Do not infer a project startup/shutdown timing or EcuM/BswM integration policy from the generic ReadAll/WriteAll workflow.
+  - Do not infer successful durability from a successful NvM request or lower-memory job result.
+  - Do not infer Management ECU endurance or power-loss capability without project requirement and execution evidence.
+
+compilation_behavior:
+  when_required_input_missing: mark_PROJECT_INPUT_REQUIRED_and_continue_independent_safe_frontier
+  when_vendor_procedure_missing: mark_RESEARCH_REQUIRED_without_inventing_steps
+  when_reviewed_architecture_exists: preserve_supported_architecture_or_workflow_even_if_project_values_are_missing
