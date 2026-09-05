@@ -1,0 +1,102 @@
+schema_version: 1
+project: management-ecu-nvm-memory-persistence-engineering
+artifact: ManagementECU_NvM_Final_Availability_Overlay
+status: SOL_REVIEWED_CURRENT_AUTHORITY
+date: 2026-09-05
+
+fixed_head_review:
+  repository: eariver/Automotive_EE_Engineering_Knowledge
+  luna_branch: work/luna-management-ecu-nvm-current-package-compilation-20260905
+  exact_starting_sha: e4ba6a26d2a90e4fd65e176c0b09c4edae12406b
+  luna_terminal_sha: 09b3ced974717f32405e9df35910bd7b82f5c365
+  continuity: direct_child_ahead_1_behind_0
+  changed_path_count: 9
+  allowlist_result: PASS
+
+final_availability_counts:
+  EXACT_PROCEDURE_AVAILABLE: 0
+  PARTIAL_PROCEDURE_AVAILABLE: 10
+  WORKFLOW_ONLY: 5
+  NO_EXPLICIT_PROCEDURE: 1
+  PROJECT_INPUT_REQUIRED: 0
+  PROJECT_DESIGN_REQUIRED: 1
+  EXECUTION_EVIDENCE_REQUIRED: 1
+  total: 18
+
+final_task_availability:
+  NVM-001: WORKFLOW_ONLY
+  NVM-002: PROJECT_DESIGN_REQUIRED
+  NVM-003: PARTIAL_PROCEDURE_AVAILABLE
+  NVM-004: WORKFLOW_ONLY
+  NVM-005: WORKFLOW_ONLY
+  NVM-006: PARTIAL_PROCEDURE_AVAILABLE
+  NVM-007: PARTIAL_PROCEDURE_AVAILABLE
+  NVM-008: WORKFLOW_ONLY
+  NVM-009: PARTIAL_PROCEDURE_AVAILABLE
+  NVM-010: PARTIAL_PROCEDURE_AVAILABLE
+  NVM-011: PARTIAL_PROCEDURE_AVAILABLE
+  NVM-012: NO_EXPLICIT_PROCEDURE
+  NVM-013: PARTIAL_PROCEDURE_AVAILABLE
+  NVM-014: PARTIAL_PROCEDURE_AVAILABLE
+  NVM-015: PARTIAL_PROCEDURE_AVAILABLE
+  NVM-016: WORKFLOW_ONLY
+  NVM-017: PARTIAL_PROCEDURE_AVAILABLE
+  NVM-018: EXECUTION_EVIDENCE_REQUIRED
+
+secondary_blocker_dimensions:
+  project_input_required:
+    scope: NVM-001_through_NVM-018
+    meaning: all_project_values_remain_unresolved_but_generic_reviewed_routes_remain_valid
+  project_design_required:
+    tasks:
+      - NVM-002
+      - NVM-004
+      - NVM-005
+      - NVM-006
+      - NVM-007
+      - NVM-008
+      - NVM-009
+      - NVM-010
+      - NVM-011
+      - NVM-012
+      - NVM-013
+      - NVM-015
+      - NVM-016
+  execution_evidence_required:
+    tasks:
+      - NVM-018
+
+sol_acceptance_notes:
+  - No task is promoted to EXACT_PROCEDURE_AVAILABLE because the reviewed Vector root does not establish a complete object-by-object NvM Configurator procedure.
+  - PARTIAL_PROCEDURE_AVAILABLE is accepted only where a bounded operational/product surface or source-explicit request/lower-memory route exists; project closure remains separately blocked where applicable.
+  - NVM-012 remains NO_EXPLICIT_PROCEDURE because the reviewed exact Vector route does not expose a complete product operation for write protection, write once, block lock, synchronization, or callbacks.
+  - NVM-002 remains PROJECT_DESIGN_REQUIRED because no Management ECU Application/NvData/RTE-to-NvM mapping is reviewed.
+  - NVM-018 remains EXECUTION_EVIDENCE_REQUIRED because generic configuration/generation and software job results do not prove persistent re-read, reset/power-cycle, interrupted-write/power-loss behavior, verdict, or coverage.
+
+fixed_semantic_contract:
+  - Application_persistence_semantics != NvData_ARXML_contract != RTE_access != NvM_configuration
+  - NvM != MemIf != Fee != Ea != Fls != Eep
+  - NvM_NVRAM_block != Fee_Ea_logical_block != Fls_Eep_physical_storage_address
+  - MemIf_DeviceIndex != NvM_Dataset_index
+  - NVM_REQ_star != MEMIF_JOB_star
+  - request_acceptance != NvM_completion != lower_job_completion != durable_persistence_proof
+  - changed_state != CRC_comparison != WriteAll_selection != explicit_WriteBlock != job_priority
+  - write_protection != write_once != block_lock
+  - permanent_RAM != temporary_RAM != explicit_sync_mirror
+  - configuration != validation != generation != compile != link != runtime_evidence
+  - test_definition != execution_result != verdict != coverage
+
+authority_fence:
+  autosar_base: eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d
+  autosar_nvm_semantic_depth: eariver/Research_AUTOSAR_CP_Documents@d021e2471b8c76efc6af43f66c17d7ead68821cc:docs/knowledge/management-ecu-nvm-autosar-semantic-depth.md
+  vector_nvm_procedure: eariver/Research_Vector_Documents@d7eb75af93ac82d155fe508681b7057802c3aa45:docs/knowledge/management-ecu-nvm-vector-procedure.md
+
+next_frontier:
+  generic_documentation_research: STOP
+  next_meaningful_work:
+    - Management ECU Application/NvData/RTE contract and block inventory
+    - per-block management/integrity/protection/synchronization/backend/lifecycle design
+    - concrete DaVinci/MICROSAR project artifact inspection if supplied
+    - generation/build/link/runtime evidence
+    - persistent re-read and reset/power-cycle execution
+    - interrupted-write/power-loss acceptance evidence
