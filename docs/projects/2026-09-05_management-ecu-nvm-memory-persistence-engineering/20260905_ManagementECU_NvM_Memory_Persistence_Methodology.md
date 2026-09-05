@@ -100,9 +100,9 @@ project field merely because a standard-side concept exists.
 
 The State & Evidence Model treats configuration, validation, generation,
 compile/link, runtime request state, lower job state, physical observation,
-reset/power-cycle behavior, verdict and coverage as different evidence layers.
-`NVM_REQ_OK` and `MEMIF_JOB_OK` remain software request/job completion evidence
-only.
+reset/power-cycle behavior, interrupted-write behavior, verdict and coverage as
+different evidence layers. `NVM_REQ_OK` and `MEMIF_JOB_OK` remain software
+request/job completion evidence only.
 
 ### 3.4 Classify procedure availability
 
