@@ -1,0 +1,114 @@
+schema_version: 2
+project: management-ecu-nvm-memory-persistence-engineering
+status: SOL_RESEARCH_REVIEWED
+date: 2026-09-05
+
+inherited_downstream:
+  repository: eariver/Automotive_EE_Engineering_Knowledge
+  branch: work/management-ecu-dem-fault-management-engineering-20260904
+  exact_head: 4adb8c2b0e2c2205804f9148f87aebc821345d5e
+  usage: lineage_and_sibling_context_only
+
+primary_reviewed_authority:
+  repository: eariver/Research_AUTOSAR_CP_Documents
+  exact_commit: 938ac4af696d263019ebdc61106a444447e15c4d
+  platform_release: AUTOSAR_Classic_4.4.0
+  policy: only_SOL_REVIEWED_knowledge_at_this_exact_commit
+
+reviewed_entries:
+  - path: docs/knowledge/concepts/nvm-logical-block-ownership.json
+    blob_sha: 0b0fbd189e6fe5c300a705e74b2d858b27bf1c48
+    entry_id: AUTOSAR-CP-4.4.0-CONCEPT-NVM-LOGICAL-BLOCK-OWNERSHIP
+    use: NvM_logical_block_model_and_management_types
+  - path: docs/knowledge/concepts/nvm-synchronization-recovery-boundary.json
+    blob_sha: 6f4efb7288c4d5a7eecd856f47d92d4f69c8459d
+    entry_id: AUTOSAR-CP-4.4.0-CONCEPT-NVM-SYNCHRONIZATION-RECOVERY-BOUNDARY
+    use: synchronization_RAM_mirror_integrity_and_recovery_boundary
+  - path: docs/knowledge/concepts/memory-stack-layer-ownership.json
+    blob_sha: e15489868acb8b537ecfca11cb2ce89441871e01
+    entry_id: AUTOSAR-CP-4.4.0-CONCEPT-MEMORY-STACK-LAYER-OWNERSHIP
+    use: NvM_MemIf_Fee_Ea_Fls_Eep_layer_ownership
+  - path: docs/knowledge/concepts/memif-dispatch-status-boundary.json
+    blob_sha: c03c6b8ba29cdc3d522b3d0cc6ff76d4f7da34de
+    entry_id: AUTOSAR-CP-4.4.0-CONCEPT-MEMIF-DISPATCH-STATUS-BOUNDARY
+    use: MemIf_device_dispatch_and_MEMIF_job_status_boundary
+  - path: docs/knowledge/concepts/fee-ea-logical-consistency-internal-management-boundary.json
+    blob_sha: 77a22beabedc694661fd3fe87581c3721e342c9e
+    use: Fee_Ea_logical_consistency_and_internal_management_boundary
+  - path: docs/knowledge/concepts/lower-memory-cancel-hardware-completion-boundary.json
+    blob_sha: bedfbad05f223ae1f2b98edd396656a490af5252
+    use: lower_memory_cancel_vs_hardware_completion_boundary
+  - path: docs/knowledge/concepts/lower-memory-error-result-reporting-boundary.json
+    blob_sha: 1aa7638862389a4ec1f7e0f623f8eac306767854
+    use: lower_memory_error_and_job_result_boundary
+  - path: docs/knowledge/concepts/physical-memory-verification-integrity-boundary.json
+    blob_sha: f4a6c92527a6d9a26f0f64c54d6fba164d76f035
+    use: physical_verification_vs_upper_integrity_policy
+  - path: docs/knowledge/workflows/nvm-readall-writeall-lifecycle.json
+    blob_sha: 7539c526f760e54b8ee2a1d2f92227ac3896ea62
+    use: NvM_ReadAll_WriteAll_lifecycle
+  - path: docs/knowledge/workflows/nvm-to-physical-memory-job-path.json
+    blob_sha: 8ebc7abaf02129e67d12bc3900f78c3f09253ae5
+    use: NvM_to_MemIf_to_lower_memory_job_path
+  - path: docs/knowledge/workflows/trace-fee-logical-write-to-fls-physical-job.json
+    blob_sha: 6fd333d037b8205b86378824a428652e4c7c9045
+    use: Fee_to_Fls_flash_branch
+  - path: docs/knowledge/workflows/trace-ea-logical-write-to-eep-physical-job.json
+    blob_sha: c28ecf97811d6aa014f6f30e52a1b8a8d406d018
+    use: Ea_to_Eep_EEPROM_branch
+  - path: docs/knowledge/workflows/trace-lower-memory-cancel-and-recovery.json
+    blob_sha: cc86d38c49ad07ee95ae4c34f683f645d391471b
+    use: lower_memory_cancel_and_recovery_flow
+  - path: docs/knowledge/workflows/trace-physical-verification-to-upper-integrity-policy.json
+    blob_sha: 1d1b4626be9ce33ff5b83c9dbf9b30d8302788d2
+    use: physical_verification_to_upper_integrity_handoff
+
+focused_autosar_nvm_semantic_authority:
+  repository: eariver/Research_AUTOSAR_CP_Documents
+  exact_commit: d021e2471b8c76efc6af43f66c17d7ead68821cc
+  path: docs/knowledge/management-ecu-nvm-autosar-semantic-depth.md
+  source_release: AUTOSAR_Classic_4.4.0
+  use: NVM_009_010_011_012_013_017_semantic_and_configuration_depth
+
+vector_nvm_procedure_authority:
+  repository: eariver/Research_Vector_Documents
+  exact_commit: d7eb75af93ac82d155fe508681b7057802c3aa45
+  path: docs/knowledge/management-ecu-nvm-vector-procedure.md
+  product_scope: DaVinci_Configurator_Classic_6.3.10
+  use: product_local_configuration_lower_memory_validation_generation_procedure
+  retained_limits:
+    - no_complete_object_by_object_NvM_Configurator_procedure
+    - no_exact_MemIf_DeviceIndex_realization
+    - no_complete_NvM_to_MemIf_to_Fee_Ea_mapping_procedure
+    - no_complete_Fee_Ea_on_media_or_physical_layout_procedure
+    - no_NvM_specific_validation_diagnostic_remediation_procedure
+    - no_Management_ECU_compile_link_runtime_durable_persistence_contract
+
+bounded_sibling_reference:
+  repository: eariver/Research_AUTOSAR_CP_Documents
+  exact_commit: 4eff43bdc4a99f3219104c2b16994a539e0b08eb
+  path: docs/knowledge/management-ecu-dem-autosar-semantic-depth.md
+  use: DEM_as_persistence_consumer_boundary_only
+  authority_limit: do_not_treat_as_general_NvM_procedure_authority
+
+explicit_non_authority:
+  - floating_upstream_heads
+  - raw_AUTOSAR_PDFs_during_downstream_compilation
+  - raw_Vector_HELP_during_downstream_compilation
+  - Web_or_current_vendor_documentation
+  - generic_model_knowledge
+  - sibling_worklogs_or_prompts
+  - unreviewed_observations
+
+current_gap_statement:
+  architecture_and_workflow: REVIEWED_AUTHORITY_AVAILABLE
+  nvm_semantic_configuration_depth: SOL_REVIEWED
+  vector_product_local_configuration_surface: SOL_REVIEWED_PARTIAL
+  generic_vector_validation_generation: SOL_REVIEWED_EXACT_PROCEDURE
+  management_ecu_project_values: PROJECT_INPUT_REQUIRED
+  actual_generation_build_runtime_and_power_loss_evidence: EXECUTION_EVIDENCE_REQUIRED
+
+notes:
+  - The current package must preserve architecture/workflow authority even where the exact product GUI procedure remains bounded.
+  - AUTOSAR ECUC names are not Vector GUI paths by assumption.
+  - NVM_REQ_OK and MEMIF_JOB_OK are software request/job completion evidence only, not durable-persistence proof.
