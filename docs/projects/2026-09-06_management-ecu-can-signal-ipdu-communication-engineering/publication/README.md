@@ -7,7 +7,7 @@ Status: `SOL_REVIEWED_STAGED`
 
 - Repository: `eariver/Automotive_EE_Engineering_Knowledge`
 - Sol review branch: `work/sol-management-ecu-can-signal-ipdu-current-package-review-20260906`
-- Accepted source HEAD: `e29be39646625b0b78c43ee3fae883b86abefc72`
+- Accepted source HEAD: `9e86fd9e7f9d7914395356660cb2af20cfdb5b7c`
 - Luna current-package terminal reviewed: `688cced77bd899222095757ce5b1f48f8112cb59`
 - Sol verdict: `SOL_PACKAGE_REVIEW_PASS`
 
