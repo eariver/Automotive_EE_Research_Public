@@ -1,0 +1,87 @@
+schema_version: "management-ecu-can-signal-ipdu-communication-publication-plan/v1"
+date: "2026-09-06"
+status: "SOL_REVIEWED_STAGED"
+project: "Management ECU CAN Signal / I-PDU Communication Engineering"
+private_source:
+  repository: "eariver/Automotive_EE_Engineering_Knowledge"
+  branch: "work/sol-management-ecu-can-signal-ipdu-current-package-review-20260906"
+  accepted_source_head: "42891e51c576527f5273ab6929c1498e94eb4346"
+  luna_current_package_terminal: "688cced77bd899222095757ce5b1f48f8112cb59"
+  luna_exact_starting_sha: "4df6a57dfa233ed803578ac9802117d13f6564ff"
+  sol_review_verdict: "SOL_PACKAGE_REVIEW_PASS"
+public:
+  repository: "eariver/Automotive_EE_Research_Public"
+  branch: "publish/management-ecu-can-signal-ipdu-communication-engineering-20260906"
+  base_main_sha: "183d9dc0ab120484e4018e530a33e5b291bd7baa"
+  main_merged: false
+source_bundle_policy:
+  source_derived_content_preserved: true
+  matrix_transfer_method: "reconstructed from exact private fixed-head bounded line ranges because cross-repository Git blob reuse is unavailable"
+  matrix_private_blob_identity_not_claimed_for_public_blob: true
+  upstream_reviewed_knowledge: "LOCATOR_ONLY"
+  raw_vendor_or_standard_sources: "EXCLUDED"
+  internal_luna_material: "EXCLUDED"
+  historical_baseline_research_artifacts: "EXCLUDED_FROM_CURRENT_CONSUMPTION_BUNDLE"
+  confidential_project_values: "EXCLUDED"
+reviewed_authority:
+  autosar_primary: "eariver/Research_AUTOSAR_CP_Documents@8c67ddc4cc6ce4bba1881a879b933cf2b751d733"
+  autosar_com_semantic_depth: "eariver/Research_AUTOSAR_CP_Documents@fc05fc7824d56b1a34eaf42e3d50150ff70a789d"
+  vector_com_procedure: "eariver/Research_Vector_Documents@138dba4d76bc9cf7fadec1ee818aa7e6b9db4b70"
+final_availability_counts:
+  EXACT_PROCEDURE_AVAILABLE: 0
+  PARTIAL_PROCEDURE_AVAILABLE: 4
+  SURFACE_ONLY: 2
+  NO_EXPLICIT_PROCEDURE_IN_REVIEWED_SOURCE: 1
+  WORKFLOW_ONLY: 10
+  EXECUTION_EVIDENCE_REQUIRED: 1
+  total: 18
+secondary_blockers:
+  PROJECT_INPUT_REQUIRED: 18
+  PROJECT_DESIGN_REQUIRED: 17
+  EXECUTION_EVIDENCE_REQUIRED: [COM-018]
+source_derived_roles:
+  - "project README"
+  - "Project Scope"
+  - "Methodology"
+  - "Step-by-Step Guide"
+  - "Tool / Task / Reference Matrix"
+  - "State & Evidence Model"
+  - "Execution Reference Guide"
+  - "Procedure Coverage Matrix"
+  - "Reference Index"
+  - "Current Package Compilation Report"
+  - "Sol fixed-head review"
+  - "authority pins"
+  - "publication-safe unresolved project input baseline"
+retained_boundaries:
+  - "Application data element remains separate from Sender/Receiver port/interface, COM Signal, GroupSignal/SignalGroup and I-PDU"
+  - "System Description, ECU Extract, ECUC configuration, generated artifact, runtime state and observed CAN frame remain separate"
+  - "COM, PduR, CanIf and CanDrv remain separate ownership layers"
+  - "COM signal gatewaying remains separate from PduR I-PDU routing"
+  - "Transfer property, Tx mode, repetition and configured timing remain separate"
+  - "Update-bit, filter, invalid-value handling and timeout handling remain separate"
+  - "COM I-PDU Group control remains separate from ComM mode, CanSM state and physical bus state"
+  - "Configuration, validation, generation, compile/link and runtime trace remain separate"
+  - "Runtime observation remains separate from requirement, verdict and coverage"
+  - "VECU/SIL behavior remains separate from physical-target CAN/CAN FD behavior"
+conditional_routes:
+  CanTp: "NOT_INSERTED_WITHOUT_PROJECT_EVIDENCE"
+  IpduM: "NOT_INSERTED_WITHOUT_PROJECT_EVIDENCE"
+  SecOC: "NOT_INSERTED_WITHOUT_PROJECT_EVIDENCE"
+  E2E_or_transformers: "NOT_INSERTED_WITHOUT_PROJECT_EVIDENCE"
+  gatewaying: "NOT_ASSUMED"
+promotion_gates:
+  - "Luna current-package fixed-head technical review PASS"
+  - "AUTOSAR primary, focused COM semantic and Vector procedure authority exact-pinned and Sol-reviewed"
+  - "No invented Management ECU communication values"
+  - "COM-001 through COM-018 cardinality retained in both matrices"
+  - "Procedure maturity and project/execution blockers remain separate"
+  - "Conditional routes remain conditional"
+  - "Public source bundle contains no Luna prompt/worklog/observation or raw upstream source"
+  - "Public main remains unchanged unless human explicitly approves merge"
+validation:
+  source_derived_file_count: 13
+  publication_generated_file_count: 2
+  expected_total_package_file_count: 15
+  technical_package_staged: true
+  main_merged: false
