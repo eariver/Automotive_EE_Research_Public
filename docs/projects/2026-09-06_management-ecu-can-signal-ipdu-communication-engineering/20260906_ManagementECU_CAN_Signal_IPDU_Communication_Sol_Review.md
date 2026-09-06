@@ -37,7 +37,7 @@ Generic validation, generation, schema-generation and CLI subprocedures remain e
 The package correctly keeps procedure maturity independent from project and execution closure blockers.
 
 - `PROJECT_INPUT_REQUIRED`: all 18 tasks.
-- `PROJECT_DESIGN_REQUIRED`: 17 tasks; `COM-016` does not require a separate project-design blocker at this compilation layer.
+- `PROJECT_DESIGN_REQUIRED`: all 18 tasks; `COM-016` is included because the accepted matrices carry an explicit project-design blocker with required items `configuration_scope`, `build_ownership`, `artifact_manifest_policy` and `target_or_virtual_execution_scope`, and selected value `none`.
 - `EXECUTION_EVIDENCE_REQUIRED`: `COM-018` at aggregate current-package closure level.
 
 Concrete signal/frame objects, mapping, timing, callback, route, CAN/CAN FD, build and verification values remain unresolved unless supplied by explicit accepted project evidence.

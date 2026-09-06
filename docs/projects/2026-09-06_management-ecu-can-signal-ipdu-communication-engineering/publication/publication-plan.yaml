@@ -5,7 +5,7 @@ project: "Management ECU CAN Signal / I-PDU Communication Engineering"
 private_source:
   repository: "eariver/Automotive_EE_Engineering_Knowledge"
   branch: "work/sol-management-ecu-can-signal-ipdu-current-package-review-20260906"
-  accepted_source_head: "42891e51c576527f5273ab6929c1498e94eb4346"
+  accepted_source_head: "e29be39646625b0b78c43ee3fae883b86abefc72"
   luna_current_package_terminal: "688cced77bd899222095757ce5b1f48f8112cb59"
   luna_exact_starting_sha: "4df6a57dfa233ed803578ac9802117d13f6564ff"
   sol_review_verdict: "SOL_PACKAGE_REVIEW_PASS"
@@ -37,7 +37,7 @@ final_availability_counts:
   total: 18
 secondary_blockers:
   PROJECT_INPUT_REQUIRED: 18
-  PROJECT_DESIGN_REQUIRED: 17
+  PROJECT_DESIGN_REQUIRED: 18
   EXECUTION_EVIDENCE_REQUIRED: [COM-018]
 source_derived_roles:
   - "project README"

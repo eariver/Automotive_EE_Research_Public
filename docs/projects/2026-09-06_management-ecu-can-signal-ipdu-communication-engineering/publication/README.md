@@ -7,7 +7,7 @@ Status: `SOL_REVIEWED_STAGED`
 
 - Repository: `eariver/Automotive_EE_Engineering_Knowledge`
 - Sol review branch: `work/sol-management-ecu-can-signal-ipdu-current-package-review-20260906`
-- Accepted source HEAD: `42891e51c576527f5273ab6929c1498e94eb4346`
+- Accepted source HEAD: `e29be39646625b0b78c43ee3fae883b86abefc72`
 - Luna current-package terminal reviewed: `688cced77bd899222095757ce5b1f48f8112cb59`
 - Sol verdict: `SOL_PACKAGE_REVIEW_PASS`
 
@@ -39,7 +39,7 @@ Generic validation, generation, schema-generation and CLI subprocedures inside `
 ## Remaining blockers
 
 - `PROJECT_INPUT_REQUIRED`: all 18 tasks.
-- `PROJECT_DESIGN_REQUIRED`: 17 tasks at current package classification level.
+- `PROJECT_DESIGN_REQUIRED`: all 18 tasks at current package classification level, including `COM-016` with required project-design items `configuration_scope`, `build_ownership`, `artifact_manifest_policy` and `target_or_virtual_execution_scope`; selected value remains `none`.
 - Aggregate execution closure: `COM-018` remains `EXECUTION_EVIDENCE_REQUIRED`.
 
 No Management ECU-specific signal/frame identity, position, length, transfer property, timing, route, CAN/CAN FD setting, build value, expected trace, verdict or coverage is introduced by publication.
