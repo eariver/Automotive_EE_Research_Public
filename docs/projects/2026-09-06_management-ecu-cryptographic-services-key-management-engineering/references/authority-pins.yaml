@@ -1,0 +1,92 @@
+schema_version: "management-ecu-crypto-authority-pins/v1"
+artifact: "Management ECU Crypto — Exact Authority Pins"
+status: "FIXED_REVIEWED_AUTHORITY"
+technical_evidence_policy:
+  mode: "PINNED_ONLY"
+  no_floating_main_or_branch: true
+  no_new_research_in_this_unit: true
+  forbidden_as_new_technical_evidence:
+    - "Web/current vendor documentation"
+    - "raw AUTOSAR PDF"
+    - "raw Vector HELP"
+    - "floating upstream head"
+    - "generic AUTOSAR or Vector knowledge"
+
+authority_pins:
+  autosar_crypto:
+    role: "direct AUTOSAR Crypto semantic authority"
+    repository: "eariver/Research_AUTOSAR_CP_Documents"
+    exact_commit: "9903efc816f8589d865e36f26f7fe44fb27c62b9"
+    path: "docs/knowledge/management-ecu-crypto-autosar-semantic-depth.md"
+    blob: "4cb5eaba08ee7cba5d89bef67ee0174bd31997b7"
+    disposition: "AUTOSAR_CRYPTO_SERVICES_KEY_MANAGEMENT_GENERIC_AUTHORITY_SOL_REVIEWED"
+    release_scope: "AUTOSAR Classic Platform 4.4.0 / R18-10 family"
+  vector_crypto:
+    role: "Sol-reviewed Vector/MICROSAR Crypto procedure authority"
+    repository: "eariver/Research_Vector_Documents"
+    exact_commit: "aab6c3f9ad60493b6176ff0ad9b7f25dcc37b1fe"
+    path: "docs/knowledge/management-ecu-crypto-vector-procedure.md"
+    review_checkpoint: "docs/checkpoints/2026-09-06_sol-management-ecu-crypto-vector-procedure-review.md"
+    luna_evidence_terminal: "90d75b9c3afd96ba5bb6dca000fd042674e85206"
+    product_scope: "DaVinci Configurator Classic 6.3.10 user-manual scope"
+    classification_counts:
+      EXACT_PRODUCT_PROCEDURE_AVAILABLE: 0
+      PARTIAL_PRODUCT_PROCEDURE_AVAILABLE: 0
+      SURFACE_ONLY: 0
+      NO_EXPLICIT_REVIEWED_PROCEDURE: 6
+      OUTSIDE_AUTHORIZED_PRODUCT_SCOPE: 2
+      TOTAL: 8
+    six_no_explicit_slices:
+      - "CSM configuration"
+      - "CryIf channel/key mapping"
+      - "Crypto Driver Object/key/key-element configuration"
+      - "KeyM key/certificate configuration"
+      - "DCM Authentication 0x29 -> CSM/KeyM product integration"
+      - "Crypto-specific validation/generation/artifact procedure"
+    two_outside_scope_slices:
+      - "HSM/SHE/Crypto Driver implementation realization"
+      - "provisioning/population/runtime-evidence procedure"
+    exact_generic_supporting_procedures:
+      - "dvcfg-b project validate -p=\"/Path/To/DaVinci/Project\" -b=\"/Path/To/BSW/Package\""
+      - "dvcfg-b project generate -p=\"/Path/To/DaVinci/Project\" -b=\"/Path/To/BSW/Package\""
+      - "dvcfg-b project generate-schema -p=\"/Path/To/DaVinci/Project\" -b=\"/Path/To/BSW/Package\""
+      - "generic CLI status/exit-code context"
+      - "generic CI workflow context"
+  downstream_integration_baseline:
+    role: "existing Management ECU Crypto integration baseline"
+    repository: "eariver/Automotive_EE_Engineering_Knowledge"
+    exact_commit: "b4dd1d40b0abe4fa7a18211808b1cc6df41d1997"
+    path: "docs/knowledge/management-ecu-crypto-authority-integration-baseline.md"
+    checkpoint: "docs/checkpoints/2026-09-06_sol-management-ecu-crypto-authority-integration-baseline.md"
+  project_requirement_context:
+    role: "read-only Management ECU project requirement context"
+    repository: "eariver/Automotive_EE_Engineering_Knowledge"
+    exact_commit: "690b23a6d5f08713fc88f3ef251a041e4c9ec4d8"
+    path: "docs/projects/2026-09-02_management-ecu-lv3-vecu-application-swc-engineering/references/project/requirement-baseline.yaml"
+    authority_role: "project requirement context, not Crypto technical authority"
+    current_crypto_consumer_adoption: "none specified"
+  uds_boundary_context:
+    role: "read-only UDS diagnostic ownership/boundary continuity context"
+    repository: "eariver/Automotive_EE_Engineering_Knowledge"
+    exact_commit: "b1835a0df8803a0ee2483e553f4c9089d1807179"
+    path: "docs/projects/2026-09-02_management-ecu-uds-on-can-diagnostic-engineering/"
+    authority_role: "diagnostic responsibility/boundary continuity, not Crypto technical authority"
+
+consumption_layer:
+  existing_navigation_anchors:
+    - "CG-004"
+    - "CG-007"
+  mutation_in_this_unit: false
+  note: "Existing Consumption Layer routes are consumed as context; no new Engineering Goal ID or global graph rewrite is created."
+
+write_scope:
+  exact_file_count: 8
+  paths:
+    - "docs/projects/2026-09-06_management-ecu-cryptographic-services-key-management-engineering/README.md"
+    - "docs/projects/2026-09-06_management-ecu-cryptographic-services-key-management-engineering/20260906_ManagementECU_Crypto_Project_Scope.md"
+    - "docs/projects/2026-09-06_management-ecu-cryptographic-services-key-management-engineering/references/authority-pins.yaml"
+    - "docs/projects/2026-09-06_management-ecu-cryptographic-services-key-management-engineering/references/project/crypto-project-input-baseline.yaml"
+    - "docs/projects/2026-09-06_management-ecu-cryptographic-services-key-management-engineering/baseline/crypto-task-baseline.yaml"
+    - "docs/projects/2026-09-06_management-ecu-cryptographic-services-key-management-engineering/baseline/crypto-research-gap-backlog.yaml"
+    - "docs/projects/2026-09-06_management-ecu-cryptographic-services-key-management-engineering/20260906_ManagementECU_Crypto_Baseline_Report.md"
+    - "docs/projects/2026-09-06_management-ecu-cryptographic-services-key-management-engineering/checkpoints/2026-09-06_luna-management-ecu-crypto-baseline-compilation.md"
