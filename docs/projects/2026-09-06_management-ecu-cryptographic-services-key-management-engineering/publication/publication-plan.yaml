@@ -1,0 +1,105 @@
+schema_version: "management-ecu-cryptographic-services-key-management-publication-plan/v1"
+date: "2026-09-07"
+status: "SOL_REVIEWED_STAGED"
+project: "Management ECU Cryptographic Services & Key Management Engineering"
+private_source:
+  repository: "eariver/Automotive_EE_Engineering_Knowledge"
+  branch: "work/sol-management-ecu-crypto-current-package-review-20260906"
+  accepted_source_head: "adbeef4d3916d76e23b6b3c866543796af522090"
+  luna_current_package_terminal: "67ef5893915f3c7998964938d78226ed04b6c6a6"
+  luna_exact_starting_sha: "23581e4da3fded3ebef7648cb176507fc2cc451d"
+  sol_review_verdict: "MANAGEMENT_ECU_CRYPTO_CURRENT_PACKAGE_SOL_REVIEW_PASS"
+public:
+  repository: "eariver/Automotive_EE_Research_Public"
+  branch: "publish/management-ecu-cryptographic-services-key-management-engineering-20260906"
+  base_main_sha: "183d9dc0ab120484e4018e530a33e5b291bd7baa"
+  main_merged: false
+source_bundle_policy:
+  source_derived_content_preserved: true
+  matrix_transfer_method: "semantic reconstruction from exact private fixed-head content because cross-repository Git blob reuse is unavailable"
+  matrix_private_blob_identity_not_claimed_for_public_blob: true
+  upstream_reviewed_knowledge: "LOCATOR_ONLY"
+  raw_vendor_or_standard_sources: "EXCLUDED"
+  internal_luna_material: "EXCLUDED"
+  historical_baseline_research_artifacts: "EXCLUDED_FROM_CURRENT_CONSUMPTION_BUNDLE"
+  confidential_project_values: "EXCLUDED"
+  secret_private_material: "EXCLUDED"
+reviewed_authority:
+  autosar_crypto:
+    exact_commit: "9903efc816f8589d865e36f26f7fe44fb27c62b9"
+    path: "docs/knowledge/management-ecu-crypto-autosar-semantic-depth.md"
+    blob: "4cb5eaba08ee7cba5d89bef67ee0174bd31997b7"
+  vector_crypto:
+    exact_commit: "aab6c3f9ad60493b6176ff0ad9b7f25dcc37b1fe"
+    path: "docs/knowledge/management-ecu-crypto-vector-procedure.md"
+    reviewed_product_scope: "DaVinci Configurator Classic 6.3.10 user-manual scope"
+    crypto_specific_slice_counts:
+      NO_EXPLICIT_REVIEWED_PROCEDURE: 6
+      OUTSIDE_AUTHORIZED_PRODUCT_SCOPE: 2
+      TOTAL: 8
+final_availability_counts:
+  WORKFLOW_ONLY: 1
+  NO_EXPLICIT_REVIEWED_PROCEDURE: 14
+  OUTSIDE_AUTHORIZED_PRODUCT_SCOPE: 3
+  total: 18
+secondary_blockers:
+  PROJECT_INPUT_REQUIRED:
+    count: 6
+    tasks: ["CRY-001", "CRY-011", "CRY-012", "CRY-013", "CRY-017", "CRY-018"]
+  PROJECT_DESIGN_REQUIRED:
+    count: 12
+    tasks: ["CRY-002", "CRY-003", "CRY-004", "CRY-005", "CRY-006", "CRY-007", "CRY-008", "CRY-009", "CRY-010", "CRY-014", "CRY-015", "CRY-016"]
+  VENDOR_HARDWARE_AUTHORITY_REQUIRED: ["CRY-016"]
+  CONDITIONAL_VENDOR_HARDWARE_DEPENDENCY: ["CRY-017", "CRY-018"]
+  EXECUTION_EVIDENCE_REQUIRED: ["CRY-018"]
+source_derived_roles:
+  - "project README"
+  - "Project Scope"
+  - "Development Methodology"
+  - "Step-by-Step Guide"
+  - "Tool / Task / Reference Matrix"
+  - "State & Evidence Model"
+  - "Execution Reference Guide"
+  - "Procedure Coverage Matrix"
+  - "Reference Index"
+  - "Current Package Compilation Report"
+  - "Sol fixed-head review"
+  - "authority pins"
+  - "publication-safe unresolved project input baseline"
+retained_boundaries:
+  - "CSM service request remains separate from Crypto Job and configured primitive"
+  - "CsmKey, CryIfKey, CryptoKey, CryptoKeyType and CryptoKeyElement remain distinct identities"
+  - "CryIf channel remains separate from Crypto Driver Object"
+  - "configured/reference, provisioned/populated, valid, available, selected/referenced, actually used and persisted remain separate states"
+  - "KeyM certificate status remains separate from consumer authorization"
+  - "DCM Authentication 0x29 remains separate from SecurityAccess 0x27 and universal diagnostic authorization"
+  - "random/random-seed API remains separate from entropy source, entropy quality, seed provenance and randomness certification"
+  - "AUTOSAR semantics, Vector/MICROSAR realization, vendor/hardware realization, project design and runtime evidence remain separate"
+  - "configuration, validation, generation, compile/link and runtime execution remain separate"
+  - "cryptographic result, consumer acceptance, test verdict and coverage remain separate"
+conditional_adoption:
+  Authentication_0x29: "NOT_ADOPTED_WITHOUT_PROJECT_EVIDENCE"
+  SecOC: "NOT_ADOPTED_WITHOUT_PROJECT_EVIDENCE"
+  KeyM_certificate_use: "NOT_ADOPTED_WITHOUT_PROJECT_EVIDENCE"
+  HSM_or_SHE: "NOT_ADOPTED_WITHOUT_PROJECT_EVIDENCE"
+  hardware_backed_crypto: "NOT_ASSUMED"
+  provisioning_backend: "NOT_SELECTED"
+  entropy_source: "NOT_INFERRED_FROM_RANDOM_API"
+promotion_gates:
+  - "Luna current-package fixed-head technical review PASS"
+  - "Sol current-package fixed-head review PASS"
+  - "AUTOSAR Crypto and Vector/MICROSAR authority exact-pinned and Sol-reviewed"
+  - "CRY-001 through CRY-018 cardinality retained in both public matrices"
+  - "Procedure availability remains 1 WORKFLOW_ONLY / 14 NO_EXPLICIT / 3 OUTSIDE"
+  - "Project, vendor and execution blockers remain separate"
+  - "No Authentication 0x29 or SecOC adoption is inferred"
+  - "No HSM/SHE implementation or entropy quality is inferred"
+  - "No secret/private/project-specific Crypto material is published"
+  - "Public source bundle contains no Luna prompt/worklog/observation or raw upstream source"
+  - "Public main remains unchanged unless human explicitly approves merge"
+validation:
+  source_derived_file_count: 13
+  publication_generated_file_count: 2
+  expected_total_package_file_count: 15
+  technical_package_staged: true
+  main_merged: false
