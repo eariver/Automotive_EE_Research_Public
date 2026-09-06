@@ -1,0 +1,171 @@
+schema_version: 2
+project: management-ecu-can-signal-ipdu-communication-engineering
+status: SOL_CURRENT_PACKAGE_AUTHORITY_PINNED
+date: 2026-09-06
+
+inherited_downstream:
+  repository: eariver/Automotive_EE_Engineering_Knowledge
+  branch: work/management-ecu-os-rte-timing-scheduling-engineering-20260905
+  exact_head: 161a6cd36bda3ef59ab7ace3e0ef3c69e4e9fd2a
+  usage: lineage_context_only
+
+primary_reviewed_authority:
+  repository: eariver/Research_AUTOSAR_CP_Documents
+  branch: work/sol-gc10-network-detail-deepening-review-20260830
+  exact_commit: 8c67ddc4cc6ce4bba1881a879b933cf2b751d733
+  exact_commit_tree: dc9420c0bf8ab3a8e206b26b0cf1286b623bdf6f
+  platform_release: AUTOSAR_Classic_4.4.0
+  policy: only_SOL_REVIEWED_knowledge_at_this_exact_commit
+
+focused_autosar_semantic_authority:
+  repository: eariver/Research_AUTOSAR_CP_Documents
+  branch: work/sol-management-ecu-can-signal-ipdu-autosar-semantic-depth-review-20260906
+  exact_commit: fc05fc7824d56b1a34eaf42e3d50150ff70a789d
+  reviewed_knowledge: docs/knowledge/management-ecu-can-signal-ipdu-autosar-semantic-depth.md
+  status: SOL_REVIEWED
+  scope:
+    - COM-004
+    - COM-005
+    - COM-006
+    - COM-008
+    - COM-009
+    - COM-010
+  use: focused_COM_semantics_and_Vector_handoff_checklist
+
+vector_product_procedure_authority:
+  repository: eariver/Research_Vector_Documents
+  branch: work/sol-management-ecu-can-signal-ipdu-vector-procedure-review-20260906
+  exact_commit: 138dba4d76bc9cf7fadec1ee818aa7e6b9db4b70
+  reviewed_knowledge: docs/knowledge/management-ecu-com-vector-procedure.md
+  review_checkpoint: docs/checkpoints/2026-09-06_sol-management-ecu-com-vector-procedure-review.md
+  product: DaVinci_Configurator_Classic_6.3.10
+  status: SOL_REVIEWED
+  scope:
+    - COM-004
+    - COM-005
+    - COM-006
+    - COM-008
+    - COM-009
+    - COM-010
+    - COM-016
+  use: product_configuration_validation_generation_and_documentation_scope_boundary
+
+reviewed_entries:
+  - path: docs/knowledge/concepts/sender-receiver-model-runtime-boundary.json
+    blob_sha: 37c05da9630b4682c4cfb7a2f2fee90c83a99bbe
+    use: COM_002_sender_receiver_model_runtime_boundary
+  - path: docs/knowledge/concepts/swc-port-interface-connector-model-boundary.json
+    blob_sha: a418bb4bf06170159567439b1e244eba07da0a72
+    use: COM_002_port_interface_connector_boundary
+  - path: docs/knowledge/workflows/sender-receiver-model-to-runtime-access.json
+    blob_sha: 64fd5d9a515b1a6156e07ed39026a42360f37417
+    use: COM_002_sender_receiver_runtime_access
+  - path: docs/knowledge/workflows/system-to-ecu-configuration.json
+    blob_sha: d18f65665801eac666f5457d480ce59d1f934815
+    use: COM_003_system_to_ecu_configuration
+  - path: docs/knowledge/artifacts/ecu-extract.json
+    blob_sha: adb75abaa32566d1ca2d12a9244f6399522d568d
+    use: COM_003_ecu_extract_artifact_boundary
+  - path: docs/knowledge/artifacts/ecu-configuration-values.json
+    blob_sha: 3b41073d64f100ff44372f65dfd6b229150453bc
+    use: COM_003_ecu_configuration_values_artifact_boundary
+  - path: docs/knowledge/concepts/can-communication-modeling-boundary.json
+    blob_sha: b5251a8b005076f90684d213d070db074bbdbd79
+    use: COM_001_COM_003_COM_015_can_signal_pdu_frame_modeling
+  - path: docs/knowledge/workflows/can-signal-ipdu-data-path.json
+    blob_sha: fecf3d21c0f5068bf604e0d18a45301a2cd221c0
+    use: COM_001_COM_004_COM_005_COM_007_COM_008_COM_012_COM_013_COM_014_data_path
+  - path: docs/knowledge/concepts/pdur-if-tp-gateway-boundary.json
+    blob_sha: e246bf29ef9004f0a588375fccb9b6a281073cc3
+    use: COM_012_if_tp_routing_boundary
+  - path: docs/knowledge/concepts/can-hardware-abstraction-ownership.json
+    blob_sha: c6ee6de178662a076c97e64c29aad8d525288d18
+    use: COM_013_COM_014_canif_candrv_hardware_ownership
+  - path: docs/knowledge/goal-maps/configure-and-trace-can-communication.json
+    blob_sha: 0946e79ece6b8c5417b398ea55b42626044ceb32
+    use: COM_001_COM_003_COM_007_COM_008_COM_013_COM_014_navigation
+  - path: docs/knowledge/goal-maps/configure-ecu-from-system-description.json
+    blob_sha: 5349a926173f695057595752c84bca6e0fb96039
+    use: COM_003_system_ecu_navigation
+
+boundary_only_reviewed_entries:
+  - path: docs/knowledge/workflows/can-transport-protocol-path.json
+    blob_sha: efeb8e8b68da673786b0eb2e83aa7ba8f177ef56
+    use: CanTp_conditional_branch_not_minimal_signal_path
+  - path: docs/knowledge/concepts/ipdum-conditional-processing-boundary.json
+    blob_sha: c011de43607e207560070582eff5e7394b9c1bc1
+    use: IpduM_conditional_not_universal
+  - path: docs/knowledge/workflows/ipdum-multiplex-container-path.json
+    blob_sha: fc8cd7bd1a78f741f1fefc97538bc7437534cf06
+    use: IpduM_specialty_path_boundary
+  - path: docs/knowledge/concepts/secoc-communication-protection-ownership.json
+    blob_sha: 6e95583bbd87797b7cbd0d257a0da11d71494693
+    use: SecOC_security_boundary_not_in_current_scope
+  - path: docs/knowledge/workflows/secoc-protected-ipdu-path.json
+    blob_sha: 3cac86f599fcd5087a82f3c643cff24bb6c2a3f7
+    use: SecOC_conditional_path_boundary
+  - path: docs/knowledge/concepts/com-based-transformer-serialization-boundary.json
+    blob_sha: 4aeb8ba88666562710c02fc2513c750e4d77c0be
+    use: transformer_boundary_not_silently_inserted
+  - path: docs/knowledge/workflows/com-signal-gateway-routing.json
+    blob_sha: 8a4363c0eef320133c05ce51628841ee5390813b
+    use: COM_signal_gatewaying_distinct_from_PduR_routing_and_not_project_assumption
+  - path: docs/knowledge/concepts/can-communication-mode-ownership.json
+    blob_sha: 9842906b945d2c56dcac89e45c5660bce45a910a
+    use: ComM_CanSM_state_plane_out_of_scope_boundary
+
+fixed_vector_task_classification:
+  COM-004: PARTIAL_PRODUCT_PROCEDURE_AVAILABLE
+  COM-005: PARTIAL_PRODUCT_PROCEDURE_AVAILABLE
+  COM-006: SURFACE_ONLY
+  COM-008: SURFACE_ONLY
+  COM-009: NO_EXPLICIT_REVIEWED_PROCEDURE
+  COM-010: PARTIAL_PRODUCT_PROCEDURE_AVAILABLE
+  COM-016: PARTIAL_PRODUCT_PROCEDURE_AVAILABLE
+
+exact_vector_subprocedures:
+  - generic_project_validation
+  - generic_project_generation
+  - generic_schema_generation
+  - generic_CLI_domain_and_exit_code_context
+
+current_gap_statement:
+  generic_CAN_architecture_and_navigation: REVIEWED_AUTHORITY_AVAILABLE
+  sender_receiver_and_system_ecu_mapping: REVIEWED_AUTHORITY_AVAILABLE
+  minimal_non_TP_data_path: REVIEWED_AUTHORITY_AVAILABLE
+  detailed_COM_transfer_invalid_timeout_ipdugroup_semantics: SOL_REVIEWED_AUTHORITY_AVAILABLE
+  vector_microsar_COM_procedure: SOL_REVIEWED_AT_CONFIGURATOR_6_3_10_SCOPE
+  vector_documentation_negatives: RETAIN_AS_BOUNDED_LIMITS_NOT_CAPABILITY_ABSENCE
+  current_package_compilation: REQUIRED_NEXT
+  project_mapping_and_values: PROJECT_INPUT_REQUIRED
+  generation_build_runtime_bus_evidence: EXECUTION_EVIDENCE_REQUIRED
+
+generic_research_state:
+  AUTOSAR_COM_semantic_depth: CLOSED_AT_REVIEWED_SCOPE
+  Vector_COM_product_procedure: CLOSED_AT_REVIEWED_6_3_10_SCOPE
+  broad_research_reopen_policy: prohibited_without_new_explicit_authority_or_scope
+
+source_exclusions:
+  - floating_upstream_heads
+  - raw_AUTOSAR_PDFs_during_downstream_compilation
+  - raw_Vector_HELP_during_downstream_compilation
+  - Web_or_current_vendor_docs
+  - generic_model_knowledge
+  - sibling_worklogs_or_prompts_as_technical_authority
+  - unreviewed_Luna_observations_as_technical_authority
+  - inferred_Vector_GUI_from_AUTOSAR_names
+  - invented_Management_ECU_values
+
+retained_rules:
+  - Application_data_element_port_COM_Signal_SignalGroup_and_IPDU_remain_distinct
+  - System_Description_ECU_Extract_ECU_Configuration_Values_generated_artifact_and_runtime_state_remain_distinct
+  - COM_signal_gatewaying_and_PduR_IPDU_routing_remain_distinct
+  - COM_configuration_PduR_CanIf_and_CanDrv_remain_distinct
+  - transfer_property_Tx_mode_repetition_and_configured_timing_remain_distinct
+  - update_bit_filter_invalid_handling_and_timeout_handling_remain_distinct
+  - COM_IPDU_Group_control_ComM_mode_CanSM_state_and_physical_bus_state_remain_distinct
+  - configured_callback_executed_callback_and_application_consumption_remain_distinct
+  - ComTxTimeBase_OS_Task_schedule_and_measured_CAN_timing_remain_distinct
+  - CanTp_IpduM_SecOC_and_transformers_are_conditional_not_universal
+  - dual_CAN_does_not_imply_gateway
+  - configuration_validation_generation_compile_link_runtime_trace_requirement_verdict_and_coverage_remain_distinct
