@@ -1,0 +1,840 @@
+schema_version: 1
+document: management_ecu_can_signal_ipdu_tool_task_reference_matrix
+date: 2026-09-06
+status: LUNA_CURRENT_PACKAGE_COMPILATION_PROPOSAL
+repository: eariver/Automotive_EE_Engineering_Knowledge
+execution_branch: work/luna-management-ecu-can-signal-ipdu-current-package-compilation-20260906
+exact_starting_sha: 4df6a57dfa233ed803578ac9802117d13f6564ff
+task_count: 18
+task_id_contract: COM-001 through COM-018 exactly once
+
+authority_fence:
+  primary_architecture_workflow:
+    repository: eariver/Research_AUTOSAR_CP_Documents
+    exact_commit: 8c67ddc4cc6ce4bba1881a879b933cf2b751d733
+    release: AUTOSAR_Classic_4.4.0
+    policy: only_SOL_REVIEWED_knowledge_at_this_exact_commit
+  focused_com_semantics:
+    repository: eariver/Research_AUTOSAR_CP_Documents
+    exact_commit: fc05fc7824d56b1a34eaf42e3d50150ff70a789d
+    reviewed_knowledge: docs/knowledge/management-ecu-can-signal-ipdu-autosar-semantic-depth.md
+    release: AUTOSAR_Classic_4.4.0_R18-10
+    policy: SOL_REVIEWED_focused_COM_semantic_authority
+  vector_com_procedure:
+    repository: eariver/Research_Vector_Documents
+    exact_commit: 138dba4d76bc9cf7fadec1ee818aa7e6b9db4b70
+    reviewed_knowledge: docs/knowledge/management-ecu-com-vector-procedure.md
+    product: DaVinci_Configurator_Classic_6.3.10
+    policy: SOL_REVIEWED_product_procedure_authority
+  project_input_control:
+    repository: eariver/Automotive_EE_Engineering_Knowledge
+    path: docs/projects/2026-09-06_management-ecu-can-signal-ipdu-communication-engineering/references/project/can-signal-ipdu-communication-project-input-baseline.yaml
+    status: UNRESOLVED_PROJECT_INPUT
+    role: control_input_not_technical_authority
+
+primary_availability_labels:
+  - EXACT_PROCEDURE_AVAILABLE
+  - PARTIAL_PROCEDURE_AVAILABLE
+  - SURFACE_ONLY
+  - NO_EXPLICIT_PROCEDURE_IN_REVIEWED_SOURCE
+  - WORKFLOW_ONLY
+  - EXECUTION_EVIDENCE_REQUIRED
+
+project_blocker_labels:
+  - PROJECT_INPUT_REQUIRED
+  - PROJECT_DESIGN_REQUIRED
+  - EXECUTION_EVIDENCE_REQUIRED
+
+primary_availability_counts:
+  EXACT_PROCEDURE_AVAILABLE: 0
+  PARTIAL_PROCEDURE_AVAILABLE: 4
+  SURFACE_ONLY: 2
+  NO_EXPLICIT_PROCEDURE_IN_REVIEWED_SOURCE: 1
+  WORKFLOW_ONLY: 10
+  EXECUTION_EVIDENCE_REQUIRED: 1
+  total: 18
+
+tasks:
+  - task_id: COM-001
+    task_title: CAN communication architecture, ownership and data-path baseline
+    engineering_intent: Establish a reviewed navigation boundary from application/RTE-facing communication through COM, PduR, CanIf and CanDrv to the CAN controller without treating it as a configured route or universal call sequence.
+    lifecycle_phase: architecture_and_integration_baseline
+    owner_layer: application_RTE_COM_PduR_CanIf_CanDrv_CAN_hardware_boundary
+    tool_product: AUTOSAR_reviewed_architecture_and_workflow; no_vendor_procedure_asserted
+    exact_reviewed_authority:
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: 8c67ddc4cc6ce4bba1881a879b933cf2b751d733
+        release: AUTOSAR_Classic_4.4.0
+        reviewed_knowledge: docs/knowledge/workflows/can-signal-ipdu-data-path.json
+        locator: SWS_COM p.9; SWS_PduR p.13; SWS_CANInterface p.11; SWS_CANDriver p.42; SWS_Com_00495; SWS_Can_00016
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: 8c67ddc4cc6ce4bba1881a879b933cf2b751d733
+        release: AUTOSAR_Classic_4.4.0
+        reviewed_knowledge: docs/knowledge/concepts/can-communication-modeling-boundary.json
+        locator: TPS_SystemTemplate section 3.3.1 CAN p.56; section 6 Communication p.181
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: 8c67ddc4cc6ce4bba1881a879b933cf2b751d733
+        release: AUTOSAR_Classic_4.4.0
+        reviewed_knowledge: docs/knowledge/goal-maps/configure-and-trace-can-communication.json
+        locator: TPS_SystemTemplate p.56 and p.181; reviewed minimal non-TP path
+    strongest_reviewed_workflow_or_procedure: RTE-facing signal interaction -> COM signal-oriented processing and I-PDU packing -> PduR configured I-PDU forwarding -> CanIf hardware-independent abstraction -> CanDrv controller access -> CAN hardware; CanTp, IpduM, SecOC, transformers and gatewaying remain conditional.
+    primary_procedure_availability: WORKFLOW_ONLY
+    project_input_blocker:
+      label: PROJECT_INPUT_REQUIRED
+      required: application_RTE_contract; System_Description_ECU_Extract; COM_PduR_CanIf_CanDrv_identities; CAN_or_CANFD_model
+      selected_value: none
+    project_design_blocker:
+      label: PROJECT_DESIGN_REQUIRED
+      required: route_ownership; minimal_path_or_conditional_branch_decision; gateway_responsibility_decision
+      selected_value: none
+    execution_evidence_blocker:
+      label: EXECUTION_EVIDENCE_REQUIRED
+      scope: runtime_and_bus_closure_only; no_project_execution_in_current_package
+    input_artifact_state: reviewed_generic_architecture_with_unresolved_Management_ECU_route_inputs
+    operation_activity: decompose supplied communication route by ownership and classify adjacent artifacts before any configuration selection
+    output_artifact_state: project_neutral_data_plane_baseline; no_configured_object_value_timing_or_bus_result
+    exit_condition: each route identity is supplied by project evidence or remains explicitly blocked while the non-collapsed architecture is retained
+    next_handoff: application_RTE_and_system_mapping_then_COM_and_lower_layer_ownership
+    retained_boundary_or_documentation_negative: "COM != PduR != CanIf != CanDrv; COM signal gatewaying != PduR I-PDU routing; reviewed navigation is not a universal synchronous API trace"
+    next_promotion_evidence: accepted_route_map; ECU_Extract_and_ECU_Configuration_Values; separate_configuration_generation_build_runtime_and_bus_evidence
+
+  - task_id: COM-002
+    task_title: Application Sender/Receiver interface to RTE communication boundary
+    engineering_intent: Preserve the distinction between application data elements, Sender/Receiver ports/interfaces/connectors, modeled access declarations and generated RTE-facing runtime access.
+    lifecycle_phase: software_component_contract_and_RTE_realization_boundary
+    owner_layer: application_SW-C_and_RTE
+    tool_product: AUTOSAR_reviewed_Sender_Receiver_and_RTE_workflow; no_vendor_procedure_asserted
+    exact_reviewed_authority:
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: 8c67ddc4cc6ce4bba1881a879b933cf2b751d733
+        release: AUTOSAR_Classic_4.4.0
+        reviewed_knowledge: docs/knowledge/concepts/sender-receiver-model-runtime-boundary.json
+        locator: TPS_SoftwareComponentTemplate p.520; SRS_RTE p.45; SWS_RTE p.500; SRS_Rte_00028; SWS_Rte_03574
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: 8c67ddc4cc6ce4bba1881a879b933cf2b751d733
+        release: AUTOSAR_Classic_4.4.0
+        reviewed_knowledge: docs/knowledge/concepts/swc-port-interface-connector-model-boundary.json
+        locator: TPS_SoftwareComponentTemplate p.80; SRS_RTE p.20
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: 8c67ddc4cc6ce4bba1881a879b933cf2b751d733
+        release: AUTOSAR_Classic_4.4.0
+        reviewed_knowledge: docs/knowledge/workflows/sender-receiver-model-to-runtime-access.json
+        locator: TPS_SoftwareComponentTemplate p.520; SWS_RTE p.500; SRS_Rte_00098; SWS_Rte_03574
+    strongest_reviewed_workflow_or_procedure: identify SenderReceiverInterface data elements and connected ports, classify explicit DataSendPoint/DataReceivePoint versus implicit DataReadAccess/DataWriteAccess, then retain point-in-execution or snapshot/write-back behavior and the reviewed category constraint.
+    primary_procedure_availability: WORKFLOW_ONLY
+    project_input_blocker:
+      label: PROJECT_INPUT_REQUIRED
+      required: SWC_port_interface_connector_data_element_direction_and_multiplicity
+      selected_value: none
+    project_design_blocker:
+      label: PROJECT_DESIGN_REQUIRED
+      required: explicit_or_implicit_access_choice; category_validity; application_update_semantics
+      selected_value: none
+    execution_evidence_blocker:
+      label: EXECUTION_EVIDENCE_REQUIRED
+      scope: generated_RTE_access_and_application_consumption_not_observed
+    input_artifact_state: unresolved_application_communication_contract; reviewed_model_runtime_distinction_available
+    operation_activity: map only supplied model elements to RTE-facing access declarations while retaining explicit_or_implicit category
+    output_artifact_state: application_to_RTE_access_map_without_COM_renaming_or_generated_C_API_claim
+    exit_condition: each accepted access has explicit model identity and category decision, or remains PROJECT_INPUT_REQUIRED
+    next_handoff: system_ECU_mapping_and_separately_established_COM_object_identity
+    retained_boundary_or_documentation_negative: "application data element != Sender/Receiver port/interface != RTE runtime access; modeled port/interface/connector != generated C API, buffer or transport object"
+    next_promotion_evidence: accepted_SW-C_RTE_model; category_valid_access_decision; generated_RTE_mapping; runtime_access_observation
+
+  - task_id: COM-003
+    task_title: System Description, ECU Extract and ECU-specific communication mapping
+    engineering_intent: Trace system-level CAN communication information into the ECU-specific work-product boundary without collapsing System Description, ECU Extract and ECU Configuration Values.
+    lifecycle_phase: system_to_ECU_integration_and_configuration_preparation
+    owner_layer: System_Template_Methodology_ECU_configuration_RTE_BSW_integration
+    tool_product: AUTOSAR_reviewed_system_to_ECU_work_product_workflow; no_vendor_procedure_asserted
+    exact_reviewed_authority:
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: 8c67ddc4cc6ce4bba1881a879b933cf2b751d733
+        release: AUTOSAR_Classic_4.4.0
+        reviewed_knowledge: docs/knowledge/workflows/system-to-ecu-configuration.json
+        locator: TR_Methodology p.79; TPS_ECUConfiguration p.16; TPS_SystemTemplate p.571
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: 8c67ddc4cc6ce4bba1881a879b933cf2b751d733
+        release: AUTOSAR_Classic_4.4.0
+        reviewed_knowledge: docs/knowledge/artifacts/ecu-extract.json
+        locator: TR_Methodology p.84; TPS_SystemTemplate p.571; TPS_SWCT p.665; TPS_SYST_01139
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: 8c67ddc4cc6ce4bba1881a879b933cf2b751d733
+        release: AUTOSAR_Classic_4.4.0
+        reviewed_knowledge: docs/knowledge/artifacts/ecu-configuration-values.json
+        locator: TPS_ECUConfiguration p.24; TR_Methodology p.481; SWS_RTE p.88
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: 8c67ddc4cc6ce4bba1881a879b933cf2b751d733
+        release: AUTOSAR_Classic_4.4.0
+        reviewed_knowledge: docs/knowledge/goal-maps/configure-ecu-from-system-description.json
+        locator: TR_Methodology pp.79-86; TPS_ECUConfiguration p.16; SWS_RTE p.88
+    strongest_reviewed_workflow_or_procedure: identify the system work-product role, derive or use an ECU Extract for one EcuInstance, combine ECU-specific system information with BSW integration information, refine ECU Configuration Values, then prepare BSW/RTE generation.
+    primary_procedure_availability: WORKFLOW_ONLY
+    project_input_blocker:
+      label: PROJECT_INPUT_REQUIRED
+      required: System_Description_version; ECU_Extract_identity; cluster_channel_and_signal_mapping; ECU_responsibility
+      selected_value: none
+    project_design_blocker:
+      label: PROJECT_DESIGN_REQUIRED
+      required: target_ECU_scope; mapping_authority; work_product_refinement_path
+      selected_value: none
+    execution_evidence_blocker:
+      label: EXECUTION_EVIDENCE_REQUIRED
+      scope: generated_ECU_configuration_and_runtime_closure_not_observed
+    input_artifact_state: System_Description_and_ECU_mapping_baseline_unresolved
+    operation_activity: keep system model, ECU Extract and ECU Configuration Values as separate nodes and record only supplied mappings
+    output_artifact_state: work_product_navigation_and_empty_project_mapping_boundary
+    exit_condition: one ECU-specific communication view and its source artifacts are accepted, or each missing project element remains explicitly blocked
+    next_handoff: COM_object_mapping_and_configuration_generation_preparation
+    retained_boundary_or_documentation_negative: "System Description != ECU Extract != ECU Configuration Values; intermediate refinement work products are not asserted as mandatory for every project"
+    next_promotion_evidence: accepted_System_Description_and_ECU_Extract; explicit_mapping_review; ECU_Configuration_Values; traceable_configuration_inputs
+
+  - task_id: COM-004
+    task_title: COM Signal, SignalGroup and GroupSignal semantics and ownership
+    engineering_intent: Establish reviewed COM signal-oriented ownership while keeping COM Signal, GroupSignal, SignalGroup, application data and I-PDU identities distinct.
+    lifecycle_phase: COM_model_and_signal_configuration
+    owner_layer: COM_with_upstream_RTE_application_and_downstream_PduR_boundary
+    tool_product: DaVinci_Configurator_Classic_6.3.10_aggregated_PDU_surface_only_at_partial_maturity
+    exact_reviewed_authority:
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: fc05fc7824d56b1a34eaf42e3d50150ff70a789d
+        release: AUTOSAR_Classic_4.4.0_R18-10
+        reviewed_knowledge: docs/knowledge/management-ecu-can-signal-ipdu-autosar-semantic-depth.md
+        locator: section 2; section 3; section 3.1; section 4
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: 8c67ddc4cc6ce4bba1881a879b933cf2b751d733
+        release: AUTOSAR_Classic_4.4.0
+        reviewed_knowledge: docs/knowledge/workflows/can-signal-ipdu-data-path.json
+        locator: SWS_COM p.9; SWS_COM p.15; SWS_Com_00495
+      - repository: eariver/Research_Vector_Documents
+        exact_commit: 138dba4d76bc9cf7fadec1ee818aa7e6b9db4b70
+        product: DaVinci_Configurator_Classic_6.3.10
+        reviewed_knowledge: docs/knowledge/management-ecu-com-vector-procedure.md
+        locator: section 2.1; section 3; section 6
+    strongest_reviewed_workflow_or_procedure: use explicit COM container/reference semantics and model normal shadow-buffer group access XOR configured UINT8-array access; retain the reviewed PDU Editor as an aggregated product surface rather than assigning COM ownership by inference.
+    primary_procedure_availability: PARTIAL_PROCEDURE_AVAILABLE
+    project_input_blocker:
+      label: PROJECT_INPUT_REQUIRED
+      required: ComSignal_ComGroupSignal_ComSignalGroup_ComIPdu_identity_and_references; System_Template_foreign_references
+      selected_value: none
+    project_design_blocker:
+      label: PROJECT_DESIGN_REQUIRED
+      required: group_access_branch; object_ownership; application_to_COM_linkage
+      selected_value: none
+    execution_evidence_blocker:
+      label: EXECUTION_EVIDENCE_REQUIRED
+      scope: configured_object_generation_and_signal_or_group_runtime_not_observed
+    input_artifact_state: focused_COM_semantic_authority_available; concrete_COM_objects_unresolved
+    operation_activity: map only accepted object identities and foreign references; retain conditional shadow-buffer or UINT8-array branch
+    output_artifact_state: COM_object_register_with_conditional_group_access; no_selected_Management_ECU_object
+    exit_condition: object identity, references and group branch are accepted, or the missing project/design dimensions remain blocked
+    next_handoff: signal_to_I-PDU_layout_and_representation
+    retained_boundary_or_documentation_negative: "COM Signal != GroupSignal != SignalGroup != I-PDU; PDU Editor aggregated view != COM ECUC ownership proof; no complete product object-by-object mapping is claimed"
+    next_promotion_evidence: accepted_COM_semantic_mapping; accepted_project_objects; generated_configuration; group_access_runtime_observation
+
+  - task_id: COM-005
+    task_title: Signal-to-I-PDU packing, representation and positioning boundary
+    engineering_intent: Preserve the reviewed mapping and COM packing boundary without inventing bit positions, byte order, scaling or payload layout.
+    lifecycle_phase: communication_model_mapping_and_COM_I-PDU_configuration
+    owner_layer: System_Template_mapping_COM_packing_and_PduR_I-PDU_boundary
+    tool_product: DaVinci_Configurator_Classic_6.3.10_PDU_surface_only_at_partial_maturity
+    exact_reviewed_authority:
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: fc05fc7824d56b1a34eaf42e3d50150ff70a789d
+        release: AUTOSAR_Classic_4.4.0_R18-10
+        reviewed_knowledge: docs/knowledge/management-ecu-can-signal-ipdu-autosar-semantic-depth.md
+        locator: section 2; section 5; section 13
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: 8c67ddc4cc6ce4bba1881a879b933cf2b751d733
+        release: AUTOSAR_Classic_4.4.0
+        reviewed_knowledge: docs/knowledge/concepts/can-communication-modeling-boundary.json
+        locator: TPS_SystemTemplate section 3.3.1 CAN p.56; section 6 Communication p.181
+      - repository: eariver/Research_Vector_Documents
+        exact_commit: 138dba4d76bc9cf7fadec1ee818aa7e6b9db4b70
+        product: DaVinci_Configurator_Classic_6.3.10
+        reviewed_knowledge: docs/knowledge/management-ecu-com-vector-procedure.md
+        locator: section 2.1; section 3; section 7
+    strongest_reviewed_workflow_or_procedure: retain ComBitPosition, ComBitSize, ComSignalType, ComSignalLength and ComSignalEndianness as separate semantic dimensions; use the PDU product surface only as partial evidence and do not assign a signal-layout editor object by name.
+    primary_procedure_availability: PARTIAL_PROCEDURE_AVAILABLE
+    project_input_blocker:
+      label: PROJECT_INPUT_REQUIRED
+      required: ISignal_and_ISignalGroup; signal_to_I-PDU_mapping; I-PDU_to_frame_mapping; type_size_length_position_byte_order_scaling; payload_length
+      selected_value: none
+    project_design_blocker:
+      label: PROJECT_DESIGN_REQUIRED
+      required: packing_and_representation_choice; dynamic_length_branch_if_any; mapping_ownership
+      selected_value: none
+    execution_evidence_blocker:
+      label: EXECUTION_EVIDENCE_REQUIRED
+      scope: generated_layout_and_correlated_frame_not_observed
+    input_artifact_state: unresolved_signal_to_I-PDU_and_frame_mapping_and_COM_representation
+    operation_activity: reconcile only accepted project placement and representation inputs; do not derive layout from names or examples
+    output_artifact_state: mapping_and_layout_boundary_without_accepted_payload
+    exit_condition: every position, representation and length choice has accepted project input and adequate semantic authority, or remains blocked
+    next_handoff: Tx_Rx_behavior_and_CAN_frame_configuration
+    retained_boundary_or_documentation_negative: "ComBitPosition is I-PDU-relative; PDU view/length surface != signal layout proof; configured bit position/DLC != observed traffic"
+    next_promotion_evidence: accepted_mapping_artifact; detailed_COM_semantic_support; generated_configuration; payload_to_frame_correlation
+
+  - task_id: COM-006
+    task_title: Tx transfer property, transmission mode, trigger and repetition semantics
+    engineering_intent: Keep source-defined transfer behavior, I-PDU transmission mode, TMS/filter selection, repetition and cyclic timing as separate dimensions.
+    lifecycle_phase: COM_transmission_behavior_configuration
+    owner_layer: COM_Tx_processing_and_PduR_submission_boundary
+    tool_product: DaVinci_Configurator_Classic_6.3.10_generic_PDU_surface_only
+    exact_reviewed_authority:
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: fc05fc7824d56b1a34eaf42e3d50150ff70a789d
+        release: AUTOSAR_Classic_4.4.0_R18-10
+        reviewed_knowledge: docs/knowledge/management-ecu-can-signal-ipdu-autosar-semantic-depth.md
+        locator: section 6; section 7
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: 8c67ddc4cc6ce4bba1881a879b933cf2b751d733
+        release: AUTOSAR_Classic_4.4.0
+        reviewed_knowledge: docs/knowledge/workflows/com-signal-gateway-routing.json
+        locator: SWS_COM section 7.11 p.72; SWS_Com_00377; SWS_Com_00359
+      - repository: eariver/Research_Vector_Documents
+        exact_commit: 138dba4d76bc9cf7fadec1ee818aa7e6b9db4b70
+        product: DaVinci_Configurator_Classic_6.3.10
+        reviewed_knowledge: docs/knowledge/management-ecu-com-vector-procedure.md
+        locator: section 4; section 6
+    strongest_reviewed_workflow_or_procedure: preserve ComTransferProperty, ComTxModeMode/TMS, repetition number/period, cyclic offset/period and COM time-base handoff as independent concepts; the product source supplies only a generic PDU surface for this slice.
+    primary_procedure_availability: SURFACE_ONLY
+    project_input_blocker:
+      label: PROJECT_INPUT_REQUIRED
+      required: I-PDU_direction; transfer_property; Tx_mode_and_TMS_policy; repetition; period_offset; minimum_delay; trigger_and_confirmation_policy
+      selected_value: none
+    project_design_blocker:
+      label: PROJECT_DESIGN_REQUIRED
+      required: direct_cyclic_mixed_mode_choice; filter_and_TMS_design; timing_policy
+      selected_value: none
+    execution_evidence_blocker:
+      label: EXECUTION_EVIDENCE_REQUIRED
+      scope: request_processing_confirmation_and_measured_transmission_timing_absent
+    input_artifact_state: unresolved_COM_Tx_configuration_and_no_accepted_timing
+    operation_activity: classify transfer property, mode, TMS, repetition and cyclic timing independently without defaults
+    output_artifact_state: Tx_behavior_checklist_without_selected_mode_period_or_repetition
+    exit_condition: required semantic dimensions and project Tx policy are accepted, or remain blocked without downgrading the reviewed data path
+    next_handoff: Tx_request_confirmation_and_measurement_evidence
+    retained_boundary_or_documentation_negative: "transfer property != Tx mode != repetition != configured timing; generic PDU parameter surface != exact COM behavioral-field procedure"
+    next_promotion_evidence: accepted_Tx_configuration; generated_artifact; runtime_request_and_confirmation_trace; measured_bus_timing
+
+  - task_id: COM-007
+    task_title: Tx request, lower-layer forwarding and confirmation path
+    engineering_intent: Trace ownership for a transmit request and confirmation while preserving software completion versus physical bus observation.
+    lifecycle_phase: Tx_integration_and_lower_layer_handoff
+    owner_layer: COM_PduR_CanIf_CanDrv_and_CAN_controller_boundary
+    tool_product: AUTOSAR_reviewed_non-TP_data_path; no_vendor_procedure_asserted
+    exact_reviewed_authority:
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: 8c67ddc4cc6ce4bba1881a879b933cf2b751d733
+        release: AUTOSAR_Classic_4.4.0
+        reviewed_knowledge: docs/knowledge/workflows/can-signal-ipdu-data-path.json
+        locator: SWS_COM p.9; SWS_PduR p.13; SWS_CANInterface p.11; SWS_CANDriver p.42; SWS_Com_00495; SWS_Can_00016
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: 8c67ddc4cc6ce4bba1881a879b933cf2b751d733
+        release: AUTOSAR_Classic_4.4.0
+        reviewed_knowledge: docs/knowledge/concepts/can-hardware-abstraction-ownership.json
+        locator: SWS_CANInterface p.11; SWS_CANDriver p.13; SWS_CANTransceiverDriver p.22
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: fc05fc7824d56b1a34eaf42e3d50150ff70a789d
+        release: AUTOSAR_Classic_4.4.0_R18-10
+        reviewed_knowledge: docs/knowledge/management-ecu-can-signal-ipdu-autosar-semantic-depth.md
+        locator: section 6.4 COM-to-lower-layer boundary
+    strongest_reviewed_workflow_or_procedure: use the reviewed COM/PduR/CanIf/CanDrv ownership path and retain COM request, processing, lower-layer forwarding, Com_TxConfirmation and physical bus observation as separate layers; do not generalize it into a synchronous API order.
+    primary_procedure_availability: WORKFLOW_ONLY
+    project_input_blocker:
+      label: PROJECT_INPUT_REQUIRED
+      required: COM_I-PDU; PduR_source_destination; CanIf_Tx_PDU; upper_confirmation_binding; CanDrv_controller
+      selected_value: none
+    project_design_blocker:
+      label: PROJECT_DESIGN_REQUIRED
+      required: forwarding_and_confirmation_ownership; observation_correlation_strategy
+      selected_value: none
+    execution_evidence_blocker:
+      label: EXECUTION_EVIDENCE_REQUIRED
+      scope: no_request_forwarding_confirmation_or_physical_transmission_record
+    input_artifact_state: unresolved_route_identities_and_no_Tx_execution_evidence
+    operation_activity: assign evidence labels to supplied interfaces without treating any label as physical transmission
+    output_artifact_state: layer_separated_Tx_handoff_model
+    exit_condition: route and confirmation binding are accepted and each completion layer is separately evidenced, or remain blocked
+    next_handoff: lower_layer_ownership_and_runtime_observation
+    retained_boundary_or_documentation_negative: "Tx request != COM processing completion != lower-layer forwarding != TxConfirmation != physical CAN transmission"
+    next_promotion_evidence: accepted_route_configuration; generated_integration_artifact; runtime_request_confirmation_records; correlated_bus_observation
+
+  - task_id: COM-008
+    task_title: Rx indication, unpacking and application delivery path
+    engineering_intent: Preserve the upward Rx indication, COM unpacking and RTE-facing delivery boundary without treating indication as application consumption.
+    lifecycle_phase: Rx_integration_and_application_delivery
+    owner_layer: CAN_hardware_CanDrv_CanIf_PduR_COM_RTE_application_boundary
+    tool_product: DaVinci_Configurator_Classic_6.3.10_Rx_PDU_surface_only
+    exact_reviewed_authority:
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: fc05fc7824d56b1a34eaf42e3d50150ff70a789d
+        release: AUTOSAR_Classic_4.4.0_R18-10
+        reviewed_knowledge: docs/knowledge/management-ecu-can-signal-ipdu-autosar-semantic-depth.md
+        locator: section 8; section 9; section 10
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: 8c67ddc4cc6ce4bba1881a879b933cf2b751d733
+        release: AUTOSAR_Classic_4.4.0
+        reviewed_knowledge: docs/knowledge/workflows/can-signal-ipdu-data-path.json
+        locator: SWS_COM p.9; SWS_PduR p.13; SWS_CANInterface p.11
+      - repository: eariver/Research_Vector_Documents
+        exact_commit: 138dba4d76bc9cf7fadec1ee818aa7e6b9db4b70
+        product: DaVinci_Configurator_Classic_6.3.10
+        reviewed_knowledge: docs/knowledge/management-ecu-com-vector-procedure.md
+        locator: section 4; section 6; section 7
+    strongest_reviewed_workflow_or_procedure: preserve Com_RxIndication and immediate/deferred COM processing, including the deferred copy/main-function/read boundary; retain the product Rx PDU display as a surface only.
+    primary_procedure_availability: SURFACE_ONLY
+    project_input_blocker:
+      label: PROJECT_INPUT_REQUIRED
+      required: Rx_I-PDU; unpacking_mapping; processing_mode; notification; application_delivery; replacement_policy
+      selected_value: none
+    project_design_blocker:
+      label: PROJECT_DESIGN_REQUIRED
+      required: immediate_or_deferred_processing; application_consumption_contract; group_access_choice
+      selected_value: none
+    execution_evidence_blocker:
+      label: EXECUTION_EVIDENCE_REQUIRED
+      scope: no_Rx_indication_COM_processing_callback_execution_or_application_consumption
+    input_artifact_state: unresolved_Rx_mapping_and_application_delivery_contract
+    operation_activity: map supplied lower-layer indication to COM processing and RTE-facing access while retaining evidence stages
+    output_artifact_state: project_neutral_Rx_path_without_consumption_verdict
+    exit_condition: accepted Rx route and delivery contract have separate consumption evidence, or blockers remain
+    next_handoff: independent_update_invalid_timeout_and_observation_layers
+    retained_boundary_or_documentation_negative: "Rx indication != COM unpacking completion != callback execution != application consumption; Rx PDU view != COM processing proof"
+    next_promotion_evidence: accepted_Rx_mapping; generated_artifact; layer_correlated_Rx_and_RTE_observations; application_consumption_evidence
+
+  - task_id: COM-009
+    task_title: Update, invalid, substitution and notification semantics
+    engineering_intent: Keep update-bit, filter, invalid/substitution and notification policy as independent COM semantic and project-input decisions.
+    lifecycle_phase: COM_Rx_data_quality_and_notification_configuration
+    owner_layer: COM_Rx_processing_and_RTE_application_notification_boundary
+    tool_product: DaVinci_Configurator_Classic_6.3.10_no_explicit_reviewed_COM_field_procedure
+    exact_reviewed_authority:
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: fc05fc7824d56b1a34eaf42e3d50150ff70a789d
+        release: AUTOSAR_Classic_4.4.0_R18-10
+        reviewed_knowledge: docs/knowledge/management-ecu-can-signal-ipdu-autosar-semantic-depth.md
+        locator: section 9; section 10
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: 8c67ddc4cc6ce4bba1881a879b933cf2b751d733
+        release: AUTOSAR_Classic_4.4.0
+        reviewed_knowledge: docs/knowledge/workflows/can-signal-ipdu-data-path.json
+        locator: SWS_COM p.9; SWS_Com_00495
+      - repository: eariver/Research_Vector_Documents
+        exact_commit: 138dba4d76bc9cf7fadec1ee818aa7e6b9db4b70
+        product: DaVinci_Configurator_Classic_6.3.10
+        reviewed_knowledge: docs/knowledge/management-ecu-com-vector-procedure.md
+        locator: section 4; section 7; section 9
+    strongest_reviewed_workflow_or_procedure: use the reviewed COM semantic distinctions for update-bit, receiver filter, invalid action, timeout substitution and notification; retain the absence of a page-local product field procedure as a documentation-scope limit.
+    primary_procedure_availability: NO_EXPLICIT_PROCEDURE_IN_REVIEWED_SOURCE
+    project_input_blocker:
+      label: PROJECT_INPUT_REQUIRED
+      required: update_bit; filter; invalid_value_and_action; init_and_substitution_values; notification_callbacks
+      selected_value: none
+    project_design_blocker:
+      label: PROJECT_DESIGN_REQUIRED
+      required: independent_data_quality_policy; notification_consumption_design; interaction_with_Rx_processing
+      selected_value: none
+    execution_evidence_blocker:
+      label: EXECUTION_EVIDENCE_REQUIRED
+      scope: no_state_transition_callback_execution_or_application_validity_verdict
+    input_artifact_state: focused_COM_semantics_reviewed; policy_and_callbacks_unresolved
+    operation_activity: isolate each data-quality policy as an explicit design/input decision without filling behavior from defaults or adjacent modules
+    output_artifact_state: bounded_COM_policy_register_without_selected_values
+    exit_condition: exact semantic authority and accepted project policy exist, or the missing dimensions remain blocked
+    next_handoff: timeout_interaction_and_runtime_evidence
+    retained_boundary_or_documentation_negative: "update-bit != filter != invalid-value handling != timeout handling; no reviewed product field procedure is claimed; this is not feature-absence proof"
+    next_promotion_evidence: accepted_COM_semantic_policy; configured_artifact; callback_and_buffer_observations; requirement_verdict
+
+  - task_id: COM-010
+    task_title: Deadline monitoring and timeout handling boundary
+    engineering_intent: Keep deadline and timeout configuration distinct from measured communication timing and from COM I-PDU Group, ComM and CanSM state.
+    lifecycle_phase: COM_Rx_monitoring_and_timeout_verification_preparation
+    owner_layer: COM_deadline_monitoring_and_application_diagnostic_boundary
+    tool_product: DaVinci_Configurator_Classic_6.3.10_BswM_supporting_surface_partial_only
+    exact_reviewed_authority:
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: fc05fc7824d56b1a34eaf42e3d50150ff70a789d
+        release: AUTOSAR_Classic_4.4.0_R18-10
+        reviewed_knowledge: docs/knowledge/management-ecu-can-signal-ipdu-autosar-semantic-depth.md
+        locator: section 11; section 12
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: 8c67ddc4cc6ce4bba1881a879b933cf2b751d733
+        release: AUTOSAR_Classic_4.4.0
+        reviewed_knowledge: docs/knowledge/concepts/can-communication-mode-ownership.json
+        locator: SWS_ComM p.10; SWS_CanSM p.15
+      - repository: eariver/Research_Vector_Documents
+        exact_commit: 138dba4d76bc9cf7fadec1ee818aa7e6b9db4b70
+        product: DaVinci_Configurator_Classic_6.3.10
+        reviewed_knowledge: docs/knowledge/management-ecu-com-vector-procedure.md
+        locator: section 2.2; section 4; section 7
+    strongest_reviewed_workflow_or_procedure: retain first/subsequent timeout, monitoring enablement, timeout action, substitution value and COM I-PDU Group control as separate semantic dimensions; the BswM Communication Control I-PDU Group mention is partial supporting product evidence only.
+    primary_procedure_availability: PARTIAL_PROCEDURE_AVAILABLE
+    project_input_blocker:
+      label: PROJECT_INPUT_REQUIRED
+      required: first_and_subsequent_timeout; monitor_enablement; timeout_action; substitution; notification; I-PDU_Group_identity
+      selected_value: none
+    project_design_blocker:
+      label: PROJECT_DESIGN_REQUIRED
+      required: deadline_monitoring_policy; group_control_owner; ComM_CanSM_interaction_boundary
+      selected_value: none
+    execution_evidence_blocker:
+      label: EXECUTION_EVIDENCE_REQUIRED
+      scope: no_timer_state_timeout_event_bus_timing_or_verdict_observed
+    input_artifact_state: unresolved_timeout_deadline_policy_and_no_measured_timing_baseline
+    operation_activity: separate configured monitor value/action, timer state, observed arrival behavior, application response and verdict
+    output_artifact_state: deadline_timeout_checklist_with_BswM_supporting_surface_bound
+    exit_condition: exact semantic authority, accepted project monitor configuration and observed evidence are available, or remain separately blocked
+    next_handoff: COM_I-PDU_Group_control_measurement_and_verdict
+    retained_boundary_or_documentation_negative: "configured timeout/deadline != monitoring state != measured bus timing; BswM I-PDU Group mention != complete COM ownership/mapping; ComM/CanSM state != COM group control"
+    next_promotion_evidence: accepted_monitor_configuration; generated_artifact; controlled_timeout_and_bus_observation; explicit_verdict_criteria
+
+  - task_id: COM-011
+    task_title: COM I-PDU Group start, stop and control boundary
+    engineering_intent: Preserve COM I-PDU Group control as separate from ComM/CanSM network-state management and retain detailed project lifecycle decisions.
+    lifecycle_phase: COM_I-PDU_lifecycle_and_communication_control_configuration
+    owner_layer: COM_I-PDU_Group_control_and_separate_communication_state_plane
+    tool_product: AUTOSAR_reviewed_COM_group_control_workflow; no_vendor_procedure_asserted
+    exact_reviewed_authority:
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: fc05fc7824d56b1a34eaf42e3d50150ff70a789d
+        release: AUTOSAR_Classic_4.4.0_R18-10
+        reviewed_knowledge: docs/knowledge/management-ecu-can-signal-ipdu-autosar-semantic-depth.md
+        locator: section 12; section 13
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: 8c67ddc4cc6ce4bba1881a879b933cf2b751d733
+        release: AUTOSAR_Classic_4.4.0
+        reviewed_knowledge: docs/knowledge/concepts/can-communication-mode-ownership.json
+        locator: SWS_ComM p.10; SWS_CanSM p.15
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: 8c67ddc4cc6ce4bba1881a879b933cf2b751d733
+        release: AUTOSAR_Classic_4.4.0
+        reviewed_knowledge: docs/knowledge/workflows/can-signal-ipdu-data-path.json
+        locator: SWS_COM p.9; reviewed data-plane boundary
+    strongest_reviewed_workflow_or_procedure: retain COM I-PDU Group start/stop and deadline-monitoring controls while requiring separate evidence before any mapping to ComM mode, CanSM state, controller/transceiver state or physical bus availability.
+    primary_procedure_availability: WORKFLOW_ONLY
+    project_input_blocker:
+      label: PROJECT_INPUT_REQUIRED
+      required: I-PDU_Group_identity; startup_state; start_stop_policy; initialization_policy
+      selected_value: none
+    project_design_blocker:
+      label: PROJECT_DESIGN_REQUIRED
+      required: lifecycle_control; interaction_with_mode_manager_or_communication_state
+      selected_value: none
+    execution_evidence_blocker:
+      label: EXECUTION_EVIDENCE_REQUIRED
+      scope: no_group_start_stop_timer_or_network_state_observation
+    input_artifact_state: unresolved_I-PDU_Group_identity_and_lifecycle_policy
+    operation_activity: keep COM group control as a separate decision and do not derive it from network-mode transitions
+    output_artifact_state: COM_group_control_boundary_and_project_design_checklist
+    exit_condition: exact COM group semantics and project lifecycle policy are accepted, or remain blocked without importing ComM/CanSM behavior
+    next_handoff: transmission_effects_configuration_and_group_state_evidence
+    retained_boundary_or_documentation_negative: "COM I-PDU Group control != ComM mode != CanSM state != physical bus state; no product ownership is inferred"
+    next_promotion_evidence: accepted_group_semantics; lifecycle_design; generated_configuration; start_stop_runtime_observation; requirement_verdict
+
+  - task_id: COM-012
+    task_title: PduR communication-interface routing and IF/TP separation
+    engineering_intent: Establish reviewed PduR routing ownership and preserve communication-interface routing, transport-protocol routing and COM signal gatewaying as distinct routes.
+    lifecycle_phase: PDU_routing_integration_and_conditional_gateway_design
+    owner_layer: PduR_with_COM_CanTp_and_CanIf_boundaries
+    tool_product: AUTOSAR_reviewed_PduR_workflow; no_vendor_procedure_asserted
+    exact_reviewed_authority:
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: 8c67ddc4cc6ce4bba1881a879b933cf2b751d733
+        release: AUTOSAR_Classic_4.4.0
+        reviewed_knowledge: docs/knowledge/concepts/pdur-if-tp-gateway-boundary.json
+        locator: SWS_PduR p.18 and p.40; SRS_PduR_06012; SWS_PduR_00436; SWS_PduR_00708; ECUC_PduR_00320
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: 8c67ddc4cc6ce4bba1881a879b933cf2b751d733
+        release: AUTOSAR_Classic_4.4.0
+        reviewed_knowledge: docs/knowledge/workflows/can-signal-ipdu-data-path.json
+        locator: SWS_PduR p.13; SWS_COM p.9
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: 8c67ddc4cc6ce4bba1881a879b933cf2b751d733
+        release: AUTOSAR_Classic_4.4.0
+        reviewed_knowledge: docs/knowledge/workflows/can-transport-protocol-path.json
+        locator: SWS_CanTp pp.17,23-24; SWS_Com p.63; conditional CanTp branch
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: 8c67ddc4cc6ce4bba1881a879b933cf2b751d733
+        release: AUTOSAR_Classic_4.4.0
+        reviewed_knowledge: docs/knowledge/workflows/com-signal-gateway-routing.json
+        locator: SWS_COM section 7.11 p.72; SWS_PduR p.18; TPS_SystemTemplate p.446
+    strongest_reviewed_workflow_or_procedure: classify each supplied route as communication-interface, transport-protocol or unestablished; retain PduR IF/TP API and buffering distinctions and the conditional CanTp branch.
+    primary_procedure_availability: WORKFLOW_ONLY
+    project_input_blocker:
+      label: PROJECT_INPUT_REQUIRED
+      required: source_and_destination_PDU; route_class; gateway_role; transport_protocol_branch_if_any
+      selected_value: none
+    project_design_blocker:
+      label: PROJECT_DESIGN_REQUIRED
+      required: IF_or_TP_route; gateway_responsibility; conditional_CanTp_decision
+      selected_value: none
+    execution_evidence_blocker:
+      label: EXECUTION_EVIDENCE_REQUIRED
+      scope: no_PduR_forwarding_or_gateway_execution_record
+    input_artifact_state: unresolved_PduR_route_and_conditional_gateway_or_TP_decision
+    operation_activity: classify supplied routes and retain route-specific buffering/ownership without adding a branch
+    output_artifact_state: PduR_routing_boundary_with_conditional_CanTp_not_inserted
+    exit_condition: route class, source/destination identities and gateway/TP decision are accepted, or remain PROJECT_INPUT_REQUIRED
+    next_handoff: CanIf_and_CanDrv_ownership_then_route_evidence
+    retained_boundary_or_documentation_negative: "PduR IF routing != PduR TP routing; PduR does not provide generic IF-to-TP conversion; COM signal gatewaying != transparent PduR I-PDU routing"
+    next_promotion_evidence: accepted_PduR_configuration; conditional_branch_decision; generated_route_artifact; correlated_runtime_forwarding_evidence
+
+  - task_id: COM-013
+    task_title: CanIf Tx/Rx PDU and CAN hardware-abstraction boundary
+    engineering_intent: Preserve CanIf as the CAN-hardware-independent abstraction and separate its PDU identity from CanDrv and physical frame observation.
+    lifecycle_phase: CAN_interface_integration_and_controller_independent_configuration
+    owner_layer: CanIf_with_PduR_COM_and_CanDrv_CanTrcv_boundaries
+    tool_product: AUTOSAR_reviewed_CanIf_workflow; no_vendor_procedure_asserted
+    exact_reviewed_authority:
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: 8c67ddc4cc6ce4bba1881a879b933cf2b751d733
+        release: AUTOSAR_Classic_4.4.0
+        reviewed_knowledge: docs/knowledge/concepts/can-hardware-abstraction-ownership.json
+        locator: SWS_CANInterface p.11; SWS_CANDriver p.13; SWS_CANTransceiverDriver p.22; SWS_Can_00059; SWS_Can_00016
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: 8c67ddc4cc6ce4bba1881a879b933cf2b751d733
+        release: AUTOSAR_Classic_4.4.0
+        reviewed_knowledge: docs/knowledge/workflows/can-signal-ipdu-data-path.json
+        locator: SWS_CANInterface p.11; SWS_CANDriver p.42
+    strongest_reviewed_workflow_or_procedure: retain CanIf hardware-independent control/data-flow integration, upper reception dispatch and lower controller/transceiver mapping as reviewed ownership; do not infer HTH/HRH or product mapping.
+    primary_procedure_availability: WORKFLOW_ONLY
+    project_input_blocker:
+      label: PROJECT_INPUT_REQUIRED
+      required: CanIf_Tx_Rx_PDU; controller_reference; upper_confirmation_and_indication_bindings; HTH_HRH_if_applicable
+      selected_value: none
+    project_design_blocker:
+      label: PROJECT_DESIGN_REQUIRED
+      required: PDU_mode_policy; controller_mapping; abstraction_boundary
+      selected_value: none
+    execution_evidence_blocker:
+      label: EXECUTION_EVIDENCE_REQUIRED
+      scope: no_CanIf_request_indication_or_physical_frame_record
+    input_artifact_state: unresolved_CanIf_PDU_and_controller_references
+    operation_activity: assign supplied Tx/Rx PDU identities to CanIf while keeping lower hardware mapping separate
+    output_artifact_state: CanIf_boundary_model_without_selected_PDU_controller_or_HTH_HRH_values
+    exit_condition: accepted CanIf mappings are distinct from physical frame/hardware evidence, or remain blocked
+    next_handoff: controller_hardware_and_frame_configuration
+    retained_boundary_or_documentation_negative: "CanIf PDU/control abstraction != CanDrv hardware ownership != physical CAN frame observation; no product HTH/HRH map is inferred"
+    next_promotion_evidence: accepted_CanIf_configuration; generated_artifact; lower_layer_request_trace; correlated_frame_observation
+
+  - task_id: COM-014
+    task_title: CanDrv, controller and hardware transmission-reception boundary
+    engineering_intent: Establish CanDrv controller hardware-access ownership below CanIf while keeping controller request, confirmation and physical transmission distinct.
+    lifecycle_phase: CAN_driver_controller_integration_and_hardware_realization
+    owner_layer: CanDrv_CAN_controller_CanTrcv_boundary_below_CanIf
+    tool_product: AUTOSAR_reviewed_CanDrv_and_CanTrcv_ownership; no_vendor_procedure_asserted
+    exact_reviewed_authority:
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: 8c67ddc4cc6ce4bba1881a879b933cf2b751d733
+        release: AUTOSAR_Classic_4.4.0
+        reviewed_knowledge: docs/knowledge/concepts/can-hardware-abstraction-ownership.json
+        locator: SWS_CANDriver p.13; SWS_CANInterface p.11; SWS_CANTransceiverDriver p.22
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: 8c67ddc4cc6ce4bba1881a879b933cf2b751d733
+        release: AUTOSAR_Classic_4.4.0
+        reviewed_knowledge: docs/knowledge/workflows/can-signal-ipdu-data-path.json
+        locator: SWS_CANDriver p.42; SWS_Can_00016
+    strongest_reviewed_workflow_or_procedure: retain CanDrv controller access, CanIf-mediated integration and CanTrcv transceiver-mode ownership; do not turn a driver request or confirmation into successful physical transmission.
+    primary_procedure_availability: WORKFLOW_ONLY
+    project_input_blocker:
+      label: PROJECT_INPUT_REQUIRED
+      required: CAN_driver_instance; controller_identity; mailbox_mapping; interrupt_or_polling; transceiver_if_used
+      selected_value: none
+    project_design_blocker:
+      label: PROJECT_DESIGN_REQUIRED
+      required: controller_and_transceiver_ownership; hardware_observation_strategy
+      selected_value: none
+    execution_evidence_blocker:
+      label: EXECUTION_EVIDENCE_REQUIRED
+      scope: no_controller_driver_trace_or_physical_transmission_evidence
+    input_artifact_state: unresolved_target_controller_hardware_and_mailbox_strategy
+    operation_activity: keep CanDrv request/confirmation and CanTrcv mode ownership separate from the observed CAN frame
+    output_artifact_state: controller_hardware_ownership_boundary_without_target_settings
+    exit_condition: accepted driver/controller/hardware mapping and separate physical observation exist, or remain explicitly blocked
+    next_handoff: CAN_or_CANFD_frame_configuration_and_measurement
+    retained_boundary_or_documentation_negative: "CanIf != CanDrv != CanTrcv; controller request or TxConfirmation != successful physical bus transmission"
+    next_promotion_evidence: accepted_driver_controller_configuration; generated_build_artifact; driver_trace; correlated_physical_CAN_or_CANFD_observation
+
+  - task_id: COM-015
+    task_title: CAN and CAN FD frame, payload-length and configuration boundary
+    engineering_intent: Preserve CAN topology and signal/PDU/frame modeling as configuration semantics without inventing identifiers, DLC, frame format or bus timing.
+    lifecycle_phase: CAN_CANFD_communication_model_and_bus_configuration
+    owner_layer: System_Template_CanIf_CanDrv_controller_and_physical_bus_boundary
+    tool_product: AUTOSAR_reviewed_CAN_model_workflow; no_vendor_procedure_asserted
+    exact_reviewed_authority:
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: 8c67ddc4cc6ce4bba1881a879b933cf2b751d733
+        release: AUTOSAR_Classic_4.4.0
+        reviewed_knowledge: docs/knowledge/concepts/can-communication-modeling-boundary.json
+        locator: TPS_SystemTemplate section 3.3.1 CAN p.56; section 6 Communication p.181
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: 8c67ddc4cc6ce4bba1881a879b933cf2b751d733
+        release: AUTOSAR_Classic_4.4.0
+        reviewed_knowledge: docs/knowledge/goal-maps/configure-and-trace-can-communication.json
+        locator: TPS_SystemTemplate p.56 and p.181; CAN configuration and trace navigation
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: 8c67ddc4cc6ce4bba1881a879b933cf2b751d733
+        release: AUTOSAR_Classic_4.4.0
+        reviewed_knowledge: docs/knowledge/workflows/can-signal-ipdu-data-path.json
+        locator: TPS_SystemTemplate p.181; CAN and CAN FD boundary
+    strongest_reviewed_workflow_or_procedure: retain CanCluster, CanCommunicationController, CanPhysicalChannel, CanCommunicationConnector, signal/I-PDU/PDU/frame mappings and triggerings as model relations, not runtime API order.
+    primary_procedure_availability: WORKFLOW_ONLY
+    project_input_blocker:
+      label: PROJECT_INPUT_REQUIRED
+      required: CAN_or_CANFD; frame_identity; CAN_ID; ID_format; DLC_or_payload_length; baud_and_data_phase_rates; physical_channel
+      selected_value: none
+    project_design_blocker:
+      label: PROJECT_DESIGN_REQUIRED
+      required: frame_and_bus_model; controller_channel_responsibility; physical_target_correlation
+      selected_value: none
+    execution_evidence_blocker:
+      label: EXECUTION_EVIDENCE_REQUIRED
+      scope: no_physical_frame_timing_or_bus_state_observation
+    input_artifact_state: unresolved_CAN_CANFD_frame_topology_and_bus_timing_inputs
+    operation_activity: record only accepted frame and topology values while keeping model/configuration distinct from traffic
+    output_artifact_state: CAN_CANFD_configuration_boundary_without_selected_identifiers_or_timing
+    exit_condition: accepted frame/topology/bus configuration and separate physical observations are available, or remain blocked
+    next_handoff: configuration_generation_and_physical_measurement
+    retained_boundary_or_documentation_negative: "configured CAN ID/DLC/frame mapping != observed traffic; configured timing != measured CAN timing; CAN/CAN FD choice is not defaulted"
+    next_promotion_evidence: accepted_frame_bus_configuration; generated_artifact; physical_bus_trace; explicit_requirement_comparison
+
+  - task_id: COM-016
+    task_title: Communication configuration, validation, generation, compile/link and vendor-procedure availability
+    engineering_intent: Separate AUTOSAR configuration/generation work products, reviewed Vector product procedure maturity and compile/link evidence.
+    lifecycle_phase: ECU_configuration_generation_build_and_integration_handoff
+    owner_layer: ECU_configuration_COM_PduR_CanIf_CanDrv_generator_and_build_boundary
+    tool_product: DaVinci_Configurator_Classic_6.3.10_generic_validation_generation_and_CLI_context; aggregate_product_maturity_partial
+    exact_reviewed_authority:
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: 8c67ddc4cc6ce4bba1881a879b933cf2b751d733
+        release: AUTOSAR_Classic_4.4.0
+        reviewed_knowledge: docs/knowledge/workflows/system-to-ecu-configuration.json
+        locator: TPS_ECUConfiguration p.16; system-to-ECU configuration workflow
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: 8c67ddc4cc6ce4bba1881a879b933cf2b751d733
+        release: AUTOSAR_Classic_4.4.0
+        reviewed_knowledge: docs/knowledge/artifacts/ecu-configuration-values.json
+        locator: TPS_ECUConfiguration p.24; TR_Methodology p.481; SWS_RTE p.88
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: fc05fc7824d56b1a34eaf42e3d50150ff70a789d
+        release: AUTOSAR_Classic_4.4.0_R18-10
+        reviewed_knowledge: docs/knowledge/management-ecu-can-signal-ipdu-autosar-semantic-depth.md
+        locator: section 13 AUTOSAR-side input contract for later product research
+      - repository: eariver/Research_Vector_Documents
+        exact_commit: 138dba4d76bc9cf7fadec1ee818aa7e6b9db4b70
+        product: DaVinci_Configurator_Classic_6.3.10
+        reviewed_knowledge: docs/knowledge/management-ecu-com-vector-procedure.md
+        locator: section 2.3; section 5; section 6; section 7
+    strongest_reviewed_workflow_or_procedure: preserve generic project validation, generation, schema generation and CLI exit-code context as exact subprocedures; retain product output/CI/build wording as bounded and keep COM-specific artifact, compile/link and runtime proof open.
+    primary_procedure_availability: PARTIAL_PROCEDURE_AVAILABLE
+    exact_subprocedures:
+      - dvcfg-b project validate
+      - dvcfg-b project generate
+      - dvcfg-b project generate-schema
+      - generic_CLI_domain_and_exit_code_context
+    project_input_blocker:
+      label: PROJECT_INPUT_REQUIRED
+      required: ECU_Configuration_Values; product_project; active_modules; BSW_package; generator_settings; toolchain
+      selected_value: none
+    project_design_blocker:
+      label: PROJECT_DESIGN_REQUIRED
+      required: configuration_scope; build_ownership; artifact_manifest_policy; target_or_virtual_execution_scope
+      selected_value: none
+    execution_evidence_blocker:
+      label: EXECUTION_EVIDENCE_REQUIRED
+      scope: no_validation_generation_artifact_compile_link_binary_runtime_or_bus_result
+    input_artifact_state: unresolved_toolchain_generator_build_baseline_and_no_generated_artifact
+    operation_activity: maintain separate configuration, validation, generation, compile/link, deployment and runtime checkpoints
+    output_artifact_state: standards_side_configuration_generation_handoff_with_partial_product_procedure_and_open_build_runtime_chain
+    exit_condition: exact project toolchain, accepted configuration, generated artifacts and build evidence exist; otherwise the package remains open
+    next_handoff: project_toolchain_owner_build_owner_and_runtime_execution_evidence
+    retained_boundary_or_documentation_negative: "configuration != validation != generation != compile/link != runtime trace; generic command success != COM-specific artifact, build, runtime, verdict or coverage proof"
+    next_promotion_evidence: exact_project_toolchain; validation_output; generated_artifact_inventory; compile_link_result; binary_identity; runtime_and_bus_evidence
+
+  - task_id: COM-017
+    task_title: Communication measurement and observation points from SW-C to bus
+    engineering_intent: Define separate evidence layers and observation-point classes from RTE/application through COM, PduR, CanIf and CanDrv to the physical bus without inventing instrumentation or traces.
+    lifecycle_phase: verification_planning_and_communication_measurement_design
+    owner_layer: project_verification_and_instrumentation_across_application_BSW_driver_and_bus
+    tool_product: AUTOSAR_reviewed_configure_and_trace_navigation; no_measurement_tool_procedure_asserted
+    exact_reviewed_authority:
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: 8c67ddc4cc6ce4bba1881a879b933cf2b751d733
+        release: AUTOSAR_Classic_4.4.0
+        reviewed_knowledge: docs/knowledge/goal-maps/configure-and-trace-can-communication.json
+        locator: TPS_SystemTemplate p.56 and p.181; SWS_COM p.9; SWS_PduR p.13; SWS_CANInterface p.11
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: 8c67ddc4cc6ce4bba1881a879b933cf2b751d733
+        release: AUTOSAR_Classic_4.4.0
+        reviewed_knowledge: docs/knowledge/workflows/can-signal-ipdu-data-path.json
+        locator: SWS_COM p.9; SWS_PduR p.13; SWS_CANInterface p.11; SWS_CANDriver p.42
+    strongest_reviewed_workflow_or_procedure: use reviewed architecture to name potential evidence layers, but require project-defined observation points, instruments, stimuli and trace sources.
+    primary_procedure_availability: WORKFLOW_ONLY
+    project_input_blocker:
+      label: PROJECT_INPUT_REQUIRED
+      required: application_COM_PduR_CanIf_CanDrv_observation_points; trace_source; stimuli
+      selected_value: none
+    project_design_blocker:
+      label: PROJECT_DESIGN_REQUIRED
+      required: instrumentation_ownership; correlation_keys; measurement_definition
+      selected_value: none
+    execution_evidence_blocker:
+      label: EXECUTION_EVIDENCE_REQUIRED
+      scope: observation_plan_and_captured_records_absent
+    input_artifact_state: all_project_observation_points_trace_sources_and_stimuli_unresolved
+    operation_activity: construct an evidence-layer checklist only and keep request, confirmation, trace, measurement and comparison separate
+    output_artifact_state: observation_planning_boundary_without_claimed_trace_or_timing
+    exit_condition: observation points, owners, stimuli and trace source are accepted, or remain PROJECT_INPUT_REQUIRED
+    next_handoff: runtime_execution_requirement_comparison_verdict_and_coverage
+    retained_boundary_or_documentation_negative: "configured route != observation plan; measured behavior != requirement != verdict != coverage"
+    next_promotion_evidence: accepted_instrumented_observation_plan; captured_layer_correlated_records; timing_definition; requirement_mapping
+
+  - task_id: COM-018
+    task_title: Runtime execution evidence, requirement verdict and coverage
+    engineering_intent: Keep configured intent, generated artifacts, runtime requests, lower-layer processing, observed CAN behavior, requirements, verdicts and coverage as separate evidence layers.
+    lifecycle_phase: runtime_verification_acceptance_and_coverage_closure
+    owner_layer: project_execution_and_verification_with_application_BSW_driver_and_bus_evidence
+    tool_product: project_execution_and_verification; no static product procedure is accepted as runtime proof
+    exact_reviewed_authority:
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: 8c67ddc4cc6ce4bba1881a879b933cf2b751d733
+        release: AUTOSAR_Classic_4.4.0
+        reviewed_knowledge: docs/knowledge/goal-maps/configure-and-trace-can-communication.json
+        locator: TPS_SystemTemplate p.181; SWS_COM p.9; SWS_PduR p.13; SWS_CANInterface p.11
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: 8c67ddc4cc6ce4bba1881a879b933cf2b751d733
+        release: AUTOSAR_Classic_4.4.0
+        reviewed_knowledge: docs/knowledge/workflows/can-signal-ipdu-data-path.json
+        locator: SWS_COM p.9; SWS_PduR p.13; SWS_CANInterface p.11; SWS_CANDriver p.42
+      - repository: eariver/Research_AUTOSAR_CP_Documents
+        exact_commit: fc05fc7824d56b1a34eaf42e3d50150ff70a789d
+        release: AUTOSAR_Classic_4.4.0_R18-10
+        reviewed_knowledge: docs/knowledge/management-ecu-can-signal-ipdu-autosar-semantic-depth.md
+        locator: sections 14 and 16; project/runtime evidence boundary
+      - repository: eariver/Research_Vector_Documents
+        exact_commit: 138dba4d76bc9cf7fadec1ee818aa7e6b9db4b70
+        product: DaVinci_Configurator_Classic_6.3.10
+        reviewed_knowledge: docs/knowledge/management-ecu-com-vector-procedure.md
+        locator: sections 5, 7, 9 and 10; generated/build/runtime boundary
+    strongest_reviewed_workflow_or_procedure: use the reviewed architecture and product boundary to define independent evidence stages, then require project execution for configuration, generation, build, runtime request/forwarding, physical CAN observation, requirement comparison, verdict and coverage.
+    primary_procedure_availability: EXECUTION_EVIDENCE_REQUIRED
+    project_input_blocker:
+      label: PROJECT_INPUT_REQUIRED
+      required: stimuli; expected_values_and_frames; timing_thresholds; verdict_criteria; coverage_requirements; target_correlation
+      selected_value: none
+    project_design_blocker:
+      label: PROJECT_DESIGN_REQUIRED
+      required: evidence_chain; observation_points; acceptance_model; physical_target_correlation
+      selected_value: none
+    execution_evidence_blocker:
+      label: EXECUTION_EVIDENCE_REQUIRED
+      scope: configured_intent_to_verdict_and_coverage_chain_absent
+    input_artifact_state: project_acceptance_criteria_stimuli_expected_data_and_evidence_artifacts_unresolved
+    operation_activity: execute the accepted route and collect each evidence layer independently before requirement comparison
+    output_artifact_state: currently_no_execution_evidence_no_verdict_and_no_coverage_claim
+    exit_condition: configured intent -> generated artifact -> compile/link -> runtime request/processing/forwarding -> observed CAN frame/timing/state -> requirement comparison -> verdict -> coverage are traceable
+    next_handoff: Sol_fixed_head_review_after_project_execution_evidence
+    retained_boundary_or_documentation_negative: "configuration != generation != compile/link != runtime evidence; runtime observation != requirement != verdict != coverage; VECU/SIL behavior != physical-target CAN behavior"
+    next_promotion_evidence: complete_execution_package_with_stimuli_expected_data_layer_records_physical_correlation_verdict_criteria_and_coverage
