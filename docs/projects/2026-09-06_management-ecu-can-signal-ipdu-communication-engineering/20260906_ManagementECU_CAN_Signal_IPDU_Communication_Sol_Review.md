@@ -21,7 +21,7 @@ The current package compiles exactly `COM-001` through `COM-018`. Both machine-r
 
 Primary task availability is accepted as:
 
-- `ARCHITECTURE_WORKFLOW_ONLY`: 10 — `COM-001`, `COM-002`, `COM-003`, `COM-007`, `COM-011`, `COM-012`, `COM-013`, `COM-014`, `COM-015`, `COM-017`
+- `WORKFLOW_ONLY`: 10 — `COM-001`, `COM-002`, `COM-003`, `COM-007`, `COM-011`, `COM-012`, `COM-013`, `COM-014`, `COM-015`, `COM-017`
 - `PARTIAL_PROCEDURE_AVAILABLE`: 4 — `COM-004`, `COM-005`, `COM-010`, `COM-016`
 - `SURFACE_ONLY`: 2 — `COM-006`, `COM-008`
 - `NO_EXPLICIT_PROCEDURE_IN_REVIEWED_SOURCE`: 1 — `COM-009`
