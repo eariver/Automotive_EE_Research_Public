@@ -1,0 +1,65 @@
+schema_version: 1
+project: management-ecu-can-signal-ipdu-communication-engineering
+date: 2026-09-06
+status: UNRESOLVED_PROJECT_INPUT
+policy: no_project_value_may_be_invented_or_defaulted_by_compilation
+
+input_families:
+  application_communication_contract:
+    status: UNRESOLVED_PROJECT_INPUT
+    fields: [application_SWC_identities, PPort_RPort_identities, SenderReceiverInterface_identities, VariableDataPrototype_identities, sender_receiver_direction, multiplicity, application_update_requirements]
+  system_and_ecu_mapping:
+    status: UNRESOLVED_PROJECT_INPUT
+    fields: [System_Description_version, ECU_Extract_identity, communication_cluster_identity, physical_channel_identity, ISignal_identities, ISignalGroup_identities, ISignal_to_IPDU_mapping, IPDU_to_frame_mapping, ECU_send_receive_responsibility]
+  com_signal_configuration:
+    status: UNRESOLVED_PROJECT_INPUT
+    fields: [ComSignal_identities, ComSignalGroup_identities, signal_type, signal_length, bit_position, byte_order, conversion_or_scaling_policy, update_bit_policy, invalid_value, init_value, substitution_value, notification_callback]
+  com_ipdu_tx_configuration:
+    status: UNRESOLVED_PROJECT_INPUT
+    fields: [ComIPdu_identity, direction, payload_length, transfer_property, Tx_mode_selection_policy, direct_cyclic_mixed_mode, cycle_time, repetition_count, repetition_period, minimum_delay_time, trigger_policy, Tx_confirmation_policy]
+  com_ipdu_rx_configuration:
+    status: UNRESOLVED_PROJECT_INPUT
+    fields: [Rx_IPdu_identity, unpacking_mapping, update_processing, invalid_processing, timeout_or_deadline_monitoring_value, timeout_action, Rx_notification, replacement_or_substitution_policy]
+  com_ipdu_group_control:
+    status: UNRESOLVED_PROJECT_INPUT
+    fields: [ComIPduGroup_identities, startup_state, start_stop_policy, initialize_flag_policy, interaction_with_mode_or_lifecycle_design]
+  pdur_routing:
+    status: UNRESOLVED_PROJECT_INPUT
+    fields: [PduR_source_PDU_identities, destination_PDU_identities, communication_interface_route, routing_path_group_if_used, gateway_role_if_any, transport_protocol_branch_if_any]
+  canif_configuration:
+    status: UNRESOLVED_PROJECT_INPUT
+    fields: [CanIfTxPdu_identities, CanIfRxPdu_identities, CanIf_controller_reference, Tx_confirmation_upper_layer_binding, Rx_indication_upper_layer_binding, HTH_HRH_reference_if_applicable, PDU_mode_policy_if_applicable]
+  candrv_and_controller:
+    status: UNRESOLVED_PROJECT_INPUT
+    fields: [CAN_driver_instance, controller_identity, hardware_object_mailbox_mapping, interrupt_or_polling_strategy, controller_mode_policy, transceiver_identity_if_used]
+  can_frame_and_bus:
+    status: UNRESOLVED_PROJECT_INPUT
+    fields: [CAN_or_CANFD_selection, frame_identity, CAN_ID, standard_or_extended_ID, DLC_or_payload_length, baud_rate, data_phase_rate_if_CANFD, sample_point_or_bit_timing_values, physical_channel_mapping]
+  toolchain_baseline:
+    status: UNRESOLVED_PROJECT_INPUT
+    fields: [DaVinci_Developer_Classic_version, DaVinci_Configurator_Classic_version, MICROSAR_release_and_packages, communication_generator_version, compiler_and_linker_baseline, integration_build_variant, target_or_virtual_execution_environment]
+  verification_acceptance:
+    status: UNRESOLVED_PROJECT_INPUT
+    fields: [RTE_or_application_observation_point, COM_buffer_or_callback_observation_point, PduR_or_CanIf_observation_point, CAN_driver_observation_point, CANoe_or_bus_trace_source, runtime_test_stimuli, expected_signal_values, expected_frames, expected_cycle_repetition_timeout_behavior, tolerance_and_timing_thresholds, verdict_criteria, result_artifacts, coverage_requirements, physical_target_correlation_requirement]
+
+non_inference_rules:
+  - Do not infer project object identities from AUTOSAR examples, defaults or sibling ECUs.
+  - Do not infer COM Signal identity directly from an application data-element or ISignal name.
+  - Do not infer signal bit position, byte order, scaling, update bit, invalid value or timeout from generic authority.
+  - Do not infer transfer property, Tx mode, cycle time, repetition or minimum-delay values from a functional requirement without explicit project mapping.
+  - Do not infer a PduR route from a COM I-PDU name.
+  - Do not infer CanIf PDU, HTH, HRH, mailbox or CAN controller mappings from generic architecture.
+  - Do not infer CAN ID, DLC, frame format, baud rate or CAN FD data rate from examples.
+  - Do not infer that CanTp, IpduM, SecOC or E2E/transformer is present unless separately established.
+  - Do not infer that Management ECU performs gatewaying.
+  - Do not infer successful bus communication from configuration, generation, build or TxConfirmation alone.
+  - Do not infer physical-target behavior from VECU or SIL behavior.
+  - Do not infer requirement satisfaction, verdict or coverage from a raw CAN trace.
+
+compilation_behavior:
+  when_required_input_missing: mark_PROJECT_INPUT_REQUIRED_and_continue_independent_safe_frontier
+  when_exact_COM_semantic_depth_missing: mark_AUTOSAR_SEMANTIC_DEPTH_REQUIRED_without_filling_from_generic_model_knowledge
+  when_exact_vendor_procedure_missing: mark_VECTOR_PROCEDURE_RESEARCH_REQUIRED_without_inventing_GUI_or_CLI_steps
+  when_execution_evidence_missing: mark_EXECUTION_EVIDENCE_REQUIRED_without_downgrading_static_architecture
+  when_reviewed_architecture_exists: preserve_supported_architecture_or_workflow_even_if_project_values_are_missing
+  when_conditional_module_not_established: retain_as_boundary_only_and_do_not_insert_into_project_route
