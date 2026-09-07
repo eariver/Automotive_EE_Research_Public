@@ -1,0 +1,134 @@
+schema_version: "management-ecu-cnm-public-coverage/v1"
+date: "2026-09-07"
+status: "SOL_REVIEWED_PUBLICATION_PROJECTION"
+project: "Management ECU Communication Mode & Network Management Engineering"
+private_authority:
+  repository: "eariver/Automotive_EE_Engineering_Knowledge"
+  exact_commit: "a8dd173415716a895c9787e2bf8a5dea9fd3051c"
+  luna_candidate: "136e5250efb7a932fc286e64405997fbce9fe801"
+  baseline: "56f753e5f605f7441b957490c36080f067bb0807"
+reviewed_authority:
+  autosar_focused: "eariver/Research_AUTOSAR_CP_Documents@a7d063d4fb020e565497388c2c6cea5c2605a1ed"
+  vector_focused: "eariver/Research_Vector_Documents@9b1e1a1fb172cb43466b89f07a1c22f9a8e00990"
+  autosar_retained_baseline: "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d"
+task_count: 18
+vector_ten_slice:
+  EXACT_PRODUCT_PROCEDURE_AVAILABLE: 0
+  PARTIAL_PRODUCT_PROCEDURE_AVAILABLE: 5
+  SURFACE_ONLY: 1
+  NO_EXPLICIT_REVIEWED_PROCEDURE: 4
+  OUTSIDE_AUTHORIZED_PRODUCT_SCOPE: 0
+  total: 10
+notes:
+  - "Standards semantics, Vector product procedure, project input, project design and execution evidence are independent dimensions."
+  - "A documentation-scope negative is not a product-capability absence claim."
+  - "No project-specific value or runtime result is supplied by this package."
+tasks:
+  - id: CNM-001
+    semantics: REVIEWED_AUTHORITY_AVAILABLE
+    vector: NO_EXPLICIT_REVIEWED_PROCEDURE
+    project_input: PROJECT_INPUT_REQUIRED
+    project_design: NOT_CURRENTLY_REQUIRED
+    execution: NOT_CURRENTLY_REQUIRED
+  - id: CNM-002
+    semantics: REVIEWED_AUTHORITY_AVAILABLE
+    vector: PARTIAL_PRODUCT_PROCEDURE_AVAILABLE
+    project_input: PROJECT_INPUT_REQUIRED
+    project_design: NOT_CURRENTLY_REQUIRED
+    execution: NOT_CURRENTLY_REQUIRED
+  - id: CNM-003
+    semantics: REVIEWED_AUTHORITY_AVAILABLE
+    vector: PARTIAL_PRODUCT_PROCEDURE_AVAILABLE
+    project_input: PROJECT_INPUT_REQUIRED
+    project_design: NOT_CURRENTLY_REQUIRED
+    execution: NOT_CURRENTLY_REQUIRED
+  - id: CNM-004
+    semantics: REVIEWED_AUTHORITY_AVAILABLE
+    vector: SURFACE_ONLY
+    project_input: NOT_CURRENTLY_REQUIRED
+    project_design: PROJECT_DESIGN_REQUIRED
+    execution: NOT_CURRENTLY_REQUIRED
+  - id: CNM-005
+    semantics: REVIEWED_AUTHORITY_AVAILABLE
+    vector: NO_EXPLICIT_REVIEWED_PROCEDURE
+    project_input: NOT_CURRENTLY_REQUIRED
+    project_design: PROJECT_DESIGN_REQUIRED
+    execution: NOT_CURRENTLY_REQUIRED
+  - id: CNM-006
+    semantics: PARTIAL_REVIEWED_AUTHORITY
+    vector: NO_EXPLICIT_REVIEWED_PROCEDURE
+    project_input: PROJECT_INPUT_REQUIRED
+    project_design: PROJECT_DESIGN_REQUIRED
+    execution: NOT_CURRENTLY_REQUIRED
+  - id: CNM-007
+    semantics: REVIEWED_AUTHORITY_AVAILABLE
+    vector: NO_EXPLICIT_REVIEWED_PROCEDURE
+    project_input: PROJECT_INPUT_REQUIRED
+    project_design: PROJECT_DESIGN_REQUIRED
+    execution: NOT_CURRENTLY_REQUIRED
+  - id: CNM-008
+    semantics: REVIEWED_AUTHORITY_AVAILABLE
+    vector: NO_EXPLICIT_REVIEWED_PROCEDURE
+    project_input: PROJECT_INPUT_REQUIRED
+    project_design: PROJECT_DESIGN_REQUIRED
+    execution: NOT_CURRENTLY_REQUIRED
+  - id: CNM-009
+    semantics: REVIEWED_AUTHORITY_AVAILABLE
+    vector: NO_EXPLICIT_REVIEWED_PROCEDURE
+    project_input: PROJECT_INPUT_REQUIRED
+    project_design: PROJECT_DESIGN_REQUIRED
+    execution: NOT_CURRENTLY_REQUIRED
+  - id: CNM-010
+    semantics: REVIEWED_AUTHORITY_AVAILABLE
+    vector: NO_EXPLICIT_REVIEWED_PROCEDURE
+    project_input: PROJECT_INPUT_REQUIRED
+    project_design: PROJECT_DESIGN_REQUIRED
+    execution: NOT_CURRENTLY_REQUIRED
+  - id: CNM-011
+    semantics: REVIEWED_AUTHORITY_AVAILABLE
+    vector: NO_EXPLICIT_REVIEWED_PROCEDURE
+    project_input: PROJECT_INPUT_REQUIRED
+    project_design: PROJECT_DESIGN_REQUIRED
+    execution: NOT_CURRENTLY_REQUIRED
+  - id: CNM-012
+    semantics: PARTIAL_REVIEWED_AUTHORITY
+    vector: NO_EXPLICIT_REVIEWED_PROCEDURE
+    project_input: PROJECT_INPUT_REQUIRED
+    project_design: PROJECT_DESIGN_REQUIRED
+    execution: NOT_CURRENTLY_REQUIRED
+  - id: CNM-013
+    semantics: PARTIAL_REVIEWED_AUTHORITY
+    vector: NO_EXPLICIT_REVIEWED_PROCEDURE
+    project_input: NOT_CURRENTLY_REQUIRED
+    project_design: PROJECT_DESIGN_REQUIRED
+    execution: NOT_CURRENTLY_REQUIRED
+  - id: CNM-014
+    semantics: REVIEWED_AUTHORITY_AVAILABLE
+    vector: PARTIAL_PRODUCT_PROCEDURE_AVAILABLE
+    project_input: PROJECT_INPUT_REQUIRED
+    project_design: NOT_CURRENTLY_REQUIRED
+    execution: NOT_CURRENTLY_REQUIRED
+  - id: CNM-015
+    semantics: REVIEWED_AUTHORITY_AVAILABLE
+    vector: PARTIAL_PRODUCT_PROCEDURE_AVAILABLE
+    project_input: NOT_CURRENTLY_REQUIRED
+    project_design: PROJECT_DESIGN_REQUIRED
+    execution: NOT_CURRENTLY_REQUIRED
+  - id: CNM-016
+    semantics: PARTIAL_REVIEWED_AUTHORITY
+    vector: PARTIAL_PRODUCT_PROCEDURE_AVAILABLE
+    project_input: PROJECT_INPUT_REQUIRED
+    project_design: PROJECT_DESIGN_REQUIRED
+    execution: NOT_CURRENTLY_REQUIRED
+  - id: CNM-017
+    semantics: NOT_APPLICABLE
+    vector: NOT_REQUIRED_FOR_THIS_TASK
+    project_input: PROJECT_INPUT_REQUIRED
+    project_design: PROJECT_DESIGN_REQUIRED
+    execution: NOT_CURRENTLY_REQUIRED
+  - id: CNM-018
+    semantics: NOT_APPLICABLE
+    vector: OUTSIDE_AUTHORIZED_PRODUCT_SCOPE
+    project_input: PROJECT_INPUT_REQUIRED
+    project_design: NOT_CURRENTLY_REQUIRED
+    execution: EXECUTION_EVIDENCE_REQUIRED
