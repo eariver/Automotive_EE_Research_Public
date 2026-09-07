@@ -1,0 +1,59 @@
+schema_version: "management-ecu-cnm-publication-plan/v1"
+date: "2026-09-07"
+status: "SOL_REVIEWED_STAGED"
+project: "Management ECU Communication Mode & Network Management Engineering"
+private_source:
+  repository: "eariver/Automotive_EE_Engineering_Knowledge"
+  branch: "work/sol-management-ecu-communication-mode-network-management-current-package-review-20260907"
+  accepted_source_head: "a8dd173415716a895c9787e2bf8a5dea9fd3051c"
+  luna_current_package_candidate: "136e5250efb7a932fc286e64405997fbce9fe801"
+  accepted_baseline: "56f753e5f605f7441b957490c36080f067bb0807"
+public:
+  repository: "eariver/Automotive_EE_Research_Public"
+  branch: "publish/management-ecu-communication-mode-network-management-engineering-20260907"
+  base_main_sha: "183d9dc0ab120484e4018e530a33e5b291bd7baa"
+  main_merged: false
+source_projection_policy:
+  reader_facing_reviewed_documents: "PUBLISHED"
+  private_large_machine_matrices: "NOT_COPIED"
+  public_compact_matrix: "GENERATED_FROM_SOL_REVIEWED_18_TASK_STATE"
+  luna_checkpoint: "EXCLUDED"
+  historical_baseline_and_research_gap_artifacts: "EXCLUDED_FROM_CURRENT_PUBLIC_BUNDLE"
+  raw_vendor_or_standard_sources: "EXCLUDED"
+  private_drive_bytes: "EXCLUDED"
+  project_specific_values: "EXCLUDED"
+reviewed_authority:
+  autosar_focused: "eariver/Research_AUTOSAR_CP_Documents@a7d063d4fb020e565497388c2c6cea5c2605a1ed"
+  vector_focused: "eariver/Research_Vector_Documents@9b1e1a1fb172cb43466b89f07a1c22f9a8e00990"
+  autosar_retained_baseline: "eariver/Research_AUTOSAR_CP_Documents@938ac4af696d263019ebdc61106a444447e15c4d"
+vector_ten_slice_counts:
+  EXACT_PRODUCT_PROCEDURE_AVAILABLE: 0
+  PARTIAL_PRODUCT_PROCEDURE_AVAILABLE: 5
+  SURFACE_ONLY: 1
+  NO_EXPLICIT_REVIEWED_PROCEDURE: 4
+  OUTSIDE_AUTHORIZED_PRODUCT_SCOPE: 0
+  total: 10
+population:
+  task_ids: "CNM-001 through CNM-018"
+  total: 18
+retained_boundaries:
+  - "application/BSW demand != ComM user != ComM channel"
+  - "ComM request != stored request != channel target != BusSM indication"
+  - "ComM mode != CanSM state != CanNm protocol state != physical bus availability"
+  - "bus-off callback != recovered bus"
+  - "PNC ID derivation != EIRA/ERA != ComM PNC state != selective wakeup"
+  - "BswM action and BswMPduGroupSwitch != application availability"
+  - "configuration != validation != generation != compile/link != runtime transition"
+  - "runtime observation != requirement != verdict != coverage"
+promotion_gates:
+  - "Private current-package Sol fixed-head review PASS"
+  - "Exact AUTOSAR and Vector authority pins preserved"
+  - "18-task population preserved"
+  - "Vector ten-slice counts reconcile to 0/5/1/4/0"
+  - "No project-specific values invented"
+  - "No runtime/build/validation evidence fabricated"
+  - "No raw licensed/private source bytes published"
+  - "Public main remains unchanged"
+completion_rule:
+  theme_complete_when: "Dedicated publication branch is remotely readable and validated while public main remains unchanged"
+  public_main_merge_required: false
