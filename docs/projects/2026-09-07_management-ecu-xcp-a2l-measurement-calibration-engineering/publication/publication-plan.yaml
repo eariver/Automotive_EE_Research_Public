@@ -1,0 +1,63 @@
+schema_version: management-ecu-xcp-a2l-publication-plan/v1
+date: '2026-09-08'
+status: STAGED_PENDING_VALIDATION
+project: Management ECU XCP/A2L Measurement & Calibration Engineering
+private_accepted_source: ff096484c8f36bc59a850b1b36575f9cf34ac279
+private_candidate: b0fdfeba7b92b155b3a2386a0a7fe4aa48328ce6
+accepted_baseline: cade7a1407e6808585b45cc46246319a2c89ed85
+autosar: d3de1f713e84ee5131f422d64da67975527d0e91
+vector: f75bb98188652a80056753d9a6cadd395d5d17b6
+r2d: 6ab7045145ce665181baad93d97e36cdacc34358
+public_base_main: 183d9dc0ab120484e4018e530a33e5b291bd7baa
+main_merged: false
+private_source:
+  repository: eariver/Automotive_EE_Engineering_Knowledge
+  accepted_source_head: ff096484c8f36bc59a850b1b36575f9cf34ac279
+  luna_candidate: b0fdfeba7b92b155b3a2386a0a7fe4aa48328ce6
+  baseline: cade7a1407e6808585b45cc46246319a2c89ed85
+public:
+  repository: eariver/Automotive_EE_Research_Public
+  branch: publish/management-ecu-xcp-a2l-measurement-calibration-engineering-20260908
+  base_main_sha: 183d9dc0ab120484e4018e530a33e5b291bd7baa
+  main_merged: false
+source_bundle_policy:
+  sol_review_content_identical_with_publication_facing_filename: true
+  six_private_yamls_raw_copied: false
+  six_private_yamls_used_as_synthesis_authority: true
+  upstream_reviewed_knowledge: LOCATOR_ONLY
+  raw_vendor_or_standard_sources: EXCLUDED
+  internal_luna_material: EXCLUDED
+  confidential_project_values: EXCLUDED
+  secret_material: EXCLUDED
+reviewed_authority:
+  autosar: eariver/Research_AUTOSAR_CP_Documents@d3de1f713e84ee5131f422d64da67975527d0e91
+  autosar_path: docs/knowledge/management-ecu-xcp-a2l-autosar-semantic-depth.md
+  vector: eariver/Research_Vector_Documents@f75bb98188652a80056753d9a6cadd395d5d17b6
+  vector_path: docs/knowledge/management-ecu-xcp-a2l-canape-product-procedure.md
+  r2d: eariver/Automotive_EE_Engineering_Knowledge@6ab7045145ce665181baad93d97e36cdacc34358
+  r2d_path: docs/compilation/r2d-xcp-a2l-chain-evidence.md
+task_population: XCP-001 through XCP-018 exactly once
+retained_state:
+  XCP-006: UNRESOLVED_RETAINED
+  XCP-007: UNRESOLVED_RETAINED
+  XCP-009: UNRESOLVED_RETAINED
+  XCP-011: UNRESOLVED_RETAINED
+  XCP-012_015: AUTOSAR_REVIEWED_SAFE_FRONTIER_ONLY
+  XCP-016_aggregate: PARTIAL_PRODUCT_PROCEDURE_AVAILABLE
+canape_split:
+  partial:
+  - CANAPE-PROC-01
+  - CANAPE-PROC-02
+  - CANAPE-PROC-03
+  - CANAPE-PROC-04
+  source_unavailable:
+  - CANAPE-PROC-05
+  - CANAPE-PROC-06
+  - CANAPE-PROC-07
+projection_policy:
+- Publish only the Sol-reviewed package appropriate for the public repository.
+- Keep the Sol review byte-identical; change only the filename.
+- Derive reader-facing synthesis and the compact matrix from the six private YAMLs; do not raw-copy them.
+- Keep all non-collapse boundaries, the bounded SLRT exception and SOURCE_UNAVAILABLE semantics.
+- Select no project values; claim no runtime PASS; include no secret material.
+- Never merge the publication branch into public main in this execution.

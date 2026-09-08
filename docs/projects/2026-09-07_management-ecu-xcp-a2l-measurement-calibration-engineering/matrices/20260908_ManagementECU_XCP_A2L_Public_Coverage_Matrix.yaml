@@ -1,0 +1,164 @@
+schema_version: management-ecu-xcp-a2l-public-coverage-matrix/v1
+artifact: Management ECU XCP/A2L Measurement & Calibration — Public Coverage Matrix
+date: '2026-09-08'
+status: SOL_REVIEWED_PROJECTION
+private_authority: eariver/Automotive_EE_Engineering_Knowledge@ff096484c8f36bc59a850b1b36575f9cf34ac279
+candidate: eariver/Automotive_EE_Engineering_Knowledge@b0fdfeba7b92b155b3a2386a0a7fe4aa48328ce6
+derivation: Mechanically derived from the private Requirement Catalog, Research Gap Status and Validation Matrix; no new proposition added.
+task_count: 18
+runtime_pass_count: 0
+canape_seven_slice:
+  CANAPE-PROC-01: PARTIAL_PRODUCT_PROCEDURE_AVAILABLE
+  CANAPE-PROC-02: PARTIAL_PRODUCT_PROCEDURE_AVAILABLE
+  CANAPE-PROC-03: PARTIAL_PRODUCT_PROCEDURE_AVAILABLE
+  CANAPE-PROC-04: PARTIAL_PRODUCT_PROCEDURE_AVAILABLE
+  CANAPE-PROC-05: SOURCE_UNAVAILABLE
+  CANAPE-PROC-06: SOURCE_UNAVAILABLE
+  CANAPE-PROC-07: SOURCE_UNAVAILABLE
+canape_aggregate: PARTIAL_PRODUCT_PROCEDURE_AVAILABLE
+canape_counts: 4 PARTIAL_PRODUCT_PROCEDURE_AVAILABLE / 3 SOURCE_UNAVAILABLE
+rows:
+- task_id: XCP-001
+  semantic_authority_status: REVIEWED_AUTHORITY_AVAILABLE
+  product_procedure_status: NOT_REQUIRED_FOR_THIS_TASK
+  project_input_or_design_status: PROJECT_INPUT_REQUIRED
+  execution_evidence_status: NOT_CURRENTLY_REQUIRED
+  runtime_verdict: NOT_EVALUATED
+  unresolved_flag: false
+  public_note: Role/lifecycle decomposition reviewed; project ownership still required.
+- task_id: XCP-002
+  semantic_authority_status: PARTIAL_REVIEWED_AUTHORITY
+  product_procedure_status: NOT_REQUIRED_FOR_THIS_TASK
+  project_input_or_design_status: PROJECT_INPUT_REQUIRED
+  execution_evidence_status: NOT_CURRENTLY_REQUIRED
+  runtime_verdict: NOT_EVALUATED
+  unresolved_flag: false
+  public_note: Ownership boundary reviewed; Management ECU intent still required.
+- task_id: XCP-003
+  semantic_authority_status: PARTIAL_REVIEWED_AUTHORITY
+  product_procedure_status: SURFACE_OR_ROLE_ONLY
+  project_input_or_design_status: PROJECT_INPUT_REQUIRED
+  execution_evidence_status: NOT_CURRENTLY_REQUIRED
+  runtime_verdict: NOT_EVALUATED
+  unresolved_flag: false
+  public_note: Object categories reviewed at vendor scope; project identity still required.
+- task_id: XCP-004
+  semantic_authority_status: REVIEWED_AUTHORITY_AVAILABLE
+  product_procedure_status: PARTIAL_REVIEWED_PRODUCT_PROCEDURE
+  project_input_or_design_status: PROJECT_INPUT_REQUIRED
+  execution_evidence_status: EXECUTION_EVIDENCE_REQUIRED
+  runtime_verdict: NOT_EVALUATED
+  unresolved_flag: false
+  public_note: Producer lifecycle reviewed; project adoption and generated-artifact evidence still required.
+- task_id: XCP-005
+  semantic_authority_status: REVIEWED_AUTHORITY_AVAILABLE
+  product_procedure_status: PARTIAL_REVIEWED_PRODUCT_PROCEDURE
+  project_input_or_design_status: PROJECT_INPUT_REQUIRED
+  execution_evidence_status: EXECUTION_EVIDENCE_REQUIRED
+  runtime_verdict: NOT_EVALUATED
+  unresolved_flag: false
+  public_note: Address-resolution state distinction reviewed; build-tied evidence still required.
+- task_id: XCP-006
+  semantic_authority_status: PARTIAL_REVIEWED_AUTHORITY
+  product_procedure_status: PARTIAL_REVIEWED_PRODUCT_PROCEDURE
+  project_input_or_design_status: PROJECT_INPUT_REQUIRED
+  execution_evidence_status: EXECUTION_EVIDENCE_REQUIRED
+  runtime_verdict: NOT_EVALUATED
+  unresolved_flag: true
+  public_note: UNRESOLVED_RETAINED — no generic cross-product update/reload contract; not closed by neighboring evidence.
+- task_id: XCP-007
+  semantic_authority_status: PARTIAL_REVIEWED_AUTHORITY
+  product_procedure_status: PARTIAL_REVIEWED_PRODUCT_PROCEDURE
+  project_input_or_design_status: PROJECT_DESIGN_REQUIRED
+  execution_evidence_status: EXECUTION_EVIDENCE_REQUIRED
+  runtime_verdict: NOT_EVALUATED
+  unresolved_flag: true
+  public_note: UNRESOLVED_RETAINED — generic reload/live-binding lifecycle not established; import proves no session.
+- task_id: XCP-008
+  semantic_authority_status: REVIEWED_AUTHORITY_AVAILABLE
+  product_procedure_status: PARTIAL_REVIEWED_PRODUCT_PROCEDURE
+  project_input_or_design_status: PROJECT_DESIGN_REQUIRED
+  execution_evidence_status: EXECUTION_EVIDENCE_REQUIRED
+  runtime_verdict: NOT_EVALUATED
+  unresolved_flag: false
+  public_note: Master/client roles reviewed; tool selection and connection evidence still required.
+- task_id: XCP-009
+  semantic_authority_status: PARTIAL_REVIEWED_AUTHORITY
+  product_procedure_status: NO_EXPLICIT_REVIEWED_PRODUCT_PROCEDURE
+  project_input_or_design_status: PROJECT_DESIGN_REQUIRED
+  execution_evidence_status: EXECUTION_EVIDENCE_REQUIRED
+  runtime_verdict: NOT_EVALUATED
+  unresolved_flag: true
+  public_note: UNRESOLVED_RETAINED — generic/non-SLRT server not established; SLRT exception is bounded reference only.
+- task_id: XCP-010
+  semantic_authority_status: PARTIAL_REVIEWED_AUTHORITY
+  product_procedure_status: PARTIAL_REVIEWED_PRODUCT_PROCEDURE
+  project_input_or_design_status: PROJECT_DESIGN_REQUIRED
+  execution_evidence_status: EXECUTION_EVIDENCE_REQUIRED
+  runtime_verdict: NOT_EVALUATED
+  unresolved_flag: false
+  public_note: Transport surfaces reviewed at source-local scope; endpoint binding still required.
+- task_id: XCP-011
+  semantic_authority_status: PARTIAL_REVIEWED_AUTHORITY
+  product_procedure_status: PARTIAL_REVIEWED_PRODUCT_PROCEDURE
+  project_input_or_design_status: PROJECT_DESIGN_REQUIRED
+  execution_evidence_status: EXECUTION_EVIDENCE_REQUIRED
+  runtime_verdict: NOT_EVALUATED
+  unresolved_flag: true
+  public_note: UNRESOLVED_RETAINED — generic live-session/endpoint closure not established; tutorial ready proves no session.
+- task_id: XCP-012
+  semantic_authority_status: REVIEWED_AUTHORITY_AVAILABLE
+  product_procedure_status: SURFACE_OR_ROLE_ONLY
+  project_input_or_design_status: PROJECT_DESIGN_REQUIRED
+  execution_evidence_status: EXECUTION_EVIDENCE_REQUIRED
+  runtime_verdict: NOT_EVALUATED
+  unresolved_flag: false
+  public_note: AUTOSAR safe frontier reviewed (DAQ direction, list/ODT/entry/DTO, event vs communication channel); detailed ASAM conditional only.
+- task_id: XCP-013
+  semantic_authority_status: REVIEWED_AUTHORITY_AVAILABLE
+  product_procedure_status: SURFACE_OR_ROLE_ONLY
+  project_input_or_design_status: PROJECT_DESIGN_REQUIRED
+  execution_evidence_status: EXECUTION_EVIDENCE_REQUIRED
+  runtime_verdict: NOT_EVALUATED
+  unresolved_flag: false
+  public_note: AUTOSAR STIM/calibration boundary reviewed; DAQ != STIM != calibration write; pure-STIM ambiguity retained.
+- task_id: XCP-014
+  semantic_authority_status: REVIEWED_AUTHORITY_AVAILABLE
+  product_procedure_status: SURFACE_OR_ROLE_ONLY
+  project_input_or_design_status: PROJECT_DESIGN_REQUIRED
+  execution_evidence_status: EXECUTION_EVIDENCE_REQUIRED
+  runtime_verdict: NOT_EVALUATED
+  unresolved_flag: false
+  public_note: AUTOSAR page query/switch boundary reviewed; DAQ RESUME != page/value persistence.
+- task_id: XCP-015
+  semantic_authority_status: REVIEWED_AUTHORITY_AVAILABLE
+  product_procedure_status: SURFACE_OR_ROLE_ONLY
+  project_input_or_design_status: PROJECT_DESIGN_REQUIRED
+  execution_evidence_status: EXECUTION_EVIDENCE_REQUIRED
+  runtime_verdict: NOT_EVALUATED
+  unresolved_flag: false
+  public_note: AUTOSAR Seed&Key purpose and symbolic ownership reviewed; enablement is project design, authorization is execution evidence; no secrets.
+- task_id: XCP-016
+  semantic_authority_status: NOT_APPLICABLE
+  product_procedure_status: PARTIAL_PRODUCT_PROCEDURE_AVAILABLE
+  project_input_or_design_status: PROJECT_INPUT_REQUIRED
+  execution_evidence_status: NOT_CURRENTLY_REQUIRED
+  runtime_verdict: NOT_EVALUATED
+  unresolved_flag: false
+  public_note: CANape aggregate partial (4 partial + 3 SOURCE_UNAVAILABLE); SOURCE_UNAVAILABLE is access scope, not capability absence.
+- task_id: XCP-017
+  semantic_authority_status: NOT_APPLICABLE
+  product_procedure_status: NOT_REQUIRED_FOR_THIS_TASK
+  project_input_or_design_status: PROJECT_INPUT_REQUIRED
+  execution_evidence_status: NOT_CURRENTLY_REQUIRED
+  runtime_verdict: NOT_EVALUATED
+  unresolved_flag: false
+  public_note: All project design values unresolved by design.
+- task_id: XCP-018
+  semantic_authority_status: NOT_APPLICABLE
+  product_procedure_status: OUTSIDE_AUTHORIZED_PRODUCT_SCOPE
+  project_input_or_design_status: PROJECT_INPUT_REQUIRED
+  execution_evidence_status: EXECUTION_EVIDENCE_REQUIRED
+  runtime_verdict: NOT_EVALUATED
+  unresolved_flag: false
+  public_note: No runtime evidence claimed; configuration != evidence != verdict != coverage.
