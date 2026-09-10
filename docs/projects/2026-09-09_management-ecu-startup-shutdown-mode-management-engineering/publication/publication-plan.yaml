@@ -1,0 +1,64 @@
+schema_version: management-ecu-startup-shutdown-mode-management-publication-plan/v1
+date: '2026-09-11'
+status: STAGED_PENDING_VALIDATION
+project: Management ECU Startup / Shutdown / ECU Mode Management Engineering
+private_accepted_source: 0811d2863669fcc3dfd0c0beecfbbd616e8f70d4
+private_candidate: 6974c45a571b053ec3f48c7cbfa8e5b87cdf2077
+accepted_baseline: f23ebaac9c9b658507263894b096bda680d6f890
+autosar: 4dc3d7c912cba7c3df77285d32bf2ad18a47a5f0
+vector: c7fc341afd12a0c4a636641efcad2ceabceb9d0f
+public_base_main: 183d9dc0ab120484e4018e530a33e5b291bd7baa
+public_base_main_tree: 5794e468b4397c896d107906a06d533435cdf88a
+main_merged: false
+task_count: 18
+product_aggregate:
+  EXPLICIT_REVIEWED_PRODUCT_PROCEDURE_AVAILABLE: 0
+  PARTIAL_REVIEWED_PRODUCT_PROCEDURE: 3
+  SURFACE_OR_ROLE_ONLY: 4
+  NO_EXPLICIT_REVIEWED_PRODUCT_PROCEDURE: 9
+  OUTSIDE_AUTHORIZED_PRODUCT_SCOPE: 1
+  NOT_REQUIRED: 1
+  total: 18
+runtime_pass_count: 0
+fabricated_runtime_evidence: 0
+invented_project_values: 0
+private_source:
+  repository: eariver/Automotive_EE_Engineering_Knowledge
+  accepted_source_head: 0811d2863669fcc3dfd0c0beecfbbd616e8f70d4
+  muse_candidate: 6974c45a571b053ec3f48c7cbfa8e5b87cdf2077
+  baseline: f23ebaac9c9b658507263894b096bda680d6f890
+public:
+  repository: eariver/Automotive_EE_Research_Public
+  branch: publish/management-ecu-startup-shutdown-mode-management-engineering-20260911
+  base_main_sha: 183d9dc0ab120484e4018e530a33e5b291bd7baa
+  base_main_tree: 5794e468b4397c896d107906a06d533435cdf88a
+  main_merged: false
+source_bundle_policy:
+  sol_review_content_identical_with_publication_facing_filename: true
+  six_private_yamls_raw_copied: false
+  six_private_yamls_used_as_synthesis_authority: true
+  raw_private_current_package_yaml_copied: false
+  raw_autosar_vector_source_copied: false
+  secret_confidential_project_material_copied: false
+  upstream_reviewed_knowledge: LOCATOR_ONLY
+  raw_vendor_or_standard_sources: EXCLUDED
+  internal_muse_material: EXCLUDED
+  confidential_project_values: EXCLUDED
+reviewed_authority:
+  autosar: eariver/Research_AUTOSAR_CP_Documents@4dc3d7c912cba7c3df77285d32bf2ad18a47a5f0
+  autosar_path: docs/knowledge/management-ecu-startup-shutdown-mode-management-autosar-semantic-depth.md
+  vector: eariver/Research_Vector_Documents@c7fc341afd12a0c4a636641efcad2ceabceb9d0f
+  vector_path: docs/knowledge/management-ecu-startup-shutdown-mode-management-vector-procedure.md
+task_population: ECUM-001 through ECUM-018 exactly once
+semantic_overlay:
+  ECUM-006: REVIEWED_AUTHORITY_AVAILABLE
+  ECUM-007: PARTIAL_REVIEWED_AUTHORITY
+  ECUM-008: PARTIAL_REVIEWED_AUTHORITY
+projection_policy:
+- Publish only the Sol-reviewed package appropriate for the public repository.
+- Keep the Sol review byte-identical; change only the filename.
+- Derive reader-facing synthesis and the compact matrix from the six private YAMLs; do not raw-copy them.
+- Keep all non-collapse boundaries, wakeup-phase separation, single/multi-core separation and NvM/BswM ownership separation.
+- Read NO_EXPLICIT_REVIEWED_PRODUCT_PROCEDURE as documentation scope, never as capability absence.
+- Select no project values; claim no runtime PASS.
+- Never merge the publication branch into public main in this execution.

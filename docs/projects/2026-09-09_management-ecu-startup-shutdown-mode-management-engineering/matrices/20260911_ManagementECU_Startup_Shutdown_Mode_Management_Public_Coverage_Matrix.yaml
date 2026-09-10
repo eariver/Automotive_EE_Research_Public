@@ -1,0 +1,149 @@
+schema_version: management-ecu-startup-shutdown-mode-management-public-coverage-matrix/v1
+artifact: Management ECU Startup / Shutdown / ECU Mode Management — Public Coverage Matrix
+date: '2026-09-11'
+status: SOL_REVIEWED_PROJECTION
+private_authority: eariver/Automotive_EE_Engineering_Knowledge@0811d2863669fcc3dfd0c0beecfbbd616e8f70d4
+candidate: eariver/Automotive_EE_Engineering_Knowledge@6974c45a571b053ec3f48c7cbfa8e5b87cdf2077
+derivation: Mechanically derived from the private Requirement Catalog, Research Gap Status and Validation Matrix; no new proposition added.
+task_count: 18
+runtime_pass_count: 0
+fabricated_runtime_evidence: 0
+invented_project_values: 0
+semantic_to_product_promotion: 0
+product_to_runtime_promotion: 0
+product_aggregate:
+  EXPLICIT_REVIEWED_PRODUCT_PROCEDURE_AVAILABLE: 0
+  PARTIAL_REVIEWED_PRODUCT_PROCEDURE: 3
+  SURFACE_OR_ROLE_ONLY: 4
+  NO_EXPLICIT_REVIEWED_PRODUCT_PROCEDURE: 9
+  OUTSIDE_AUTHORIZED_PRODUCT_SCOPE: 1
+  NOT_REQUIRED: 1
+  total: 18
+product_reading: NO_EXPLICIT_REVIEWED_PRODUCT_PROCEDURE is a documentation/reviewed-procedure scope outcome at the exact Vector commit; never a Vector/MICROSAR capability-absence claim.
+rows:
+- task_id: ECUM-001
+  semantic_authority_status: PARTIAL_REVIEWED_AUTHORITY
+  product_procedure_status: SURFACE_OR_ROLE_ONLY
+  project_input_or_design_status: PROJECT_INPUT_REQUIRED
+  execution_evidence_status: NOT_CURRENTLY_REQUIRED
+  runtime_verdict: NOT_EVALUATED
+  public_note: Ownership direction reviewed; exact allocation and rule/action realization still project design.
+- task_id: ECUM-002
+  semantic_authority_status: AUTHORITY_GAP
+  product_procedure_status: NO_EXPLICIT_REVIEWED_PRODUCT_PROCEDURE
+  project_input_or_design_status: PROJECT_INPUT_REQUIRED
+  execution_evidence_status: NOT_CURRENTLY_REQUIRED
+  runtime_verdict: NOT_EVALUATED
+  public_note: Reset/boot source and MCU/power integration retained as authority gap; no generic-workflow inference.
+- task_id: ECUM-003
+  semantic_authority_status: PARTIAL_REVIEWED_AUTHORITY
+  product_procedure_status: PARTIAL_REVIEWED_PRODUCT_PROCEDURE
+  project_input_or_design_status: PROJECT_INPUT_REQUIRED
+  execution_evidence_status: NOT_CURRENTLY_REQUIRED
+  runtime_verdict: NOT_EVALUATED
+  public_note: Pre-OS list/item configuration procedure partial; driver allocation/order still project design.
+- task_id: ECUM-004
+  semantic_authority_status: REVIEWED_AUTHORITY_AVAILABLE
+  product_procedure_status: NO_EXPLICIT_REVIEWED_PRODUCT_PROCEDURE
+  project_input_or_design_status: PROJECT_INPUT_REQUIRED
+  execution_evidence_status: NOT_CURRENTLY_REQUIRED
+  runtime_verdict: NOT_EVALUATED
+  public_note: StartOS handoff fact reviewed; OS application mode, scheduling and runnable proof still required.
+- task_id: ECUM-005
+  semantic_authority_status: REVIEWED_AUTHORITY_AVAILABLE
+  product_procedure_status: PARTIAL_REVIEWED_PRODUCT_PROCEDURE
+  project_input_or_design_status: PROJECT_INPUT_REQUIRED
+  execution_evidence_status: NOT_CURRENTLY_REQUIRED
+  runtime_verdict: NOT_EVALUATED
+  public_note: StartupTwo/StartPostOS handoffs and BswM_Init negative reviewed; post-OS configuration partial; completion definition still project design.
+- task_id: ECUM-006
+  semantic_authority_status: REVIEWED_AUTHORITY_AVAILABLE
+  product_procedure_status: SURFACE_OR_ROLE_ONLY
+  project_input_or_design_status: PROJECT_INPUT_REQUIRED
+  execution_evidence_status: NOT_CURRENTLY_REQUIRED
+  runtime_verdict: NOT_EVALUATED
+  public_note: AUTOSAR RUN/POST_RUN request-protocol boundary reviewed; arbitration, requestors, timing and readiness still project design.
+- task_id: ECUM-007
+  semantic_authority_status: PARTIAL_REVIEWED_AUTHORITY
+  product_procedure_status: NO_EXPLICIT_REVIEWED_PRODUCT_PROCEDURE
+  project_input_or_design_status: PROJECT_INPUT_REQUIRED
+  execution_evidence_status: NOT_CURRENTLY_REQUIRED
+  runtime_verdict: NOT_EVALUATED
+  public_note: AUTOSAR arbitration concept partial; no explicit Vector rule/expression/priority/order procedure; project rules still required.
+- task_id: ECUM-008
+  semantic_authority_status: PARTIAL_REVIEWED_AUTHORITY
+  product_procedure_status: NO_EXPLICIT_REVIEWED_PRODUCT_PROCEDURE
+  project_input_or_design_status: PROJECT_INPUT_REQUIRED
+  execution_evidence_status: NOT_CURRENTLY_REQUIRED
+  runtime_verdict: NOT_EVALUATED
+  public_note: AUTOSAR Action List concept partial; no explicit Vector Action List/action procedure; project lists still required.
+- task_id: ECUM-009
+  semantic_authority_status: PARTIAL_REVIEWED_AUTHORITY
+  product_procedure_status: PARTIAL_REVIEWED_PRODUCT_PROCEDURE
+  project_input_or_design_status: PROJECT_INPUT_REQUIRED
+  execution_evidence_status: NOT_CURRENTLY_REQUIRED
+  runtime_verdict: NOT_EVALUATED
+  public_note: BswM Communication Control partial; complete ComM/Nm lifecycle handoff still project design.
+- task_id: ECUM-010
+  semantic_authority_status: REVIEWED_AUTHORITY_AVAILABLE
+  product_procedure_status: NO_EXPLICIT_REVIEWED_PRODUCT_PROCEDURE
+  project_input_or_design_status: PROJECT_INPUT_REQUIRED
+  execution_evidence_status: NOT_CURRENTLY_REQUIRED
+  runtime_verdict: NOT_EVALUATED
+  public_note: BswM ReadAll trigger ownership reviewed; no explicit Vector NvM action procedure; blocks and validity still project design.
+- task_id: ECUM-011
+  semantic_authority_status: PARTIAL_REVIEWED_AUTHORITY
+  product_procedure_status: SURFACE_OR_ROLE_ONLY
+  project_input_or_design_status: PROJECT_INPUT_REQUIRED
+  execution_evidence_status: NOT_CURRENTLY_REQUIRED
+  runtime_verdict: NOT_EVALUATED
+  public_note: Trigger/selection vs late-shutdown ownership reviewed; Ecu State Handling surface only; target still project design.
+- task_id: ECUM-012
+  semantic_authority_status: REVIEWED_AUTHORITY_AVAILABLE
+  product_procedure_status: NO_EXPLICIT_REVIEWED_PRODUCT_PROCEDURE
+  project_input_or_design_status: PROJECT_INPUT_REQUIRED
+  execution_evidence_status: NOT_CURRENTLY_REQUIRED
+  runtime_verdict: NOT_EVALUATED
+  public_note: BswM WriteAll trigger ownership reviewed; no explicit Vector NvM action procedure; blocks, budget and durability still project design.
+- task_id: ECUM-013
+  semantic_authority_status: PARTIAL_REVIEWED_AUTHORITY
+  product_procedure_status: NO_EXPLICIT_REVIEWED_PRODUCT_PROCEDURE
+  project_input_or_design_status: PROJECT_INPUT_REQUIRED
+  execution_evidence_status: NOT_CURRENTLY_REQUIRED
+  runtime_verdict: NOT_EVALUATED
+  public_note: ShutdownOS vs ShutdownAllCores and OFF/RESET/sleep identities reviewed; target and power strategy still project design.
+- task_id: ECUM-014
+  semantic_authority_status: PARTIAL_REVIEWED_AUTHORITY
+  product_procedure_status: NO_EXPLICIT_REVIEWED_PRODUCT_PROCEDURE
+  project_input_or_design_status: PROJECT_INPUT_REQUIRED
+  execution_evidence_status: NOT_CURRENTLY_REQUIRED
+  runtime_verdict: NOT_EVALUATED
+  public_note: Detection/validation/reaction separation reviewed; sources, owner and registration still project design.
+- task_id: ECUM-015
+  semantic_authority_status: PARTIAL_REVIEWED_AUTHORITY
+  product_procedure_status: NO_EXPLICIT_REVIEWED_PRODUCT_PROCEDURE
+  project_input_or_design_status: PROJECT_INPUT_REQUIRED
+  execution_evidence_status: NOT_CURRENTLY_REQUIRED
+  runtime_verdict: NOT_EVALUATED
+  public_note: Validation-phase separation reviewed; owner, timeouts, expiration and reaction still project design.
+- task_id: ECUM-016
+  semantic_authority_status: PARTIAL_REVIEWED_AUTHORITY
+  product_procedure_status: SURFACE_OR_ROLE_ONLY
+  project_input_or_design_status: PROJECT_INPUT_REQUIRED
+  execution_evidence_status: NOT_CURRENTLY_REQUIRED
+  runtime_verdict: NOT_EVALUATED
+  public_note: Car Wakeup vs BusSM startup vs EcuM policy separation reviewed; communication surfaces only; coordination still project design.
+- task_id: ECUM-017
+  semantic_authority_status: NOT_APPLICABLE
+  product_procedure_status: NOT_REQUIRED
+  project_input_or_design_status: PROJECT_INPUT_REQUIRED
+  execution_evidence_status: NOT_CURRENTLY_REQUIRED
+  runtime_verdict: NOT_EVALUATED
+  public_note: All project design values unresolved by design.
+- task_id: ECUM-018
+  semantic_authority_status: NOT_APPLICABLE
+  product_procedure_status: OUTSIDE_AUTHORIZED_PRODUCT_SCOPE
+  project_input_or_design_status: PROJECT_INPUT_REQUIRED
+  execution_evidence_status: EXECUTION_EVIDENCE_REQUIRED
+  runtime_verdict: NOT_EVALUATED
+  public_note: No runtime evidence claimed; configuration != artifact != evidence != verdict != coverage.
